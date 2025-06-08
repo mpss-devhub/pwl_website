@@ -33,7 +33,7 @@ class LinkDao
             'link_expired_at'=>$data["expired_at"]
         ]);
 
-        return $linkUrl;
+        return  $linkUrl;
     }
 
     public function getByToken($token) {
