@@ -1,0 +1,52 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Permissions;
+use App\Models\User;
+use Carbon\Carbon;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     */
+    public function run(): void
+    {
+
+        Permissions::create([
+            'user_group' => 'Admin',
+            'permission' => 'T-U-M-S-AA',
+            'allowed' => 'T:R,W,D;U:R,W,D;M:R,W,D;S:R,W,D;AA:R,W,D',
+        ]);
+
+
+        // User::factory(10)->create();
+        User::factory()->create([
+            'user_id' => 'OCT_H5131',
+            'name' => 'MPSS merchant',
+            'email' => 'mpss@merchant.com',
+            'phone' => '09447710052',
+            'role' => 'admin',
+            'status' => 'active',
+            'email_verified_at' => Carbon::now(),
+            'permission_id' => '1',
+            'password' => Hash::make(447710052),
+        ]);
+
+        User::factory()->create([
+            'user_id' => 'OCT_L5515',
+            'name' => 'MPSS Admin',
+            'email' => 'mpss@admin.com',
+            'phone' => '09447710052',
+            'role' => 'admin',
+            'status' => 'active',
+            'permission_id' => '1',
+            'email_verified_at' => Carbon::now(),
+            'password' => Hash::make(447710052),
+        ]);
+    }
+}

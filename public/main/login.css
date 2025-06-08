@@ -1,0 +1,53 @@
+body {
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+    background-image: linear-gradient(to bottom right, #bdccfd, #6c728c);
+    min-height: 100vh;
+}
+
+/* large background shapes */
+.bg-shape {
+    position: absolute;
+    opacity: 0.6;
+    z-index: -1;
+}
+
+/* Shape 1*/
+.bg-shape-1 {
+    width: 1000px;
+    height: 800px;
+    background: linear-gradient(135deg, #bfdbfe 0%, #a6c2f5 100%);
+    transform: rotate(-20deg);
+    top: -300px;
+    left: -400px;
+}
+
+/* Shape 2 */
+.bg-shape-2 {
+    width: 900px;
+    height: 700px;
+    background: linear-gradient(135deg, #a6c2f5 0%, #bfdbfe 100%);
+    transform: rotate(30deg);
+    bottom: -700px;
+    right: 400px;
+}
+
+/* Shape 3 */
+.bg-shape-3 {
+    width: 600px;
+    height: 500px;
+    background: linear-gradient(135deg, #bfdbfe 0%, #a78bfa 100%);
+    transform: rotate(20deg);
+    top: 100px;
+    right: -200px;
+    opacity: 0.4;
+}
+
+.text {
+    font-family: "Lato";
+}
