@@ -9,41 +9,38 @@ use Illuminate\Support\Str;
 
 class LinkDao
 {
-    public function create(array $data) {
-
+    public function create(array $data)
+    {
         $merchants = Merchants::where("user_id", $data["user_id"])->first();
-
         $token = Str::random(40);
-
-         $linkUrl = url('/pay/' . $token);
-        //dd($linkUrl);
-       // dd($data['expired_at']);
+        $linkUrl = url('/pay/' . $token);
         $link = Links::create([
-            "user_id"=> $data["user_id"],
-            "merchant_id"=> $merchants->merchant_id,
-            "link_invoiceNo"=> $data["invoiceNo"],
-            "link_amount"=> $data["amount"],
-            "link_name"=> $data["name"],
-            "link_phone"=> $data["phone"],
-            "link_currency"=> $data["currency"],
-            "link_email"=> $data["email"],
-            "link_description"=> $data["description"],
-            "link_type"=> $data["notification"],
+            "user_id" => $data["user_id"],
+            "merchant_id" => $merchants->merchant_id,
+            "link_invoiceNo" => $data["invoiceNo"],
+            "link_amount" => $data["amount"],
+            "link_name" => $data["name"],
+            "link_phone" => $data["phone"],
+            "link_currency" => $data["currency"],
+            "link_email" => $data["email"],
+            "link_description" => $data["description"],
+            "link_type" => $data["notification"],
             'link_url' => $linkUrl,
-            'link_expired_at'=>$data["expired_at"]
+            "created_by" => $merchants->merchant_id,
+            'link_expired_at' => $data["expired_at"]
         ]);
-
         return  $linkUrl;
     }
 
-    public function getByToken($token) {
+    public function getByToken($token)
+    {
 
-        $url = url("/pay/". $token);
+        $url = url("/pay/" . $token);
         $merchant_id = Links::where("link_url", $url)->select('merchant_id')->first();
         $link = Links::where("link_url", $url)->get();
         $details = Merchants::where("merchant_id", $merchant_id['merchant_id'])->get();
 
         //dd($link,$details);
-        return [$details , $link ];
+        return [$details, $link];
     }
 }

@@ -25,7 +25,8 @@
                 $table->string('link_type');
                 $table->string('link_url')->nullable();
                 $table->decimal('link_amount', 15, 2);
-                $table->string('link_status')->default('active'); // active, expired, paid
+                $table->string('link_status')->default('active');
+                $table->string('link_click_status')->default('unclicked');
                 $table->timestamp('link_expired_at');
                 $table->string('created_by')->default('system');
                 $table->string('deleted_by')->nullable();

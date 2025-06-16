@@ -19,10 +19,15 @@ class Links extends Model
         'link_email',
         'link_type',
         'link_url',
+        'created_by',
+        'updated_by',
+        'deleted_by',
         'link_status',
-        'link_expiry_date',
+        'link_click_status',
+        'link_expired_at',
         'link_created_at',
         'link_updated_at',
+        'link_deleted_at',
     ];
 
 
@@ -30,6 +35,8 @@ class Links extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
+
+
 
 
 }

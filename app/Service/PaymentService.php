@@ -7,6 +7,9 @@ use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 use App\Dao\PaymentDao;
 use App\Models\Merchants;
+use App\Models\Tnx;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 
 class PaymentService
@@ -21,18 +24,57 @@ class PaymentService
     }
 
 
+    public function show(array $data)
+    {
+
+        $merchant_id = Links::where('id', $data['link_id'])->select('merchant_id')->first();
+        $app_id = "000021";
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
+            'X-APP-ID' => $app_id,
+        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantList', [
+            "pageNo" => "1",
+            "pageSize" => "10",
+            "orderBy" => "DESC",
+            "searchObj" => [
+                "merchantID" => $merchant_id['merchant_id'],
+                "merchantName" => "",
+                "merchantIntegrationType" => "",
+                "status" => ""
+            ]
+
+        ]);
+        if ($response->failed()) {
+            return [
+                'status' => 'error',
+                'message' => 'Failed ',
+            ];
+        }
+        $data = $response['data']['dataList'][0]['paymentMdrInfoList'];
+        return $data;
+    }
+
+    public function link(array $data)
+    {
+        $link = $this->paymentDao->getLinkById($data['link_id']);
+        $merchant = $this->paymentDao->getMerchantByMerchantId($link->merchant_id);
+        return [
+            'link' => $link,
+            'merchant' => $merchant,
+        ];
+    }
+
     public function Auth(array $data)
     {
-        //dd($data['link_id']);
+        $paymentCode = $data['paymentCode'] ?? '';
         $links = Links::where('id', $data['link_id'])->get()->toArray();
         $paymentInfo = $links[0];
         $merchants = Merchants::where('merchant_id', $paymentInfo['merchant_id'])->get()->toArray();
         $merchantInfo = $merchants[0];
         $secret_key = $merchantInfo['merchant_secretkey'];
+        $data_Key = $merchantInfo['merchant_datakey'];
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
-
-        //dd($merchantInfo['merchant_frontendURL'],$merchantInfo['merchant_backendURL']);
-
         $payload = json_encode([
             'merchantID' => $paymentInfo['merchant_id'],
             'invoiceNo' => $paymentInfo['link_invoiceNo'],
@@ -44,52 +86,34 @@ class PaymentService
         ]);
 
         $jwt = $this->jwt($header, $payload, $secret_key);
-        //dd($jwt);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
         ])->post('https://test.octoverse.com.mm/api/payment/auth/token', [
             'payData' => $jwt,
         ]);
-
         if ($response->failed()) {
             return [
                 'status' => 'error',
                 'message' => 'Failed ',
             ];
         }
-
         $token = $response['data'];
         $decode = $this->get($token, $secret_key);
-
         if ($decode) {
-            $this->getList($decode);
+            $data = $this->dopay($decode, $paymentCode, $data_Key, $data);
         }
-        //dd($data);
         return $data;
     }
 
-    public function get($token, $secret_key)
+    public function store(array $data)
     {
-        // dd($token,$secret_key);
+        $tnx_data = $this->paymentDao->store($data);
+    }
+
+    public function get($token, $secret_key,)
+    {
         return JWT::decode($token, new Key($secret_key, 'HS256'));
     }
-
-    public function getList($decoded)
-    {
-        //dd($decoded->paymentToken , $decoded->accessToken);
-
-        $response = Http::withHeaders([
-            'Content-Type' => 'application/json',
-            'Authorization' => 'Bearer ' . $decoded->accessToken,
-
-        ])->post('https://test.octoverse.com.mm/api/payment/getAvailablePaymentsList', [
-            'paymentToken' => $decoded->paymentToken,
-        ]);
-        $data = $response['data'];
-          dd($data);
-        return $data;
-    }
-
 
     private function jwt($header, $payload, $secret)
     {
@@ -98,5 +122,75 @@ class PaymentService
         $signature = hash_hmac('sha256', $base64UrlHeader . "." . $base64UrlPayload, $secret, true);
         $base64UrlSignature = rtrim(strtr(base64_encode($signature), '+/', '-_'), '=');
         return $base64UrlHeader . "." . $base64UrlPayload . "." . $base64UrlSignature;
+    }
+
+
+    private function dopay($decode, $paymentCode, $data_Key, $paymentInfo)
+    {
+        $paydata = $this->AES($data_Key, $paymentInfo);
+        $response = Http::withHeaders([
+            'Content-Type' => 'application/json',
+            'Authorization' => 'Bearer ' . $decode->accessToken,
+        ])->post('https://test.octoverse.com.mm/api/payment/dopay', [
+            "paymentCode" => $paymentCode,
+            'paymentToken' => $decode->paymentToken,
+            "payData" => $paydata
+        ]);
+        $data = $response['data'];
+        return $data;
+    }
+
+    private function AES($data_Key, $data)
+    {
+        $type = $data['type'];
+        $payload = [];
+        if( $type === 'Ewallet' || $type === 'QR' || $type === 'Web'){
+            $payload['phoneNo'] = $data['tnx_phonenumber'];
+        }
+        if( $type === 'L_C' ) {
+            $payload['phoneNo'] = $data['tnx_phonenumber'];
+            $payload['cardNumber'] = $data['cardNumber'];
+            $payload['expiryMonth'] = $data['expiryMonth'];
+            $payload['expiryYear'] = $data['expiryYear'];
+        }
+        if( $type === 'G_C' ) {
+            $payload['cardNumber'] = $data['cardNumber'];
+            $payload['expiryMonth'] = $data['expiryMonth'];
+            $payload['expiryYear'] = $data['expiryYear'];
+            $payload['cvv'] = $data['securityCode'];
+        }
+        $plaintext = json_encode($payload, JSON_UNESCAPED_UNICODE);
+        $encrypted = openssl_encrypt($plaintext, 'AES-128-ECB', $data_Key, OPENSSL_RAW_DATA);
+        return base64_encode($encrypted);
+    }
+
+
+    public function backendCallback(array $data, $merchant_id)
+    {
+        $data_key = Merchants::where('merchant_id', $merchant_id)->value('merchant_datakey');
+        $paymentInfo = $data['data'];
+        $decryptedData = openssl_decrypt(base64_decode($paymentInfo), 'AES-128-ECB', $data_key, OPENSSL_RAW_DATA);
+        $data = json_decode($decryptedData, true);
+        $ino = Links::where('link_invoiceNo', $data['invoiceNo'])->select('created_at', 'id')->get();
+        Tnx::updateOrCreate(
+            ['link_id' => $ino[0]['id']],
+            [
+                'payment_status' => $data['status'] ?? '',
+                'trans_date_time' => $data['transDateTime'] ?? '',
+                'payment_created_at' => $ino[0]['created_at'] ?? '',
+                'tranref_no' => $data['invoiceNo'] ?? '',
+                'bank_tranref_no' => $data['bankTranrefNo'] ?? '',
+                'txn_amount' => $data['txnAmount'] ?? '',
+                'currencyCode' => $data['currencyCode'] ?? '',
+                'req_amount' => $data['reqAmount'] ?? '',
+                'net_amount' => $data['netAmount'] ?? '',
+                'created_by' => $merchant_id,
+                'updated_at' => Carbon::now() ?? '',
+                'updated_by' => "PaymentGateway",
+
+
+            ]
+        );
+        return response()->json(['status' => 'saved', 'data' => $data]);
     }
 }

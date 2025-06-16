@@ -7,7 +7,7 @@
         <div class="bg-white rounded-lg shadow p-6 mb-6">
             <div class="flex flex-col md:flex-row md:items-center md:justify-between">
                 <div class="mb-4 md:mb-0">
-                    <h1 class="text-2xl font-bold text-gray-800">SMS & Email Management</h1>
+                    <h1 class="text-2xl font-bold text-gray-800">Pay With Link History</h1>
                     <p class="text-sm text-gray-600">View and manage your SMS & Email messages</p>
                 </div>
                 <a href="#" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-medium transition-colors flex items-center justify-center">
@@ -39,10 +39,13 @@
                                 Name
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                SMS Status
+                                Status
+                            </th>
+                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                Link Status
                             </th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
-                                Link Status
+                                Link Track
                             </th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">
                                 Actions
@@ -50,171 +53,54 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
-                        <!-- Sample Row 1 -->
-                        <tr class="hover:bg-gray-50">
+
+                        @foreach ($links as $item)
+                          <tr class="hover:bg-gray-50">
                             <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                1
+                               {{$loop->iteration}}
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
+                                {{ $item->link_url }}
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
+                                {{ $item->link_phone }}
                             </td>
                             <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
+                               {{ $item->link_name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                     Delivered
                                 </span>
                             </td>
+
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                @if($item->link_status == 'active')
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-blue-800">
+                                        Active
+                                    </span>
+                                @elseif($item->link_status == 'expired') {
+                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Inactive
+                                    </span>
+                                }
+                                @endif
+                            </td>
+
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <p class="px-2 inline-flex text-sm leading-5 font-semibold ">
+
                                 Clicked
+                                </p>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
                                 <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
                             </td>
                         </tr>
+                        @endforeach
 
-                        <!-- Sample Row 2 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                2
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                Expired
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
-                            </td>
-                        </tr>
 
-                        <!-- Sample Row 3 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                3
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                    Failed
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                Not Clicked
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
-                            </td>
-                        </tr>
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                4
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                    Delivered
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                               MPU PAY
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
-                            </td>
-                        </tr>
-
-                        <!-- Sample Row 2 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                5
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                    Pending
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                Clicked
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
-                            </td>
-                        </tr>
-
-                        <!-- Sample Row 3 -->
-                        <tr class="hover:bg-gray-50">
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                6
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Your payment link: https://paywithlink.com/pay/12345
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                09852123695
-                            </td>
-                            <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                Naing Min Tun
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                    Failed
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                Not Clicked
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" class="text-blue-600 hover:text-blue-900 mr-3">View</a>
-                                <a href="#" class="text-red-600 hover:text-red-900">Resend</a>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
