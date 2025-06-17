@@ -12,6 +12,7 @@ class Merchants extends Model
     protected $fillable = [
         'status',
         'merchant_id',
+        'merchant_notification',
         'user_id',
         'merchant_datakey',
         'merchant_secretkey',

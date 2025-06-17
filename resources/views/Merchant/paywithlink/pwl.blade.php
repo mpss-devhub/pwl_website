@@ -40,7 +40,7 @@
                     <div>
                         <label class="block text-xs font-medium text-gray-500 mb-1">Merchant ID</label>
                         <div class="flex items-center bg-white px-3 py-2 rounded-md border border-gray-200">
-                            <span class="text-gray-600 text-sm">{{ Auth::user()->user_id }}</span>
+                            <span class="text-gray-600 text-sm">{{ $merchant['merchant_id']}}</span>
                             <button class="ml-auto text-blue-600 hover:text-blue-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
@@ -135,10 +135,12 @@
                         <input type="checkbox" id="sms" name="notification" class="h-4 w-4 text-blue-600 focus:ring-blue-500 rounded-lg" value="SMS" name="type">
                         <label for="sms" class="ml-2 text-sm font-medium text-gray-700">SMS Notification</label>
                     </div>
-                    <div class="flex items-center bg-gray-50 p-3 rounded-lg border border-gray-200">
+                    @if (!$email->isEmpty())
+                     <div class="flex items-center bg-gray-50 p-3 rounded-lg border border-gray-200">
                         <input type="checkbox" id="email" name="notification" class="h-4 w-4 text-blue-600 focus:ring-blue-500 rounded-lg" value="Email" name="type">
                         <label for="email" class="ml-2 text-sm font-medium text-gray-700">Email Notification</label>
                     </div>
+                    @endif
                     <div class="flex items-center bg-gray-50 p-3 rounded-lg border border-gray-200">
                         <input type="checkbox" id="push" name="notification" class="h-4 w-4 text-blue-600 focus:ring-blue-500 rounded-lg" value="Copy" name="type">
                         <label for="push" class="ml-2 text-sm font-medium text-gray-700">Copy Link</label>

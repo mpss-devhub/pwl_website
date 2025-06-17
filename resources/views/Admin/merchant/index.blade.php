@@ -232,7 +232,8 @@ Login At : www.paywithlink.com/login\n
                             <!-- Sample Row 1 -->
                             @foreach ($merchantInfo as $info)
                                 <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
+
+                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_id}}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                                     <div class="flex items-center">
@@ -259,17 +260,21 @@ Login At : www.paywithlink.com/login\n
                                     </span>-->
 
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td class="flex justify-content-between px-6 py-4 whitespace-nowrap text-right text-md font-medium">
                                     <a href="{{ route('merchant.detail', $info->user_id ) }}" class="text-green-600 hover:text-green-900 mr-3">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>
                                     <a href="{{ route('merchant.update',$info->user_id) }}" class="text-blue-600 hover:text-blue-900 mr-3">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="{{ route('merchant.mdr',$info->user_id) }}" class="text-red-600 hover:text-red-900">
+                                    <a href="{{ route('merchant.mdr',$info->user_id) }}" class="text-red-600 hover:text-red-900 mr-3">
                                         <i class="fa-solid fa-money-bill-transfer"></i>
                                     </a>
+                                    <a href="{{ route('sms.show',$info->user_id) }}" class="text-yellow-600 hover:text-yellow-900">
+                                        <i class="fa-solid fa-comment-sms"></i>
+                                    </a>
                                 </td>
+
                             </tr>
                             @endforeach
 

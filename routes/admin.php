@@ -69,3 +69,9 @@ Route::post('Update/Merchant}',[AdminController::class,'merchantupdate'])->name(
 Route::get('View/Merchant/MDRSetup/{id}',[AdminController::class,'mdr'])->name('merchant.mdr');
 
 
+//SMS Management
+Route::get('/admin/sms&email/{id}', [AdminController::class, 'sms'])->name('sms.show');
+Route::post('/admin/Create/sms&email/', [AdminController::class,'create'])->name('sms.create');
+Route::get('/admin/sms&email/delete/{id}',[AdminController::class,'delete'])->name('sms.delete');
+
+

@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Mail\CheckoutMail;
+use App\Models\sms;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
 
@@ -10,15 +11,20 @@ use Illuminate\Support\Facades\Mail;
 class SMSService
 {
 
-    public function sendSMS(string $phoneNumber, string $message): bool
+    public function sendSMS(string $phoneNumber, string $message, string $id): bool
     {
+        $data = sms::where('merchant_id', $id)->select('sms_token','sms_url','sms_from')->first();
+        //dd($data);
+        $token = $data['sms_token'];
+        $url = $data['sms_url'];
+        $from = $data['sms_from'];
         try {
             $response = Http::withHeaders([
-                'Authorization' => 'Bearer ' . 'eQWZQ_u2wbz6hSs-NpNKE3ysBIFvotCe_ABuLb3dNTl-IlKpIwzGiN36Id7aV4uw',
-            ])->post('https://smspoh.com/api/v2/send', [
+                'Authorization' => 'Bearer ' . $token,
+            ])->post( $url, [
                 'to' => $phoneNumber,
                 'message' => $message,
-                "from" => "SMSPoh",
+                "from" => $from,
                 "clientReference" => "abcde12345",
             ]);
             return $response->successful();

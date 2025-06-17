@@ -24,7 +24,8 @@ class LinksController extends Controller
     public function store(LinkRequest $request)
     {
         $linkUrl = $this->linkDao->create($request->validated());
-        $Sendername = Merchants::where('user_id', $request->user_id)->select('merchant_name')->first();
+        $Sendername = Merchants::where('user_id', $request->user_id)->select('merchant_name','merchant_id')->first();
+        $id = $Sendername['merchant_id'];
         if ($request['notification'] == 'SMS') {
             $message =
                 " \n Invoice Number: " . $request->invoiceNo .
@@ -32,7 +33,7 @@ class LinksController extends Controller
                 " \n From: " . $Sendername['merchant_name'] .
                 "\n This is Your Payment Link : " . $linkUrl;
             $phoneNumber = $request->phone;
-            $this->SMSService->sendSMS($request->phone, message: $message);
+            $this->SMSService->sendSMS($request->phone,$message,$id);
         }
         if ($request['notification'] == 'Email') {
             $message = " \n Invoice Number: " . $request->invoiceNo .
