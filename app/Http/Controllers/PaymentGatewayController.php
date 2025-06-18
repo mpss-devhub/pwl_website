@@ -26,14 +26,11 @@ class PaymentGatewayController extends Controller
         $Web = $data[2]['payments'] ?? null;
         $L_C = $data[3]['payments'] ?? null;
         $G_C = $data[4]['payments'] ?? null;
-        //dd($Ewallet, $QR, $Web, $L_C, $G_C);
         return view('checkout.paymentlist', compact('link', 'merchant', 'Ewallet', 'QR', 'Web', 'L_C', 'G_C'));
     }
 
     public function Pwl(Request $request)
     {
-        //dd($request->all());
-        //$this->paymentService->store($request->all());
         $data = $this->paymentService->Auth($request->all());
         $link_data = $this->paymentService->link($request->all());
         $link = $link_data['link'] ?? null;
@@ -41,9 +38,9 @@ class PaymentGatewayController extends Controller
         return view('checkout.pay', compact('data', 'link', 'merchant'));
     }
 
-    public function paymentBackendCallback(Request $request,$merchant_id)
+    public function paymentBackendCallback(Request $request,$user_id)
     {
-        $this->paymentService->backendCallback($request->all(),$merchant_id);
+        $this->paymentService->backendCallback($request->all(),$user_id);
         return response()->json(['status' => 'success', 'message' => 'Payment processed successfully']);
     }
 }

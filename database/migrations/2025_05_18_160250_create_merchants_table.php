@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('user_id');
             $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->string('status')->default('inactive');
-            $table->string('merchant_notification')->nullable();
             $table->string('merchant_name');
             $table->string('merchant_Cname');
             $table->string('merchant_Cemail');

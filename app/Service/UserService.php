@@ -46,9 +46,8 @@ class UserService
     public function RegisterMerchant(array $data): array
     {
         $secret_key = '9IC3Bve4533uFMuBrsXd7bYndV0bNrH9m13V7Jfq14s';
-       // $m_id = Merchants::where('user_id', $data['user_id'])->get('merchant_id');
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
-
+         $backendURL = 'http://127.0.0.1:8000/api/merchant/backendcallback/'.$data['user_id'];
         $payload = json_encode([
             'appId' => '000021',
             'merchantExternalId' => $data['user_id'],
@@ -59,7 +58,7 @@ class UserService
             'contactEmail' => $data['merchant_Cemail'],
             'notifyEmail' => $data['merchant_notifyemail'],
             'frontendUrl' => $data['merchant_frontendURL'],
-            'backendUrl' => $data['merchant_backendURL'],
+            'backendUrl' =>   $backendURL,
             'remark' => $data['merchant_remark'],
         ]);
 
@@ -96,7 +95,6 @@ class UserService
             'shareholderFileValue' => $shareholderFileValue,
             'shareholderFileType' => $shareholderFileType,
         ]);
-
         if ($response->failed()) {
             return [
                 'status' => 'error',

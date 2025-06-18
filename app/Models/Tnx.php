@@ -17,6 +17,7 @@ class Tnx extends Model
         'tranref_no',
         'payment_logo',
         'req_amount',
+        'tnx_tranref_no',
         'tnx_phonenumber',
         'cardNumber',
         'expiryMonth',

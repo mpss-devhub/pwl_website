@@ -234,12 +234,12 @@ Login At : www.paywithlink.com/login\n
                                 <tr class="hover:bg-gray-50">
 
                                          <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_id}}</td>
+                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_id ? $info->merchant_id : 'This Merchant is need approved' }}</td>
                                 <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
                                             <img class="h-10 w-10 rounded-full"
-                                                src="{{$info->merchant_logo}}" alt="User Profile">
+                                                src="{{$info->merchant_logo ?  $info->merchant_logo : Storage::url('common/approved.png')}}" alt="User Profile">
                                         </div>
                                         <div class="ml-4">
                                             <div class="text-sm font-medium text-gray-900">{{$info->merchant_name}}</div>
@@ -260,7 +260,7 @@ Login At : www.paywithlink.com/login\n
                                     </span>-->
 
                                 </td>
-                                <td class="flex justify-content-between px-6 py-4 whitespace-nowrap text-right text-md font-medium">
+                                <td class="flex justify-content-between px-6 py-4 whitespace-nowrap text-right text-md font-medium mt-2">
                                     <a href="{{ route('merchant.detail', $info->user_id ) }}" class="text-green-600 hover:text-green-900 mr-3">
                                         <i class="fa-solid fa-circle-info"></i>
                                     </a>

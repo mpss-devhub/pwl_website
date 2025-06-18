@@ -28,7 +28,6 @@ class MerchantRequest extends FormRequest
             "merchant_Cphone" => "required",
             "merchant_Cemail" => "required",
             "merchant_frontendURL" => "nullable",
-            "merchant_backendURL" => "nullable",
             "merchant_address" => "nullable",
             "merchant_notifyemail" => "required",
             "merchant_remark" => "nullable",
@@ -36,7 +35,7 @@ class MerchantRequest extends FormRequest
             "merchant_registration" => "nullable",
             "merchant_shareholder" => "nullable",
             "merchant_dica" => "nullable",
-            'user_id' => "required",
+            'user_id' => "required:unique:users,user_id",
             'password' => "required",
             'role' => "required",
         ];

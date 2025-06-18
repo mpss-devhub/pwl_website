@@ -62,7 +62,7 @@ class UserController extends Controller
 
     public function backendcallback(Request $request)
     {
-        if ($request->has('data.merchantInfo')) {
+        if ($request->has('data.merchantInfo')){
             $data_key = 'PZVBLZF6QDNCTAZU';
             $merchantInfo = $request->input('data.merchantInfo');
             $encrypted = base64_decode($merchantInfo, true);
@@ -78,7 +78,7 @@ class UserController extends Controller
             if (!$data) {
                 return response()->json(['error' => 'Invalid JSON in decrypted string'], 400);
             }
-            //Log::info('Merchant callback data:', $data);
+           // $backendURL = 'http://127.0.0.1:8000/api/merchant/payment/backendcallback/'+ $data['merchantID'];
             Merchants::updateOrCreate(
                 ['user_id' => $data['merchantExternalId'] ],
                 [

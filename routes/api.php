@@ -17,7 +17,7 @@ use App\Http\Controllers\UserController;
 */
 
 Route::post('/merchant/backendcallback', [UserController::class, 'backendcallback']);
-Route::post('/merchant/payment/backendcallback/{merchant_id}', [PaymentGatewayController::class, 'paymentBackendCallback']);
+Route::post('/merchant/payment/backendcallback/{user_id}', [PaymentGatewayController::class,'paymentBackendCallback']);
 
 
 

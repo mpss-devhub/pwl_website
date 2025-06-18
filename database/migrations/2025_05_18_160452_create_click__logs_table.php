@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('link_click_logs', function (Blueprint $table) {
+        Schema::create('link_click_logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('link_id')->constrained('links')->cascadeOnDelete();
             $table->string('ip_address')->nullable();
             $table->text('info')->nullable();
-            $table->timestamp('clicked_at')->useCurrent();
             $table->timestamps();
         });
     }

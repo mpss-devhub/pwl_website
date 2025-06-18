@@ -23,7 +23,8 @@ return new class extends Migration
             $table->integer('expiryMonth')->nullable();
             $table->integer('expiryYear')->nullable();
             $table->integer('secuirtyNumber')->nullable();
-            $table->string('tranref_no')->nullable();
+            $table->string('tranref_no')->nullable(); //invoniceNo
+            $table->string('tnx_tranref_no')->nullable();
             $table->string('bank_tranref_no')->nullable();
             $table->string('payment_logo')->nullable();
             $table->string('payment_user_name')->nullable();

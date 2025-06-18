@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Dao\LinkDao;
 use App\Models\Links;
+use App\Models\Merchants;
 use App\Service\SMSService;
 use Illuminate\Http\Request;
 use App\Http\Requests\Merchant\LinkRequest;
-use App\Models\Merchants;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class LinksController extends Controller
 {
@@ -43,6 +44,9 @@ class LinksController extends Controller
             $email = $request->email;
             $this->SMSService->sendEmail($email, subject: 'Payment Link', message: $message);
         }
+         //if ($request['notification'] == 'QR') {
+         //      $qrCode = base64_encode(QrCode::format('png')->size(250)->generate($linkURL));
+       // }
         $linkUrl = Links::where("link_invoiceNo", $request->invoiceNo)->select('link_url')->first();
         //dd($linkUrl['link_url']);
         return back()

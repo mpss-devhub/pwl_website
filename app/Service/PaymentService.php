@@ -165,8 +165,10 @@ class PaymentService
     }
 
 
-    public function backendCallback(array $data, $merchant_id)
+    public function backendCallback(array $data, $user_id)
     {
+        $merchant_id = Merchants::where('user_id', $user_id)->value('merchant_id');
+       // dd($merchant_id);
         $data_key = Merchants::where('merchant_id', $merchant_id)->value('merchant_datakey');
         $paymentInfo = $data['data'];
         $decryptedData = openssl_decrypt(base64_decode($paymentInfo), 'AES-128-ECB', $data_key, OPENSSL_RAW_DATA);
@@ -187,8 +189,6 @@ class PaymentService
                 'created_by' => $merchant_id,
                 'updated_at' => Carbon::now() ?? '',
                 'updated_by' => "PaymentGateway",
-
-
             ]
         );
         return response()->json(['status' => 'saved', 'data' => $data]);

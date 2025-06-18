@@ -54,7 +54,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-1">Merchant ID</label>
                             <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md">
                                 <span class="text-gray-600">Auto-generated</span>
-                                <button class="ml-auto text-gray-500 hover:text-gray-700">
+                                <button class="ml-auto text-gray-500 hover:text-gray-700" type="button" id="btn">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
                                         <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
@@ -81,19 +81,19 @@
 
                 <!-- Quick Stats Card -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Summary</h2>
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">This Merchant will be</h2>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">Created On</span>
-                            <span class="text-sm font-medium">-</span>
+                            <span class="text-sm text-gray-600">Created by</span>
+                            <span class="text-sm font-medium">{{  Auth::user()->name }}</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">Last Updated</span>
-                            <span class="text-sm font-medium">-</span>
+                            <span class="text-sm text-gray-600">Who work at</span>
+                            <span class="text-sm font-medium">{{Auth::user()->permission->user_group}} Dep</span>
                         </div>
                         <div class="flex justify-between items-center">
-                            <span class="text-sm text-gray-600">Total Transactions</span>
-                            <span class="text-sm font-medium">0</span>
+                            <span class="text-sm text-gray-600">User ID</span>
+                            <span class="text-sm font-medium">{{  Auth::user()->user_id }}</span>
                         </div>
                     </div>
                 </div>
@@ -142,17 +142,12 @@
                                 <span class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                     https://
                                 </span>
-                                <input type="text" name="merchant_frontendURL" class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <input type="text" name="merchant_frontendURL" class="  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Backend URL</label>
-                            <div class="flex">
-                                <span class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                    https://
-                                </span>
-                                <input type="text" name="merchant_backendURL" class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                            </div>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email</label>
+                            <input type="email" name="merchant_notifyemail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Address</label>
@@ -163,10 +158,7 @@
                                 <input type="text" name="merchant_address" class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                         </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email</label>
-                            <input type="email" name="merchant_notifyemail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        </div>
+
                     </div>
                 </div>
 
