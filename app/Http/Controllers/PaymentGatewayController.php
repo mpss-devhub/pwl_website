@@ -32,6 +32,7 @@ class PaymentGatewayController extends Controller
     public function Pwl(Request $request)
     {
         $data = $this->paymentService->Auth($request->all());
+         $this->paymentService->store($request->all());
         $link_data = $this->paymentService->link($request->all());
         $link = $link_data['link'] ?? null;
         $merchant = $link_data['merchant'] ?? null;

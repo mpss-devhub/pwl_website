@@ -18,6 +18,8 @@ class AdminController extends Controller
     protected AdminService $admin_service;
     protected UserService $user_service;
 
+
+
     public function __construct(AdminService $admin_service, UserService $user_service)
     {
         $this->admin_service = $admin_service;
@@ -32,50 +34,43 @@ class AdminController extends Controller
 
     public function merchantdetail($id)
     {
-        $details = Merchants::where('user_id',$id)->get()->all();
-        return view('Admin.merchant.info',compact('details'));
+        $details = Merchants::where('user_id', $id)->get()->all();
+        return view('Admin.merchant.info', compact('details'));
     }
 
 
     public function update($id)
     {
-        $details = Merchants::where('user_id',$id)->get()->all();
-        return view('Admin.merchant.update',compact('details'));
+        $details = Merchants::where('user_id', $id)->get()->all();
+        return view('Admin.merchant.update', compact('details'));
     }
 
     public function merchantupdate(MerchantUpdateRequest $request)
     {
         $this->user_service->updateMerchant($request->validated());
         return redirect()->route('merchant.show')->with('success', 'Merchant updated successfully!');
-
     }
 
-    public function mdr($id){
-        dd('yes');
-    }
-
-
-    public function sms($id){
-         $details = Merchants::where('user_id',$id)->select('merchant_id')->first();
-         $sms =  sms::where('merchant_id',$details->merchant_id)->select('id','sms_from', 'sms_url', 'sms_token')->get();
+    public function sms($id)
+    {
+        $details = Merchants::where('user_id', $id)->select('merchant_id')->first();
+        $sms =  sms::where('merchant_id', $details->merchant_id)->select('id', 'sms_from', 'sms_url', 'sms_token')->get();
         //dd($sms);
 
-        return view('Admin.sms.index',compact('details', 'sms'));
+        return view('Admin.sms.index', compact('details', 'sms'));
     }
 
     public function create(Request $request)
     {
-       //dd($request->sender_name, $request->api_url, $request->api_token);
-      sms::updateOrCreate(
-        ['merchant_id' => $request->merchant_id], // Condition
-        [
-            'sms_from' => $request->sender_name,
-            'sms_url' => $request->api_url,
-            'sms_token' => $request->api_token
-        ] // Data to update or insert
-    );
-    return back()->with('success', 'SMS settings updated successfully!');
-
+        sms::updateOrCreate(
+            ['merchant_id' => $request->merchant_id],
+            [
+                'sms_from' => $request->sender_name,
+                'sms_url' => $request->api_url,
+                'sms_token' => $request->api_token
+            ]
+        );
+        return back()->with('success', 'SMS settings updated successfully!');
     }
 
     public function delete($id)
@@ -85,4 +80,17 @@ class AdminController extends Controller
         return back()->with('success', 'SMS settings deleted successfully!');
     }
 
+    public function mdr($id)
+    {
+        $merchant = Merchants::where('user_id', $id)->value('merchant_id');
+       // dd($merchant);
+        $merchant = $this->admin_service->getMerchantList($merchant);
+        $Ewallet = $merchant['data']['dataList'][0]['paymentMdrInfoList'][0]['payments'] ?? [];
+        $QR = $merchant['data']['dataList'][0]['paymentMdrInfoList'][1]['payments'] ?? [];
+        $Web = $merchant['data']['dataList'][0]['paymentMdrInfoList'][2]['payments'] ?? [];
+        $L_C = $merchant['data']['dataList'][0]['paymentMdrInfoList'][3]['payments'] ?? [];
+        $G_C = $merchant['data']['dataList'][0]['paymentMdrInfoList'][4]['payments'] ?? [];
+       // dd($Ewallet, $QR, $Web, $L_C, $G_C);
+        return view('Admin.mdr.mdr', compact('Ewallet', 'QR', 'Web', 'L_C', 'G_C'));
+    }
 }

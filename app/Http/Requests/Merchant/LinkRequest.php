@@ -24,7 +24,7 @@ class LinkRequest extends FormRequest
         return [
             //
             "user_id"=> "required",
-            "invoiceNo"=> "required",
+            "invoiceNo"=> "required|unique:links,link_invoiceNo",
             "amount"=> "required",
             "name"=> "required",
             "phone"=> "required",

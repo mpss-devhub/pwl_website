@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-2xl font-semibold text-gray-800">MMK 12,345</p>
+                            <p class="text-2xl font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
                             <p class="text-xs text-green-500 mt-1"> + 12% from last month</p>
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
@@ -27,7 +27,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Transactions</p>
-                            <p class="text-2xl font-semibold text-gray-800">2,154 </p>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $TotalTnx }} </p>
                             <p class="text-xs text-green-500 mt-1"> + 8% from last month</p>
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
@@ -45,7 +45,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Success Rate</p>
-                            <p class="text-2xl font-semibold text-gray-800">80.5%</p>
+                            <p class="text-2xl font-semibold text-gray-800">{{ $SuccessRate }} %</p>
                             <p class="text-xs text-red-500 mt-1"> - 0.5% from last month</p>
                         </div>
                         <div class="p-3 rounded-full bg-purple-50 text-purple-600">
@@ -96,56 +96,21 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">1</td>
-                                <td class="px-6 py-2 whitespace-nowrap">
-                                    <img src="{{ Storage::url('payment_logo/o.png') }}" alt="KBZPAY" class="w-10">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    OK_WEB
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">2</td>
-                                <td class="px-6 py-2 whitespace-nowrap">
-                                    <img src="{{ Storage::url('payment_logo/k.png') }}" alt="KBZPAY" class="w-10">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    KBZPAY_QR
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">3</td>
-                                <td class="px-6 py-2 whitespace-nowrap">
-                                    <img src="{{ Storage::url('payment_logo/a.png') }}" alt="KBZPAY" class="w-10">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    AYAPAY_PIN
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">4</td>
-                                <td class="px-6 py-2 whitespace-nowrap">
-                                    <img src="{{ Storage::url('payment_logo/mpu.png') }}" alt="KBZPAY" class="w-10">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    MPU_CARD
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">5</td>
-                                <td class="px-6 py-2 whitespace-nowrap">
-                                    <img src="{{ Storage::url('payment_logo/uab.png') }}" alt="KBZPAY" class="w-10">
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    UABPAY_PIN
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
-                            </tr>
+                            @foreach ($Mostuse as $item)
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $loop->iteration }}</td>
+                                    <td class="px-6 py-2 whitespace-nowrap">
+                                        <img src="{{ $item->payment_logo }}" alt="KBZPAY" class="w-10">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $item->paymentCode }}
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">15</td>
+                                </tr>
+                            @endforeach
+
+
                         </tbody>
                     </table>
                 </div>
@@ -172,56 +137,23 @@
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INO-52512215
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">50000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MMK</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INO-52515215
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">80000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MMK</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INO-52563215
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">69800</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MMK</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INO-525152415
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">20000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Failed</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MMK</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">INO-52515255
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">150000</td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Failed</span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">MMK</td>
-                                </tr>
+                                @foreach ($Latest as $item)
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ $item->tranref_no }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $item->req_amount }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if ($item->payment_status == 'SUCCESS')
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $item->currencyCode }}</td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -229,4 +161,48 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var options = {
+                series: [{
+                    name: 'Revenue',
+                    data: [4000000, 4300000, 4500000, 5200000, 5400000, 6000000, 5800000, 6100000,
+                        7000000, 7500000, 8000000, 8500000
+                    ]
+                }],
+                chart: {
+                    height: '100%',
+                    type: 'area',
+                    toolbar: {
+                        show: true
+                    }
+                },
+                colors: ['#3b82f6'],
+                dataLabels: {
+                    enabled: false
+                },
+                stroke: {
+                    curve: 'smooth',
+                    width: 3
+                },
+                xaxis: {
+                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov',
+                        'Dec'
+                    ]
+                },
+                yaxis: {
+                    labels: {
+                        formatter: function(value) {
+                            return (value / 1000000) + 'M';
+                        }
+                    }
+                }
+            };
+
+            var chart = new ApexCharts(document.querySelector("#revenueChart"), options);
+            chart.render();
+        });
+    </script>
 @endsection

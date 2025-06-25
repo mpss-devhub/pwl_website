@@ -78,10 +78,10 @@ class UserService
         $shareholderFileValue = isset($data['merchant_shareholder']) ? base64_encode(file_get_contents($data['merchant_shareholder'])) : '';
         $shareholderFileType = isset($data['merchant_shareholder']) ? $data['merchant_shareholder']->getClientMimeType() : '';
         $shareholderFileName = isset($data['merchant_shareholder']) ? $data['merchant_shareholder']->getClientOriginalName() : '';
-
+        $registerUrl = config('services.b2b.register_url');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post('https://test.octoverse.com.mm/api/b2b/registerMerchant', [
+        ])->post($registerUrl, [
             'registerData' => $jwt,
             'logoFileValue' => $logoFileValue,
             'logoFileType' => $logoFileType,
@@ -116,8 +116,8 @@ class UserService
 
     public function updateMerchant(array $data): array
     {
-         $secret_key = '9IC3Bve4533uFMuBrsXd7bYndV0bNrH9m13V7Jfq14s';
-       // $m_id = Merchants::where('user_id', $data['user_id'])->get('merchant_id');
+         $secret_key = config('services.b2b.secret_key');
+         $updateUrl = config('services.b2b.update_url');
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
         $payload = json_encode([
             'appId' => '000021',
@@ -150,7 +150,7 @@ class UserService
         $shareholderFileName = isset($data['merchant_shareholder']) ? $data['merchant_shareholder']->getClientOriginalName() : '';
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->put('https://test.octoverse.com.mm/api/b2b/updateMerchant',[
+        ])->put( $updateUrl,[
             'updateData' => $jwt,
             'logoFileValue' => $logoFileValue,
             'logoFileType' => $logoFileType,

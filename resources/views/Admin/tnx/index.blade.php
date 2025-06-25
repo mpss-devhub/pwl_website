@@ -26,7 +26,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-500">Total Transactions</p>
-                        <p class="text-2xl font-semibold text-gray-800">1,589</p>
+                        <p class="text-2xl font-semibold text-gray-800">{{ $total  }}</p>
                     </div>
                     <div class="p-3 rounded-full bg-blue-50 text-blue-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,7 +42,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-500">Successful</p>
-                        <p class="text-2xl font-semibold text-gray-800">1,525</p>
+                        <p class="text-2xl font-semibold text-gray-800">{{ $Success }}</p>
                     </div>
                     <div class="p-3 rounded-full bg-green-50 text-green-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -58,7 +58,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-500">Failed</p>
-                        <p class="text-2xl font-semibold text-gray-800">224</p>
+                        <p class="text-2xl font-semibold text-gray-800">{{ $Fail }}</p>
                     </div>
                     <div class="p-3 rounded-full bg-red-50 text-red-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -74,7 +74,7 @@
                 <div class="flex items-center justify-between">
                     <div>
                         <p class="text-sm font-medium text-gray-500">Total Amount</p>
-                        <p class="text-2xl font-semibold text-gray-800">4545874 MMK</p>
+                        <p class="text-2xl font-semibold text-gray-800">{{ $SuccessTotal }} MMK</p>
                     </div>
                     <div class="p-3 rounded-full bg-purple-50 text-purple-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -241,484 +241,74 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
-                            <!-- Row 1 -->
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    1
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T2202505070956162317
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Kyaw Kyaw</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                               <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:56:16
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <!-- Row 2 -->
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    2
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T2202505070947222316
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MPSS PC</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                               <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                        FAIL
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:47:22
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <!-- Additional rows... -->
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    3
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T2202505070937562315
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">IT STAR Company Limited</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                 <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                        FAIL
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:37:56
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    4
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                 <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    5
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    6
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                  <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    7
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                 <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    8
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                  <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    9
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                  <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="hover:bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    10
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    T1202505070917192208
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">Cherry Myanmar TopUp</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">50000</div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                  <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
-                                    <div class="flex   ">
-                                        <div class="">
-                                            <img src="{{ Storage::url('payment_logo/c.png') }}" alt="Logo"
-                                                class="h-10 w-10 rounded">
-                                        </div>
-                                        <div class="mx-2 mt-2 font-semibold">
-                                            CB PAY
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                        SUCCESS
-                                    </span>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    May 07 2025 09:17:19
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap  ">
-                                    <div class="  ">
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                            <i class="fa-solid fa-circle-info "></i> </button>
-                                        <button
-                                            class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                            <i class="fa-solid fa-building-columns "></i> </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
+                     <tbody class="bg-white divide-y divide-gray-200">
+                                <!-- Row 1 -->
+                                @foreach ($tnx as $item)
+                                    <tr class="hover:bg-gray-50">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            {{ $loop->iteration }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ $item->tranref_no }}
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ $item->payment_user_name }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">MMK</div>
+                                        </td>
+                                        <td class=" py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <div class="flex   ">
+                                                <div class="">
+                                                    <img src="{{ $item->payment_logo }}" alt="Logo"
+                                                        class="h-10 w-10 rounded">
+                                                </div>
+                                                <div class="mx-2 mt-2 font-semibold">
+                                                    {{ $item->paymentCode }}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if ($item->payment_status == 'SUCCESS')
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                    {{ $item->payment_status }}
+                                                </span>
+                                            @elseif ($item->payment_status == 'FAIL')
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                    {{ $item->payment_status }}
+                                                </span>
+                                            @elseif ($item->payment_status == 'Pending')
+                                                <span
+                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                    {{ $item->payment_status }}
+                                                </span>
+                                             @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            @if ($item->trans_date_time )
+                                                {{ $item->trans_date_time }}
+                                            @else
+                                                This Payment is still pending.
+                                            @endif
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap  ">
+                                            <div class="  ">
+                                                <button
+                                                    class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
+                                                    <i class="fa-solid fa-circle-info "></i> </button>
+                                                <button
+                                                    class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
+                                                    <i class="fa-solid fa-building-columns "></i> </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
                     </table>
                 </div>
 

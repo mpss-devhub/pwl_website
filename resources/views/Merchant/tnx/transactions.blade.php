@@ -248,13 +248,22 @@
                                             @endif
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap  ">
-                                            <div class="  ">
-                                                <button
+                                            <div class="flex space-x-1">
+                                                <form action="{{ route('tnx.detail') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}" required>
+                                                    <button
                                                     class="border border-dark-200 px-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
                                                     <i class="fa-solid fa-circle-info "></i> </button>
-                                                <button
+                                                </form>
+                                                <form action="{{ route('Payment.detail') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}" required>
+
+                                                    <button
                                                     class="border border-dark-200 px-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
                                                     <i class="fa-solid fa-building-columns "></i> </button>
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
@@ -317,27 +326,5 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const toggleButton = document.getElementById('filter-toggle');
-            const filterContent = document.getElementById('filter-content');
-            const filterArrow = document.getElementById('filter-arrow');
 
-            // Toggle visibility of filter content
-            toggleButton.addEventListener('click', function() {
-                const isHidden = filterContent.classList.toggle('hidden');
-                filterArrow.classList.toggle('rotate-180', !isHidden);
-
-                // Store state in localStorage
-                localStorage.setItem('filterVisible', !isHidden);
-            });
-
-            // Check localStorage for saved state
-            const filterVisible = localStorage.getItem('filterVisible');
-            if (filterVisible === 'false') {
-                filterContent.classList.add('hidden');
-                filterArrow.classList.remove('rotate-180');
-            }
-        });
-    </script>
 @endsection

@@ -14,7 +14,7 @@
 
                             <div class="flex flex-col items-center">
                                 <div class="relative mb-4 group">
-                                    <img src="{{ $detail->merchant_logo }}" alt="Merchant Profile"
+                                    <img src="{{ Storage::url('common/approved.png') }}" alt="Merchant Profile"
                                         class="w-40 h-40 rounded-full object-cover border-4 border-gray-200 shadow-sm">
                                     <div
                                         class="absolute inset-0 bg-black bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

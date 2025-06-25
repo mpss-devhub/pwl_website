@@ -233,49 +233,75 @@ Login At : www.paywithlink.com/login\n
                             @foreach ($merchantInfo as $info)
                                 <tr class="hover:bg-gray-50">
 
-                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_id ? $info->merchant_id : 'This Merchant is need approved' }}</td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                    <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
-                                            <img class="h-10 w-10 rounded-full"
-                                                src="{{$info->merchant_logo ?  $info->merchant_logo : Storage::url('common/approved.png')}}" alt="User Profile">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                        {{ $info->merchant_id ? $info->merchant_id : 'This Merchant need Approvel' }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-10 w-10">
+                                                <img class="h-10 w-10 rounded-full"
+                                                    src="{{ $info->merchant_logo ? $info->merchant_logo : Storage::url('common/approved.png') }}"
+                                                    alt="User Profile">
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">{{ $info->merchant_name }}
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">{{$info->merchant_name}}</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_Cemail}}</td>
-                                <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{$info->merchant_Cphone}}</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{$info->merchant_Cname}}</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <span
-                                        class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                                        Active
-                                    </span>
-                                   <!--  <span
-                                        class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                                        Inactive
-                                    </span>-->
+                                    </td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                        {{ $info->merchant_Cemail }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                        {{ $info->merchant_Cphone }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        {{ $info->merchant_Cname }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
 
-                                </td>
-                                <td class="flex justify-content-between px-6 py-4 whitespace-nowrap text-right text-md font-medium mt-2">
-                                    <a href="{{ route('merchant.detail', $info->user_id ) }}" class="text-green-600 hover:text-green-900 mr-3">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                    </a>
-                                    <a href="{{ route('merchant.update',$info->user_id) }}" class="text-blue-600 hover:text-blue-900 mr-3">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-                                    <a href="{{ route('merchant.mdr',$info->user_id) }}" class="text-red-600 hover:text-red-900 mr-3">
-                                        <i class="fa-solid fa-money-bill-transfer"></i>
-                                    </a>
-                                    <a href="{{ route('sms.show',$info->user_id) }}" class="text-yellow-600 hover:text-yellow-900">
-                                        <i class="fa-solid fa-comment-sms"></i>
-                                    </a>
-                                </td>
+                                        @if ($info->merchant_id)
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                                Active
+                                            </span>
+                                        @else
+                                            <span
+                                                class="bg-orange-100 text-orange-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                                Waiting
+                                            </span>
+                                        @endif
 
-                            </tr>
+                                        <!--  <span
+                                            class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                                            Inactive
+                                        </span>-->
+
+                                    </td>
+                                    <td
+                                        class="flex justify-content-between px-6 py-4 whitespace-nowrap text-right text-md font-medium mt-2">
+                                        <a href="{{ route('merchant.detail', $info->user_id) }}"
+                                            class="text-green-600 hover:text-green-900 mr-3">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                        @if ($info->merchant_id)
+                                            <a href="{{ route('merchant.update', $info->user_id) }}"
+                                                class="text-blue-600 hover:text-blue-900 mr-3">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </a>
+
+                                            <a href="{{ route('merchant.mdr', $info->user_id) }}"
+                                                class="text-red-600 hover:text-red-900 mr-3">
+                                                <i class="fa-solid fa-money-bill-transfer"></i>
+                                            </a>
+
+                                            <a href="{{ route('sms.show', $info->user_id) }}"
+                                                class="text-yellow-600 hover:text-yellow-900">
+                                                <i class="fa-solid fa-comment-sms"></i>
+                                            </a>
+                                        @endif
+
+                                    </td>
+
+                                </tr>
                             @endforeach
 
                         </tbody>
@@ -289,7 +315,7 @@ Login At : www.paywithlink.com/login\n
                         <div>
                             <nav class="relative  z-0 flex justify-between rounded-md shadow-sm -space-x-px"
                                 aria-label="Pagination">
-                               15
+                                15
                             </nav>
                         </div>
                     </div>

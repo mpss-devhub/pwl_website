@@ -28,12 +28,14 @@ class PaymentService
     {
 
         $merchant_id = Links::where('id', $data['link_id'])->select('merchant_id')->first();
-        $app_id = "000021";
+        $app_id = config('services.b2b.x_app_id');
+        $xAppApiKey = config('services.b2b.x_app_api_key');
+        $externalUrl = config('services.b2b.external_url');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
+            'X-API-KEY' =>  $xAppApiKey,
             'X-APP-ID' => $app_id,
-        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantList', [
+        ])->post($externalUrl,[
             "pageNo" => "1",
             "pageSize" => "10",
             "orderBy" => "DESC",
@@ -84,11 +86,11 @@ class PaymentService
             'backendUrl' => $merchantInfo['merchant_backendURL'],
             'userDefination1' => $paymentInfo['link_description'],
         ]);
-
+        $authTokenUrl = config('services.payment_gateway.auth_token_url');
         $jwt = $this->jwt($header, $payload, $secret_key);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-        ])->post('https://test.octoverse.com.mm/api/payment/auth/token', [
+        ])->post($authTokenUrl, [
             'payData' => $jwt,
         ]);
         if ($response->failed()) {
@@ -99,8 +101,11 @@ class PaymentService
         }
         $token = $response['data'];
         $decode = $this->get($token, $secret_key);
+        //dd($decode);
         if ($decode) {
+             // dd($data, $decode, $paymentCode, $data_Key,$paymentInfo);
             $data = $this->dopay($decode, $paymentCode, $data_Key, $data);
+
         }
         return $data;
     }
@@ -125,13 +130,14 @@ class PaymentService
     }
 
 
-    private function dopay($decode, $paymentCode, $data_Key, $paymentInfo)
+    private function dopay($decode, $paymentCode, $data_Key, $data)
     {
-        $paydata = $this->AES($data_Key, $paymentInfo);
+        $dopayUrl = config('services.payment_gateway.dopay_url');
+        $paydata = $this->AES($data_Key, $data);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $decode->accessToken,
-        ])->post('https://test.octoverse.com.mm/api/payment/dopay', [
+        ])->post($dopayUrl , [
             "paymentCode" => $paymentCode,
             'paymentToken' => $decode->paymentToken,
             "payData" => $paydata

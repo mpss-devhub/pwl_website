@@ -14,7 +14,6 @@ class SMSService
     public function sendSMS(string $phoneNumber, string $message, string $id): bool
     {
         $data = sms::where('merchant_id', $id)->select('sms_token','sms_url','sms_from')->first();
-        //dd($data);
         $token = $data['sms_token'];
         $url = $data['sms_url'];
         $from = $data['sms_from'];

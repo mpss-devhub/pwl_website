@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminTnxController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\PermissionsController;
 use App\Models\User;
@@ -27,10 +28,6 @@ Route::get('/admin/support', function () {
     return view('Admin.support.index');
 })->name('support.show');
 
-Route::get('/admin/Transaction', function () {
-    return view('Admin.tnx.index');
-})->name('tnx.show');
-
 
 // User Management
 Route::get('/admin/User', function () {
@@ -40,7 +37,6 @@ Route::get('/admin/User', function () {
 })->name('user.show');
 
 Route::get('/admin/Update/{id}', function ($id) {
-   // $users = User::findOrFail($id);
     $users = User::where('id', $id)->get();
     return view('Admin.user.update', compact('users'));
 })->name('user.show.update');
@@ -75,3 +71,5 @@ Route::post('/admin/Create/sms&email/', [AdminController::class,'create'])->name
 Route::get('/admin/sms&email/delete/{id}',[AdminController::class,'delete'])->name('sms.delete');
 
 
+//Tnx Management
+Route::get('/admin/Transaction',[AdminTnxController::class ,'show'])->name('tnx.show');
