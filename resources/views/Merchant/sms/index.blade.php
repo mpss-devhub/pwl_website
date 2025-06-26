@@ -99,7 +99,7 @@
                         </div>
 
                         <div class="flex items-end gap-2">
-                            <button
+                            <button id="search"
                                 class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -150,7 +150,7 @@
             <!-- SMS Table Section -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200" id="link-table">
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
@@ -328,24 +328,29 @@
 
             <!-- Empty State (optional) -->
             <!-- <div class="bg-white rounded-lg shadow p-12 text-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                        </svg>
-                        <h3 class="mt-2 text-lg font-medium text-gray-900">No SMS messages yet</h3>
-                        <p class="mt-1 text-sm text-gray-500">Get started by sending your first SMS message.</p>
-                        <div class="mt-6">
-                            <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                                 </svg>
-                                Send SMS
-                            </a>
-                        </div>
-                    </div> -->
+                                <h3 class="mt-2 text-lg font-medium text-gray-900">No SMS messages yet</h3>
+                                <p class="mt-1 text-sm text-gray-500">Get started by sending your first SMS message.</p>
+                                <div class="mt-6">
+                                    <a href="#" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                        </svg>
+                                        Send SMS
+                                    </a>
+                                </div>
+                            </div> -->
         </div>
     </div>
-      <script>
+    <script>
+        const links = @json($links);
+    </script>
+
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleButton = document.getElementById('filter-toggle');
             const filterContent = document.getElementById('filter-content');

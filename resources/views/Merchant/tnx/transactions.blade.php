@@ -326,5 +326,27 @@
             </div>
         </div>
     </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButton = document.getElementById('filter-toggle');
+            const filterContent = document.getElementById('filter-content');
+            const filterArrow = document.getElementById('filter-arrow');
 
+            // Toggle visibility of filter content
+            toggleButton.addEventListener('click', function() {
+                const isHidden = filterContent.classList.toggle('hidden');
+                filterArrow.classList.toggle('rotate-180', !isHidden);
+
+                // Store state in localStorage
+                localStorage.setItem('filterVisible', !isHidden);
+            });
+
+            // Check localStorage for saved state
+            const filterVisible = localStorage.getItem('filterVisible');
+            if (filterVisible === 'false') {
+                filterContent.classList.add('hidden');
+                filterArrow.classList.remove('rotate-180');
+            }
+        });
+    </script>
 @endsection

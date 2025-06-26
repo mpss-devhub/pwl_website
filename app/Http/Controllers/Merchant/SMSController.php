@@ -7,6 +7,7 @@ use App\Service\SMSService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Merchants;
+use App\Models\Tnx;
 
 class SMSController extends Controller
 {
@@ -23,7 +24,10 @@ class SMSController extends Controller
         $id = $request->id;
         $data = Links::where("id", $id)->orderBy('created_at', 'desc')->get()->toArray();
         $sms = $data[0];
-        return view('Merchant.sms.detail', compact('sms'));
+        $tnx = Tnx::find($id);
+        $exists = !is_null($tnx);
+        //dd($exists);
+        return view('Merchant.sms.detail', compact('sms', 'exists'));
     }
 
     public function resent(Request $request)
@@ -51,11 +55,19 @@ class SMSController extends Controller
             $email = $link['link_email'];
             $this->SMSService->sendEmail($email, subject: 'Payment Link', message: $message);
         }
-           $notifatcion = '';
-        if ($method == 'S') { $notifatcion = 'SMS'; };
-        if ($method == 'E') { $notifatcion = 'Email'; };
-        if ($method == 'C') { $notifatcion = 'Copy'; };
-        if ($method == 'Q') { $notifatcion = 'QR'; };
+        $notifatcion = '';
+        if ($method == 'S') {
+            $notifatcion = 'SMS';
+        };
+        if ($method == 'E') {
+            $notifatcion = 'Email';
+        };
+        if ($method == 'C') {
+            $notifatcion = 'Copy';
+        };
+        if ($method == 'Q') {
+            $notifatcion = 'QR';
+        };
 
         //dd($notifatcion);
         return back()
