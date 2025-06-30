@@ -61,24 +61,44 @@ class LinksController extends Controller
             return response()->view('Extra.expired', [], 410);
         }
         [$details, $link] = $data;
-        $details = $data[0]->toArray();
-        $links = $data[1][0]->toArray();
+        $details = $details->toArray();
+        $link = $link[0];
+        $links = $link->toArray();
+
+        if ($link->link_expired_at && now()->gt($link->link_expired_at)) {
+            if ($link->link_status !== 'expired') {
+                $link->link_status = 'expired';
+                $link->save();
+            }
+            return response()->view('Extra.expired', [], 410); // 410 = Gone
+        }
+
         $this->click($links['id']);
-        //dd($links['id']);
+
         return view('checkout.checkout', compact('details', 'links'));
     }
 
-    private function click($id){
 
-        Click_Logs::updateOrCreate([
-            'link_id'=> $id,
-            'ip_address'=>'192.168.525',
-            'info'=>'Clicked',
-            'created_at'=>Carbon::now()
-        ]);
+    private function click($id)
+    {
 
-        $link = Links::where('id', $id)->update([
-            'link_click_status' => 'Clicked',
-        ]);
+       // $ip = request()->ip();
+        $ip = '152.652.552' ;
+        $clickLog = Click_Logs::firstOrCreate(
+            [
+                'link_id' => $id,
+                'ip_address' => $ip,
+            ],
+            [
+                'info' => 'Clicked',
+                'created_at' => Carbon::now(),
+            ]
+        );
+
+        if ($clickLog->wasRecentlyCreated) {
+            Links::where('id', $id)->update([
+                'link_click_status' => 'Clicked',
+            ]);
+        }
     }
 }

@@ -9,54 +9,34 @@
                 'expired' => 'bg-gray-100 text-gray-800',
             ][strtolower($data['payment_status'])] ?? 'bg-blue-100 text-blue-800';
     @endphp
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+
+    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen" >
         <div class="p-4 mt-14 max-w-6xl mx-auto">
+
             <!-- Payment Details Card -->
-
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200" >
                 <!-- Header Section -->
-                <div class="bg-white px-6 py-5 border-b border-gray-200">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center">
-                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Payment Method"
-                                class="rounded-md  object-contain" width="100px">
-
+                <div class="bg-white px-4 sm:px-6 py-5 border-b border-gray-200">
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="order-2 sm:order-1">
+                            <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900">
+                                <i class="fa-solid fa-arrow-left"></i>
+                            </a>
                         </div>
-                        <!-- <div class="">
-                                                    <div class="flex flex-wrap gap-2 mt-4 mb-6">
-                                                        <a href="{{ url()->previous() }}"
-                                                            class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none transition ease-in-out duration-150">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none"
-                                                                viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                    d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                                                            </svg>
-                                                            Back
-                                                        </a>
-
-                                                        <form action="{{ route('tnx.detail') }}" method="POST">
-                                                            @csrf
-                                                            <input type="hidden" name="id" value="{{ $id }}" required>
-                                                            <button
-                                                                class="inline-flex items-center px-4 py-2 bg-pink-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-700 focus:bg-pink-700 active:bg-pink-800 focus:outline-none transition ease-in-out duration-150">
-                                                                <i class="fa-solid fa-circle-info mr-2"></i>
-                                                                Payment Link
-                                                            </button>
-                                                        </form>
-                                                    </div>
-                                                </div>-->
-
+                        <div class="order-1 sm:order-2">
+                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Payment Method"
+                                class="rounded-md object-contain w-[100px]">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Main Content -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 sm:p-6">
                     <!-- Left Column -->
-                    <div class="space-y-6 bg-gray-50 p-5 rounded-lg border border-gray-100 ">
+                    <div class="space-y-6 bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
                         <!-- Payment Information -->
                         <div>
-                            <h3
-                                class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-b-gray-500 border-gray-100 text-center">
+                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-100 text-center">
                                 Payment Information
                             </h3>
 
@@ -70,7 +50,7 @@
                                         </span>
                                     </span>
                                 </div>
-                                <div class="grid grid-cols-3 ">
+                                <div class="grid grid-cols-3">
                                     <span class="text-sm text-gray-500 col-span-1">Amount</span>
                                     <span
                                         class="text-sm font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
@@ -83,10 +63,9 @@
                                 <div class="grid grid-cols-3">
                                     <span class="text-sm text-gray-500 col-span-1">Payment Code</span>
                                     <span class="text-sm font-medium text-gray-800 col-span-2">
-                                        <div class="flex">
-                                            <div class=""> {{ $data['paymentCode'] }} </div>
-                                            <img src="{{ $data['payment_logo'] }}" class="ml-2" width="20px"
-                                                alt="">
+                                        <div class="flex items-center">
+                                            <span>{{ $data['paymentCode'] }}</span>
+                                            <img src="{{ $data['payment_logo'] }}" class="ml-2 w-5" alt="">
                                         </div>
                                     </span>
                                 </div>
@@ -100,9 +79,9 @@
                                     <span
                                         class="text-sm font-medium text-gray-800 col-span-2">{{ $data['payment_expired_at'] }}</span>
                                 </div>
-
                             </div>
                         </div>
+
                         <!-- Payer Information -->
                         <div>
                             <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-100">
@@ -121,9 +100,10 @@
                                 </div>
                             </div>
                         </div>
+
                         <!-- Card Details (if applicable) -->
                         @if ($data['cardNumber'])
-                            <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                            <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
                                 <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
                                     Card Details
                                 </h3>
@@ -141,13 +121,12 @@
                                 </div>
                             </div>
                         @endif
-
                     </div>
 
                     <!-- Right Column -->
                     <div class="space-y-6">
                         <!-- Amount Information -->
-                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-100">
+                        <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
                             <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
                                 Amount Details
                             </h3>
@@ -171,11 +150,11 @@
                         </div>
 
                         <!-- Transaction Details -->
-                        <div class="bg-gray-50 p-5 rounded-lg border border-gray-200 shadow-sm">
+                        <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-200 shadow-sm">
                             <h3 class="text-base font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
                                 Transaction Details
                             </h3>
-                            <div class="flex justify-between items-start">
+                            <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                                 <div class="space-y-4 w-full">
                                     <div class="grid grid-cols-3 gap-4">
                                         <span class="text-sm text-gray-600">Invoice No</span>
@@ -197,26 +176,24 @@
                                     </div>
                                 </div>
                                 @if ($data['payment_status'] == 'SUCCESS')
-                                    <img src="{{ Storage::url('common/success.png') }}" class="mt-1" width="110"
+                                    <img src="{{ Storage::url('common/success.png') }}" class="mt-1 w-[110px]"
                                         alt="Payment QR" loading="lazy">
                                 @endif
                                 @if ($data['payment_status'] == 'Pending')
-                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1" width="110"
-                                        alt="Payment QR" loading="lazy">
+                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
+                                        loading="lazy">
                                 @endif
                                 @if ($data['payment_status'] == 'FAIL')
-                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1" width="110"
-                                        alt="Payment QR" loading="lazy">
+                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
+                                        loading="lazy">
                                 @endif
                             </div>
                         </div>
-
-
                     </div>
                 </div>
 
                 <!-- Footer Section -->
-                <div class="bg-gray-50 px-6 py-4 border-t border-gray-200">
+                <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200">
                     <div
                         class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
                         <div>

@@ -25,6 +25,7 @@ class CheckoutMail extends Mailable
      */
     public function build()
     {
+
         return $this->subject($this->details['subject'])
                     ->view('Merchant.emails.checkout');
     }

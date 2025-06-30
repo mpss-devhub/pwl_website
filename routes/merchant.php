@@ -42,7 +42,9 @@ Route::post('/merchant/PayNow', [PaymentGatewayController::class, 'Pwl'])->name(
 Route::get('/merchant/transactions', function () {
      $id = Auth::user()->user_id;
    $Merchant = Merchants::where('user_id', $id)->select('merchant_id')->first();
-    $tnx = Tnx::where('created_by', $Merchant['merchant_id'])->get();
+    $tnx = Tnx::where('created_by', $Merchant['merchant_id'])
+              ->latest('created_at')
+              ->paginate(20);
     return view('merchant.tnx.transactions',compact('tnx'));
 })->name('merchant.tnx');
 Route::post('/tnx/Links/detail',[TnxController::class,'detail'])->name('tnx.detail');
@@ -53,7 +55,9 @@ Route::post('/tnx/Payment/detail',[TnxController::class,'paymentdetail'])->name(
 Route::get('/merchant/sms&email', function () {
     $id = Auth::user()->user_id;
     $m_id = Merchants::where('user_id', $id)->select('merchant_id')->first();
-    $links = Links::where('created_by', $m_id['merchant_id'])->get();
+    $links = Links::where('created_by', $m_id['merchant_id'])
+            ->latest('created_at')
+              ->paginate(20);
     return view('merchant.sms.index',compact('links'));
 })->name('merchant.sms');
 Route::post('/sms/details',[SMSController::class,'show'])->name(name: 'sms.details');
