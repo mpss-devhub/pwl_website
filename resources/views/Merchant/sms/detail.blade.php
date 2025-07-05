@@ -8,12 +8,12 @@
                         <span>
                             <a href="{{ route('merchant.sms') }}"> <i class="fa-solid fa-arrow-left "></i></a>
                         </span>
-                        <h2 class="text-xl font-bold text-gray-800 ml-2">Payment Link Details</h2>
+                        <h2 class="text-lg font-semibold text-gray-800 ml-2">Payment Link Details</h2>
 
                     </div>
                     <div class="">
                         <div class="">
-                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" style="width: 150px;">
+                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" style="width: 120px;">
                         </div>
                     </div>
                 </div>
@@ -24,10 +24,19 @@
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex items-center mb-2">
                                 @if (!$exists)
-                                    <a href="#" class="text-blue-800 rounded-lg ml-2">
-                                        <i class="fa-solid fa-file-pen"></i>
-                                    </a>
+
+
+                                        <button type="submit"
+                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none">
+                                            <a href="{{ route('merchant.link.edit',$sms['id']) }}">
+                                            <i class="fa-solid fa-file-pen"></i>
+
+                                            </a>
+
+                                        </button>
+
                                 @endif
+
 
                                 <h3
                                     class="font-medium text-gray-500 px-2 {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">

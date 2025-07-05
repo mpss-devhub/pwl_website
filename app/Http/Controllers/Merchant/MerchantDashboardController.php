@@ -18,12 +18,14 @@ class MerchantDashboardController extends Controller
         $TotalMMK = $this->TotalMMK($id);
         $Totallink = $this->TotalLink($id);
         $TotalSuccess = $this->TotalSuccess($id);
+        $TotalPending = $this->TotalPending($id);
+        $TotalFailed = $this->TotalFailed($id);
         $Latest = $this->Latest($id);
         $TotalTnx = $this->TotalTnx($id);
         $Mostuse = $this->MostUsed($id);
         $SuccessRate = $Totallink > 0 ? ($TotalSuccess / $Totallink) * 100 : 0;
        // dd($SuccessRate);
-        return view('merchant.index',compact('TotalMMK','Totallink','Latest','TotalTnx','Mostuse','SuccessRate'));
+        return view('merchant.index',compact('TotalMMK','TotalSuccess','TotalFailed','TotalPending','Totallink','Latest','TotalTnx','Mostuse','SuccessRate'));
     }
 
     private function getMerchantId()
@@ -53,6 +55,24 @@ class MerchantDashboardController extends Controller
             ->where('payment_status', 'SUCCESS')
             ->count();
         return $TotalSuccess;
+    }
+
+     private function TotalPending($id)
+    {
+        $TotalPending = Tnx::where('created_by', $id)
+            ->where('payment_status', 'Pending')
+            ->count();
+
+        return $TotalPending;
+    }
+
+    private function TotalFailed($id)
+    {
+        $TotalFailed = Tnx::where('created_by', $id)
+            ->where('payment_status', 'FAIL')
+            ->count();
+
+        return $TotalFailed;
     }
 
     private function Latest($id)

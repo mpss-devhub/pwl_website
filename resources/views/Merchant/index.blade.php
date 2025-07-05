@@ -28,7 +28,12 @@
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Transactions</p>
                             <p class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $TotalTnx }}</p>
-                            <p class="text-xs text-green-500 mt-1">+8% from last month</p>
+                           <div class="flex space-x-3">
+                             <p class="text-xs text-green-500 mt-1">{{$TotalSuccess}} Success</p>
+                             <p class="text-xs text-red-500 mt-1">{{ $TotalFailed }} Failed</p>
+                             <p class="text-xs text-yellow-500 mt-1">{{ $TotalPending }} Pending</p>
+
+                           </div>
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-green-50 text-green-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -44,7 +49,11 @@
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Success Rate</p>
                             <p class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $SuccessRate }}%</p>
-                            <p class="text-xs text-red-500 mt-1">-0.5% from last month</p>
+                           <div class=" text-xs mt-1">
+                             <span class=" text-green-500 mt-1">{{$TotalSuccess}} Tnx </span>
+                                <span>Success at </span>
+                            <span class=" text-red-500 mt-1">{{$Totallink}} Links </span> created
+                           </div>
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-purple-50 text-purple-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -57,7 +66,6 @@
 
             <!-- Revenue Chart - Improved Responsiveness -->
             <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
-
                 <div id="revenueChart" class="w-full" style="min-height: 300px;"></div>
             </div>
 
@@ -81,10 +89,10 @@
                                     <tr>
                                         <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
                                         <td class="px-3 py-2 sm:px-6 sm:py-2 whitespace-nowrap">
-                                            <img src="{{ $item->payment_logo }}" alt="{{ $item->paymentCode }}" class="w-8 sm:w-10">
+                                            <img src="{{ $item->payment_logo }}" alt="{{ $item->paymentCode }}" class="w-8 sm:w-10 rounded-md">
                                         </td>
                                         <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->paymentCode }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">15</td>
+                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->total }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -140,7 +148,7 @@
                     height: '100%',
                     width: '100%',
                     toolbar: {
-                        show: false // Disable toolbar completely
+                        show: false
                     },
                     zoom: {
                         enabled: false // Disable zoom

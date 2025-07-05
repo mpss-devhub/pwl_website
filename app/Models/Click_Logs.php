@@ -8,6 +8,10 @@ class Click_Logs extends Model
 {
     //
     protected $table = 'link_click_logs';
+
+    protected $casts = [
+        'info' => 'array',
+    ];
     protected $fillable = [
         'link_id',
         'ip_address',

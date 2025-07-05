@@ -126,7 +126,8 @@
                                             d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    CSV
+                                    <a href="{{ route('merchant.csv.export') }}">Export CSV</a>
+
                                 </button>
                                 <button
                                     class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full sm:w-auto flex items-center justify-center">
@@ -136,7 +137,7 @@
                                             d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Excel
+                                    <a href="{{ route('merchant.tnx.export') }}"> Export  Excel</a>
                                 </button>
                             </div>
                         </div>
@@ -249,7 +250,7 @@
                                                 <input type="hidden" name="id" value="{{ $item->id }}"
                                                     required>
                                                 <button
-                                                    class="border border-dark-200 p-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
+                                                    class=" px-2 py-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
                                                     <i class="fa-solid fa-circle-info"></i>
                                                 </button>
                                             </form>
@@ -258,7 +259,7 @@
                                                 <input type="hidden" name="id" value="{{ $item->id }}"
                                                     required>
                                                 <button
-                                                    class="border border-dark-200 p-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
+                                                    class=" px-2 py-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
                                                     <i class="fa-solid fa-building-columns"></i>
                                                 </button>
                                             </form>
@@ -271,9 +272,7 @@
 
                 </div>
             </div>
-            <div class="mt-2">
-                {{ $tnx->links() }}
-            </div>
+
         </div>
     </div>
 

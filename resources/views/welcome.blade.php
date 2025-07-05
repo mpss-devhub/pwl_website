@@ -21,7 +21,6 @@
         @endif
     </head>
     <body class="">
-        @include('layouts.frontnav')
         @yield('main')
     </body>
 </html>

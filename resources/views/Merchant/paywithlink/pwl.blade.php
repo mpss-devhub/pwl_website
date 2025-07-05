@@ -5,19 +5,7 @@
     <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
         <div class="p-4 mt-16">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-7xl mx-auto">
-                <!-- Header Section -->
-                <div id="loadingOverlay"
-                    class="fixed inset-0 bg-white bg-opacity-70 flex items-center justify-center z-50 hidden">
-                    <div class="flex flex-col items-center">
-                        <svg class="animate-spin h-10 w-10 text-blue-600 mb-4" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                        </svg>
-                        <p class="text-gray-700 font-medium">Processing payment link...</p>
-                    </div>
-                </div>
+
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                     <div>
                         <h1 class="text-2xl font-bold text-gray-800">Create Payment Link</h1>
@@ -48,7 +36,7 @@
                 </div>
 
                 <!-- Payment Form -->
-                <form action="{{ route('links.store') }}" method="POST" class="space-y-8">
+                <form action="{{ route('links.store') }}" method="POST" class="space-y-8" id="paymentForm">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
 
@@ -211,10 +199,6 @@
 
                     <!-- Form Actions -->
                     <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 pt-6">
-                        <button type="button"
-                            class="px-6 py-3 bg-white text-gray-700 rounded-lg hover:bg-gray-50 border border-gray-200 transition-colors font-medium">
-                            Cancel
-                        </button>
                         <button id="submitButton" type="submit"
                             class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-100 transition-colors font-medium shadow-sm flex items-center justify-center">
                             <span id="btnText"><i class="fas fa-link mr-2"></i> Create Payment Link</span>
@@ -232,5 +216,24 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('paymentForm');
+            const submitButton = document.getElementById('submitButton');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            const loadingOverlay = document.getElementById('loadingOverlay');
 
+            form.addEventListener('submit', function(e) {
+                if (submitButton.disabled) {
+                    e.preventDefault();
+                    return;
+                }
+                btnText.classList.add('hidden');
+                btnSpinner.classList.remove('hidden');
+                submitButton.disabled = true;
+                loadingOverlay?.classList.remove('hidden');
+            });
+        });
+    </script>
 @endsection

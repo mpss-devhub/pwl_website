@@ -35,7 +35,7 @@ class SMSController extends Controller
         $link_id = $request->id;
         $link = Links::where('id', $link_id)->first();
         $method = $link['link_type'];
-        $Merchant = Merchants::where('merchant_id', $link['merchant_id'])->select('merchant_name')->first();
+        $Merchant = Merchants::where('merchant_id', $link['merchant_id'])->select('merchant_name','merchant_Cemail','merchant_address')->first();
         $id = $link['merchant_id'];
         $Sendername = $Merchant['merchant_name'];
         if ($method == 'S') {
@@ -48,12 +48,24 @@ class SMSController extends Controller
             $this->SMSService->sendSMS($phoneNumber, $message, $id);
         }
         if ($method == 'E') {
-            $message = " \n Invoice Number: " . $link['invoiceNo'] .
-                " \n Amount: " . $link['amount'] . $link['currency'] .
-                " \n From: " . $Sendername .
-                "\n This is Your Payment Link : " . $link['link_url'];
+           $message = [
+               $link['link_invoiceNo'],
+                $link['link_amount'],
+                $link['link_currency'],
+                $Sendername,
+                $link['link_url'],
+            ];
+            $details = [
+                'subject' => 'Octoverse Payment Link',
+                'merchant_name' => $Sendername,
+                'merchant_Cemail' => $Merchant['merchant_Cemail'],
+                'merchant_address' => $Merchant['merchant_address'],
+                'expired_at' => $link['expired_at'],
+                'remark' => $link['link_description'] ?? 'N/A',
+            ];
             $email = $link['link_email'];
-            $this->SMSService->sendEmail($email, subject: 'Payment Link', message: $message);
+           // dd($message,$details,$email,$link);
+            $this->SMSService->sendEmail($email, 'Octoverse Payment Link', $message, $details);
         }
         $notifatcion = '';
         if ($method == 'S') {

@@ -7,8 +7,12 @@ use App\Models\Links;
 use App\Models\Merchants;
 use App\Models\Click_Logs;
 use App\Service\SMSService;
+use App\Imports\LinksImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Http\Requests\LinkUpdateRequest;
 use App\Http\Requests\Merchant\LinkRequest;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
@@ -26,8 +30,9 @@ class LinksController extends Controller
 
     public function store(LinkRequest $request)
     {
+        //dd($request->validated());
         $linkUrl = $this->linkDao->create($request->validated());
-        $Sendername = Merchants::where('user_id', $request->user_id)->select('merchant_name', 'merchant_id')->first();
+        $Sendername = Merchants::where('user_id', $request->user_id)->select('merchant_Cemail', 'merchant_address', 'merchant_name', 'merchant_id')->first();
         $id = $Sendername['merchant_id'];
         if ($request['notification'] == 'SMS') {
             $message =
@@ -39,13 +44,26 @@ class LinksController extends Controller
             $this->SMSService->sendSMS($request->phone, $message, $id);
         }
         if ($request['notification'] == 'Email') {
-            $message = " \n Invoice Number: " . $request->invoiceNo .
-                " \n Amount: " . $request->amount . $request->currency .
-                " \n From: " . $Sendername['merchant_name'] .
-                "\n This is Your Payment Link : " . $linkUrl;
+            $linkUrl = Links::where("link_invoiceNo", $request->invoiceNo)->value('link_url');
+            $message = [
+                $request->invoiceNo,
+                $request->amount,
+                $request->currency,
+                $Sendername['merchant_name'],
+                $linkUrl,
+            ];
+            $details = [
+                'subject' => 'Octoverse Payment Link',
+                'merchant_name' => $Sendername['merchant_name'],
+                'merchant_Cemail' => $Sendername['merchant_Cemail'],
+                'merchant_address' => $Sendername['merchant_address'],
+                'expired_at' => $request->expired_at,
+                'remark' => $request->description ?? 'N/A',
+            ];
             $email = $request->email;
-            $this->SMSService->sendEmail($email, subject: 'Payment Link', message: $message);
+            $this->SMSService->sendEmail($email, 'Octoverse Payment Link', $message, $details);
         }
+
         $linkUrl = Links::where("link_invoiceNo", $request->invoiceNo)->select('link_url')->first();
         return back()
             ->with('success', true)
@@ -81,24 +99,84 @@ class LinksController extends Controller
 
     private function click($id)
     {
+        $ip = request()->ip();
+        if ($ip === '127.0.0.1') {
+            $info = null;
+        } else {
+            $response = Http::get("http://ipwhois.app/json/{$ip}");
 
-       // $ip = request()->ip();
-        $ip = '152.652.552' ;
+            if ($response->successful()) {
+                $data = $response->json();
+
+                $info = [
+                    'country'        => $data['country'] ?? null,
+                    'country_code'   => $data['country_code'] ?? null,
+                    'provider'       => $data['isp'] ?? null,
+                    'country_phone'  => $data['country_phone'] ?? null,
+                    'country_flag'   => $data['country_flag'] ?? null,
+                    'region'         => $data['region'] ?? null,
+                    'city'           => $data['city'] ?? null,
+                ];
+            } else {
+                $info = ['error' => 'IP info fetch failed'];
+            }
+        }
         $clickLog = Click_Logs::firstOrCreate(
             [
-                'link_id' => $id,
-                'ip_address' => $ip,
+                'link_id'     => $id,
+                'ip_address'  => $ip,
             ],
             [
-                'info' => 'Clicked',
-                'created_at' => Carbon::now(),
+                'info'        => $info,
+                'created_at'  => now(),
             ]
         );
-
         if ($clickLog->wasRecentlyCreated) {
             Links::where('id', $id)->update([
                 'link_click_status' => 'Clicked',
             ]);
         }
+    }
+
+    public function bundle(){
+        return view('Merchant.Bundle.bundle');
+    }
+
+
+    public function edit($id)
+    {
+        $link = Links::findOrFail($id);
+        return view('merchant.sms.edit', compact('link'));
+    }
+
+    public function update(LinkUpdateRequest $request, $id)
+    {
+        $link = Links::findOrFail($id);
+        $validatedData = $request->validated();
+        $link->update([
+            'user_id'       => $validatedData['user_id'],
+            'link_invoiceNo' => $validatedData['invoiceNo'],
+            'link_amount'        => $validatedData['amount'],
+            'link_name'          => $validatedData['name'],
+            'link_phone'         => $validatedData['phone'],
+            'link_email'         => $validatedData['email'],
+            'expired_at'    => $validatedData['expired_at'],
+            'link_description'   => $validatedData['description'],
+            'link_type'  => $validatedData['notification'],
+            'link_currency'      => $validatedData['currency'],
+        ]);
+
+        return redirect()->back()->with('success', 'Link updated successfully.');
+    }
+
+    public function importLinks(Request $request)
+    {
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        Excel::import(new LinksImport(app('App\Service\SMSService')), $request->file('excel_file'));
+
+        return back()->with('success', 'Payment links generated successfully!');
     }
 }

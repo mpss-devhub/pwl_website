@@ -1,5 +1,5 @@
 
-<nav class=" border-gray-200" style="background:E6E7EB">
+<nav class="" >
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
        <div class="">
@@ -13,7 +13,7 @@
           </svg>
       </button>
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white ">
+        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
           <li>
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">HOME</a>
           </li>
@@ -24,7 +24,7 @@
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">SERVICES</a>
           </li>
           <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">PRICING</a>
+            <a href="{{ route('check.page') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
           </li>
           <li>
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACTS</a>

@@ -126,7 +126,8 @@
                                         d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                Export CSV
+                                <a href="{{ route('merchant.link.csv.export') }}"> Export CSV</a>
+
                             </button>
                             <button
                                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
@@ -136,7 +137,7 @@
                                         d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                Export Excel
+                              <a href="{{ route('merchant.link.excel.export') }}">  Export Excel</a>
                             </button>
                         </div>
                     </div>
@@ -233,7 +234,8 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <p class="px-2 inline-flex text-sm leading-5 font-semibold ">
-                                        {{ $item->link_click_status }}
+                                        {{ $item->link_click_status === 'Clicked' ? 'Clicked' : 'Unclick' }}
+
                                     </p>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -256,9 +258,6 @@
                     </table>
                 </div>
             </div>
-             <div class="mt-2">
-                        {{ $links->links() }}
-                    </div>
         </div>
     </div>
 

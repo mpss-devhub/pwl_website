@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Service\PaymentService;
+use App\Models\Links;
 use Illuminate\Http\Request;
+use App\Service\PaymentService;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 
 class PaymentGatewayController extends Controller
 {
@@ -32,16 +34,17 @@ class PaymentGatewayController extends Controller
     public function Pwl(Request $request)
     {
         $data = $this->paymentService->Auth($request->all());
-         $this->paymentService->store($request->all());
+        $this->paymentService->store($request->all());
         $link_data = $this->paymentService->link($request->all());
         $link = $link_data['link'] ?? null;
+        $link_id = $link['id'] ?? null;
         $merchant = $link_data['merchant'] ?? null;
         return view('checkout.pay', compact('data', 'link', 'merchant'));
     }
 
-    public function paymentBackendCallback(Request $request,$user_id)
+    public function paymentBackendCallback(Request $request, $user_id)
     {
-        $this->paymentService->backendCallback($request->all(),$user_id);
+        $this->paymentService->backendCallback($request->all(), $user_id);
         return response()->json(['status' => 'success', 'message' => 'Payment processed successfully']);
     }
 }

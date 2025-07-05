@@ -29,7 +29,7 @@ class PaymentDao
             'link_id' => $data['link_id'],
             'paymentCode' => $data['paymentCode'],
             'payment_logo' => $data['payment_logo'],
-            'payment_status' => 'Pending',
+            'payment_status' => 'PENDING',
             'tranref_no'=>$expired['link_invoiceNo'],
             'req_amount'=>$expired['link_amount'],
             'payment_expired_at' => $expired['link_expired_at'],

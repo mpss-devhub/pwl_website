@@ -1,5 +1,14 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
+    <style>
+        @media print {
+            body {
+                width: 1366px;
+                height: auto;
+            }
+        }
+    </style>
+
     @php
         $statusColor =
             [
@@ -10,20 +19,17 @@
             ][strtolower($data['payment_status'])] ?? 'bg-blue-100 text-blue-800';
     @endphp
 
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen" >
-        <div class="p-4 mt-14 max-w-6xl mx-auto">
+    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+        <div class="p-4 mt-14 max-w-7xl mx-auto">
+
+
 
             <!-- Payment Details Card -->
-            <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200" >
+            <div id="exportArea" class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
                 <!-- Header Section -->
                 <div class="bg-white px-4 sm:px-6 py-5 border-b border-gray-200">
-                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-                        <div class="order-2 sm:order-1">
-                            <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900">
-                                <i class="fa-solid fa-arrow-left"></i>
-                            </a>
-                        </div>
-                        <div class="order-1 sm:order-2">
+                    <div class="flex justify-end">
+                        <div class="">
                             <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Payment Method"
                                 class="rounded-md object-contain w-[100px]">
                         </div>
@@ -180,12 +186,12 @@
                                         alt="Payment QR" loading="lazy">
                                 @endif
                                 @if ($data['payment_status'] == 'Pending')
-                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
-                                        loading="lazy">
+                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1 w-[110px]"
+                                        alt="Payment QR" loading="lazy">
                                 @endif
                                 @if ($data['payment_status'] == 'FAIL')
-                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
-                                        loading="lazy">
+                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1 w-[110px]"
+                                        alt="Payment QR" loading="lazy">
                                 @endif
                             </div>
                         </div>
@@ -206,7 +212,102 @@
                         @endif
                     </div>
                 </div>
+
+
+            </div>
+             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mt-2">
+                <div class="flex flex-wrap gap-3 ml-2">
+                    <button id="btn-png" onclick="downloadAsPNG()"
+                        class="flex items-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-md transition">
+                        <svg id="loading-png" class="hidden w-4 h-4 animate-spin text-blue-700"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span id="text-png">Download as <i class="fa-solid fa-image"></i></span>
+                    </button>
+
+                    <button id="btn-pdf" onclick="downloadAsPDF()"
+                        class="flex items-center gap-2 bg-red-100 text-red-600 hover:bg-red-200 px-4 py-2 rounded-md transition">
+                        <svg id="loading-pdf" class="hidden w-4 h-4 animate-spin text-red-600"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span id="text-pdf">Download as <i class="fa-solid fa-file-pdf"></i> </span>
+                    </button>
+                </div>
+                <div>
+                    <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <i class="fa-solid fa-arrow-left mr-2"></i>
+                        <span class="mx-1">Back</span>
+                    </a>
+                </div>
+
+
             </div>
         </div>
     </div>
+    <script>
+        function showLoading(id) {
+            document.getElementById(`loading-${id}`).classList.remove('hidden');
+            document.getElementById(`text-${id}`).textContent = "Processing...";
+            document.getElementById(`btn-${id}`).disabled = true;
+        }
+
+        function hideLoading(id, originalText) {
+            document.getElementById(`loading-${id}`).classList.add('hidden');
+            document.getElementById(`text-${id}`).textContent = originalText;
+            document.getElementById(`btn-${id}`).disabled = false;
+        }
+
+        function downloadAsPNG() {
+            showLoading('png');
+            const element = document.getElementById("exportArea");
+
+            html2canvas(element, {
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement("a");
+                link.download = "payment-details.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+
+                hideLoading('png', 'Download as PNG');
+            });
+        }
+
+        async function downloadAsPDF() {
+            showLoading('pdf');
+            const {
+                jsPDF
+            } = window.jspdf;
+            const element = document.getElementById("exportArea");
+
+            const canvas = await html2canvas(element, {
+                scale: 2,
+                useCORS: true
+            });
+            const imgData = canvas.toDataURL("image/png");
+
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'px',
+                format: [canvas.width, canvas.height]
+            });
+
+            pdf.addImage(imgData, 'PNG', 0, 0, canvas.width, canvas.height);
+            pdf.save("payment-details.pdf");
+
+            hideLoading('pdf', 'Download as PDF');
+        }
+    </script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 @endsection

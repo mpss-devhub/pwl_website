@@ -11,22 +11,25 @@ class CheckoutMail extends Mailable
     use Queueable, SerializesModels;
 
     public $details;
+    public $content;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($details)
+     public function __construct($details, $content)
     {
         $this->details = $details;
+        $this->content = $content;
     }
 
-    /**
-     * Build the message.
-     */
     public function build()
     {
-
+       // dd('Yes');
         return $this->subject($this->details['subject'])
-                    ->view('Merchant.emails.checkout');
+            ->view('Merchant.emails.checkout')
+            ->with([
+                'details' => $this->details,
+                'content' => $this->content,
+            ]);
     }
 }
