@@ -1,11 +1,12 @@
-@extends('Merchant.layouts.dashboard')
-@section('merchant_content')
+@extends('Admin.layouts.dashboard')
+@section('admin_content')
+    @include('Admin.links.alert')
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
-            <!-- Filter Section -->
             <div class="bg-white rounded-lg shadow mb-6">
-                <button id="filter-toggle" class="w-full flex justify-between items-center p-4 sm:p-6 focus:outline-none">
-                    <h2 class="text-lg font-semibold text-gray-800">Filter Transactions</h2>
+                <!-- Filter Header with Toggle -->
+                <button id="filter-toggle" class="w-full flex justify-between items-center p-6 focus:outline-none">
+                    <h2 class="text-lg font-semibold text-gray-800">Link History</h2>
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -15,11 +16,11 @@
                 </button>
 
                 <!-- Filter Content -->
-                <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <!-- Date Range -->
+                <div id="filter-content" class="px-6 pb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <!-- Start Date -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                            <label for="start-date" class="block text-sm font-medium text-gray-700">Start Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -29,13 +30,14 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="start-date"
+                                <input type="datetime-local" id="start-date" name="start-date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
 
+                        <!-- End Date -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">End Date</label>
+                            <label for="end-date" class="block text-sm font-medium text-gray-700">End Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -45,32 +47,32 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="end-date"
+                                <input type="datetime-local" id="end-date" name="end-date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
 
-                        <!-- Payment Method -->
+                        <!-- Notification Type -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Payment Method</label>
-                            <select id="payment-method"
+                            <label for="notification-type" class="block text-sm font-medium text-gray-700">Notification</label>
+                            <select id="notification-type" name="notification-type"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
-                                @foreach ($tnx->pluck('paymentCode')->unique() as $method)
-                                    <option value="{{ $method }}">{{ $method }}</option>
-                                @endforeach
+                                <option value="C">Copy Link</option>
+                                <option value="S">SMS</option>
+                                <option value="E">Email</option>
+                                <option value="Q">QR</option>
                             </select>
                         </div>
 
                         <!-- Status -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Status</label>
-                            <select id="status"
+                            <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
+                            <select id="status" name="status"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
-                                <option value="SUCCESS">SUCCESS</option>
-                                <option value="FAIL">FAIL</option>
-                                <option value="Pending">PENDING</option>
+                                <option value="active">Active</option>
+                                <option value="expired">Expired</option>
                             </select>
                         </div>
                     </div>
@@ -119,7 +121,7 @@
                         </div>
 
                         <div class="flex items-end gap-2">
-                            <a href="{{ route('merchant.csv.export') }}"
+                            <a href="{{ route('admin.link.csv.export') }}"
                                 class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -130,7 +132,7 @@
                                 Export CSV
                             </a>
 
-                            <a href="{{ route('merchant.tnx.export') }}"
+                            <a href="{{ route('admin.link.tnx.export') }}"
                                 class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -145,124 +147,78 @@
                 </div>
             </div>
 
-            <!-- Transactions Table -->
+            <!-- Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200" id="link-table">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    ID
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Invoice No
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Name
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Amount
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Currency
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Payment
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Status
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Paid At
-                                </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Action
-                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Message</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">To</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Link Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Link Track</th>
+                                <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
-                        <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
-                            @foreach ($tnx as $item)
-                                <tr class="transaction-row hover:bg-gray-50" data-id="{{ $loop->iteration }}"
-                                    data-invoice="{{ $item->tranref_no }}" data-name="{{ $item->payment_user_name }}"
-                                    data-amount="{{ $item->req_amount }}" data-currency="MMK"
-                                    data-method="{{ $item->paymentCode }}" data-status="{{ $item->payment_status }}"
-                                    data-created="{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}"
-                                    data-date="{{ $item->trans_date_time ? \Carbon\Carbon::parse($item->trans_date_time)->format('Y-m-d H:i:s') : '' }}">
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $loop->iteration }}
+                        <tbody class="bg-white divide-y divide-gray-200" id="links-body">
+                            @foreach ($links as $item)
+                                <tr class="link-row hover:bg-gray-50"
+                                    data-id="{{ $loop->iteration }}"
+                                    data-message="{{ $item->link_url }}"
+                                    data-to="{{ $item->link_phone }}"
+                                    data-name="{{ $item->link_name }}"
+                                    data-type="{{ $item->link_type }}"
+                                    data-status="{{ $item->link_status }}"
+                                    data-track="{{ $item->link_click_status }}"
+                                    data-date="{{ $item->created_at }}">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_url }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_phone }}</td>
+                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_name }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        @switch($item->link_type)
+                                            @case('S')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">SMS</span>
+                                                @break
+                                            @case('C')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Copy</span>
+                                                @break
+                                            @case('Q')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">QR</span>
+                                                @break
+                                            @case('E')
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Email</span>
+                                                @break
+                                            @default
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-200 text-gray-800">Unknown</span>
+                                        @endswitch
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
-                                        {{ $item->tranref_no }}
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 truncate max-w-[120px]">
-                                            {{ $item->payment_user_name }}</div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">MMK</div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
-                                            <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
-                                        </div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        @if ($item->payment_status == 'SUCCESS')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                {{ $item->payment_status }}
-                                            </span>
-                                        @elseif ($item->payment_status == 'FAIL')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                                {{ $item->payment_status }}
-                                            </span>
-                                        @elseif ($item->payment_status == 'Pending')
-                                            <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                                {{ $item->payment_status }}
-                                            </span>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        @if ($item->link_status === 'active')
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-blue-800">Active</span>
+                                        @elseif ($item->link_status === 'expired')
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
                                         @endif
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        @if ($item->trans_date_time)
-                                            {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
-                                        @else
-                                            Pending
-                                        @endif
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <p class="px-2 inline-flex text-sm leading-5 font-semibold">
+                                            {{ $item->link_click_status === 'Clicked' ? 'Clicked' : 'Unclick' }}
+                                        </p>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="flex space-x-1">
-                                            <form action="{{ route('tnx.detail') }}" method="POST">
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <div class="flex space-x-3">
+                                            <form action="{{ route('admin.sms.details') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{ $item->id }}"
-                                                    required>
-                                                <button
-                                                    class=" px-2 py-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                                    <i class="fa-solid fa-circle-info"></i>
-                                                </button>
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button type="submit" class="text-blue-600 hover:text-blue-900">View</button>
                                             </form>
-                                            <form action="{{ route('Payment.detail') }}" method="POST">
+                                            <form action="{{ route('admin.sms.resent') }}" method="POST">
                                                 @csrf
-                                                <input type="hidden" name="id" value="{{ $item->id }}"
-                                                    required>
-                                                <button
-                                                    class=" px-2 py-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                                    <i class="fa-solid fa-building-columns"></i>
-                                                </button>
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button type="submit" class="text-red-600 hover:text-red-900">Resend</button>
                                             </form>
                                         </div>
                                     </td>
@@ -270,96 +226,94 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </div>
             </div>
-
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Toggle filter visibility
             const toggleButton = document.getElementById('filter-toggle');
             const filterContent = document.getElementById('filter-content');
             const filterArrow = document.getElementById('filter-arrow');
 
-            toggleButton.addEventListener('click', function() {
+            toggleButton.addEventListener('click', function () {
                 const isHidden = filterContent.classList.toggle('hidden');
                 filterArrow.classList.toggle('rotate-180', !isHidden);
                 localStorage.setItem('filterVisible', !isHidden);
             });
 
-            // Check localStorage for saved state
+            // Restore filter visibility from localStorage
             const filterVisible = localStorage.getItem('filterVisible');
             if (filterVisible === 'false') {
                 filterContent.classList.add('hidden');
                 filterArrow.classList.remove('rotate-180');
             }
 
-            function filterTransactions() {
+            // Filter function
+            function filterLinks() {
                 const startDate = document.getElementById('start-date').value;
                 const endDate = document.getElementById('end-date').value;
-                const paymentMethod = document.getElementById('payment-method').value;
+                const notificationType = document.getElementById('notification-type').value;
                 const status = document.getElementById('status').value;
                 const searchTerm = document.getElementById('search').value.toLowerCase();
 
-                const rows = document.querySelectorAll('.transaction-row');
-
-                rows.forEach(row => {
-                    const rowDate = row.dataset.created; // <-- use created_at date here
-                    const rowMethod = row.dataset.method;
+                document.querySelectorAll('.link-row').forEach(row => {
+                    const rowDate = row.dataset.date;
+                    const rowType = row.dataset.type;
                     const rowStatus = row.dataset.status;
-                    const rowInvoice = row.dataset.invoice.toLowerCase();
+                    const rowMessage = row.dataset.message.toLowerCase();
+                    const rowTo = row.dataset.to.toLowerCase();
                     const rowName = row.dataset.name.toLowerCase();
                     const rowId = row.dataset.id.toString();
 
+                    // Date filter
                     let dateMatch = true;
                     if (startDate && rowDate) {
                         dateMatch = new Date(rowDate) >= new Date(startDate);
                     }
-
                     if (endDate && rowDate) {
-                        dateMatch = dateMatch && (new Date(rowDate) <= new Date(endDate));
+                        dateMatch = dateMatch && new Date(rowDate) <= new Date(endDate);
                     }
-                    const methodMatch = !paymentMethod || rowMethod === paymentMethod;
+
+                    // Notification type filter
+                    const typeMatch = !notificationType || rowType === notificationType;
+
+                    // Status filter
                     const statusMatch = !status || rowStatus === status;
+
+                    // Search filter
                     const searchMatch = !searchTerm ||
-                        rowInvoice.includes(searchTerm) ||
+                        rowMessage.includes(searchTerm) ||
+                        rowTo.includes(searchTerm) ||
                         rowName.includes(searchTerm) ||
                         rowId.includes(searchTerm);
-                    if (dateMatch && methodMatch && statusMatch && searchMatch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
+
+                    // Show/hide row
+                    row.style.display = (dateMatch && typeMatch && statusMatch && searchMatch) ? '' : 'none';
                 });
             }
 
-
-            // Reset filters function
+            // Reset function
             function resetFilters() {
                 document.getElementById('start-date').value = '';
                 document.getElementById('end-date').value = '';
-                document.getElementById('payment-method').value = '';
+                document.getElementById('notification-type').value = '';
                 document.getElementById('status').value = '';
                 document.getElementById('search').value = '';
 
-                document.querySelectorAll('.transaction-row').forEach(row => {
-                    row.style.display = '';
-                });
+                document.querySelectorAll('.link-row').forEach(row => row.style.display = '');
             }
 
             // Event listeners
-            document.getElementById('search-btn').addEventListener('click', filterTransactions);
+            document.getElementById('search-btn').addEventListener('click', filterLinks);
             document.getElementById('reset-btn').addEventListener('click', resetFilters);
-
-            // Filter on input change
-            document.getElementById('search').addEventListener('input', filterTransactions);
-            document.getElementById('payment-method').addEventListener('change', filterTransactions);
-            document.getElementById('status').addEventListener('change', filterTransactions);
-            document.getElementById('start-date').addEventListener('change', filterTransactions);
-            document.getElementById('end-date').addEventListener('change', filterTransactions);
+            document.getElementById('search').addEventListener('input', filterLinks);
+            document.getElementById('notification-type').addEventListener('change', filterLinks);
+            document.getElementById('status').addEventListener('change', filterLinks);
+            document.getElementById('start-date').addEventListener('change', filterLinks);
+            document.getElementById('end-date').addEventListener('change', filterLinks);
         });
     </script>
 @endsection

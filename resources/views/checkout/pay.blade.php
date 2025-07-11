@@ -97,8 +97,7 @@
                         <!-- Invoice Header -->
                         <div class="text-center text-gray-800">
                             <div class="flex justify-center ">
-                                <img src="{{ $data['qrImg'] }}"
-                                    alt="QR Code" class="w-48 h-48 mx-auto" />
+                                <img src="{{ $data['qrImg'] }}" alt="QR Code" class="w-48 h-48 mx-auto" />
                             </div>
                             <p class="text-sm text-center py-2" x-data>
                             <div role="status" class="inline">
@@ -214,10 +213,10 @@
                 @endif
             @endif
         @endif
-                    @if (!$data)
-                        Please Connect to admin
-                        <a href=""><i class="fa-solid fa-triangle-exclamation bg-red-600"></i></a>
-                    @endif
+        @if (!$data)
+            Please Connect to admin
+            <a href=""><i class="fa-solid fa-triangle-exclamation bg-red-600"></i></a>
+        @endif
         <div class="text-xs text-gray-700 space-y-1">
 
             <p class=" text-gray-700 text-center">
@@ -225,6 +224,23 @@
                     class="text-[#8a9adb]">Octoverse.com.mm</a>
             </p>
         </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const invoiceNo = "{{ $link->link_invoiceNo }}";
+                const checkInterval = setInterval(() => {
+                    fetch(`/check-payment/${invoiceNo}`)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status) {
+                                clearInterval(checkInterval);
+                                window.location.href = "/invoice/" + invoiceNo;
+                            }
+                        })
+                        .catch(err => console.error("Error checking payment:", err));
+                }, 5000);
+            });
+        </script>
+
 </body>
 
 </html>

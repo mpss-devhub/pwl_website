@@ -2,75 +2,121 @@
 
 namespace App\Imports;
 
-use App\Models\Links;
 use App\Models\Merchants;
 use App\Service\SMSService;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Mail;
-use Maatwebsite\Excel\Concerns\ToCollection;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Illuminate\Validation\ValidationException;
+use Maatwebsite\Excel\Concerns\SkipsOnFailure;
+use Maatwebsite\Excel\Concerns\WithValidation;
 
-class LinksImport implements ToCollection
+class LinksImport implements ToModel, WithValidation, SkipsOnFailure, WithStartRow
 {
+    use SkipsFailures;
+
     protected $SMSService;
+
+    protected int $successCount = 0;
+
+    public function getSuccessCount(): int
+    {
+        return $this->successCount;
+    }
 
     public function __construct(SMSService $SMSService)
     {
         $this->SMSService = $SMSService;
     }
 
-    public function collection(Collection $rows)
+    public function startRow(): int
     {
-        // Skip heading row if needed
-        foreach ($rows->skip(1) as $row) {
-            $data = [
-                'user_id' => $row[0],
-                'invoiceNo' => $row[1],
-                'amount' => $row[2],
-                'name' => $row[3],
-                'phone' => $row[4],
-                'email' => $row[5],
-                'expired_at' => $row[6],
-                'description' => $row[7],
-                'notification' => $row[8],
-                'currency' => $row[9],
-            ];
+        return 2;
+    }
 
-            // Create the link
-            $linkUrl = app('App\Dao\LinkDao')->create($data); // assuming you have a DAO
+    public function model(array $row)
+    {
+        if (DB::table('links')->where('link_invoiceNo', $row[1])->exists()) {
+            throw ValidationException::withMessages([
+                "Row with invoice number '{$row[1]}' already exists in the database."
+            ]);
+        }
+        $data = [
+            'user_id'     => $row[0],
+            'invoiceNo'   => $row[1],
+            'amount'      => $row[2],
+            'name'        => $row[3],
+            'phone'       => $row[4],
+            'email'       => $row[5],
+            'expired_at'  => $row[6],
+            'description' => $row[7],
+            'notification' => $row[8],
+            'currency'    => $row[9],
+        ];
 
-            $Sendername = Merchants::where('user_id', $data['user_id'])->select('merchant_Cemail', 'merchant_address', 'merchant_name', 'merchant_id')->first();
-            $id = $Sendername['merchant_id'];
+        $linkUrl = app('App\Dao\LinkDao')->create($data);
+        if (!$linkUrl) {
+            throw new \Exception("Link not created for invoice: {$data['invoiceNo']}");
+        }
 
-            if ($data['notification'] == 'SMS') {
-                $message = "\n Invoice Number: " . $data['invoiceNo'] .
-                    "\n Amount: " . $data['amount'] . $data['currency'] .
-                    "\n From: " . $Sendername['merchant_name'] .
-                    "\n This is Your Payment Link : " . $linkUrl;
+        $merchant = Merchants::where('user_id', $data['user_id'])->first();
+        if (!$merchant) {
+            throw new \Exception("Merchant not found for user: {$data['user_id']}");
+        }
 
-                $this->SMSService->sendSMS($data['phone'], $message, $id);
-            }
+        $merchantId = $merchant->merchant_id;
 
-            if ($data['notification'] == 'Email') {
-                $message = [
+        if ($data['notification'] === 'SMS') {
+            $message = "\n Invoice Number: {$data['invoiceNo']}" .
+                "\n Amount: {$data['amount']} {$data['currency']}" .
+                "\n From: {$merchant->merchant_name}" .
+                "\n This is Your Payment Link : {$linkUrl}";
+
+            $this->SMSService->sendSMS($data['phone'], $message, $merchantId);
+        }
+
+        if ($data['notification'] === 'Email') {
+            $this->SMSService->sendEmail(
+                $data['email'],
+                'Octoverse Payment Link',
+                [
                     $data['invoiceNo'],
                     $data['amount'],
                     $data['currency'],
-                    $Sendername['merchant_name'],
+                    $merchant->merchant_name,
                     $linkUrl,
-                ];
-
-                $details = [
-                    'subject' => 'Octoverse Payment Link',
-                    'merchant_name' => $Sendername['merchant_name'],
-                    'merchant_Cemail' => $Sendername['merchant_Cemail'],
-                    'merchant_address' => $Sendername['merchant_address'],
-                    'expired_at' => $data['expired_at'],
-                    'remark' => $data['description'] ?? 'N/A',
-                ];
-
-                $this->SMSService->sendEmail($data['email'], 'Octoverse Payment Link', $message, $details);
-            }
+                ],
+                [
+                    'subject'           => 'Octoverse Payment Link',
+                    'merchant_name'     => $merchant->merchant_name,
+                    'merchant_Cemail'   => $merchant->merchant_Cemail,
+                    'merchant_address'  => $merchant->merchant_address,
+                    'expired_at'        => $data['expired_at'],
+                    'remark'            => $data['description'] ?? 'N/A',
+                ]
+            );
         }
+           $this->successCount++;
+        return null;
+    }
+
+    public function rules(): array
+    {
+        return [
+            '*.1' => [
+                'required',
+                'string',
+                'max:100',
+                Rule::unique('links', 'link_invoiceNo'),
+            ],
+            '*.2' => 'required',
+            '*.4' => 'required',
+            '*.5' => 'nullable|email|max:255',
+            '*.6' => 'required',
+            '*.8' => 'required',
+            '*.9' => 'required',
+        ];
     }
 }
-

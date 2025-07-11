@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Models\Tnx;
+use App\Models\Links;
+use App\Models\Merchants;
+use App\Service\SMSService;
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AllMerchantLinksExport;
+use App\Http\Requests\LinkUpdateRequest;
+
+class AdminSmScontroller extends Controller
+{
+    //
+    protected SMSService $SMSService;
+
+    public function __construct(SMSService $SMSService)
+    {
+        $this->SMSService = $SMSService;
+    }
+    public function show(Request $request)
+    {
+        $id = $request->id;
+        $data = Links::where("id", $id)->orderBy('created_at', 'desc')->get()->toArray();
+        $sms = $data[0];
+        $tnx = Tnx::find($id);
+        $exists = !is_null($tnx);
+        //dd($exists);
+        return view('Admin.links.detail', compact('sms', 'exists'));
+    }
+
+    public function resent(Request $request)
+    {
+        $link_id = $request->id;
+        $link = Links::where('id', $link_id)->first();
+        $method = $link['link_type'];
+        $Merchant = Merchants::where('merchant_id', $link['merchant_id'])->select('merchant_name', 'merchant_Cemail', 'merchant_address')->first();
+        $id = $link['merchant_id'];
+        $Sendername = $Merchant['merchant_name'];
+        if ($method == 'S') {
+            $message =
+                " \n Invoice Number: " . $link['invoiceNo'] .
+                " \n Amount: " . $link['amount'] . $link['currency'] .
+                " \n From: " . $Sendername .
+                "\n This is Your Payment Link : " . $link['link_url'];
+            $phoneNumber = $link['link_phone'];
+            $this->SMSService->sendSMS($phoneNumber, $message, $id);
+        }
+        if ($method == 'E') {
+            $message = [
+                $link['link_invoiceNo'],
+                $link['link_amount'],
+                $link['link_currency'],
+                $Sendername,
+                $link['link_url'],
+            ];
+            $details = [
+                'subject' => 'Octoverse Payment Link',
+                'merchant_name' => $Sendername,
+                'merchant_Cemail' => $Merchant['merchant_Cemail'],
+                'merchant_address' => $Merchant['merchant_address'],
+                'expired_at' => $link['expired_at'],
+                'remark' => $link['link_description'] ?? 'N/A',
+            ];
+            $email = $link['link_email'];
+            // dd($message,$details,$email,$link);
+            $this->SMSService->sendEmail($email, 'Octoverse Payment Link', $message, $details);
+        }
+        $notifatcion = '';
+        if ($method == 'S') {
+            $notifatcion = 'SMS';
+        };
+        if ($method == 'E') {
+            $notifatcion = 'Email';
+        };
+        if ($method == 'C') {
+            $notifatcion = 'Copy';
+        };
+        if ($method == 'Q') {
+            $notifatcion = 'QR';
+        };
+
+        return back()
+            ->with('success', true)
+            ->with('link_url', $link['link_url'])
+            ->with($notifatcion, true);
+    }
+
+    public function exportCsv()
+    {
+        return Excel::download(new AllMerchantLinksExport, 'links.csv', \Maatwebsite\Excel\Excel::CSV);
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new AllMerchantLinksExport, 'links.xlsx');
+    }
+
+     public function edit($id)
+    {
+        $link = Links::findOrFail($id);
+        return view('Admin.links.edit', compact('link'));
+    }
+
+    public function update(LinkUpdateRequest $request, $id)
+    {
+        $link = Links::findOrFail($id);
+        $validatedData = $request->validated();
+        $link->update([
+            'user_id'       => $validatedData['user_id'],
+            'link_invoiceNo' => $validatedData['invoiceNo'],
+            'link_amount'        => $validatedData['amount'],
+            'link_name'          => $validatedData['name'],
+            'link_phone'         => $validatedData['phone'],
+            'link_email'         => $validatedData['email'],
+            'expired_at'    => $validatedData['expired_at'],
+            'link_description'   => $validatedData['description'],
+            'link_type'  => $validatedData['notification'],
+            'link_currency'      => $validatedData['currency'],
+        ]);
+
+        return redirect()->back()->with('success', 'Link updated successfully.');
+    }
+}

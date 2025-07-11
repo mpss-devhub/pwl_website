@@ -44,7 +44,7 @@ class PaymentGatewayController extends Controller
 
     public function paymentBackendCallback(Request $request, $user_id)
     {
-        $this->paymentService->backendCallback($request->all(), $user_id);
-        return response()->json(['status' => 'success', 'message' => 'Payment processed successfully']);
+       $data =  $this->paymentService->backendCallback($request->all(), $user_id);
+       return redirect()->route('payment.invoice', ['invoiceNo' => $data['invoiceNo']]);
     }
 }

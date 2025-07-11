@@ -85,7 +85,7 @@
 
             @if((in_array('S',$per)))
             <li>
-              <a href="{{ route('payment.show') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <a href="{{ route('admin.links') }}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                 <i class="fa-solid fa-shield-halved text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true"></i>
                  <span class="flex-1 ms-3 whitespace-nowrap">SMS Control</span>
 

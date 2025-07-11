@@ -8,8 +8,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    optimizeDeps: {
-        include: ['jquery', 'apexcharts'],
-        exclude: ['swiper'] // Exclude any conflicting packages
+    build: {
+        rollupOptions: {
+            external: ['apexcharts'] // Tell Vite not to bundle ApexCharts
+        }
     }
 });

@@ -15,6 +15,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\LinkUpdateRequest;
 use App\Http\Requests\Merchant\LinkRequest;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class LinksController extends Controller
 {
@@ -138,7 +139,8 @@ class LinksController extends Controller
         }
     }
 
-    public function bundle(){
+    public function bundle()
+    {
         return view('Merchant.Bundle.bundle');
     }
 
@@ -170,13 +172,33 @@ class LinksController extends Controller
     }
 
     public function importLinks(Request $request)
-    {
-        $request->validate([
-            'excel_file' => 'required|mimes:xlsx,xls,csv',
-        ]);
+{
+    $request->validate([
+        'excel_file' => 'required|mimes:xlsx,xls,csv',
+    ]);
 
-        Excel::import(new LinksImport(app('App\Service\SMSService')), $request->file('excel_file'));
+    try {
+        $import = new LinksImport(app(SMSService::class));
+        Excel::import($import, $request->file('excel_file'));
 
-        return back()->with('success', 'Payment links generated successfully!');
+        if ($import->getSuccessCount() === 0) {
+            return back()->withErrors(['No rows were imported. Please check for validation errors or duplicates.']);
+        }
+
+        return back()->with('success', $import->getSuccessCount() . ' payment links generated successfully!');
+    } catch (ValidationException $e) {
+        $messages = [];
+
+        foreach ($e->failures() as $failure) {
+            $row = $failure->row();
+            $errors = implode(', ', $failure->errors());
+            $messages[] = "Row {$row}: {$errors}";
+        }
+
+        return back()->withErrors($messages);
+    } catch (\Throwable $e) {
+        return back()->withErrors(['error' => $e->getMessage()]);
     }
+}
+
 }

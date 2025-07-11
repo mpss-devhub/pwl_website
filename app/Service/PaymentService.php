@@ -35,7 +35,7 @@ class PaymentService
             'Content-Type' => 'application/json',
             'X-API-KEY' =>  $xAppApiKey,
             'X-APP-ID' => $app_id,
-        ])->post($externalUrl,[
+        ])->post($externalUrl, [
             "pageNo" => "1",
             "pageSize" => "10",
             "orderBy" => "DESC",
@@ -103,9 +103,8 @@ class PaymentService
         $decode = $this->get($token, $secret_key);
         //dd($decode);
         if ($decode) {
-             // dd($data, $decode, $paymentCode, $data_Key,$paymentInfo);
+            // dd($data, $decode, $paymentCode, $data_Key,$paymentInfo);
             $data = $this->dopay($decode, $paymentCode, $data_Key, $data);
-
         }
         return $data;
     }
@@ -137,7 +136,7 @@ class PaymentService
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $decode->accessToken,
-        ])->post($dopayUrl , [
+        ])->post($dopayUrl, [
             "paymentCode" => $paymentCode,
             'paymentToken' => $decode->paymentToken,
             "payData" => $paydata
@@ -150,16 +149,16 @@ class PaymentService
     {
         $type = $data['type'];
         $payload = [];
-        if( $type === 'Ewallet' || $type === 'QR' || $type === 'Web'){
+        if ($type === 'Ewallet' || $type === 'QR' || $type === 'Web') {
             $payload['phoneNo'] = $data['tnx_phonenumber'];
         }
-        if( $type === 'L_C' ) {
+        if ($type === 'L_C') {
             $payload['phoneNo'] = $data['tnx_phonenumber'];
             $payload['cardNumber'] = $data['cardNumber'];
             $payload['expiryMonth'] = $data['expiryMonth'];
             $payload['expiryYear'] = $data['expiryYear'];
         }
-        if( $type === 'G_C' ) {
+        if ($type === 'G_C') {
             $payload['cardNumber'] = $data['cardNumber'];
             $payload['expiryMonth'] = $data['expiryMonth'];
             $payload['expiryYear'] = $data['expiryYear'];
@@ -174,12 +173,14 @@ class PaymentService
     public function backendCallback(array $data, $user_id)
     {
         $merchant_id = Merchants::where('user_id', $user_id)->value('merchant_id');
-       // dd($merchant_id);
         $data_key = Merchants::where('merchant_id', $merchant_id)->value('merchant_datakey');
+
         $paymentInfo = $data['data'];
         $decryptedData = openssl_decrypt(base64_decode($paymentInfo), 'AES-128-ECB', $data_key, OPENSSL_RAW_DATA);
         $data = json_decode($decryptedData, true);
+
         $ino = Links::where('link_invoiceNo', $data['invoiceNo'])->select('created_at', 'id')->get();
+
         Tnx::updateOrCreate(
             ['link_id' => $ino[0]['id']],
             [
@@ -193,10 +194,11 @@ class PaymentService
                 'req_amount' => $data['reqAmount'] ?? '',
                 'net_amount' => $data['netAmount'] ?? '',
                 'created_by' => $merchant_id,
-                'updated_at' => Carbon::now() ?? '',
+                'updated_at' => now(),
                 'updated_by' => "PaymentGateway",
             ]
         );
-        return response()->json(['status' => 'saved', 'data' => $data]);
+
+        return $data;
     }
 }

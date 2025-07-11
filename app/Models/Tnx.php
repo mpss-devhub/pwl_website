@@ -36,5 +36,14 @@ class Tnx extends Model
 
     ];
 
+    public function merchant()
+    {
+        return $this->belongsTo(Merchants::class, 'created_by');
+    }
 
+
+    public function link()
+    {
+        return $this->belongsTo(Links::class, 'link_id');
+    }
 }

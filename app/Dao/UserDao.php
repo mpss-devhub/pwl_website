@@ -55,7 +55,7 @@ class UserDao
     public function createMerchant(array $data): Merchants
     {
 
-        $backendURL = 'http://127.0.0.1:8000/api/merchant/backendcallback/'.$data['user_id'];
+        $backendURL = 'http://127.0.0.1:8000/api/merchant/payment/backendcallback/'.$data['user_id'];
         $merchant = Merchants::create([
             'status' => $data['status'],
             'user_id' => $data['user_id'],

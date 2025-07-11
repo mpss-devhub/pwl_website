@@ -1,7 +1,27 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
-    @include('Merchant.paywithlink.alert')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Errors',
+                html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
     <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
         <div class="p-4 mt-14 sm:mt-16">
             <div class="bg-white shadow-md rounded-lg p-4 sm:p-6">
@@ -54,18 +74,6 @@
                                     <td class="px-2 sm:px-4 py-2">2025-07-12T15:39</td>
                                     <td class="px-2 sm:px-4 py-2">Payment for July</td>
                                     <td class="px-2 sm:px-4 py-2">Email</td>
-                                    <td class="px-2 sm:px-4 py-2">MMK</td>
-                                </tr>
-                                <tr>
-                                    <td class="px-2 sm:px-4 py-2">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-2">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-2">1000</td>
-                                    <td class="px-2 sm:px-4 py-2">Htet Linn Aung</td>
-                                    <td class="px-2 sm:px-4 py-2">09960231318</td>
-                                    <td class="px-2 sm:px-4 py-2">htetlinn437@gmail.com</td>
-                                    <td class="px-2 sm:px-4 py-2">2025-07-12T15:39</td>
-                                    <td class="px-2 sm:px-4 py-2">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-2">QR</td>
                                     <td class="px-2 sm:px-4 py-2">MMK</td>
                                 </tr>
                                 <tr>
@@ -136,26 +144,39 @@
                             <!-- Selected file name will appear here -->
                             <div id="file-name" class="mt-1 text-xs text-gray-500 truncate"></div>
                         </div>
-                        <button type="submit"
+                        <button id="upload-btn" type="submit"
                             class="flex-shrink-0 sm:w-auto bg-gray-800 hover:bg-gray-700 text-white px-5 py-3 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 flex items-center justify-center">
+
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                             </svg>
-                            Upload
+
+                            <span class="upload-text">Upload</span>
+
+                            <!-- Spinner -->
+                            <svg id="upload-spinner" class="hidden animate-spin h-5 w-5 ml-2 text-white"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 01-8 8z"></path>
+                            </svg>
                         </button>
+
                     </form>
                     <p class="mt-2 text-xs text-gray-500">
                         Supported formats: .xlsx, .xls, .csv
                     </p>
+
+
                 </div>
 
                 <script>
                     document.getElementById('file-upload').addEventListener('change', function(e) {
                         const fileName = document.getElementById('file-name');
                         if (this.files.length > 0) {
-                            fileName.textContent = this.files[0].name;
 
                             // Update the label text
                             const label = document.querySelector('label[for="file-upload"] span:first-child');
@@ -165,6 +186,16 @@
                         } else {
                             fileName.textContent = '';
                         }
+                    });
+                    const form = document.querySelector('form[action="{{ route('links.import') }}"]');
+                    const uploadBtn = document.getElementById('upload-btn');
+                    const spinner = document.getElementById('upload-spinner');
+                    const uploadText = uploadBtn.querySelector('.upload-text');
+
+                    form.addEventListener('submit', function() {
+                        uploadBtn.disabled = true;
+                        uploadText.classList.add('hidden');
+                        spinner.classList.remove('hidden');
                     });
                 </script>
             </div>

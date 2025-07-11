@@ -1,25 +1,83 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Forgot Password</title>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+  @vite(['resources/css/app.css', 'resources/js/app.js'])
+  <link href="{{ asset('/main/login.css') }}" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Background shapes -->
+  <div class="bg-shape bg-shape-1"></div>
+  <div class="bg-shape bg-shape-2"></div>
+  <div class="bg-shape bg-shape-3 hidden md:block"></div>
 
-    <form method="POST" action="{{ route('password.email') }}">
+  <div class="">
+    <div class=""></div>
+
+    <!-- Card -->
+    <div class="bg-white rounded-xl shadow-xl p-8 w-[500px] z-20 text-center h-auto relative">
+      <!-- Logo -->
+      <div class="flex items-center justify-center pb-4">
+        <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Logo" class="w-48">
+      </div>
+
+      <!-- Heading -->
+      <div class="mt-3">
+        <h2 class="text-md font-semibold text-gray-700">
+          Forgot your <span class="text-pink-600">Password</span>?
+        </h2>
+        <p class="text-gray-700 text-sm mt-2" style="font-family: 'Libre Baskerville';">
+          Enter your email and we’ll send you a reset link.
+        </p>
+      </div>
+
+      <!-- Status Message -->
+      @if (session('status'))
+        <div class="text-sm text-green-600 mt-4">
+          {{ session('status') }}
+        </div>
+      @endif
+
+      <!-- Form -->
+      <form method="POST" action="{{ route('password.email') }}" class="mt-4 space-y-4">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+        <!-- Email input -->
+        <input
+          style="font-family: 'Libre Baskerville';"
+          type="email"
+          name="email"
+          placeholder="Enter Your Email"
+          value="{{ old('email') }}"
+          required
+          autofocus
+          class="w-96 mt-1 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm"
+        />
+        @error('email')
+          <div class="text-sm text-red-600">{{ $message }}</div>
+        @enderror
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <!-- Submit -->
+        <button
+          class="w-96 bg-purple-100 py-2 rounded-3xl text-lg text-gray-700"
+          style="font-family: 'Libre Baskerville'; background-color: #8FA5F499;"
+        >
+          Send Reset Link
+        </button>
+      </form>
+
+      <!-- Back to login -->
+      <div class="text-sm text-center mt-10" style="font-family: 'Libre Baskerville';">
+        <a href="{{ route('login') }}" class="text-gray-800">← Back to Login</a>
+      </div>
+    </div>
+
+    <div class=""></div>
+  </div>
+</body>
+</html>

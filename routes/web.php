@@ -1,5 +1,8 @@
 <?php
 
+use App\Models\Tnx;
+use App\Models\Links;
+use App\Models\Merchants;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LinksController;
@@ -24,6 +27,23 @@ Route::get('Check/user', [CheckUserController::class, 'page'])
 
 Route::post('/Checked', [CheckUserController::class, 'check'])
     ->name('check');
+
+Route::get('/invoice/{invoiceNo}', function ($invoiceNo) {
+
+    $link = Links::where('link_invoiceNo', $invoiceNo)->firstOrFail();
+    $tnx = Tnx::where('link_id', $link->id)->latest()->firstOrFail();
+    $merchant = Merchants::where('user_id', $link->user_id)->firstOrFail();
+    return view('Extra.success', compact('merchant', 'link', 'tnx'));
+
+})->name('payment.invoice');
+
+Route::get('/check-payment/{invoiceNo}', function ($invoiceNo) {
+    $link = Links::where('link_invoiceNo', $invoiceNo)->first();
+    $tnx = Tnx::where('link_id', $link->id)->latest()->first();
+    return response()->json([
+        'status' => $tnx?->tnx_status === 'payment_status'
+    ]);
+});
 
 
 Route::middleware('auth')->group(function () {

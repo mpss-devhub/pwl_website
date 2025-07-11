@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class PermissionsController extends Controller
 {
     //
+
+    public function edit($id)
+    {
+        $permission = Permissions::findOrFail($id);
+        return view('Admin.access.edit', compact('permission'));
+    }
     public function store(Request $request)
     {
         $permission = collect($request->permission)->implode('-');
@@ -25,5 +31,40 @@ class PermissionsController extends Controller
         ]);
 
         return to_route('access.show');
+    }
+
+    public function update(Request $request, $id)
+    {
+
+        $request->validate([
+            'user_group' => 'required|string|max:255',
+            'permission' => 'required|array',
+            'allowed' => 'nullable|array',
+        ]);
+
+        $permission = collect($request->permission)->implode('-');
+
+        $allowedActions = collect($request->allowed)->map(function ($actions, $perm) {
+            return $perm . ':' . implode(',', $actions);
+        })->implode(';');
+
+        $data = Permissions::findOrFail($id);
+        $data->update([
+            'user_group' => $request->user_group,
+            'permission' => $permission,
+            'allowed' => $allowedActions,
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('access.show')->with('success', 'Permission updated successfully.');
+    }
+
+
+    public function destroy($id)
+    {
+        $data = Permissions::findOrFail($id);
+        $data->delete();
+
+        return back()->with('success', 'Permission deleted successfully.');
     }
 }

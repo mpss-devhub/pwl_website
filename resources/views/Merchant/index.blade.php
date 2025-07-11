@@ -1,7 +1,5 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
     <div class="p-4 sm:ml-64 bg-gray-200">
         <div class="p-4 border-2 rounded-lg mt-14">
             <!-- Stats Cards Row - Improved Responsiveness -->
@@ -12,7 +10,6 @@
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Total Revenue</p>
                             <p class="text-xl sm:text-2xl font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
-                            <p class="text-xs text-green-500 mt-1">+12% from last month</p>
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-blue-50 text-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -136,19 +133,18 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+             let chartInitialized = false;
             const options = {
                 series: [{
                     name: 'Revenue',
-                    data: [4000000, 4300000, 4500000, 5200000, 5400000, 6000000,
-                        5800000, 6100000, 7000000, 7500000, 8000000, 8500000
-                    ]
+                    data: @json($monthlyRevenue)
                 }],
                 chart: {
                     type: 'area',
                     height: '100%',
                     width: '100%',
                     toolbar: {
-                        show: false
+                        show: true
                     },
                     zoom: {
                         enabled: false // Disable zoom
@@ -210,6 +206,11 @@
                 console.error("Error rendering chart:", error);
             }
         });
+
+    document.addEventListener('DOMContentLoaded', initRevenueChart);
+
+    document.addEventListener('turbolinks:load', initRevenueChart);
+    document.addEventListener('livewire:load', initRevenueChart);
     </script>
 
 @endsection

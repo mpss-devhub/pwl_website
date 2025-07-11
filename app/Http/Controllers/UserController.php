@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Merchants;
+use App\Models\Permissions;
 use App\Service\UserService;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
@@ -24,9 +25,9 @@ class UserController extends Controller
 
     public function update(UserRequest $request, $id)
     {
-
+         $per = Permissions::all();
         $this->user_service->updateOrCreate($request->validated(), $id);
-        return redirect()->route('user.show');
+        return redirect()->route('user.show',);
     }
 
     public function store(UserRequest $request)

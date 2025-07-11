@@ -11,21 +11,34 @@ use App\Http\Controllers\Controller;
 
 class MerchantDashboardController extends Controller
 {
-    //
-     public function show()
+    public function show()
     {
         $id = $this->getMerchantId();
-        $TotalMMK = $this->TotalMMK($id);
+        $currentMonth = now()->month;
+        $currentYear = now()->year;
+
+        // Current month data
+        $TotalMMK = $this->TotalMMK($id, $currentMonth, $currentYear);
+        $TotalSuccess = $this->TotalSuccess($id, $currentMonth, $currentYear);
+        $TotalPending = $this->TotalPending($id, $currentMonth, $currentYear);
+        $TotalFailed = $this->TotalFailed($id, $currentMonth, $currentYear);
+
+        // All-time data (not restricted to current month)
         $Totallink = $this->TotalLink($id);
-        $TotalSuccess = $this->TotalSuccess($id);
-        $TotalPending = $this->TotalPending($id);
-        $TotalFailed = $this->TotalFailed($id);
         $Latest = $this->Latest($id);
         $TotalTnx = $this->TotalTnx($id);
         $Mostuse = $this->MostUsed($id);
+
+        // Chart data (all months)
+        $monthlyRevenue = $this->getMonthlyRevenue($id);
+
         $SuccessRate = $Totallink > 0 ? ($TotalSuccess / $Totallink) * 100 : 0;
-       // dd($SuccessRate);
-        return view('merchant.index',compact('TotalMMK','TotalSuccess','TotalFailed','TotalPending','Totallink','Latest','TotalTnx','Mostuse','SuccessRate'));
+
+        return view('merchant.index', compact(
+            'monthlyRevenue', 'TotalMMK', 'TotalSuccess',
+            'TotalFailed', 'TotalPending', 'Totallink',
+            'Latest', 'TotalTnx', 'Mostuse', 'SuccessRate'
+        ));
     }
 
     private function getMerchantId()
@@ -34,71 +47,105 @@ class MerchantDashboardController extends Controller
         return Merchants::where('user_id', $id)->value('merchant_id');
     }
 
-    private function TotalMMK($id)
+    private function getMonthlyRevenue($merchantId)
     {
-        $TotalMMK = Tnx::where('created_by', $id)
+        $year = date('Y');
+        $monthlyRevenue = array_fill(1, 12, 0);
+
+        $results = Tnx::where('created_by', $merchantId)
             ->where('currencyCode', 'MMK')
-            ->sum('net_amount');
-        return $TotalMMK;
+            ->whereYear('created_at', $year)
+            ->selectRaw('MONTH(created_at) as month, SUM(net_amount) as total')
+            ->groupBy('month')
+            ->get();
+
+        foreach ($results as $result) {
+            $monthlyRevenue[$result->month] = (int)$result->total;
+        }
+
+        return array_values($monthlyRevenue);
+    }
+
+    private function TotalMMK($id, $month = null, $year = null)
+    {
+        $query = Tnx::where('created_by', $id)
+            ->where('currencyCode', 'MMK')
+            ->where('payment_status', 'SUCCESS');
+
+        if ($month && $year) {
+            $query->whereMonth('created_at', $month)
+                  ->whereYear('created_at', $year);
+        }
+
+        return $query->sum('net_amount');
     }
 
     private function TotalLink($id)
     {
-        $Totallink = Links::where('created_by', $id)
-            ->count();
-        return $Totallink;
+        return Links::where('created_by', $id)->count();
     }
 
-    private function TotalSuccess($id)
+    private function TotalSuccess($id, $month = null, $year = null)
     {
-        $TotalSuccess = Tnx::where('created_by', $id)
-            ->where('payment_status', 'SUCCESS')
-            ->count();
-        return $TotalSuccess;
+        $query = Tnx::where('created_by', $id)
+            ->where('payment_status', 'SUCCESS');
+
+        if ($month && $year) {
+            $query->whereMonth('created_at', $month)
+                  ->whereYear('created_at', $year);
+        }
+
+        return $query->count();
     }
 
-     private function TotalPending($id)
+    private function TotalPending($id, $month = null, $year = null)
     {
-        $TotalPending = Tnx::where('created_by', $id)
-            ->where('payment_status', 'Pending')
-            ->count();
+        $query = Tnx::where('created_by', $id)
+            ->where('payment_status', 'Pending');
 
-        return $TotalPending;
+        if ($month && $year) {
+            $query->whereMonth('created_at', $month)
+                  ->whereYear('created_at', $year);
+        }
+
+        return $query->count();
     }
 
-    private function TotalFailed($id)
+    private function TotalFailed($id, $month = null, $year = null)
     {
-        $TotalFailed = Tnx::where('created_by', $id)
-            ->where('payment_status', 'FAIL')
-            ->count();
+        $query = Tnx::where('created_by', $id)
+            ->where('payment_status', 'FAIL');
 
-        return $TotalFailed;
+        if ($month && $year) {
+            $query->whereMonth('created_at', $month)
+                  ->whereYear('created_at', $year);
+        }
+
+        return $query->count();
     }
 
     private function Latest($id)
     {
-        $Latest = Tnx::where('created_by', $id)
-            ->where('payment_status','SUCCESS')
+        return Tnx::where('created_by', $id)
+            ->where('payment_status', 'SUCCESS')
             ->orderBy('created_at', 'desc')
-            ->select('paymentCode', 'tranref_no', 'req_amount','currencyCode')
+            ->select('paymentCode', 'tranref_no', 'req_amount', 'currencyCode')
             ->take(5)
             ->get();
-        return $Latest;
     }
 
     private function MostUsed($id)
     {
-      $MostUsed = Tnx::where('created_by', $id)
-        ->select('paymentCode', 'payment_logo', DB::raw('COUNT(*) as total'))
-        ->groupBy('paymentCode', 'payment_logo')
-        ->orderByDesc('total')
-        ->take(5)
-        ->get();
-        return $MostUsed;
+        return Tnx::where('created_by', $id)
+            ->select('paymentCode', 'payment_logo', DB::raw('COUNT(*) as total'))
+            ->groupBy('paymentCode', 'payment_logo')
+            ->orderByDesc('total')
+            ->take(5)
+            ->get();
     }
 
-    private function TotalTnx($id){
-        $TotalTnx = Tnx::where('created_by', $id)->count();
-        return $TotalTnx;
+    private function TotalTnx($id)
+    {
+        return Tnx::where('created_by', $id)->count();
     }
 }

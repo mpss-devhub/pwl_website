@@ -5,20 +5,20 @@
        <div class="p-4 sm:ml-64 bg-gray-100 min-h-screen">
     <div class="p-4 mt-14">
         <!-- Page Header -->
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <h1 class="text-2xl font-bold text-gray-800">Create New Merchant</h1>
-                <p class="text-sm text-gray-600">Fill in the merchant details below</p>
-            </div>
-            <div class="flex space-x-3">
-                <button type="submit" id='btn' class="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors">
-                    <i class="fas fa-save mr-2"></i>Save Merchant
-                </button>
-                <button type="button" class="px-5 py-2.5 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors">
-                    <i class="fas fa-times mr-2"></i>Cancel
-                </button>
-            </div>
-        </div>
+       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+    <div class="order-1 md:order-none">
+        <h1 class="text-xl md:text-2xl font-bold text-gray-800">Create New Merchant</h1>
+        <p class="text-xs md:text-sm text-gray-600">Fill in the merchant details below</p>
+    </div>
+    <div class="flex flex-col xs:flex-row gap-2 w-full md:w-auto order-2 md:order-none">
+        <button type="submit" id='btn' class="px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors flex items-center justify-center">
+            <i class="fas fa-save mr-2 text-xs md:text-sm"></i>Save Merchant
+        </button>
+        <button type="button" class="px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors flex items-center justify-center">
+           <a href="{{ route('merchant.show') }}"> <i class="fas fa-times mr-2 text-xs md:text-sm"></i>Cancel</a>
+        </button>
+    </div>
+</div>
 
         <!-- Main Content Grid -->
         <div class="grid lg:grid-cols-4 gap-6">
