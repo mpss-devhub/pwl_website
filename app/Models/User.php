@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Permissions;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordCustom;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -35,19 +36,26 @@ class User extends Authenticatable
     ];
 
 
-    public function merchant() {
-        return $this->hasOne(Merchants::class,'user_id');
+    public function merchant()
+    {
+        return $this->hasOne(Merchants::class, 'user_id');
     }
 
-    public function Links() {
+    public function Links()
+    {
         return $this->hasMany(Links::class);
     }
 
 
-    public function permission() {
-      return $this->belongsTo(Permissions::class, 'permission_id');
+    public function permission()
+    {
+        return $this->belongsTo(Permissions::class, 'permission_id');
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordCustom($token, $this));
+    }
 
 
     /**

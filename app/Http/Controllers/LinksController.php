@@ -100,15 +100,14 @@ class LinksController extends Controller
 
     private function click($id)
     {
+        $ip = '103.105.172.32' ; // For testing purposes, you can replace this with a real IP address.
         $ip = request()->ip();
         if ($ip === '127.0.0.1') {
             $info = null;
         } else {
             $response = Http::get("http://ipwhois.app/json/{$ip}");
-
             if ($response->successful()) {
                 $data = $response->json();
-
                 $info = [
                     'country'        => $data['country'] ?? null,
                     'country_code'   => $data['country_code'] ?? null,

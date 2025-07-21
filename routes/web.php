@@ -29,20 +29,27 @@ Route::post('/Checked', [CheckUserController::class, 'check'])
     ->name('check');
 
 Route::get('/invoice/{invoiceNo}', function ($invoiceNo) {
-
     $link = Links::where('link_invoiceNo', $invoiceNo)->firstOrFail();
     $tnx = Tnx::where('link_id', $link->id)->latest()->firstOrFail();
     $merchant = Merchants::where('user_id', $link->user_id)->firstOrFail();
-    return view('Extra.success', compact('merchant', 'link', 'tnx'));
-
+    if($tnx->payment_status === 'SUCCESS'){
+      return view('Extra.success', compact('merchant', 'link', 'tnx'));
+    }
+    if($tnx->payment_status === 'FAILED'){
+        return view('Extra.fail', compact('merchant', 'link', 'tnx'));
+    }
 })->name('payment.invoice');
 
 Route::get('/check-payment/{invoiceNo}', function ($invoiceNo) {
     $link = Links::where('link_invoiceNo', $invoiceNo)->first();
+    //dd($invoiceNo,$link);
     $tnx = Tnx::where('link_id', $link->id)->latest()->first();
-    return response()->json([
-        'status' => $tnx?->tnx_status === 'payment_status'
-    ]);
+    if (!$tnx) {
+        return response()->json(['status' => false]);
+    }
+   if( $tnx->payment_status !== 'PENDING'){
+            return response()->json(['status' => true]);
+   }
 });
 
 

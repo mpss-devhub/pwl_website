@@ -11,35 +11,35 @@ use App\Http\Controllers\Controller;
 
 class MerchantDashboardController extends Controller
 {
-    public function show()
-    {
-        $id = $this->getMerchantId();
-        $currentMonth = now()->month;
-        $currentYear = now()->year;
+public function show(Request $request)
+{
+    $merchantId = $this->getMerchantId();
+    $filter = $request->get('filter', 'monthly');
 
-        // Current month data
-        $TotalMMK = $this->TotalMMK($id, $currentMonth, $currentYear);
-        $TotalSuccess = $this->TotalSuccess($id, $currentMonth, $currentYear);
-        $TotalPending = $this->TotalPending($id, $currentMonth, $currentYear);
-        $TotalFailed = $this->TotalFailed($id, $currentMonth, $currentYear);
+    $currentMonth = now()->month;
+    $currentYear = now()->year;
 
-        // All-time data (not restricted to current month)
-        $Totallink = $this->TotalLink($id);
-        $Latest = $this->Latest($id);
-        $TotalTnx = $this->TotalTnx($id);
-        $Mostuse = $this->MostUsed($id);
+    $TotalMMK = $this->totalMMK($merchantId, $currentMonth, $currentYear);
+    $TotalSuccess = $this->totalSuccess($merchantId, $currentMonth, $currentYear);
+    $TotalPending = $this->totalPending($merchantId, $currentMonth, $currentYear);
+    $TotalFailed = $this->totalFailed($merchantId, $currentMonth, $currentYear);
 
-        // Chart data (all months)
-        $monthlyRevenue = $this->getMonthlyRevenue($id);
+    $Totallink = $this->TotalLink($merchantId);
+    $Latest = $this->Latest($merchantId);
+    $TotalTnx = $this->TotalTnx($merchantId);
+    $Mostuse = $this->MostUsed($merchantId);
 
-        $SuccessRate = $Totallink > 0 ? ($TotalSuccess / $Totallink) * 100 : 0;
+    $revenueData = $this->getRevenueDataByFilter($merchantId, $filter);
 
-        return view('merchant.index', compact(
-            'monthlyRevenue', 'TotalMMK', 'TotalSuccess',
-            'TotalFailed', 'TotalPending', 'Totallink',
-            'Latest', 'TotalTnx', 'Mostuse', 'SuccessRate'
-        ));
-    }
+    $SuccessRate = $Totallink > 0 ? ($TotalSuccess / $Totallink) * 100 : 0;
+
+    return view('Merchant.index', compact(
+        'revenueData', 'TotalMMK', 'TotalSuccess',
+        'TotalFailed', 'TotalPending', 'Totallink',
+        'Latest', 'TotalTnx', 'Mostuse', 'SuccessRate', 'filter'
+    ));
+}
+
 
     private function getMerchantId()
     {
@@ -47,24 +47,111 @@ class MerchantDashboardController extends Controller
         return Merchants::where('user_id', $id)->value('merchant_id');
     }
 
-    private function getMonthlyRevenue($merchantId)
-    {
-        $year = date('Y');
-        $monthlyRevenue = array_fill(1, 12, 0);
+private function getRevenueDataByFilter($merchantId, $filter = 'monthly')
+{
+    $query = Tnx::where('created_by', $merchantId)
+                ->where('currencyCode', 'MMK')
+                ->where('payment_status', 'SUCCESS');
 
-        $results = Tnx::where('created_by', $merchantId)
-            ->where('currencyCode', 'MMK')
+    switch ($filter) {
+        case 'weekly':
+            // Get all weeks of the current year (1-52 or 53)
+            $year = now()->year;
+            $allWeeks = [];
+            for ($week = 1; $week <= 53; $week++) {
+                $allWeeks[$week] = "$year-W" . str_pad($week, 2, '0', STR_PAD_LEFT);
+            }
+
+            $data = $query->selectRaw('
+                YEAR(created_at) as year,
+                WEEK(created_at, 1) as week,
+                CONCAT(YEAR(created_at), "-W", LPAD(WEEK(created_at, 1), 2, "0")) as label,
+                SUM(net_amount) as total
+            ')
             ->whereYear('created_at', $year)
-            ->selectRaw('MONTH(created_at) as month, SUM(net_amount) as total')
-            ->groupBy('month')
+            ->groupBy('year', 'week', 'label')
+            ->orderBy('year')
+            ->orderBy('week')
             ->get();
 
-        foreach ($results as $result) {
-            $monthlyRevenue[$result->month] = (int)$result->total;
-        }
+            // Map DB data into a keyed array for easier merging
+            $mappedData = [];
+            foreach ($data as $item) {
+                $mappedData[$item->week] = $item->total;
+            }
 
-        return array_values($monthlyRevenue);
+            $finalLabels = [];
+            $finalData = [];
+            foreach ($allWeeks as $weekNum => $label) {
+                $finalLabels[] = $label;
+                $finalData[] = $mappedData[$weekNum] ?? 0;
+            }
+            break;
+
+        case 'yearly':
+            // Fetch distinct years from data
+            $years = $query->selectRaw('YEAR(created_at) as year')
+                ->groupBy('year')
+                ->orderBy('year')
+                ->pluck('year')
+                ->toArray();
+
+            // Or fallback to last 5 years for consistent display
+            $currentYear = now()->year;
+            $allYears = range($currentYear - 4, $currentYear);
+
+            $data = $query->selectRaw('
+                YEAR(created_at) as label,
+                SUM(net_amount) as total
+            ')
+            ->groupBy('label')
+            ->orderBy('label')
+            ->get()
+            ->keyBy('label');
+
+            $finalLabels = [];
+            $finalData = [];
+            foreach ($allYears as $year) {
+                $finalLabels[] = (string)$year;
+                $finalData[] = isset($data[$year]) ? $data[$year]->total : 0;
+            }
+            break;
+
+        case 'monthly':
+        default:
+            $year = now()->year;
+            // All months labels
+            $allMonths = [
+                1 => 'Jan', 2 => 'Feb', 3 => 'Mar', 4 => 'Apr', 5 => 'May', 6 => 'Jun',
+                7 => 'Jul', 8 => 'Aug', 9 => 'Sep', 10 => 'Oct', 11 => 'Nov', 12 => 'Dec'
+            ];
+
+            $data = $query->selectRaw('
+                MONTH(created_at) as month,
+                SUM(net_amount) as total
+            ')
+            ->whereYear('created_at', $year)
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get()
+            ->keyBy('month');
+
+            $finalLabels = [];
+            $finalData = [];
+            foreach ($allMonths as $monthNum => $label) {
+                $finalLabels[] = $label;
+                $finalData[] = isset($data[$monthNum]) ? $data[$monthNum]->total : 0;
+            }
+            break;
     }
+
+    return [
+        'labels' => $finalLabels,
+        'data' => $finalData,
+    ];
+}
+
+
 
     private function TotalMMK($id, $month = null, $year = null)
     {

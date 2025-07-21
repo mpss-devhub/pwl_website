@@ -10,6 +10,8 @@
 
     <link href="{{ asset('/main/login.css') }}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="{{ asset('/main/js/loading.js') }}"></script>
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg-gray-100" style="font-family: 'Libre Baskerville', serif;">
@@ -62,9 +64,12 @@
 
             <!-- Submit Button -->
             <div>
-                <button type="submit" class="w-96 bg-purple-100 py-2 rounded-3xl text-md text-gray-700"
+                <button id="submitBtn" type="submit" class="w-96 bg-purple-100 py-2 rounded-3xl text-md text-gray-700"
                     style="font-family: 'Libre Baskerville'; background-color: #8FA5F499;">
-                    Reset Password
+                   <span class="text"> Reset Password</span>
+                    <span class="spinner" style="display:none;">
+                                <i class="fa fa-spinner fa-spin"></i>
+                            </span>
                 </button>
             </div>
         </form>

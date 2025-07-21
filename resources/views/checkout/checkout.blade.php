@@ -1,36 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voucher Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-</head>
-<style>
-    body {
-        font-family: "Poppins", sans-serif;
-        min-height: 96vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-
-    }
-</style>
-
-<body class="bg-white flex justify-center items-center  ">
-    <div class="w-[450px] bg-[#F1F2F785] shadow-lg  shadow-[#B9C4FC] rounded-xl p-4 space-y-4 border border-[#C0CAFC] ">
+@extends('checkout.layout.index')
+@section('checkout')
         <!-- Logo -->
         <div class="flex justify-center">
-
             <div class="w-24 h-24  rounded-full flex items-center justify-center text-sm font-semibold">
                 <img src="{{ $details['merchant_logo'] }}" alt="" class="" style="border-radius: 100px">
             </div>
-
         </div>
 
         <div class="text-[13px] ml-2 text-gray-600 space-y-2">
@@ -109,17 +83,5 @@
             </form>
         </div>
 
-        <hr class="border-gray-300" />
 
-
-        <div class="text-xs text-gray-700 space-y-1">
-
-            <p class=" text-gray-700 text-center">
-                <i class="fa-solid fa-bolt-lightning"></i> Power By <a href="https://www.octoverse.com.mm/"
-                    class="text-[#8a9adb]">Octoverse.com.mm</a>
-            </p>
-        </div>
-    </div>
-</body>
-
-</html>
+@endsection

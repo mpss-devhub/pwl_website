@@ -95,9 +95,10 @@
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-gray-800">Revenue Analytics</h3>
-
                     </div>
                     <div class="h-80">
+
+
                         <!-- Chart container - Replace with your actual chart implementation -->
                         <div class="flex items-center justify-center h-full bg-gray-50 rounded-md">
                             <div id="revenueChart" class="w-full" style="height: 300px;"></div>
@@ -109,7 +110,22 @@
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold text-gray-800">User Growth</h3>
-
+                          <div class="">
+                            <form method="GET" action="{{ route('admin.dashboard') }}" class="mb-4">
+                                <label for="filter" class="text-sm text-gray-600">View by:</label>
+                                <select name="filter" id="filter" onchange="this.form.submit()"
+                                    class="ml-2 py-1  rounded border-gray-300">
+                                    <option value="daily" {{ request('filter') == 'daily' ? 'selected' : '' }}>Daily
+                                    </option>
+                                    <option value="weekly" {{ request('filter') == 'weekly' ? 'selected' : '' }}>Weekly
+                                    </option>
+                                    <option value="monthly" {{ request('filter') == 'monthly' ? 'selected' : '' }}>Monthly
+                                    </option>
+                                    <option value="yearly" {{ request('filter') == 'yearly' ? 'selected' : '' }}>Yearly
+                                    </option>
+                                </select>
+                            </form>
+                        </div>
                     </div>
                     <div class="h-80">
                         <!-- Chart container - Replace with your actual chart implementation -->
@@ -184,181 +200,146 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>
-        // Theme colors from your dashboard
-        const colors = {
-            primary: '#3b82f6', // Tailwind blue-500
-            success: '#10b981', // Tailwind emerald-500
-            danger: '#ef4444', // Tailwind red-500
-            warning: '#f59e0b', // Tailwind amber-500
-            info: '#06b6d4', // Tailwind cyan-500
-            dark: '#1f2937', // Tailwind gray-800
-            light: '#f3f4f6' // Tailwind gray-100
-        };
+  <script>
+    const colors = {
+        primary: '#3b82f6',
+        success: '#10b981',
+        danger: '#ef4444',
+        warning: '#f59e0b',
+        info: '#06b6d4',
+        dark: '#1f2937',
+        light: '#f3f4f6'
+    };
 
-        // Revenue Chart (Line Chart)
-        const revenueOptions = {
-            series: [{
-                name: 'Revenue',
-                data: @json($revenueData['data'])
-            }],
-            chart: {
-                type: 'area',
-                height: '100%',
-                toolbar: {
-                    show: true,
-                    offsetX: 0,
-                    offsetY: 0,
-                    tools: {
-                        download: true,
-                        selection: false,
-                        zoom: false,
-                        zoomin: false,
-                        zoomout: false,
-                        pan: false,
-                        reset: false
-                    }
-                },
-                animations: {
-                    enabled: true,
-                    easing: 'easeinout',
-                    speed: 800
+    const revenueOptions = {
+        series: [{
+            name: 'Revenue',
+            data: @json($revenueData['data'])
+        }],
+        chart: {
+            type: 'area',
+            height: '100%',
+            toolbar: {
+                show: false,
+                tools: {
+                    download: true
                 }
             },
-            colors: [colors.primary],
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.7,
-                    opacityTo: 0.2,
-                    stops: [0, 90, 100]
+            animations: {
+                enabled: true,
+                easing: 'easeinout',
+                speed: 800
+            }
+        },
+        colors: [colors.primary],
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.7,
+                opacityTo: 0.2,
+                stops: [0, 90, 100]
+            }
+        },
+        stroke: {
+            curve: 'smooth',
+            width: 3
+        },
+        dataLabels: {
+            enabled: false
+        },
+        xaxis: {
+            categories: @json($revenueData['labels']),
+            labels: {
+                style: {
+                    colors: '#6b7280'
                 }
             },
-            stroke: {
-                curve: 'smooth',
-                width: 3
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                labels: {
-                    style: {
-                        colors: '#6b7280' // Tailwind gray-500
-                    }
-                },
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    },
-                    formatter: function(value) {
-                        return (value / 1_000_000).toFixed(1) + 'M'; // 1.2M format
-                    }
-                }
-            },
-            grid: {
-                borderColor: '#e5e7eb', // Tailwind gray-200
-                strokeDashArray: 4,
-                padding: {
-                    top: 20,
-                    right: 20,
-                    bottom: 0,
-                    left: 20
-                }
-            },
-            tooltip: {
-                y: {
-                    formatter: function(value) {
-                        return 'MMK ' + value.toLocaleString(); // Comma-separated currency
-                    }
+            axisBorder: { show: false },
+            axisTicks: { show: false }
+        },
+        yaxis: {
+            labels: {
+                style: { colors: '#6b7280' },
+                formatter: value => (value / 1_000_000).toFixed(1) + 'M'
+            }
+        },
+        grid: {
+            borderColor: '#e5e7eb',
+            strokeDashArray: 4,
+            padding: {
+                top: 20,
+                right: 20,
+                bottom: 0,
+                left: 20
+            }
+        },
+        tooltip: {
+            y: {
+                formatter: value => 'MMK ' + value.toLocaleString()
+            }
+        }
+    };
+
+    const userGrowthOptions = {
+        series: [{
+            name: 'Users',
+            data: @json($userGrowthData['data'])
+        }],
+        chart: {
+            type: 'bar',
+            height: '100%',
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true,
+                    reset: true
                 }
             }
-        };
-
-
-        // User Growth Chart (Bar Chart)
-        const userGrowthOptions = {
-            series: [{
-                name: 'Users',
-                data: @json($userGrowthData['data'])
-            }],
-            chart: {
-                type: 'bar',
-                height: '100%',
-                toolbar: {
-                    show: true,
-                    tools: {
-                        download: true,
-                        selection: false,
-                        zoom: false,
-                        zoomin: false,
-                        zoomout: false,
-                        pan: false,
-                        reset: true
-                    },
-                    autoSelected: 'zoom' // Optional: doesn't show any filter like "month"
+        },
+        colors: [colors.primary],
+        plotOptions: {
+            bar: {
+                borderRadius: 6,
+                columnWidth: '70%',
+                endingShape: 'rounded'
+            }
+        },
+        dataLabels: { enabled: false },
+        xaxis: {
+            categories: @json($userGrowthData['labels']),
+            labels: {
+                style: {
+                    colors: '#6b7280'
                 }
             },
-            colors: [colors.primary],
-            plotOptions: {
-                bar: {
-                    borderRadius: 6,
-                    columnWidth: '70%',
-                    endingShape: 'rounded'
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    }
-                },
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    }
-                }
-            },
-            grid: {
-                borderColor: '#e5e7eb',
-                strokeDashArray: 4
-            },
-            tooltip: {
-                y: {
-                    formatter: function(val) {
-                        return val + " new users";
-                    }
+            axisBorder: { show: false },
+            axisTicks: { show: false }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    colors: '#6b7280'
                 }
             }
-        };
+        },
+        grid: {
+            borderColor: '#e5e7eb',
+            strokeDashArray: 4
+        },
+        tooltip: {
+            y: {
+                formatter: val => val + " new users"
+            }
+        }
+    };
 
-        // Render charts
-        const revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
-        revenueChart.render();
+    // Render charts
+    const revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
+    revenueChart.render();
 
-        const userGrowthChart = new ApexCharts(document.querySelector("#userGrowthChart"), userGrowthOptions);
-        userGrowthChart.render();
-    </script>
+    const userGrowthChart = new ApexCharts(document.querySelector("#userGrowthChart"), userGrowthOptions);
+    userGrowthChart.render();
+</script>
+
 @endsection

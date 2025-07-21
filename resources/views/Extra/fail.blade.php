@@ -57,7 +57,8 @@
                 @else
                     <div class="flex items-center justify-center space-x-2">
                 <p class="text-center text-gray-700 font-medium">Payment Fail</p>
-                <i class="fa-solid fa-circle-check text-red-500 text-md"></i>
+
+                <i class="fa-solid fa-circle-exclamation text-red-500 text-md"></i>
             </div>
                 @endif
             <div class="text-xs sm:text-sm mt-3 text-gray-700">
@@ -99,8 +100,8 @@
                         <span class="truncate">{{ $tnx['req_amount'] }}</span>
                     </div>
                 </div>
-                <div class="flex justify-end mt-2 mx-6">
-                                     <img src="{{ Storage::url('common/success.png') }}" class="w-16 h-16 sm:w-24 sm:h-24 " alt="Success Image">
+                <div class="flex justify-start mt-2 mx-6">
+                                     <img src="{{ Storage::url('common/f.png') }}" class="w-16 h-16 sm:w-24 sm:h-24 " alt="Success Image">
                 </div>
 
                 <div class="flex justify-center mt-2 sm:mt-2">

@@ -18,6 +18,8 @@ use App\Http\Controllers\Merchant\MerchantDashboardController;
 // Merchant Dashboard Routes
 Route::get('/merchant', [MerchantDashboardController::class, 'show'])->name('merchant.dashboard');
 
+
+
 //Merchant Info Management
 Route::get('/merchant/MerchantInfo', function () {
     $id = Auth::user()->user_id;
@@ -25,6 +27,8 @@ Route::get('/merchant/MerchantInfo', function () {
     $Merchantinfo = $Merchant[0];
     return view('Merchant.profile.index', compact('Merchantinfo'));
 })->name('merchant.profile');
+
+
 
 //Link Management
 Route::get('/bundle/import', [LinksController::class, 'bundle'])->name('links.bundle');
@@ -40,7 +44,6 @@ Route::post('/merchant/payment', [PaymentGatewayController::class, 'Auth'])->nam
 Route::post('/merchant/PayNow', [PaymentGatewayController::class, 'Pwl'])->name('Pwl');
 Route::get('/Link/Edit/{id}',[LinksController::class,'edit'])->name('merchant.link.edit');
 Route::put('/Links/{id}/Update', [LinksController::class, 'update'])->name('links.update');
-
 Route::get('/Merchant/Link/CSV/Exports', function () {
     $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
     return Excel::download(new MerchantLinksExport($created_by), 'Merchant-Link.xlsx');
@@ -49,6 +52,9 @@ Route::get('/Merchant/Link/Excel/Exports', function () {
     $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
     return Excel::download(new MerchantLinksExport($created_by), 'Merchant-Link.csv');
 })->name('merchant.link.csv.export');
+
+
+
 
 //Tnx Management
 Route::get('/merchant/transactions', function () {
@@ -71,6 +77,8 @@ Route::get('/Merchant/csv/Exports', function () {
 })->name('merchant.csv.export');
 
 
+
+
 //SMS&Email Management
 Route::get('/merchant/sms&email', function () {
     $id = Auth::user()->user_id;
@@ -81,7 +89,6 @@ Route::get('/merchant/sms&email', function () {
         })
         ->latest('created_at')
         ->get();
-
     return view('Merchant.sms.index', compact('links'));
 })->name('merchant.sms');
 Route::post('/sms/details', [SMSController::class, 'show'])->name(name: 'sms.details');

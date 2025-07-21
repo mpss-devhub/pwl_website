@@ -3,15 +3,23 @@
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
             <div class="bg-white rounded-lg shadow overflow-hidden">
-                <div class="p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-6">Create New User</h2>
+                <div class="p-6 ">
+                   <div class="flex justify-between">
+                    <div class="">
+                        <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20" alt="">
+                    </div>
+                    <div class="">
+                         <p class="text-md font-semibold text-gray-800 mb-6 mx-2 " > <i class="fa-solid fa-user-plus mx-1"></i> New User Registrion</p>
+                    </div>
 
+                   </div>
+                   <hr>
                     <form action="{{ route('user.store') }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Name Field -->
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Full Name</label>
                                 <input type="text" name="name" id="name" required
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>

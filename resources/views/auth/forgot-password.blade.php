@@ -8,7 +8,10 @@
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link href="{{ asset('/main/login.css') }}" rel="stylesheet"/>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <script src="{{ asset('/main/js/loading.js') }}"></script>
 </head>
 <body>
   <!-- Background shapes -->
@@ -38,13 +41,17 @@
 
       <!-- Status Message -->
       @if (session('status'))
-        <div class="text-sm text-green-600 mt-4">
+        <div class="text-xs text-green-600 mt-4">
           {{ session('status') }}
         </div>
       @endif
 
+        @error('email')
+          <div class="text-xs text-red-600 mt-4">{{ $message }}</div>
+        @enderror
+
       <!-- Form -->
-      <form method="POST" action="{{ route('password.email') }}" class="mt-4 space-y-4">
+      <form method="POST" action="{{ route('password.email') }}" class="mt-3 space-y-4">
         @csrf
 
         <!-- Email input -->
@@ -58,16 +65,16 @@
           autofocus
           class="w-96 mt-1 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm"
         />
-        @error('email')
-          <div class="text-sm text-red-600">{{ $message }}</div>
-        @enderror
 
         <!-- Submit -->
-        <button
+        <button id="submitBtn"
           class="w-96 bg-purple-100 py-2 rounded-3xl text-lg text-gray-700"
           style="font-family: 'Libre Baskerville'; background-color: #8FA5F499;"
         >
-          Send Reset Link
+         <span class="text"> Send Reset Link</span>
+         <span class="spinner" style="display:none;">
+    <i class="fa fa-spinner fa-spin"></i>
+  </span>
         </button>
       </form>
 

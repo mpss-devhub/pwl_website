@@ -63,6 +63,17 @@
 
             <!-- Revenue Chart - Improved Responsiveness -->
             <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 mb-6">
+                <div class="">
+                    <form method="GET" action="{{ route('merchant.dashboard') }}">
+    <label for="filter">View by:</label>
+    <select name="filter" id="filter" onchange="this.form.submit()" class="border border-gray-300 rounded-md py-1">
+        <option value="weekly" {{ $filter == 'weekly' ? 'selected' : '' }}>Weekly</option>
+        <option value="monthly" {{ $filter == 'monthly' ? 'selected' : '' }}>Monthly</option>
+        <option value="yearly" {{ $filter == 'yearly' ? 'selected' : '' }}>Yearly</option>
+    </select>
+</form>
+
+                </div>
                 <div id="revenueChart" class="w-full" style="min-height: 300px;"></div>
             </div>
 
@@ -131,86 +142,51 @@
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-             let chartInitialized = false;
-            const options = {
-                series: [{
-                    name: 'Revenue',
-                    data: @json($monthlyRevenue)
-                }],
-                chart: {
-                    type: 'area',
-                    height: '100%',
-                    width: '100%',
-                    toolbar: {
-                        show: true
-                    },
-                    zoom: {
-                        enabled: false // Disable zoom
-                    },
-                    animations: {
-                        enabled: false // Disable animations for better performance
-                    },
-                    sparkline: {
-                        enabled: false
-                    }
-                },
-                colors: ['#3b82f6'],
-                dataLabels: {
-                    enabled: false
-                },
-                stroke: {
-                    curve: 'smooth',
-                    width: 2
-                },
-                xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
-                    ],
-                    labels: {
-                        style: {
-                            fontSize: '12px'
-                        }
-                    }
-                },
-                yaxis: {
-                    labels: {
-                        formatter: function(value) {
-                            return (value / 1000000).toFixed(1) + 'M';
-                        },
-                        style: {
-                            fontSize: '12px'
-                        }
-                    }
-                },
-                tooltip: {
-                    enabled: true,
-                    y: {
-                        formatter: function(value) {
-                            return 'MMK ' + value.toLocaleString();
-                        }
-                    }
-                },
-                grid: {
-                    show: true,
-                    borderColor: '#f0f0f0',
-                    strokeDashArray: 0
-                }
-            };
-
-            try {
-                const chart = new ApexCharts(document.querySelector("#revenueChart"), options);
-                chart.render();
-            } catch (error) {
-                console.error("Error rendering chart:", error);
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const options = {
+        series: [{
+            name: 'Revenue',
+            data: @json($revenueData['data'])
+        }],
+        chart: {
+            type: 'area',
+            height: '100%',
+            width: '100%',
+            toolbar: { show: true },
+            zoom: { enabled: false },
+            animations: { enabled: false },
+            sparkline: { enabled: false }
+        },
+        colors: ['#3b82f6'],
+        dataLabels: { enabled: false },
+        stroke: { curve: 'smooth', width: 2 },
+        xaxis: {
+            categories: @json($revenueData['labels']),
+            labels: { style: { fontSize: '12px' } }
+        },
+        yaxis: {
+            labels: {
+                formatter: function(value) { return (value / 1000000).toFixed(1) + 'M'; },
+                style: { fontSize: '12px' }
             }
-        });
+        },
+        tooltip: {
+            enabled: true,
+            y: { formatter: function(value) { return 'MMK ' + value.toLocaleString(); } }
+        },
+        grid: { show: true, borderColor: '#f0f0f0', strokeDashArray: 0 }
+    };
 
-    document.addEventListener('DOMContentLoaded', initRevenueChart);
+    try {
+        const chart = new ApexCharts(document.querySelector("#revenueChart"), options);
+        chart.render();
+    } catch (error) {
+        console.error("Error rendering chart:", error);
+    }
+});
+</script>
 
-    document.addEventListener('turbolinks:load', initRevenueChart);
-    document.addEventListener('livewire:load', initRevenueChart);
-    </script>
+
 
 @endsection

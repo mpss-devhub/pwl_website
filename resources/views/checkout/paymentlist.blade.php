@@ -1,35 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('checkout.layout.index')
+@section('checkout')
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voucher Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-</head>
-<style>
-    body {
-        font-family: "Poppins", sans-serif;
-        min-height: 96vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        position: relative;
-    }
-</style>
-<style>
-    [x-cloak] {
-        display: none !important;
-    }
-</style>
-
-<body class="bg-white flex justify-center items-center  p-4">
-    <div
-        class="w-full max-w-[450px] bg-[#F1F2F785] shadow-lg shadow-[#B9C4FC] rounded-xl p-4 space-y-4 border border-[#C0CAFC]">
         <!-- Logo -->
         <div class="flex justify-center">
             <div class="w-24 h-24 rounded-full flex items-center justify-center text-sm font-semibold">
@@ -239,43 +210,6 @@
                 </div>
             </div>
         </div>
+@endsection
 
-        <div class="text-xs text-gray-700 space-y-1">
 
-            <p class=" text-gray-700 text-center">
-                <i class="fa-solid fa-bolt-lightning"></i> Power By <a href="https://www.octoverse.com.mm/"
-                    class="text-[#8a9adb]">Octoverse.com.mm</a>
-            </p>
-        </div>
-    </div>
-
-    <script>
-        function switchTab(tabName) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.add('hidden');
-            });
-
-            // Remove active style from all tabs
-            document.querySelectorAll('[id$="-tab"]').forEach(tab => {
-                tab.classList.remove('text-blue-500', 'border-blue-500', 'active-tab');
-                tab.classList.add('border-transparent');
-            });
-
-            // Show selected tab content
-            document.getElementById(`${tabName}-content`).classList.remove('hidden');
-
-            // Add active style to selected tab
-            const activeTab = document.getElementById(`${tabName}-tab`);
-            activeTab.classList.add('text-blue-500', 'border-blue-500', 'active-tab');
-            activeTab.classList.remove('border-transparent');
-        }
-
-        // Initialize with PIN tab active
-        document.addEventListener('DOMContentLoaded', function() {
-            switchTab('pin');
-        });
-    </script>
-</body>
-
-</html>

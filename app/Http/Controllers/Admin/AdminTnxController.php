@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Click_Logs;
 use App\Models\Tnx;
 use App\Models\Links;
 use App\Models\Merchants;
@@ -39,9 +40,10 @@ class AdminTnxController extends Controller
     {
         $id = $request->id;
         $links = $this->linkData($id);
-       $m_id = $links['merchant_id'];
-        //dd($id);
-        return view("Admin.tnx.detail",compact('links','m_id','id'));
+        $m_id = $links['merchant_id'];
+        $click = Click_Logs::where('link_id', $links['id'])->get();
+        $info= $click[0]['info'];
+        return view("Admin.tnx.detail",compact('links','m_id','id','click','info'));
     }
     private function linkData($id){
         $link = Tnx::where("id", $id)->select('link_id')->first();

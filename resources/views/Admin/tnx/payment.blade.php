@@ -8,7 +8,6 @@
             }
         }
     </style>
-
     @php
         $statusColor =
             [
