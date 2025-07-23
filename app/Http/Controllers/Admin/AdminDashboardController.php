@@ -67,8 +67,6 @@ class AdminDashboardController extends Controller
             ->get();
     }
 
-
-
 private function getRevenueData($type = 'monthly')
 {
     $now = Carbon::now();

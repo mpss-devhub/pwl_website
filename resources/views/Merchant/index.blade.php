@@ -118,7 +118,7 @@
                                     <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Invoice No</th>
                                     <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
                                     <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Currency</th>
+                                    <th scope="col" class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Created By</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
@@ -128,10 +128,10 @@
                                         <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->req_amount }}</td>
                                         <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap">
                                             @if ($item->payment_status == 'SUCCESS')
-                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Success</span>
                                             @endif
                                         </td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->currencyCode }}</td>
+                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->created_by }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -186,7 +186,4 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 </script>
-
-
-
 @endsection

@@ -39,22 +39,30 @@
                     <div
                         class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl shadow-sm p-5">
                         <!-- Left Column -->
-                        <div class="flex flex-col gap-4 border rounded-lg p-4 bg-gray-50 ">
+                    <div class="flex flex-col gap-4 border rounded-lg p-4 bg-gray-50 ">
                             <div class="flex items-center gap-2">
 
-                                <h3 class="text-md font-semibold text-gray-700">Customer Info</h3>
+                                <h3 class="text-md font-semibold text-gray-700">Click Info</h3>
                             </div>
 
                             <div class="space-y-3 ">
-                                <div><span class="font-medium text-gray-600">Merchant Name:</span> {{ $links['link_name'] }}
+                                <div><span class="font-medium text-gray-600">Country Flag:</span>
+                                    @if(isset($click[0]['info']['country_flag']))
+                                        <img src="{{ $click[0]['info']['country_flag'] }}" alt="Country Flag"
+                                            class="w-6 h-4 inline-block mx-1">
+                                    @else
+                                        N/A
+                                    @endif
                                 </div>
                                 <div><span class="font-medium text-gray-600">Link Click At:</span>
-                                7/03/2025 at 1:00PM
+                                {{ $click[0]['created_at'] ?? 'N/A' }}
                                 </div>
-                                <div><span class="font-medium text-gray-600">IP Address:</span> 192.168.481
+                                <div><span class="font-medium text-gray-600">IP Address:</span> {{ $click[0]['ip_address'] ?? 'N/A' }}
                                 </div>
                                 <div><span class="font-medium text-gray-600">Location:</span>
-                                    Myanmar,Yangon</div>
+                                    {{ $click[0]['info']['country'] ?? 'N/A' }},
+                                    {{ $click[0]['info']['city'] ?? 'N/A' }}
+                                </div>
 
                                     @php
                                         $linkTypeText = match ($links['link_type']) {
@@ -66,11 +74,11 @@
                                         };
                                     @endphp
 
-                                <div><span class="font-medium text-gray-600">Country Code:</span> +95 </div>
+                                <div><span class="font-medium text-gray-600">Country Code:</span> {{ $click[0]['info']['country_phone'] ?? 'N/A'}}</div>
                                 <div>
                                     <span class="font-medium text-gray-600">Provider Name:</span>
                                     <span>
-                                        Hi Wifi
+                                       {{ $click[0]['info']['provider'] ?? 'N/A' }}
                                     </span>
                                 </div>
                             </div>

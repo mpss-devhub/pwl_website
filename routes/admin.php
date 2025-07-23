@@ -11,7 +11,10 @@ use App\Http\Controllers\Admin\AdminSmScontroller;
 use App\Http\Controllers\Admin\AdminTnxController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 
-Route::get('/admin/dashboard', [AdminDashboardController::class,'index'])->name('admin.dashboard');
+
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class,'index'])->name('admin.dashboard');
 
 Route::get('/admin/Profile', function () {
     return view('Admin.profile.index');
@@ -95,3 +98,5 @@ Route::get('/admin/merchant/export/csv', [AdminTnxController::class, 'exportCsv'
 Route::get('/admin/merchant/export/excel', [AdminTnxController::class, 'exportExcel'])->name('admin.merchant.tnx.export');
 Route::post('admin/tnx/Links/detail', [AdminTnxController::class, 'detail'])->name('admin.tnx.detail');
 Route::post('admin/tnx/Payment/detail', [AdminTnxController::class, 'paymentdetail'])->name('admin.Payment.detail');
+
+});

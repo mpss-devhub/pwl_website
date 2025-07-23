@@ -115,11 +115,11 @@
                                 <label for="filter" class="text-sm text-gray-600">View by:</label>
                                 <select name="filter" id="filter" onchange="this.form.submit()"
                                     class="ml-2 py-1  rounded border-gray-300">
-                                    <option value="daily" {{ request('filter') == 'daily' ? 'selected' : '' }}>Daily
+                                    <option value="daily" {{ request('filter') == 'daily' ? 'selected' : '' }} >Daily
                                     </option>
                                     <option value="weekly" {{ request('filter') == 'weekly' ? 'selected' : '' }}>Weekly
                                     </option>
-                                    <option value="monthly" {{ request('filter') == 'monthly' ? 'selected' : '' }}>Monthly
+                                    <option value="monthly" {{ request('filter') == 'monthly' ? 'selected' : '' }} selected>Monthly
                                     </option>
                                     <option value="yearly" {{ request('filter') == 'yearly' ? 'selected' : '' }}>Yearly
                                     </option>

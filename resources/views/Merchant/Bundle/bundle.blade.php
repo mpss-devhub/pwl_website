@@ -24,11 +24,11 @@
     @endif
     <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
         <div class="p-4 mt-14 sm:mt-16">
-            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6">
+            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 " >
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
-                    <h2 class="text-lg sm:text-xl font-semibold text-gray-800">
+                    <p class="text-md sm:text-lg font-semibold text-gray-800">
                         About Bundle Uploading With Excel
-                    </h2>
+                    </p>
                     <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20 sm:w-24" alt="Octoverse Logo">
                 </div>
 
@@ -49,56 +49,56 @@
 
                     <div class="border rounded-lg overflow-x-auto mt-6">
                         <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-800 text-gray-50 text-[13px] sm:text-xs">
+                            <thead class="bg-gray-800 text-gray-50 text-[14px] sm:text-xs">
                                 <tr>
-                                    <th class="px-2 sm:px-4 py-2 text-left">user_id</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">invoiceNo</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">amount</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">name</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">phone</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">email</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">expired_at</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">description</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">notification</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">currency</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">User ID</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Invoice Number</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Amount</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Name</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Phone</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Email</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Expired_at</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Description</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Notification Type</th>
+                                    <th class="px-2 sm:px-4 py-2 text-left">Currency</th>
                                 </tr>
                             </thead>
-                            <tbody class="bg-white divide-y divide-gray-100 text-[13px] sm:text-xs">
+                            <tbody class="bg-white divide-y divide-gray-100 text-[14px] sm:text-xs">
                                 <tr>
-                                    <td class="px-2 sm:px-4 py-2">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-2">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-2">1000</td>
-                                    <td class="px-2 sm:px-4 py-2">Htet Linn Aung</td>
-                                    <td class="px-2 sm:px-4 py-2">09960231318</td>
-                                    <td class="px-2 sm:px-4 py-2">htetlinn437@gmail.com</td>
-                                    <td class="px-2 sm:px-4 py-2">2025-07-12T15:39</td>
-                                    <td class="px-2 sm:px-4 py-2">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-2">Email</td>
-                                    <td class="px-2 sm:px-4 py-2">MMK</td>
+                                    <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
+                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
+                                    <td class="px-2 sm:px-4 py-3 ">09960231318</td>
+                                    <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
+                                    <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Email</td>
+                                    <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-2 sm:px-4 py-2">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-2">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-2">1000</td>
-                                    <td class="px-2 sm:px-4 py-2">Htet Linn Aung</td>
-                                    <td class="px-2 sm:px-4 py-2">09960231318</td>
-                                    <td class="px-2 sm:px-4 py-2">htetlinn437@gmail.com</td>
-                                    <td class="px-2 sm:px-4 py-2">2025-07-12T15:39</td>
-                                    <td class="px-2 sm:px-4 py-2">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-2">Copy</td>
-                                    <td class="px-2 sm:px-4 py-2">MMK</td>
+                                    <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
+                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
+                                    <td class="px-2 sm:px-4 py-3 ">09960231318</td>
+                                    <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
+                                    <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Copy</td>
+                                    <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                                 <tr>
-                                    <td class="px-2 sm:px-4 py-2">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-2">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-2">1000</td>
-                                    <td class="px-2 sm:px-4 py-2">Htet Linn Aung</td>
-                                    <td class="px-2 sm:px-4 py-2">09960231318</td>
-                                    <td class="px-2 sm:px-4 py-2">htetlinn437@gmail.com</td>
-                                    <td class="px-2 sm:px-4 py-2">2025-07-12T15:39</td>
-                                    <td class="px-2 sm:px-4 py-2">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-2">SMS</td>
-                                    <td class="px-2 sm:px-4 py-2">MMK</td>
+                                    <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
+                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
+                                    <td class="px-2 sm:px-4 py-3 ">09960231318</td>
+                                    <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
+                                    <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
+                                    <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
+                                    <td class="px-2 sm:px-4 py-3 ">SMS</td>
+                                    <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                             </tbody>
                         </table>

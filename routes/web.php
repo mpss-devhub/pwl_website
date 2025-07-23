@@ -17,7 +17,7 @@ require __DIR__ . '/api.php';
 
 Route::get('/', function () {
     return view('main.home');
-});
+})->name('main.home');
 
 Route::get('/pay/{token}',[LinksController::class,'show']);
 

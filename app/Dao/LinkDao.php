@@ -13,7 +13,16 @@ class LinkDao
     public function create(array $data)
     {
         $merchants = Merchants::where("user_id", $data["user_id"])->first();
-        $token = Str::random(40);
+        //use random merchant id
+        $originalCode = $merchants->merchant_id;
+        $merchantCode = $this->transformMerchantCode($originalCode);
+        //auto increment id
+        $latest = Links::latest('id')->first();
+        $increment = $latest ? $latest->id + 1 : 1;
+        //random part for token
+        $randomPart = Str::random(40);
+
+        $token = $randomPart . $increment . $merchantCode;
         $noti = $data['notification'][0];
         $linkUrl = url('/pay/' . $token);
         $link = Links::create([
@@ -35,6 +44,31 @@ class LinkDao
         return  $linkUrl;
     }
 
+    public function transformMerchantCode(string $originalCode): string
+    {
+        // Extract numeric part from original code
+        preg_match('/\d+/', $originalCode, $matches);
+        $numberPart = $matches[0] ?? '0000000000';
+
+        // Take last 6 digits, pad with zeros if shorter
+        $extracted = substr($numberPart, -6);
+        $leftPad = str_pad($extracted, 6, '0', STR_PAD_LEFT);
+
+        // Generate 4-digit random number padded with zeros
+        $randomDigits = str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+
+        // Take first 5 letters from original code
+        $prefixLetters = strtoupper(substr($originalCode, 0, 5));
+
+        // Shuffle letters using PHP's str_shuffle
+        $shuffled = str_shuffle($prefixLetters);
+
+        // Combine all parts
+        $newMerchantCode = $leftPad . $randomDigits . $shuffled;
+
+        return $newMerchantCode;
+    }
+
     public function getByToken($token)
     {
         $url = url("/pay/" . $token);
@@ -50,8 +84,8 @@ class LinkDao
         }
 
         $details = Merchants::where('merchant_id', $link[0]['merchant_id'])
-                ->select('merchant_name','merchant_Cemail','merchant_notifyemail','merchant_frontendURL','merchant_logo','merchant_id','merchant_address')
-                ->first();
+            ->select('merchant_name', 'merchant_Cemail', 'merchant_notifyemail', 'merchant_frontendURL', 'merchant_logo', 'merchant_id', 'merchant_address')
+            ->first();
 
         return [$details, $link];
     }

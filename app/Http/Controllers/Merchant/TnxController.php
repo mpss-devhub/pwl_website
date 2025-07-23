@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Merchant;
 
+use App\Models\Click_Logs;
 use App\Models\Tnx;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,9 +17,10 @@ class TnxController extends Controller
     {
         $id = $request->id;
         $links = $this->linkData($id);
+        $click = Click_Logs::where('link_id', $links['id'])->get();
         $logo = Merchants::where('merchant_id',$links['created_by'])->select('merchant_logo')->first();
         //dd($id);
-        return view("Merchant.tnx.detail",compact('links','logo','id'));
+        return view("Merchant.tnx.detail",compact('links','logo','id','click'));
     }
 
     public function paymentdetail(Request $request){

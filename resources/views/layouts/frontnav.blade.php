@@ -24,7 +24,7 @@
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">SERVICES</a>
           </li>
           <li>
-            <a href="{{ route('check.page') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
+            <a href="{{ route('login') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
           </li>
           <li>
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACTS</a>

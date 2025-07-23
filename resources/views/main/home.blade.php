@@ -38,29 +38,29 @@
                      alt="">
 
                 <!-- Phone & chats -->
-                <div class="relative left-[50px] sm:left-[100px] md:left-[150px] lg:left-[200px] top-[-24px]">
+                <div class="relative left-[90px] top-[-24px] sm:left-[220px] sm:top-[-5px] md:left-[100px] lg:left-[110px]  xl:left-[120px] 2xl:left-[170px]">
                     <!-- Phone -->
                     <img src="{{ Storage::url('common/phone.png') }}"
-                         class="relative z-10 drop-shadow-xl w-[150px] sm:w-[180px] md:w-[200px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto"
+                         class="relative z-10 drop-shadow-xl w-[140px] sm:w-[170px] md:w-[180px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto"
                          alt="Phone mockup">
 
                     <!-- Chat 1 -->
-                    <div class="absolute flex items-center space-x-1 z-10 left-[-40px] sm:left-[-60px] md:left-[-70px] top-[20px] sm:top-[30px] md:top-[40px]">
+                    <div class="absolute flex items-center space-x-1 z-10 left-[-50px] sm:left-[-60px] md:left-[-70px] top-[20px] sm:top-[30px] md:top-[40px]">
                         <img src="{{ Storage::url('common/demo.png') }}" alt="User"
                              class="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white shadow-md">
-                        <span class="bg-purple-600 text-white px-2 py-1 rounded-full shadow text-[8px] sm:text-[10px]">You can pay me through this link</span>
+                        <span class="bg-purple-600 text-white px-2 py-1 rounded-full shadow text-[7px] sm:text-[8px] md:text-[9px] lg:text-[11px]">You can pay me through this link</span>
                     </div>
 
                     <!-- Chat 2 -->
-                    <div class="absolute flex items-center space-x-1 z-10 left-[-10px] sm:left-[-15px] md:left-[-20px] bottom-[40px] sm:bottom-[60px] md:bottom-[70px]">
+                    <div class="absolute flex items-center space-x-1 z-10 left-[-30px] sm:left-[-15px] md:left-[-20px] bottom-[40px] sm:bottom-[60px] md:bottom-[70px]">
                         <img src="{{ Storage::url('common/demo.png') }}" alt="User"
                              class="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white shadow-md">
-                        <span class="bg-purple-600 text-white px-2 py-1 rounded-full shadow text-[8px] sm:text-[10px]">Got it. Thanks</span>
+                        <span class="bg-purple-600 text-white px-2 py-1 rounded-full shadow text-[7px] sm:text-[8px] md:text-[9px] lg:text-[11px]">Got it. Thanks</span>
                     </div>
 
                     <!-- Chat 3 -->
-                    <div class="absolute top-1/3 right-[-10px] sm:right-[-15px] md:right-[-20px] flex items-center space-x-1 z-10">
-                        <span class="bg-green-500 text-white px-2 py-1 rounded-full shadow text-[8px] sm:text-[10px]">Payment sent!</span>
+                    <div class="absolute top-1/3 right-[-30px] sm:right-[-15px] md:right-[-20px] flex items-center space-x-1 z-10">
+                        <span class="bg-green-500 text-white px-2 py-1 rounded-full shadow text-[7px] sm:text-[8px] md:text-[9px] lg:text-[11px]">Payment sent!</span>
                         <img src="{{ Storage::url('common/demo.png') }}" alt="User"
                              class="w-5 h-5 sm:w-6 sm:h-6 rounded-full border-2 border-white shadow-md">
                     </div>

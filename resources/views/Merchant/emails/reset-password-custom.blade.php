@@ -6,24 +6,36 @@
   <title>Reset Password</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
   <style>
-    @media only screen and (max-width: 600px) {
-      body {
-        padding: 10px !important;
-      }
-      .container {
-        width: 100% !important;
-        padding: 12px !important;
-      }
-      .button {
-        width: 100% !important;
-        display: block !important;
-      }
+   *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 640px;
+    margin: auto;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .container {
+      padding: 12px;
     }
+
+    .button {
+      width: 100%;
+      display: block;
+    }
+  }
   </style>
 </head>
-<body style="margin: 0; padding: 20px; background-color: #F1F2F785; font-family: 'Poppins', sans-serif; color: #1f2937; font-size: 12px;">
+<body style="margin: 0; padding: 0; background-color: #F1F2F785; font-family: 'Poppins', sans-serif; color: #1f2937; font-size: 12px;">
 
-  <div class="container" style="max-width: 640px; margin: auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 2px; overflow: hidden;">
+  <div class="container" style="background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 2px; overflow: hidden;">
 
     <!-- Header -->
     <div style="background: #6873A678; padding: 16px;">

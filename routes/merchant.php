@@ -15,10 +15,12 @@ use App\Http\Controllers\Merchant\TnxController;
 use App\Http\Controllers\PaymentGatewayController;
 use App\Http\Controllers\Merchant\MerchantDashboardController;
 
+
+
+Route::middleware(['merchant'])->group(function () {
+
 // Merchant Dashboard Routes
 Route::get('/merchant', [MerchantDashboardController::class, 'show'])->name('merchant.dashboard');
-
-
 
 //Merchant Info Management
 Route::get('/merchant/MerchantInfo', function () {
@@ -93,3 +95,6 @@ Route::get('/merchant/sms&email', function () {
 })->name('merchant.sms');
 Route::post('/sms/details', [SMSController::class, 'show'])->name(name: 'sms.details');
 Route::post('sms/email/resent', [SMSController::class, 'resent'])->name('sms.resent');
+
+});
+

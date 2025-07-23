@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('checkout/style.css') }}">
     <script src="{{ asset('checkout/js/checkout.js') }}"></script>
+    <script src="{{ asset('checkout/js/prevent.js') }}"></script>
+
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @else

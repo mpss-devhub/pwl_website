@@ -21,7 +21,7 @@
     <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
         <div class="p-4 mt-14 max-w-7xl mx-auto">
 
-                   <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 ">
+                  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
                         <div>
                     <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
                         <i class="fa-solid fa-arrow-left mr-2"></i>
