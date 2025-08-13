@@ -15,12 +15,11 @@
                 <button type="submit" id='btn' class="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors">
                     <i class="fas fa-save mr-2"></i>Save Merchant
                 </button>
-                <button type="button" class="px-5 py-2.5 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors">
+                <a href="{{ route('merchant.show') }}" class="px-5 py-2.5 text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors">
                     <i class="fas fa-times mr-2"></i>Cancel
-                </button>
+                </a>
             </div>
         </div>
-
         <!-- Main Content Grid -->
         <div class="grid lg:grid-cols-4 gap-6">
             <!-- Left Column - Profile Section -->
@@ -69,11 +68,11 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">Account Status</label>
                             <div class="flex space-x-4">
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
+                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on" >
                                     <span class="ml-2 text-gray-700">Active</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off" >
                                     <span class="ml-2 text-gray-700">Inactive</span>
                                 </label>
                             </div>
@@ -245,7 +244,6 @@
     </div>
 </div>
     <input type="hidden" id="user_id" name="user_id" value={{ $detail->user_id }}></input>
-    <input type="hidden" class="" id="" name="role" value="merchant"></input>
     </form>
 @endforeach
 

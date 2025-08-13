@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
-    <div class="p-4 sm:ml-64 bg-gray-100 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
             <!-- Link Details Card -->
             <div class="bg-white rounded-lg shadow-md p-6">

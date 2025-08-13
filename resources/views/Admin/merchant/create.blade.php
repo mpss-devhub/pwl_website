@@ -1,11 +1,11 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
+
     <form action="{{ route('merchant.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="p-4 sm:ml-64 bg-gray-100 min-h-screen">
             <div class="p-4 mt-14">
                 <!-- Page Header -->
-
 
                 <!-- Main Content Grid -->
                 <div class="grid lg:grid-cols-4 gap-6">
@@ -19,7 +19,17 @@
                             </div>
 
                         </div>
-
+                        @if ($errors->any())
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+                                role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                        <br>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="bg-white p-6 rounded-lg shadow">
                             <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Logo</h2>
 
@@ -52,64 +62,37 @@
                             </div>
 
                             <div class="mt-6 space-y-4">
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Merchant ID</label>
-                                    <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md">
-                                        <span class="text-gray-600">Auto-generated</span>
-                                        <button class="ml-auto text-gray-500 hover:text-gray-700" type="button"
-                                            id="btn">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                                fill="currentColor">
-                                                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                                                <path
-                                                    d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
+
 
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Account Status</label>
                                     <div class="flex space-x-4">
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500" checked>
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on">
                                             <span class="ml-2 text-gray-700">Active</span>
                                         </label>
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500">
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off">
                                             <span class="ml-2 text-gray-700">Inactive</span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
+                        <input type="hidden" name="user_id" id="user_id">
+                        <input type="hidden" name="password" id="password">
+                        <input type="hidden" name="role" value="merchant">
                         <div class="flex flex-col xs:flex-row gap-2 w-full md:w-auto order-2 md:order-none">
-                            <button id="submitBtn" type="submit" id='btn'
+                            <button type="submit"
                                 class="px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors flex items-center justify-center">
                                 <span class="text"><i class="fas fa-save mr-2 text-xs md:text-sm"></i>Save Merchant</span>
                                 <span class="spinner" style="display:none;">
                                     <i class="fa fa-spinner fa-spin"></i>
                                 </span>
                             </button>
-                            <script>
-                                document.addEventListener("DOMContentLoaded", function() {
-                                    const btn = document.getElementById('submitBtn');
-                                    if (btn) {
-                                        btn.addEventListener('click', function() {
-                                            const text = btn.querySelector('.text');
-                                            const spinner = btn.querySelector('.spinner');
 
-                                            if (text && spinner) {
-                                                text.style.display = 'none';
-                                                spinner.style.display = 'inline-block';
-                                            }
-                                        });
-                                    }
-                                });
-                            </script>
                             <button type="button"
                                 class="px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors flex items-center justify-center">
                                 <a href="{{ route('merchant.show') }}"> <i
@@ -307,46 +290,62 @@
                 </div>
             </div>
         </div>
-        <input type="hidden" id="user_id" name="user_id"></input>
-        <input type="hidden" id="password" name="password"></input>
-        <input type="hidden" class="" id="" name="role" value="merchant"></input>
+
     </form>
     <script>
-        function loadFile(event) {
-            var reader = new FileReader();
-
-            reader.onload = function() {
-                var output = document.getElementById("output");
-                output.src = reader.result;
-
-            }
-            reader.readAsDataURL(event.target.files[0]);
+    // image preview
+    function loadFile(event) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var output = document.getElementById("output");
+            output.src = reader.result;
         }
-    </script>
-    <script>
-        function shuffleString(str) {
-            return str.split('').sort(() => Math.random() - 0.5).join('');
-        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
 
-        document.getElementById('btn').addEventListener('click', function() {
-            const name = document.getElementById('name').value.replace(/\s+/g, ''); // remove all spaces
-            const digits = Math.floor(1000 + Math.random() * 9000).toString();
-            const mixed = shuffleString(name + digits);
-            document.getElementById('password').value = mixed;
-            console.log('Generated Mixed Password:', mixed);
-        });
-    </script>
-    <script>
-        document.getElementById('btn').addEventListener('click', function() {
-            const name = document.getElementById('name').value.trim();
-            if (!name) return alert('Please enter a name');
+    // Function to shuffle string for password generation
+    function shuffleString(str) {
+        return str.split('').sort(() => Math.random() - 0.5).join('');
+    }
 
+    // Function to generate credentials
+    function generateCredentials() {
+        const name = document.getElementById('name').value.trim();
+        if (name) {
+            // Generate user ID
             const firstLetter = name.charAt(0).toUpperCase();
-            const digits = Math.floor(1000 + Math.random() * 9000); // 4-digit random number
+            const digits = Math.floor(1000 + Math.random() * 9000);
             const userId = 'M_' + firstLetter + digits;
-
             document.getElementById('user_id').value = userId;
-            console.log('Generated user_id:', userId);
-        });
-    </script>
+            console.log('Generated User ID:', userId);
+
+            // Generate password
+            const nameWithoutSpaces = name.replace(/\s+/g, '');
+            const passDigits = Math.floor(1000 + Math.random() * 9000).toString();
+            const password = shuffleString(nameWithoutSpaces + passDigits);
+            document.getElementById('password').value = password;
+            console.log('Generated Password:', password);
+        }
+    }
+
+    document.getElementById('name').addEventListener('input', generateCredentials);
+
+    // Also generate on form submit to ensure values are set
+    document.querySelector('form').addEventListener('submit', function(e) {
+        generateCredentials();
+
+        // Show loading spinner
+        const btn = document.querySelector('button[type="submit"]');
+        if (btn) {
+            const text = btn.querySelector('.text');
+            const spinner = btn.querySelector('.spinner');
+            if (text && spinner) {
+                text.style.display = 'none';
+                spinner.style.display = 'inline-block';
+            }
+        }
+
+    });
+</script>
+
 @endsection

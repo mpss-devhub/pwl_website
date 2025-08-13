@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Merchant;
 
+use Carbon\Carbon;
 use App\Models\Tnx;
 use App\Models\Links;
 use App\Models\Merchants;
@@ -13,9 +14,9 @@ class MerchantDashboardController extends Controller
 {
     public function show(Request $request)
     {
+        $year = $request->get('year', 'all');
+        $month = $request->get('month', 'all');
         $merchantId = $this->getMerchantId();
-        $filter = $request->get('filter', 'monthly');
-
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
@@ -29,7 +30,7 @@ class MerchantDashboardController extends Controller
         $TotalTnx = $this->TotalTnx($merchantId);
         $Mostuse = $this->MostUsed($merchantId);
 
-        $revenueData = $this->getRevenueDataByFilter($merchantId, $filter);
+        $revenueData = $this->getRevenueDataByFilter($year, $month, $merchantId);
 
         $SuccessRate = $Totallink > 0 ? ($TotalSuccess / $Totallink) * 100 : 0;
 
@@ -43,8 +44,7 @@ class MerchantDashboardController extends Controller
             'Latest',
             'TotalTnx',
             'Mostuse',
-            'SuccessRate',
-            'filter'
+            'SuccessRate'
         ));
     }
 
@@ -55,117 +55,64 @@ class MerchantDashboardController extends Controller
         return Merchants::where('user_id', $id)->value('merchant_id');
     }
 
-    private function getRevenueDataByFilter($merchantId, $filter = 'monthly')
+    private function getRevenueDataByFilter($year, $month, $merchantId)
     {
-        $query = Tnx::where('created_by', $merchantId)
-            ->where('currencyCode', 'MMK')
-            ->where('payment_status', 'SUCCESS');
+        $labels = [];
+        $values = [];
 
-        switch ($filter) {
-            case 'weekly':
-                // Get all weeks of the current year (1-52 or 53)
-                $year = now()->year;
-                $allWeeks = [];
-                for ($week = 1; $week <= 53; $week++) {
-                    $allWeeks[$week] = "$year-W" . str_pad($week, 2, '0', STR_PAD_LEFT);
-                }
-
-                $data = $query->selectRaw('
-                YEAR(created_at) as year,
-                WEEK(created_at, 1) as week,
-                CONCAT(YEAR(created_at), "-W", LPAD(WEEK(created_at, 1), 2, "0")) as label,
-                SUM(net_amount) as total
-            ')
-                    ->whereYear('created_at', $year)
-                    ->groupBy('year', 'week', 'label')
-                    ->orderBy('year')
-                    ->orderBy('week')
-                    ->get();
-
-                // Map DB data into a keyed array for easier merging
-                $mappedData = [];
-                foreach ($data as $item) {
-                    $mappedData[$item->week] = $item->total;
-                }
-
-                $finalLabels = [];
-                $finalData = [];
-                foreach ($allWeeks as $weekNum => $label) {
-                    $finalLabels[] = $label;
-                    $finalData[] = $mappedData[$weekNum] ?? 0;
-                }
-                break;
-
-            case 'yearly':
-                // Fetch distinct years from data
-                $years = $query->selectRaw('YEAR(created_at) as year')
-                    ->groupBy('year')
-                    ->orderBy('year')
-                    ->pluck('year')
-                    ->toArray();
-
-                // Or fallback to last 5 years for consistent display
-                $currentYear = now()->year;
-                $allYears = range($currentYear - 4, $currentYear);
-
-                $data = $query->selectRaw('
-                YEAR(created_at) as label,
-                SUM(net_amount) as total
-            ')
-                    ->groupBy('label')
-                    ->orderBy('label')
-                    ->get()
-                    ->keyBy('label');
-
-                $finalLabels = [];
-                $finalData = [];
-                foreach ($allYears as $year) {
-                    $finalLabels[] = (string)$year;
-                    $finalData[] = isset($data[$year]) ? $data[$year]->total : 0;
-                }
-                break;
-
-            case 'monthly':
-            default:
-                $year = now()->year;
-                // All months labels
-                $allMonths = [
-                    1 => 'Jan',
-                    2 => 'Feb',
-                    3 => 'Mar',
-                    4 => 'Apr',
-                    5 => 'May',
-                    6 => 'Jun',
-                    7 => 'Jul',
-                    8 => 'Aug',
-                    9 => 'Sep',
-                    10 => 'Oct',
-                    11 => 'Nov',
-                    12 => 'Dec'
-                ];
-
-                $data = $query->selectRaw('
-                MONTH(created_at) as month,
-                SUM(net_amount) as total
-            ')
-                    ->whereYear('created_at', $year)
-                    ->groupBy('month')
-                    ->orderBy('month')
-                    ->get()
-                    ->keyBy('month');
-
-                $finalLabels = [];
-                $finalData = [];
-                foreach ($allMonths as $monthNum => $label) {
-                    $finalLabels[] = $label;
-                    $finalData[] = isset($data[$monthNum]) ? $data[$monthNum]->total : 0;
-                }
-                break;
+        if (!$merchantId) {
+            return ['labels' => $labels, 'data' => $values];
         }
 
+        $query = Tnx::where('created_by', $merchantId)
+            ->where('payment_status', 'SUCCESS');
+
+        if ($year === 'all' && $month === 'all') {
+            // Past 5 years including current year
+            $currentYear = now()->year;
+            $startYear = $currentYear - 5;
+
+            $revenue = $query->selectRaw('YEAR(created_at) as year, SUM(net_amount) as total')
+                ->whereYear('created_at', '>=', $startYear)
+                ->groupBy('year')
+                ->pluck('total', 'year')
+                ->toArray();
+
+            for ($y = $startYear; $y <= $currentYear; $y++) {
+                $labels[] = (string)$y;
+                $values[] = $revenue[$y] ?? 0;
+            }
+        } elseif ($year !== 'all' && $month === 'all') {
+
+            $revenue = $query->selectRaw('MONTH(created_at) as month, SUM(net_amount) as total')
+                ->whereYear('created_at', $year)
+                ->groupBy('month')
+                ->pluck('total', 'month')
+                ->toArray();
+
+            for ($m = 1; $m <= 12; $m++) {
+                $labels[] = Carbon::createFromDate($year, $m, 1)->format('M');
+                $values[] = $revenue[$m] ?? 0;
+            }
+        } elseif ($year !== 'all' && $month !== 'all') {
+
+            $daysInMonth = Carbon::createFromDate($year, $month, 1)->daysInMonth;
+
+            $revenue = $query->selectRaw('DAY(created_at) as day, SUM(net_amount) as total')
+                ->whereYear('created_at', $year)
+                ->whereMonth('created_at', $month)
+                ->groupBy('day')
+                ->pluck('total', 'day')
+                ->toArray();
+
+            for ($d = 1; $d <= $daysInMonth; $d++) {
+                $labels[] = (string)$d;
+                $values[] = $revenue[$d] ?? 0;
+            }
+        }
         return [
-            'labels' => $finalLabels,
-            'data' => $finalData,
+            'labels' => $labels,
+            'data'   => $values,
         ];
     }
 
@@ -234,7 +181,7 @@ class MerchantDashboardController extends Controller
         return Tnx::where('created_by', $id)
             ->where('payment_status', 'SUCCESS')
             ->orderBy('created_at', 'desc')
-            ->select('paymentCode', 'tranref_no', 'req_amount', 'currencyCode','payment_status','created_by')
+            ->select('paymentCode', 'tranref_no', 'req_amount', 'currencyCode', 'payment_status', 'created_by')
             ->take(5)
             ->get();
     }

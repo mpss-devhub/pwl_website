@@ -2,7 +2,7 @@
 @section('merchant_content')
     @include('Merchant.paywithlink.alert')
 
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-16">
             <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-7xl mx-auto">
 
@@ -18,23 +18,6 @@
                         </span>
                     </div>
                 </div>
-
-                <!-- Merchant Info Alert -->
-                <div class="bg-blue-50 rounded-lg p-4 mb-8 flex items-start gap-3 border border-blue-100">
-                    <svg class="h-5 w-5 text-blue-500 flex-shrink-0 mt-0.5" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z"
-                            clip-rule="evenodd" />
-                    </svg>
-                    <div class="text-sm text-blue-700">
-                        <p class="font-medium">Your payment links will be generated under:</p>
-                        <p class="mt-1 font-mono bg-blue-100 px-3 py-1.5 rounded-md text-blue-800 inline-block">
-                            https://paywithlink.com/merchant/
-                        </p>
-                    </div>
-                </div>
-
                 <!-- Payment Form -->
                 <form action="{{ route('links.store') }}" method="POST" class="space-y-8" id="paymentForm">
                     @csrf
@@ -198,9 +181,9 @@
                     </div>
 
                     <!-- Form Actions -->
-                    <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 pt-6">
+                    <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 pt-4">
                         <button id="submitButton" type="submit"
-                            class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-100 transition-colors font-medium shadow-sm flex items-center justify-center">
+                            class="px-6 py-3 bg-[#3164c1] text-white rounded-lg hover:bg-[#2f549a] focus:ring-4 focus:ring-blue-100 transition-colors font-medium shadow-sm flex items-center justify-center">
                             <span id="btnText"><i class="fas fa-link mr-2"></i> Create Payment Link</span>
                             <svg id="btnSpinner" class="hidden ml-2 w-5 h-5 text-white animate-spin" fill="none"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -210,7 +193,11 @@
                                 </path>
                             </svg>
                         </button>
+                        <a href="{{ route('links.bundle') }}"
+                            class="px-6 py-3 bg-[#1e8052] text-white rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-100 transition-colors font-medium shadow-sm flex items-center justify-center">
+                            <span id="btnText"><i class="fa-solid fa-file-arrow-up mr-2"></i> Excel Upload</span>
 
+                        </a>
                     </div>
                 </form>
             </div>

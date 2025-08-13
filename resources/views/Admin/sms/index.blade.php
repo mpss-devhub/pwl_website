@@ -1,6 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 border-2 border-gray-200 rounded-lg mt-14">
             <!-- Header Section -->
             <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">

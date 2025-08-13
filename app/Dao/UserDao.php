@@ -93,7 +93,6 @@ class UserDao
         $merchant = Merchants::updateOrCreate(
             ['user_id' => $data['user_id']],
             [
-                'status' => $data['status'],
                 'merchant_Cname' => $data['merchant_Cname'],
                 'merchant_Cphone' => $data['merchant_Cphone'],
                 'merchant_Cemail' => $data['merchant_Cemail'],
@@ -102,8 +101,17 @@ class UserDao
                 'merchant_address' => $data['merchant_address'],
                 'merchant_notifyemail' => $data['merchant_notifyemail'],
                 'merchant_remark' => $data['merchant_remark'],
+                'status' => $data['status'],
             ]
         );
+        User::where('user_id', $data['user_id'])
+            ->update([
+                'name' => $data['merchant_name'],
+                'email' => $data['merchant_Cemail'],
+                'phone' => $data['merchant_Cphone'],
+                'status' => $data['status'],
+            ]);
+
         return $merchant->toArray();
     }
 }

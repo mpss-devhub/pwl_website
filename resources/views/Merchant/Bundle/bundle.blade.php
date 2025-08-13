@@ -22,12 +22,12 @@
             });
         </script>
     @endif
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14 sm:mt-16">
             <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 " >
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
-                    <p class="text-md sm:text-lg font-semibold text-gray-800">
-                        About Bundle Uploading With Excel
+                    <p class="text-sm sm:text-md font-semibold text-gray-800">
+                     Bundle Upload With Excel
                     </p>
                     <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20 sm:w-24" alt="Octoverse Logo">
                 </div>
@@ -38,13 +38,11 @@
                 <div class="overflow-x-auto">
 
 
-                    <p class="text-xs sm:text-sm  text-gray-500 mb-4">
-                        <strong> Make sure to fill correctly. </strong>
+                    <p class="text-xs  text-gray-500 mb-4">
+                         Make sure to fill correctly
                         For expired_at use format <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code>
                         (e.g., 2025-07-12T15:39).
-                        <a href="{{ Storage::url('common/Bundle_Format.xlsx') }}"
-                            class="text-blue-500 hover:text-blue-700 text-xs sm:text-sm mx-1" download>Download Excel
-                            Format</a>
+
                     </p>
 
                     <div class="border rounded-lg overflow-x-auto mt-6">
@@ -118,7 +116,7 @@
                             return `${y}-${m}-${d}T${h}:${min}`;
                         }
                     }" x-init="setInterval(() => updateTime(), 1000)"
-                        class="text-xs sm:text-sm font-semibold text-gray-700  mt-6">
+                        class="text-xs sm:text-sm font-semibold text-gray-700  mt-8">
                         Current Time with <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code> format is
                         <span x-text="formatDateTime()" class="text-blue-500 text-xs"></span>
                     </div>
@@ -198,6 +196,29 @@
                         spinner.classList.remove('hidden');
                     });
                 </script>
+            </div>
+             <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
+
+                        <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                            <i class="fa-solid fa-arrow-left mr-2 mt-2"></i>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap gap-3 ml-2">
+                        <a id="btn-png" href="{{ Storage::url('common/Bundle_Format.xlsx') }}" download
+                            class="flex items-center gap-2 bg-green-100 text-green-700 hover:bg-green-200 px-4 py-2 rounded-md transition">
+                            <svg id="loading-png" class="hidden w-4 h-4 animate-spin text-green-700"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                            </svg>
+                            <span id="text-png">Download Excel Format </span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -28,8 +28,9 @@ class LoginRequest extends FormRequest
     {
         return [
 
-            'user_id' => ['required', 'string' ],
+            'user_id' => ['required', 'string'],
             'password' => ['required', 'string'],
+            'captcha' => ['required', 'captcha'],
         ];
     }
 
@@ -38,20 +39,19 @@ class LoginRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate(): bool
     {
         $this->ensureIsNotRateLimited();
 
         if (! Auth::attempt($this->only('user_id', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
-
-            throw ValidationException::withMessages([
-                'user_id' => trans('auth.failed'),
-            ]);
+            return false;
         }
 
         RateLimiter::clear($this->throttleKey());
+        return true;
     }
+
 
     /**
      * Ensure the login request is not rate limited.
@@ -81,6 +81,6 @@ class LoginRequest extends FormRequest
      */
     public function throttleKey(): string
     {
-        return Str::transliterate(Str::lower($this->string('email')).'|'.$this->ip());
+        return Str::transliterate(Str::lower($this->string('email')) . '|' . $this->ip());
     }
 }

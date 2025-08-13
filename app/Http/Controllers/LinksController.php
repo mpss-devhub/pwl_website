@@ -77,21 +77,13 @@ class LinksController extends Controller
     {
         $data = $this->linkDao->getByToken($token);
         if (!$data) {
+            Links::where('link_url', url("/pay/" . $token))->update(['link_status' => 'expired']);
             return response()->view('Extra.expired', [], 410);
         }
         [$details, $link] = $data;
         $details = $details->toArray();
         $link = $link[0];
         $links = $link->toArray();
-
-        if ($link->link_expired_at && now()->gt($link->link_expired_at)) {
-            if ($link->link_status !== 'expired') {
-                $link->link_status = 'expired';
-                $link->save();
-            }
-            return response()->view('Extra.expired', [], 410); // 410 = Gone
-        }
-
         $this->click($links['id']);
 
         return view('checkout.checkout', compact('details', 'links'));

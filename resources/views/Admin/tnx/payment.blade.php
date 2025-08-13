@@ -18,40 +18,8 @@
             ][strtolower($data['payment_status'])] ?? 'bg-blue-100 text-blue-800';
     @endphp
 
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14 max-w-7xl mx-auto">
-
-                  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
-                        <div>
-                    <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
-                        <i class="fa-solid fa-arrow-left mr-2"></i>
-                        <span class="mx-1">Back</span>
-                    </a>
-                </div>
-                <div class="flex flex-wrap gap-3 ml-2">
-                    <button id="btn-png" onclick="downloadAsPNG()"
-                        class="flex items-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-md transition">
-                        <svg id="loading-png" class="hidden w-4 h-4 animate-spin text-blue-700"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                        </svg>
-                        <span id="text-png">Download as <i class="fa-solid fa-image"></i></span>
-                    </button>
-
-                    <button id="btn-pdf" onclick="downloadAsPDF()"
-                        class="flex items-center gap-2 bg-red-100 text-red-600 hover:bg-red-200 px-4 py-2 rounded-md transition">
-                        <svg id="loading-pdf" class="hidden w-4 h-4 animate-spin text-red-600"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                        </svg>
-                        <span id="text-pdf">Download as <i class="fa-solid fa-file-pdf"></i> </span>
-                    </button>
-                </div>
-            </div>
 
             <!-- Payment Details Card -->
             <div id="exportArea" class="bg-white mt-2 rounded-lg shadow-sm overflow-hidden border border-gray-200">
@@ -243,6 +211,42 @@
                 </div>
 
 
+            </div>
+             <!-- Footer Section -->
+            <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
+                <div
+                    class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
+
+                        <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                            <i class="fa-solid fa-arrow-left mr-2"></i>
+                            <span class="mx-1">Back</span>
+                        </a>
+                    </div>
+                    <div class="flex flex-wrap gap-3 ml-2">
+                        <button id="btn-png" onclick="downloadAsPNG()"
+                            class="flex items-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-md transition">
+                            <svg id="loading-png" class="hidden w-4 h-4 animate-spin text-blue-700"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                            </svg>
+                            <span id="text-png">Download as <i class="fa-solid fa-image"></i></span>
+                        </button>
+
+                        <button id="btn-pdf" onclick="downloadAsPDF()"
+                            class="flex items-center gap-2 bg-red-100 text-red-600 hover:bg-red-200 px-4 py-2 rounded-md transition">
+                            <svg id="loading-pdf" class="hidden w-4 h-4 animate-spin text-red-600"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                            </svg>
+                            <span id="text-pdf">Download as <i class="fa-solid fa-file-pdf"></i> </span>
+                        </button>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -27,7 +27,7 @@ class UserController extends Controller
     {
          $per = Permissions::all();
         $this->user_service->updateOrCreate($request->validated(), $id);
-        return redirect()->route('user.show',);
+        return redirect()->route('user.show')->with('success', 'User updated successfully!');
     }
 
     public function store(UserRequest $request)
@@ -45,11 +45,12 @@ class UserController extends Controller
     {
         $this->user_service->delete($id);
         return redirect()->route('user.show')
-            ->with('success', 'User deleted successfully!');
+            ->with('Error', 'User Deleted Successfully!');
     }
 
     public function storeMerchant(MerchantRequest $request)
     {
+        //dd($request->validated());
         $this->user_service->merchantacc($request->validated());
         $this->user_service->RegisterMerchant($request->validated());
         $this->user_service->createMerchant($request->validated());

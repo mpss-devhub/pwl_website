@@ -24,20 +24,26 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
+        if (! $request->authenticate()) {
+            return back()->with('Error', 'User ID or Password is incorrect');
+        }
 
-        $request->authenticate();
+        if (Auth::user()->status !== 'on') {
+            Auth::logout();
+            return redirect()->route('login')->with('Error', 'Your account is not active. Please contact support.');
+        }
 
         $request->session()->regenerate();
 
-        // Check if the user is an admin or a merchant
         if (Auth::user()->role === 'admin') {
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.dashboard')->with('Success', 'Admin Login Successfully');
         } elseif (Auth::user()->role === 'merchant') {
-            return redirect()->route('merchant.dashboard');
+            return redirect()->route('merchant.dashboard')->with('Success', 'Merchant Login Successfully');
         }
-        // Default redirect if no role matches
-        return redirect()->intended('/'); 
+
+        return redirect()->intended('/')->with('Error', 'User ID or Password is incorrect');
     }
+
 
     /**
      * Destroy an authenticated session.
@@ -45,11 +51,10 @@ class AuthenticatedSessionController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();
-
+        Auth::guard('admin')->logout();
+        Auth::guard('merchant')->logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
-
-        return redirect('/');
+        return redirect('/')->with('Success', 'Logout Successfully');
     }
 }

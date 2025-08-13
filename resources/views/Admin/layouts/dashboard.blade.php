@@ -1209,6 +1209,7 @@
 </head>
 <body>
     @include('Admin.components.nav')
+    @include('layouts.alert')
     @yield('admin_content')
 
 

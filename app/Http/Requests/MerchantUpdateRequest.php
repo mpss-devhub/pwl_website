@@ -38,8 +38,7 @@ class MerchantUpdateRequest extends FormRequest
             "merchant_shareholder" => "nullable",
             "merchant_dica" => "nullable",
             'user_id' => "required",
-            //'password' => "required",
-            'role' => "required",
+
         ];
     }
 }

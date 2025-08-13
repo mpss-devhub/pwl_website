@@ -47,6 +47,7 @@ class AdminController extends Controller
 
     public function merchantupdate(MerchantUpdateRequest $request)
     {
+        //dd($request->validated());
         $this->user_service->updateMerchant($request->validated());
         return redirect()->route('merchant.show')->with('success', 'Merchant updated successfully!');
     }

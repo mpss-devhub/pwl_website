@@ -30,7 +30,7 @@ class PermissionsController extends Controller
             'created_at' => now(),
         ]);
 
-        return to_route('access.show');
+        return to_route('access.show')->with('Success', 'Permission Created successfully.');
     }
 
     public function update(Request $request, $id)
@@ -56,7 +56,7 @@ class PermissionsController extends Controller
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('access.show')->with('success', 'Permission updated successfully.');
+        return redirect()->route('access.show')->with('Success', 'Permission Updated successfully.');
     }
 
 
@@ -65,6 +65,6 @@ class PermissionsController extends Controller
         $data = Permissions::findOrFail($id);
         $data->delete();
 
-        return back()->with('success', 'Permission deleted successfully.');
+        return back()->with('Error', 'Permission deleted successfully.');
     }
 }

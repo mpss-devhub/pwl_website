@@ -15,7 +15,7 @@
       <div class="hidden w-full md:block md:w-auto" id="navbar-default">
         <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
           <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">HOME</a>
+            <a href="{{ route('main.home') }}" class="hover:text-purple-300  fw-bold text-gray-700 " >HOME</a>
           </li>
           <li>
             <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">ABOUT US</a>
@@ -27,7 +27,7 @@
             <a href="{{ route('login') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
           </li>
           <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACTS</a>
+            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACT US</a>
           </li>
         </ul>
       </div>

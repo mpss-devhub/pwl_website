@@ -43,8 +43,8 @@
                                 <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                                 <select name="status" id="status"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                    <option value="active" @selected($user->status == 'active')>Active</option>
-                                    <option value="inactive" @selected($user->status == 'inactive')>Inactive</option>
+                                    <option value="on" @selected($user->status == 'on')>Active</option>
+                                    <option value="off" @selected($user->status == 'off')>Inactive</option>
                                 </select>
                             </div>
 
