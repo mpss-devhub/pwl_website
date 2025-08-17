@@ -134,13 +134,13 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name <span
                                             class="text-red-500">*</span></label>
-                                    <input type="text" id='name' name="merchant_name"
+                                    <input type="text" id='name' name="merchant_name" value="{{ old('merchant_name') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name <span
                                             class="text-red-500">*</span></label>
-                                    <input type="text" name="merchant_Cname"
+                                    <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
@@ -148,14 +148,14 @@
                                             class="text-red-500">*</span></label>
                                     <div class="flex">
 
-                                        <input type="tel" name="merchant_Cphone"
+                                        <input type="tel" name="merchant_Cphone" value="{{ old('merchant_Cphone') }}"
                                             class="flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email <span
                                             class="text-red-500">*</span></label>
-                                    <input type="email" name="merchant_Cemail"
+                                    <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                             </div>
@@ -173,13 +173,13 @@
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             https://
                                         </span>
-                                        <input type="text" name="merchant_frontendURL"
+                                        <input type="text" name="merchant_frontendURL" value="{{ old('merchant_frontendURL') }}"
                                             class="  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email</label>
-                                    <input type="email" name="merchant_notifyemail"
+                                    <input type="email" name="merchant_notifyemail" value="{{ old('merchant_notifyemail') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
@@ -189,7 +189,7 @@
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             Address
                                         </span>
-                                        <input type="text" name="merchant_address"
+                                        <input type="text" name="merchant_address" value="{{ old('merchant_address') }}"
                                             class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>

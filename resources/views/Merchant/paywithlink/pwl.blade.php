@@ -35,7 +35,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Invoice Number <span
                                         class="text-red-500">*</span></label>
-                                <input name="invoiceNo" type="text" required
+                                <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
                             </div>
@@ -48,7 +48,7 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500">Ks</span>
                                     </div>
-                                    <input name="amount" type="number" required
+                                    <input name="amount" type="number" required value="{{ old('amount') }}"
                                         class="pl-12 w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                         placeholder="10,000">
                                 </div>
@@ -58,7 +58,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Name <span
                                         class="text-red-500">*</span></label>
-                                <input name="name" type="text" required
+                                <input name="name" type="text" required value="{{ old('name') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="John Doe">
                             </div>
@@ -67,7 +67,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Phone <span
                                         class="text-red-500">*</span></label>
-                                <input name="phone" type="tel" required
+                                <input name="phone" type="tel" required value="{{ old('phone') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="09xxxxxxxxx">
                             </div>
@@ -75,18 +75,21 @@
                             <!-- Customer Email -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Email</label>
-                                <input name="email" type="email"
+                                <input name="email" type="email" value="{{ old('email') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="customer@example.com">
                             </div>
 
                             <!-- Expiry Date/Time -->
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Expiry Date/Time <span
-                                        class="text-red-500">*</span></label>
-                                <input name="expired_at" type="datetime-local" required
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Expiry Date/Time <span class="text-red-500">*</span>
+                                </label>
+                                <input name="expired_at" type="datetime-local" required value="{{ old('expired_at') }}"
+                                    autoFocus min="{{ \Carbon\Carbon::now()->addDay()->format('Y-m-d\TH:i') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors">
                             </div>
+
                         </div>
 
                         <!-- Notes -->
@@ -94,7 +97,7 @@
                             <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
                             <textarea name="description" rows="3"
                                 class="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
-                                placeholder="Additional information about this payment"></textarea>
+                                placeholder="Additional information about this payment">{{ old('description') }}</textarea>
                         </div>
                     </div>
 
@@ -109,6 +112,7 @@
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="currency" value="MMK" checked
+                                    {{ old('currency', 'MMK') == 'MMK' ? 'checked' : '' }}
                                     class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">MMK (Default)</span>
@@ -119,6 +123,7 @@
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="currency" value="USD"
+                                    {{ old('currency') == 'USD' ? 'checked' : '' }}
                                     class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">USD</span>
@@ -140,6 +145,7 @@
                                 <label
                                     class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                     <input type="radio" name="notification" value="SMS"
+                                        {{ old('notification') === 'SMS' ? 'checked' : '' }}
                                         class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                     <div>
                                         <span class="block text-sm font-medium text-gray-800">SMS</span>
@@ -151,6 +157,7 @@
                             <label
                                 class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="notification" value="Email"
+                                    {{ old('notification') === 'Email' ? 'checked' : '' }}
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">Email</span>
@@ -161,6 +168,7 @@
                             <label
                                 class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="notification" value="Copy"
+                                    {{ old('notification') === 'Copy' ? 'checked' : '' }}
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">Copy Link</span>
@@ -171,6 +179,7 @@
                             <label
                                 class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="notification" value="QR"
+                                    {{ old('notification') === 'QR' ? 'checked' : '' }}
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">QR Code</span>
@@ -178,6 +187,7 @@
                                 </div>
                             </label>
                         </div>
+
                     </div>
 
                     <!-- Form Actions -->

@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link href="{{ asset('/main/login.css') }}" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <script src="{{ asset('/main/js/loading.js') }}"></script>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('common/main/css/login.css') }}">
+    <script src="{{ asset('common/main/js/loading.js') }}"></script>
 </head>
 
 <body>
@@ -41,7 +42,7 @@
                 @csrf
                 <div class="mt-7 space-y-2">
                     <input style="font-family: 'Libre Baskerville';" type="text" placeholder="Enter Your User ID"
-                        name="user_id"
+                        name="user_id" value="{{ old('user_id') }}"
                         class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
 
                     <input style="font-family: 'Libre Baskerville';" type="password" name="password"
@@ -53,25 +54,24 @@
                         <div class="mx-5">
                             <div class=""></div>
                             <div class="flex items-center justify-center space-x-4">
-                                 <button type="button"
-                                onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}?'+Math.random()">
-                                <i class="fa-solid fa-rotate-right"></i>
-                            </button>
+                                <button type="button"
+                                    onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}?'+Math.random()">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </button>
                                 <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha"
-                                class="w-32 h-12 rounded">
-
+                                    class="w-32 h-12 rounded">
                             </div>
                             <div class=""></div>
                         </div>
-                             <div class="">
+                        <div class="">
                             <input type="text" name="captcha" placeholder="Enter Captcha"
                                 style="font-family: 'Libre Baskerville';"
                                 class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
 
                         </div>
                     </div>
-                      @error('captcha')
-                        <span class="text-xs text-red-500">{{$message}}</span>
+                    @error('captcha')
+                        <span class="text-xs text-red-500">{{ $message }}</span>
                     @enderror
                     <div>
                         <button id="submitBtn"

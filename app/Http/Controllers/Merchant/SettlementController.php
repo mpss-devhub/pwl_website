@@ -30,11 +30,14 @@ class SettlementController extends Controller
 
     private function getSettlementData($merchant)
     {
+         $app_id = config('services.b2b.x_app_id');
+        $xAppApiKey = config('services.b2b.x_app_api_key');
+        $externalUrl2 = config('services.b2b.external_url_2');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
-            'X-APP-ID' => '000021',
-        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantTransactions', [
+            'X-API-KEY' => $xAppApiKey,
+            'X-APP-ID' => $app_id,
+        ])->post($externalUrl2, [
             "pageNo" => "",
             "pageSize" => "",
             "orderBy" => "DESC",
@@ -52,13 +55,16 @@ class SettlementController extends Controller
         return $merchant ?? [];
     }
 
-    private function getSettlementDetails($merchant , $id)
+    private function getSettlementDetails($merchant, $id)
     {
+        $app_id = config('services.b2b.x_app_id');
+        $xAppApiKey = config('services.b2b.x_app_api_key');
+        $externalUrl2 = config('services.b2b.external_url_2');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
-            'X-APP-ID' => '000021',
-        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantTransactions', [
+            'X-API-KEY' => $xAppApiKey,
+            'X-APP-ID' => $app_id,
+        ])->post($externalUrl2, [
             "pageNo" => "1",
             "pageSize" => "1",
             "orderBy" => "DESC",

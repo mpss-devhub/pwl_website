@@ -4,47 +4,52 @@
         <div class="p-4 mt-14">
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="p-6 ">
-                   <div class="flex justify-between">
-                    <div class="">
-                        <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20" alt="">
-                    </div>
-                    <div class="">
-                         <p class="text-md font-semibold text-gray-800 mb-6 mx-2 " > <i class="fa-solid fa-user-plus mx-1"></i> New User Registrion</p>
-                    </div>
+                    <div class="flex justify-between">
+                        <div class="">
+                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20" alt="">
+                        </div>
+                        <div class="">
+                            <p class="text-md font-semibold text-gray-800 mb-6 mx-2 "> <i
+                                    class="fa-solid fa-user-plus mx-1"></i> New User Registrion</p>
+                        </div>
 
-                   </div>
-                   <hr>
+                    </div>
+                    <hr>
                     <form action="{{ route('user.store') }}" method="POST" class="space-y-6">
                         @csrf
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Name Field -->
                             <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Full Name</label>
-                                <input type="text" name="name" id="name" required
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Full
+                                    Name</label>
+                                <input type="text" name="name" id="name" required value="{{ old('name') }}"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Email Field -->
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" name="email" id="email" required
+                                <input type="email" name="email" id="email" required value="{{ old('email') }}"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Phone Field -->
                             <div>
-                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-                                <input type="tel" name="phone" id="phone"
+                                <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone
+                                    Number</label>
+                                <input type="tel" name="phone" id="phone" value="{{ old('phone') }}"
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Status Field -->
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                                <select name="status" id="status"
+                                <select name="status" id="status" required
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                    <option value="active">Active</option>
-                                    <option value="inactive">Inactive</option>
+                                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>Active
+                                    </option>
+                                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Inactive
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -57,7 +62,8 @@
                                     <div class="flex items-center">
                                         <input id="permission-{{ $item->id }}" name="permission_id" type="radio"
                                             value="{{ $item->id }}" required
-                                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                            {{ old('permission_id', $selectedPermission ?? '') == $item->id ? 'checked' : '' }}>
                                         <label for="permission-{{ $item->id }}" class="ml-2 text-sm text-gray-700">
                                             {{ $item->user_group }}
                                         </label>
@@ -73,7 +79,8 @@
 
                         <!-- Form Actions -->
                         <div class="flex justify-end space-x-4 pt-4 border-t border-gray-200">
-                            <a href="{{ route('user.show') }}" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500">
+                            <a href="{{ route('user.show') }}"
+                                class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 Cancel
                             </a>
                             <button type="submit" id="submit-btn"

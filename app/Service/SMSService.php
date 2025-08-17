@@ -12,9 +12,9 @@ class SMSService
 {
     public function sendSMS(string $phoneNumber, string $message, string $id): bool
     {
-        $data = sms::where('merchant_id', $id)->select('sms_token', 'sms_url', 'sms_from')->first();
+        $data = sms::where('merchant_id', $id)->select('sms_token', 'sms_from')->first();
         $token = $data['sms_token'];
-        $url = $data['sms_url'];
+        $url = config('services.sms_poh.api_url');
         $from = $data['sms_from'];
         try {
             $response = Http::withHeaders([

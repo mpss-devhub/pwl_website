@@ -23,6 +23,14 @@ Route::get('/', function () {
     return view('main.home');
 })->name('main.home');
 
+Route::get('/contactus', function () {
+    return view('main.contactus');
+})->name('main.contactus');
+
+Route::get('/aboutus', function () {
+    return view('main.aboutus');
+})->name('main.aboutus');
+
 Route::get('/captcha/{config?}', function (Captcha $captcha, $config = 'flat') {
     return $captcha->create($config);
 });

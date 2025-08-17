@@ -16,7 +16,7 @@
                 </button>
 
                 <!-- Filter Content -->
-                <div id="filter-content" class="px-6 pb-6">
+                <div id="filter-content" class="px-6 pb-6 hidden">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <!-- Start Date -->
                         <div class="space-y-2">

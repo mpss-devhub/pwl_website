@@ -65,7 +65,7 @@ class UserController extends Controller
     public function backendcallback(Request $request)
     {
         if ($request->has('data.merchantInfo')){
-            $data_key = 'PZVBLZF6QDNCTAZU';
+            $data_key = config('services.b2b.data_key');
             $merchantInfo = $request->input('data.merchantInfo');
             $encrypted = base64_decode($merchantInfo, true);
             if (!$encrypted) {

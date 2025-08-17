@@ -159,25 +159,6 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', function() {
-                // Filter toggle functionality
-                const toggleButton = document.getElementById('filter-toggle');
-                const filterContent = document.getElementById('filter-content');
-                const filterArrow = document.getElementById('filter-arrow');
-
-                // Check localStorage for filter state
-                const filterVisible = localStorage.getItem('filterVisible');
-                if (filterVisible === 'false') {
-                    filterContent.classList.add('hidden');
-                } else {
-                    filterContent.classList.remove('hidden');
-                    filterArrow.classList.add('rotate-180');
-                }
-
-                toggleButton.addEventListener('click', function() {
-                    const isHidden = filterContent.classList.toggle('hidden');
-                    filterArrow.classList.toggle('rotate-180', !isHidden);
-                    localStorage.setItem('filterVisible', !isHidden);
-                });
 
                 // Search functionality
                 const searchInput = document.getElementById('search-input');

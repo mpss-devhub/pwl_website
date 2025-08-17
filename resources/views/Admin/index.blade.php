@@ -1,6 +1,5 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <div class="p-4 sm:ml-64 bg-gray-200">
         <div class="p-4 rounded-lg mt-14">
             <!-- Stats Cards Row -->
@@ -123,7 +122,8 @@
                 </div>
                 <div class="">
                     <div class="flex items-center justify-center h-full bg-gray-50 rounded-md">
-                        <div id="revenueChart" class="w-full" style="height: 300px;"></div>
+                        <div id="AdminrevenueChart" data-revenue='@json($revenueData)' class="w-full"
+                            style="height: 300px;"></div>
                     </div>
                 </div>
             </div>
@@ -137,9 +137,8 @@
 
                 <div class="">
                     <!-- Chart container - Replace with your actual chart implementation -->
-                    <div class="flex items-center justify-center h-full bg-gray-50 rounded-md">
-                        <div id="userGrowthChart" class="w-full" style="height: 350px;"></div>
-                    </div>
+                    <div id="AdminuserGrowthChart" data-user-growth='@json($userGrowthData)' class="w-full"
+                        style="height: 350px;"></div>
                 </div>
             </div>
             <!-- Bottom Section -->
@@ -203,152 +202,4 @@
 
         </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script>
-        const revenueOptions = {
-            series: [{
-                name: 'Revenue',
-                data: @json($revenueData['data'])
-            }],
-            chart: {
-                type: 'area',
-                height: '100%',
-                toolbar: {
-                    show: false,
-                    tools: {
-                        download: true
-                    }
-                },
-                animations: {
-                    enabled: true,
-                    easing: 'easeinout',
-                    speed: 800
-                },
-                zoom: {
-                    enabled: false
-                }
-            },
-            colors: ['#4f6dab'],
-            fill: {
-                type: 'gradient',
-                gradient: {
-                    shadeIntensity: 1,
-                    opacityFrom: 0.7,
-                    opacityTo: 0.2,
-                    stops: [0, 90, 100]
-                }
-            },
-            stroke: {
-                curve: 'smooth',
-                width: 3
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: @json($revenueData['labels']),
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    }
-                },
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    },
-                    formatter: value => (value / 1_000_000).toFixed(1) + 'M'
-                }
-            },
-            grid: {
-                borderColor: '#e5e7eb',
-                strokeDashArray: 4,
-                padding: {
-                    top: 20,
-                    right: 20,
-                    bottom: 0,
-                    left: 20
-                }
-            },
-            tooltip: {
-                y: {
-                    formatter: value => 'MMK ' + value.toLocaleString()
-                }
-            }
-        };
-
-        const userGrowthOptions = {
-            series: [{
-                name: 'Users',
-                data: @json($userGrowthData['data'])
-            }],
-            chart: {
-                type: 'bar',
-                height: '100%',
-                toolbar: {
-                    show: true,
-                    tools: {
-                        download: true,
-                        reset: true
-                    }
-                }
-            },
-            colors: ['#4f6dab'],
-            plotOptions: {
-                bar: {
-                    borderRadius: 6,
-                    columnWidth: '20%',
-                    endingShape: 'rounded'
-                }
-            },
-            dataLabels: {
-                enabled: false
-            },
-            xaxis: {
-                categories: @json($userGrowthData['labels']),
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    }
-                },
-                axisBorder: {
-                    show: false
-                },
-                axisTicks: {
-                    show: false
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#6b7280'
-                    }
-                }
-            },
-            grid: {
-                borderColor: '#e5e7eb',
-                strokeDashArray: 4
-            },
-            tooltip: {
-                y: {
-                    formatter: val => val + " new users"
-                }
-            }
-        };
-
-        // Render charts
-        const revenueChart = new ApexCharts(document.querySelector("#revenueChart"), revenueOptions);
-        revenueChart.render();
-
-        const userGrowthChart = new ApexCharts(document.querySelector("#userGrowthChart"), userGrowthOptions);
-        userGrowthChart.render();
-    </script>
 @endsection

@@ -26,9 +26,32 @@ class AdminController extends Controller
         $this->user_service = $user_service;
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $merchantInfo =  Merchants::paginate(10);
+        $query = Merchants::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $type = $request->search_type ?? 'all';
+
+            if ($type === 'all') {
+                $query->where(function ($q) use ($search) {
+                    $q->where('user_id', 'like', "%{$search}%")
+                        ->orWhere('merchant_name', 'like', "%{$search}%")
+                        ->orWhere('merchant_Cemail', 'like', "%{$search}%")
+                        ->orWhere('merchant_Cphone', 'like', "%{$search}%")
+                        ->orWhere('merchant_Cname', 'like', "%{$search}%");
+                });
+            } else {
+                $query->where($type, 'like', "%{$search}%");
+            }
+        }
+        if ($request->filled('active_status')) {
+            $status = $request->active_status === 'active' ? 1 : 0;
+            $query->where('status', $status);
+        }
+        $merchantInfo = $query->paginate(10)->withQueryString();
+
         return view('Admin.merchant.index', compact('merchantInfo'));
     }
 
@@ -67,7 +90,6 @@ class AdminController extends Controller
             ['merchant_id' => $request->merchant_id],
             [
                 'sms_from' => $request->sender_name,
-                'sms_url' => $request->api_url,
                 'sms_token' => $request->api_token
             ]
         );
@@ -84,14 +106,14 @@ class AdminController extends Controller
     public function mdr($id)
     {
         $merchant = Merchants::where('user_id', $id)->value('merchant_id');
-       // dd($merchant);
+        // dd($merchant);
         $merchant = $this->admin_service->getMerchantList($merchant);
         $Ewallet = $merchant['data']['dataList'][0]['paymentMdrInfoList'][0]['payments'] ?? [];
         $QR = $merchant['data']['dataList'][0]['paymentMdrInfoList'][1]['payments'] ?? [];
         $Web = $merchant['data']['dataList'][0]['paymentMdrInfoList'][2]['payments'] ?? [];
         $L_C = $merchant['data']['dataList'][0]['paymentMdrInfoList'][3]['payments'] ?? [];
         $G_C = $merchant['data']['dataList'][0]['paymentMdrInfoList'][4]['payments'] ?? [];
-       // dd($Ewallet, $QR, $Web, $L_C, $G_C);
+        // dd($Ewallet, $QR, $Web, $L_C, $G_C);
         return view('Admin.mdr.mdr', compact('Ewallet', 'QR', 'Web', 'L_C', 'G_C'));
     }
 }

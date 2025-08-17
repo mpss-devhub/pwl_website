@@ -1,4 +1,3 @@
-<script src="https://unpkg.com/alpinejs" defer></script>
 
 <div x-show="open" x-transition class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" x-cloak>
     <div class="bg-[#fbfcfffd] rounded-xl shadow-xl w-full max-w-md p-4 sm:p-6 relative border border-[#BFC7EE] mx-auto">

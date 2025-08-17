@@ -7,11 +7,8 @@
     <title>Reset Password</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
-    <link href="{{ asset('/main/login.css') }}" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <script src="{{ asset('/main/js/loading.js') }}"></script>
+   <link rel="stylesheet" href="{{ asset('common/main/css/login.css') }}">
+    <script src="{{ asset('common/main/js/loading.js') }}"></script>
 </head>
 
 <body class="flex items-center justify-center min-h-screen bg-gray-100" style="font-family: 'Libre Baskerville', serif;">

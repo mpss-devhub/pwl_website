@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 use App\Models\User;
 use App\Models\Links;
@@ -82,10 +82,7 @@ Route::middleware(['admin'])
     Route::get('/sms&email/delete/{id}',[AdminController::class,'delete'])->name('sms.delete');
 
     // SMS & Email Management
-    Route::get('/link', function () {
-        $links = Links::latest()->get();
-        return view('Admin.links.index', compact('links'));
-    })->name('admin.links');
+    Route::get('/link', [AdminSmScontroller::class,'index'])->name('admin.links');
 
     Route::post('/sms/details', [AdminSmScontroller::class, 'show'])->name('admin.sms.details');
     Route::post('/sms/email/resent', [AdminSmScontroller::class, 'resent'])->name('admin.sms.resent');

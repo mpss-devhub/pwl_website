@@ -13,20 +13,24 @@ class SettlementController extends Controller
 {
     //
 
-    public function show(){
+    public function show()
+    {
         $data = $this->getSettlementData();
-
-        return view('Admin.Settlement.index',compact('data'));
+        //dd($data);
+        return view('Admin.Settlement.index', compact('data'));
     }
 
 
     private function getSettlementData()
     {
+        $app_id = config('services.b2b.x_app_id');
+        $xAppApiKey = config('services.b2b.x_app_api_key');
+        $externalUrl = config('services.b2b.external_url_2');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
-            'X-APP-ID' => '000021',
-        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantTransactions', [
+            'X-API-KEY' => $xAppApiKey,
+            'X-APP-ID' => $app_id,
+        ])->post($externalUrl, [
             "pageNo" => "",
             "pageSize" => "",
             "orderBy" => "DESC",
@@ -44,13 +48,16 @@ class SettlementController extends Controller
         return $merchant ?? [];
     }
 
-     private function getSettlementDetails($merchant,$id)
+    private function getSettlementDetails($merchant, $id)
     {
+        $app_id = config('services.b2b.x_app_id');
+        $xAppApiKey = config('services.b2b.x_app_api_key');
+        $externalUrl2 = config('services.b2b.external_url_2');
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
-            'X-API-KEY' => '559fc83d-7eae-4e2f-abbe-1a637cf6d817',
-            'X-APP-ID' => '000021',
-        ])->post('https://test.octoverse.com.mm/api/externalb2b/getMerchantTransactions', [
+            'X-API-KEY' => $xAppApiKey,
+            'X-APP-ID' => $app_id,
+        ])->post($externalUrl2, [
             "pageNo" => "1",
             "pageSize" => "1",
             "orderBy" => "DESC",
@@ -68,15 +75,15 @@ class SettlementController extends Controller
         return $merchant ?? [];
     }
 
-    public function details($merchant,$id)
+    public function details($merchant, $id)
     {
-        $settlement = $this->getSettlementDetails($merchant,$id);
+        $settlement = $this->getSettlementDetails($merchant, $id);
         $details = $settlement['data']['dataList'][0];
 
         $data = Tnx::where('tranref_no', $details['merchantInvoiceNo'])->first();
-        if(!$data){
+        if (!$data) {
             abort(404, 'Transaction not found');
         }
-        return view('Admin.Settlement.details', compact('data','details'));
+        return view('Admin.Settlement.details', compact('data', 'details'));
     }
 }

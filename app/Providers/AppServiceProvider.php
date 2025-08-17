@@ -29,11 +29,13 @@ class AppServiceProvider extends ServiceProvider
         View::composer('*', function ($view) {
             if (Auth::check()) {
                 $userId = Auth::user()->user_id;
-                $count = announcement::where('merchant_id', '"all"')
-                    ->orWhereJsonContains('merchant_id', $userId)
-                     ->where('created_at', '>=', Carbon::now()->subDay())
-                    ->count();
 
+                $count = Announcement::where(function ($query) use ($userId) {
+                    $query->where('merchant_id', '"all"')
+                        ->orWhereJsonContains('merchant_id', $userId);
+                })
+                    ->where('created_at', '>=', Carbon::now()->subDay())
+                    ->count();
                 $view->with('notificationCount', $count);
             }
         });

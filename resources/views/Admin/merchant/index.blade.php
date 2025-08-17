@@ -55,71 +55,82 @@ Login At: www.paywithlink.com/login
                 </button>
 
                 <div id="filter-content" class="px-6 pb-6">
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-
-                        <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-800">Search</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20  20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                    <form method="GET" action="{{ route('merchant.show') }}">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-800">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" name="search" id="search-input"
+                                        placeholder="Search by ID, name, email or phone" value="{{ request('search') }}"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
-                                <input type="text" id="search-input" placeholder="Search by ID, name, email or phone"
-                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                            </div>
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700">Search By</label>
+                                <select name="search_type" id="search-type"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <option value="all" {{ request('search_type') == 'all' ? 'selected' : '' }}>All
+                                        Fields</option>
+                                    <option value="id" {{ request('search_type') == 'id' ? 'selected' : '' }}>Merchant
+                                        ID</option>
+                                    <option value="name" {{ request('search_type') == 'name' ? 'selected' : '' }}>Merchant
+                                        Name</option>
+                                    <option value="email" {{ request('search_type') == 'email' ? 'selected' : '' }}>Email
+                                    </option>
+                                    <option value="phone" {{ request('search_type') == 'phone' ? 'selected' : '' }}>Phone
+                                    </option>
+                                    <option value="contact_name"
+                                        {{ request('search_type') == 'contact_name' ? 'selected' : '' }}>Contact Name
+                                    </option>
+
+                                </select>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="block text-sm font-medium text-gray-700">Status</label>
+                                <select name="active_status" id="active-status"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <option value="">All</option>
+                                    <option value="active" {{ request('active_status') == 'active' ? 'selected' : '' }}>
+                                        Active</option>
+                                    <option value="inactive"
+                                        {{ request('active_status') == 'inactive' ? 'selected' : '' }}>Not Active</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="space-y-1">
-                            <label class="block text-sm font-medium text-gray-700">Search By</label>
-                            <select id="search-type"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                <option value="all">All Fields</option>
-                                <option value="id">Merchant ID</option>
-                                <option value="name">Merchant Name</option>
-                                <option value="email">Email</option>
-                                <option value="phone">Phone</option>
-                                <option value="contact">Contact Name</option>
-                                <option value="status">Status</option>
-                            </select>
-                        </div>
-                    </div>
+                        <!-- Buttons -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <div class="w-full">
+                                <a href="{{ route('merchant.create') }}"
+                                    class="bg-gray-700 hover:bg-gray-800 text-white w-full inline-flex justify-center items-center px-4 py-2 rounded-md transition">
+                                    <i class="fa-solid fa-user-plus mr-2"></i> Create New Merchant
+                                </a>
+                            </div>
 
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                        <div class="w-full">
-                            <a href="{{ route('merchant.create') }}"
-                                class="bg-gray-700 hover:bg-gray-800 text-white w-full inline-flex justify-center items-center px-4 py-2 rounded-md transition">
-                                <i class="fa-solid fa-user-plus mr-2"></i> Create New Merchant
-                            </a>
+                            <div class="flex gap-2">
+                                <button type="submit"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white w-full px-4 py-2 rounded-md flex items-center justify-center">
+                                    <i class="fa-solid fa-magnifying-glass mr-2"></i> Search
+                                </button>
+                                <a href="{{ route('merchant.show') }}"
+                                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 w-full px-4 py-2 rounded-md flex items-center justify-center">
+                                    <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset
+                                </a>
+                            </div>
                         </div>
-
-                        <div class="flex gap-2">
-                            <button id="search-button"
-                                class="bg-blue-600 hover:bg-blue-700 text-white w-full px-4 py-2 rounded-md flex items-center justify-center">
-                                <i class="fa-solid fa-magnifying-glass mr-2"></i> Search
-                            </button>
-                            <button id="reset-button"
-                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 w-full px-4 py-2 rounded-md flex items-center justify-center">
-                                <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset
-                            </button>
-                        </div>
-
-                        <div class="flex gap-2">
-                            <button
-                                class="bg-gray-800 hover:bg-gray-700 text-white w-full px-4 py-2 rounded-md flex items-center justify-center">
-                                <i class="fa-solid fa-file-csv mr-2"></i> Export CSV
-                            </button>
-                            <button
-                                class="bg-green-600 hover:bg-green-700 text-white w-full px-4 py-2 rounded-md flex items-center justify-center">
-                                <i class="fa-solid fa-file-excel mr-2"></i> Export Excel
-                            </button>
-                        </div>
-                    </div>
+                    </form>
                 </div>
+
+
             </div>
 
             <div class="bg-white rounded-lg shadow overflow-hidden">
@@ -196,100 +207,4 @@ Login At: www.paywithlink.com/login
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter toggle functionality
-            const toggleButton = document.getElementById('filter-toggle');
-            const filterContent = document.getElementById('filter-content');
-            const filterArrow = document.getElementById('filter-arrow');
-
-            // Check localStorage for filter state
-            const filterVisible = localStorage.getItem('filterVisible');
-            if (filterVisible === 'false') {
-                filterContent.classList.add('hidden');
-            } else {
-                filterContent.classList.remove('hidden');
-                filterArrow.classList.add('rotate-180');
-            }
-
-            toggleButton.addEventListener('click', function() {
-                const isHidden = filterContent.classList.toggle('hidden');
-                filterArrow.classList.toggle('rotate-180', !isHidden);
-                localStorage.setItem('filterVisible', !isHidden);
-            });
-
-            // Search functionality
-            const searchInput = document.getElementById('search-input');
-            const searchType = document.getElementById('search-type');
-            const searchButton = document.getElementById('search-button');
-            const resetButton = document.getElementById('reset-button');
-            const tableRows = document.querySelectorAll('tbody tr');
-
-            function performSearch() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const searchField = searchType.value;
-
-                tableRows.forEach(row => {
-                    let rowText;
-
-                    if (searchField === 'all') {
-                        // Search all columns except actions
-                        rowText = Array.from(row.cells)
-                            .slice(0, -1) // exclude last cell (actions)
-                            .map(cell => cell.textContent.toLowerCase())
-                            .join(' ');
-                    } else {
-                        // Search specific column
-                        let cellIndex;
-                        switch (searchField) {
-                            case 'id':
-                                cellIndex = 1;
-                                break;
-                            case 'name':
-                                cellIndex = 2;
-                                rowText = row.cells[cellIndex].querySelector('.merchant-name')?.textContent
-                                    .toLowerCase() || '';
-                                break;
-                            case 'email':
-                                cellIndex = 3;
-                                break;
-                            case 'phone':
-                                cellIndex = 4;
-                                break;
-                            case 'contact':
-                                cellIndex = 5;
-                                break;
-                            case 'status':
-                                cellIndex = 6;
-                                rowText = row.cells[cellIndex].querySelector('span')?.textContent
-                                    .toLowerCase() || '';
-                                break;
-                            default:
-                                cellIndex = -1;
-                        }
-
-                        if (cellIndex >= 0 && searchField !== 'name' && searchField !== 'status') {
-                            rowText = row.cells[cellIndex].textContent.toLowerCase();
-                        }
-                    }
-
-                    if (rowText.includes(searchTerm)) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            }
-            searchInput.addEventListener('input', performSearch);
-            searchButton.addEventListener('click', performSearch);
-
-            resetButton.addEventListener('click', function() {
-                searchInput.value = '';
-                searchType.value = 'all';
-                tableRows.forEach(row => {
-                    row.style.display = '';
-                });
-            });
-        });
-    </script>
 @endsection

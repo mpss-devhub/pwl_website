@@ -21,6 +21,46 @@ class AdminSmScontroller extends Controller
     {
         $this->SMSService = $SMSService;
     }
+
+    public function index(Request $request)
+    {
+        $links = Links::query()
+            ->when(
+                $request->start_date,
+                fn($q) =>
+                $q->where('created_at', '>=', $request->start_date)
+            )
+            ->when(
+                $request->end_date,
+                fn($q) =>
+                $q->where('created_at', '<=', $request->end_date)
+            )
+            ->when(
+                $request->notification_type,
+                fn($q) =>
+                $q->where('link_type', $request->notification_type)
+            )
+            ->when(
+                $request->status,
+                fn($q) =>
+                $q->where('link_status', $request->status)
+            )
+            ->when(
+                $request->search,
+                fn($q) =>
+                $q->where(function ($query) use ($request) {
+                    $query->where('link_invoiceNo', 'like', "%{$request->search}%")
+                        ->orWhere('link_name', 'like', "%{$request->search}%")
+                        ->orWhere('link_amount', 'like', "%{$request->search}%");
+                })
+            )
+            ->latest()
+            ->paginate(10)
+            ->withQueryString();
+
+        return view('Admin.links.index', compact('links'));
+    }
+
     public function show(Request $request)
     {
         $id = $request->id;
@@ -99,7 +139,7 @@ class AdminSmScontroller extends Controller
         return Excel::download(new AllMerchantLinksExport, 'links.xlsx');
     }
 
-     public function edit($id)
+    public function edit($id)
     {
         $link = Links::findOrFail($id);
         return view('Admin.links.edit', compact('link'));
@@ -122,6 +162,6 @@ class AdminSmScontroller extends Controller
             'link_currency'      => $validatedData['currency'],
         ]);
 
-        return redirect()->back()->with('success', 'Link updated successfully.');
+        return redirect()->back()->with('Success', 'Link updated successfully.');
     }
 }

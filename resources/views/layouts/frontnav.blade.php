@@ -18,16 +18,14 @@
             <a href="{{ route('main.home') }}" class="hover:text-purple-300  fw-bold text-gray-700 " >HOME</a>
           </li>
           <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">ABOUT US</a>
+            <a href="{{ route('main.aboutus') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">ABOUT US</a>
           </li>
-          <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">SERVICES</a>
-          </li>
+
           <li>
             <a href="{{ route('login') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
           </li>
           <li>
-            <a href="#" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACT US</a>
+            <a href="{{ route('main.contactus') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACT US</a>
           </li>
         </ul>
       </div>
