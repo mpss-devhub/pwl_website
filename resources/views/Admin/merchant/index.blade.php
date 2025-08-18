@@ -1,7 +1,6 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
     @if (session('success'))
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 Swal.fire({
@@ -54,7 +53,7 @@ Login At: www.paywithlink.com/login
                     </svg>
                 </button>
 
-                <div id="filter-content" class="px-6 pb-6">
+                <div id="filter-content" class="px-6 pb-6 hidden">
                     <form method="GET" action="{{ route('merchant.show') }}">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                             <div class="space-y-2">

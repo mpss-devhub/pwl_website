@@ -16,7 +16,8 @@
                 </button>
 
                 <!-- Filter Content -->
-                <div id="filter-content" class="px-6 pb-6 hidden">
+               <form action="{{ route('merchant.sms') }}" method="GET">
+                 <div id="filter-content" class="px-6 pb-6 hidden">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
                         <!-- Start Date -->
                         <div class="space-y-2">
@@ -145,6 +146,7 @@
                         </div>
                     </div>
                 </div>
+               </form>
             </div>
 
             <!-- Table -->
@@ -165,15 +167,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200" id="links-body">
                             @foreach ($links as $item)
-                                <tr class="link-row hover:bg-gray-50"
-                                    data-id="{{ $loop->iteration }}"
-                                    data-message="{{ $item->link_url }}"
-                                    data-to="{{ $item->link_phone }}"
-                                    data-name="{{ $item->link_name }}"
-                                    data-type="{{ $item->link_type }}"
-                                    data-status="{{ $item->link_status }}"
-                                    data-track="{{ $item->link_click_status }}"
-                                    data-date="{{ $item->created_at }}">
+                                <tr class="link-row hover:bg-gray-50">
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_url }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_phone }}</td>
@@ -228,92 +222,9 @@
                     </table>
                 </div>
             </div>
+            <div class="mt-4">
+                {{ $links->links('pagination::tailwind') }}
+            </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Toggle filter visibility
-            const toggleButton = document.getElementById('filter-toggle');
-            const filterContent = document.getElementById('filter-content');
-            const filterArrow = document.getElementById('filter-arrow');
-
-            toggleButton.addEventListener('click', function () {
-                const isHidden = filterContent.classList.toggle('hidden');
-                filterArrow.classList.toggle('rotate-180', !isHidden);
-                localStorage.setItem('filterVisible', !isHidden);
-            });
-
-            // Restore filter visibility from localStorage
-            const filterVisible = localStorage.getItem('filterVisible');
-            if (filterVisible === 'false') {
-                filterContent.classList.add('hidden');
-                filterArrow.classList.remove('rotate-180');
-            }
-
-            // Filter function
-            function filterLinks() {
-                const startDate = document.getElementById('start-date').value;
-                const endDate = document.getElementById('end-date').value;
-                const notificationType = document.getElementById('notification-type').value;
-                const status = document.getElementById('status').value;
-                const searchTerm = document.getElementById('search').value.toLowerCase();
-
-                document.querySelectorAll('.link-row').forEach(row => {
-                    const rowDate = row.dataset.date;
-                    const rowType = row.dataset.type;
-                    const rowStatus = row.dataset.status;
-                    const rowMessage = row.dataset.message.toLowerCase();
-                    const rowTo = row.dataset.to.toLowerCase();
-                    const rowName = row.dataset.name.toLowerCase();
-                    const rowId = row.dataset.id.toString();
-
-                    // Date filter
-                    let dateMatch = true;
-                    if (startDate && rowDate) {
-                        dateMatch = new Date(rowDate) >= new Date(startDate);
-                    }
-                    if (endDate && rowDate) {
-                        dateMatch = dateMatch && new Date(rowDate) <= new Date(endDate);
-                    }
-
-                    // Notification type filter
-                    const typeMatch = !notificationType || rowType === notificationType;
-
-                    // Status filter
-                    const statusMatch = !status || rowStatus === status;
-
-                    // Search filter
-                    const searchMatch = !searchTerm ||
-                        rowMessage.includes(searchTerm) ||
-                        rowTo.includes(searchTerm) ||
-                        rowName.includes(searchTerm) ||
-                        rowId.includes(searchTerm);
-
-                    // Show/hide row
-                    row.style.display = (dateMatch && typeMatch && statusMatch && searchMatch) ? '' : 'none';
-                });
-            }
-
-            // Reset function
-            function resetFilters() {
-                document.getElementById('start-date').value = '';
-                document.getElementById('end-date').value = '';
-                document.getElementById('notification-type').value = '';
-                document.getElementById('status').value = '';
-                document.getElementById('search').value = '';
-
-                document.querySelectorAll('.link-row').forEach(row => row.style.display = '');
-            }
-
-            // Event listeners
-            document.getElementById('search-btn').addEventListener('click', filterLinks);
-            document.getElementById('reset-btn').addEventListener('click', resetFilters);
-            document.getElementById('search').addEventListener('input', filterLinks);
-            document.getElementById('notification-type').addEventListener('change', filterLinks);
-            document.getElementById('status').addEventListener('change', filterLinks);
-            document.getElementById('start-date').addEventListener('change', filterLinks);
-            document.getElementById('end-date').addEventListener('change', filterLinks);
-        });
-    </script>
 @endsection

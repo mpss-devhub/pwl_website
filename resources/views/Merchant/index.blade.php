@@ -67,15 +67,14 @@
                 </div>
             </div>
 
-            <!-- Revenue Chart - Improved Responsiveness -->
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
                 <div class="mb-4 flex justify-start mx-2">
                     <form method="GET" action="{{ route('merchant.dashboard') }}" class="flex gap-2">
                         {{-- Year Filter --}}
-                        <label class="flex items-center gap-1">
+                        <label class="flex items-center gap-2">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" onchange="this.form.submit()"
-                                class="py-1 rounded-md text-sm focus:ring focus:ring-blue-300">
+                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
@@ -85,10 +84,10 @@
                         </label>
 
                         {{-- Month Filter --}}
-                        <label class="flex items-center gap-1">
+                        <label class="flex items-center gap-2 mx-5">
                             <span class="text-sm text-gray-700">Month</span>
                             <select name="month" onchange="this.form.submit()"
-                                class=" py-1 border rounded-md text-sm focus:ring focus:ring-blue-300"
+                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900"
                                 {{ request('year') === 'all' ? 'disabled' : '' }}>
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
                                     {{ request('year') === 'all' ? 'Select A Year ' : 'All' }}
@@ -153,7 +152,7 @@
                 </div>
 
                 <!-- Recent Transactions Table - Improved Responsiveness -->
-                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
+                <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Transactions</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -225,7 +224,7 @@
                 },
                 colors: ['#4f6dab'],
                 dataLabels: {
-                    enabled: false
+                    enabled: true,
                 },
                 stroke: {
                     curve: 'smooth',

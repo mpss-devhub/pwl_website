@@ -31,9 +31,6 @@ Route::get('/aboutus', function () {
     return view('main.aboutus');
 })->name('main.aboutus');
 
-Route::get('/captcha/{config?}', function (Captcha $captcha, $config = 'flat') {
-    return $captcha->create($config);
-});
 
 //Change Password
 Route::get('/changepassword', function () {

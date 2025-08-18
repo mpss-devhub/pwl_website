@@ -7,7 +7,7 @@
             </div>
         </div>
 
-        <div class="text-[13px] ml-2 text-gray-600 space-y-2">
+        <div class="text-xs ml-2 text-gray-600 space-y-2">
             <p>Merchant Email : {{ $details['merchant_Cemail'] }}</p>
             <p>Merchant Address : {{ $details['merchant_address'] }}</p>
         </div>
@@ -17,7 +17,7 @@
             <p class="text-center text-[#3C425D] mx-28 font-semibold text-base"
                 style="font-family: 'Poppins'">INVOICE</p>
 
-            <div class="space-y-4 mt-8 text-sm text-gray-700" style="font-family: 'Libre Baskerville'">
+            <div class="space-y-4 mt-8 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
                 <!-- Merchant Info -->
                 <div class="space-y-2">
                     <div class="grid grid-cols-3 ">

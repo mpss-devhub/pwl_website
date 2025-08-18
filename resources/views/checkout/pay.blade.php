@@ -7,17 +7,18 @@
             <img src="{{ $merchant->merchant_logo }}" alt="Merchant Logo" style="border-radius: 100px" />
         </div>
     </div>
-    <div class="text-[13px] ml-2 text-gray-600 space-y-2">
+    <div class="text-xs ml-2 text-gray-600 space-y-1">
         <p>Merchant Email : {{ $merchant->merchant_Cemail }}</p>
         <p>Merchant Address : {{ $merchant->merchant_address }}</p>
     </div>
 
     @if ($data)
         @if (is_string($data))
-            <div class="border border-[#bdc9fe] rounded-lg p-6 shadow  bg-[#f9faff]">
+            <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                 <!-- Invoice Header -->
                 <div class="text-center">
-                    <div role="status">
+                   <p class="text-center text-gray-700 text-xs py-2" > Please Do Not Reload The Page</p>
+                    <div role="status mt-2">
                         <svg aria-hidden="true"
                             class="inline w-9 h-9 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
                             viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,14 +31,14 @@
                         </svg>
                         <span class="sr-only">Loading...</span>
                     </div>
-                    <p class="text-gray-700 text-sm text-center py-2 mt-4" x-data>
+                    <p class="text-gray-700  text-center py-2 mt-4 text-[13px]" x-data>
                         You will receive pay request notification at your mobile wallet and make a confirm payment
                         at your mobile wallet to complete the payment.
                     </p>
                 </div>
                 <hr class="border-t border-dotted border-gray-400 my-3">
 
-                <div class="text-sm mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
+                <div class="text-[13px] mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
                     <!-- Merchant Info -->
                     <div class="space-y-2">
                         <div class="grid grid-cols-3">
@@ -69,13 +70,14 @@
                 </script>
             @endif
             @if (!empty($data['qrImg']))
-                <div class="border border-[#bdc9fe] rounded-lg p-6 shadow  bg-[#f9faff]">
+                <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                     <!-- Invoice Header -->
-                    <div class="text-center text-gray-800">
+                    <div class="text-center text-gray-800 text-[13px]">
+                        <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please Do Not Reload The Page</p>
                         <div class="flex justify-center ">
                             <img src="{{ $data['qrImg'] }}" alt="QR Code" class="w-48 h-48 mx-auto" />
                         </div>
-                        <p class="text-sm text-center py-2" x-data>
+                        <p class="text-[13px] text-center py-2" x-data>
                         <div role="status" class="inline">
                             <svg aria-hidden="true"
                                 class="inline w-4 h-4 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
@@ -96,7 +98,7 @@
                     </div>
                     <hr class="border-t border-dotted border-gray-400 my-3">
 
-                    <div class="text-sm mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
+                    <div class="text-[13px] mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
                         <!-- Merchant Info -->
                         <div class="space-y-2">
                             <div class="grid grid-cols-3">
@@ -133,9 +135,10 @@
                 </script>
             @endif
             @if (!empty($data['redirectUrl']))
-                <div class="border border-[#bdc9fe] rounded-lg p-6 shadow  bg-[#f9faff]">
+                <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                     <!-- Invoice Header -->
                     <div class="text-center">
+                      <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please Do Not Reload The Page</p>
                         <div role="status">
                             <svg aria-hidden="true"
                                 class="inline w-9 h-9 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
@@ -149,19 +152,19 @@
                             </svg>
                             <span class="sr-only">Loading...</span>
                         </div>
-                        <div class="text-gray-700 text-sm">
+                        <div class="text-gray-700 text-[13px]">
                             <p class=" text-center py-2 mt-4" x-data>
                                 Web and Card Payment can be pay through this button for safe and secure payment .
                             </p>
                             <button
                                 class="mt-1 shadow-sm border py-2 px-3 rounded-lg hover:bg-[#C2CDF1] text-white bg-[#7589E1]">
-                                <a href="">Click Me</a>
+                                <a href="{{ $data['redirectUrl'] }}">Click Me</a>
                             </button>
                         </div>
                     </div>
                     <hr class="border-t border-dotted border-gray-400 my-3">
 
-                    <div class="text-sm mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
+                    <div class="text-[13px] mt-2 text-gray-700" style="font-family: 'Libre Baskerville'">
                         <!-- Merchant Info -->
                         <div class="space-y-2">
                             <div class="grid grid-cols-3">
@@ -190,8 +193,36 @@
         @endif
     @endif
     @if (!$data)
-        Please Connect to admin
-        <a href=""><i class="fa-solid fa-triangle-exclamation bg-red-600"></i></a>
+        <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff] ">
+            <p class="text-center  mx-28 font-semibold text-base text-gray-700" style="font-family: 'Poppins'">Fail</p>
+
+            <div class="space-y-4 mt-6 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
+
+                <p class="text-sm text-center px-5">Something Went Worng Please ask merchant for more information</p>
+                <hr class="border-t border-dotted border-gray-400 my-4">
+                <!-- Merchant Info -->
+                <div class="space-y-2">
+                    <div class="grid grid-cols-3 ">
+                        <span class="">Invoice No</span>
+                        <span class="text-center">:</span>
+                        <span>{{ $link->link_invoiceNo }}</span>
+                    </div>
+                    <div class="grid grid-cols-3 ">
+                        <span class="">Expiry Date</span>
+                        <span class="text-center">:</span>
+                        <span>{{ $link->link_expired_at }}</span>
+                    </div>
+                    <div class="grid grid-cols-3">
+                        <span class="">Amount</span>
+                        <span class="text-center">
+
+                        </span>
+                        <span>{{ $link->link_amount }} {{ $link->link_currency }}</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     @endif
     <script>
         //Redirect
@@ -209,5 +240,6 @@
                     .catch((err) => console.error("Error checking payment:", err));
             }, 2000);
         });
+
     </script>
 @endsection

@@ -93,11 +93,8 @@ class PaymentService
         ])->post($authTokenUrl, [
             'payData' => $jwt,
         ]);
-        if ($response->failed()) {
-            return [
-                'status' => 'error',
-                'message' => 'Failed ',
-            ];
+        if ($response['data'] === null) {
+            abort(404, 'Page Expired');
         }
         $token = $response['data'];
         $decode = $this->get($token, $secret_key);

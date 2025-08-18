@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/main/css/login.css') }}">
     <script src="{{ asset('common/main/js/loading.js') }}"></script>
 </head>
@@ -53,13 +53,15 @@
 
                         <div class="mx-5">
                             <div class=""></div>
-                            <div class="flex items-center justify-center space-x-4">
-                                <button type="button"
-                                    onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}?'+Math.random()">
-                                    <i class="fa-solid fa-rotate-right"></i>
-                                </button>
-                                <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha"
-                                    class="w-32 h-12 rounded">
+                            <div class="mx-5">
+                                <div class="flex items-center justify-center space-x-4">
+                                    <button type="button"
+                                        onclick="document.getElementById('captcha-img').src='{{ captcha_src('flat') }}?'+Math.random()">
+                                        <i class="fa-solid fa-rotate-right"></i>
+                                    </button>
+                                    <img id="captcha-img" src="{{ captcha_src('flat') }}" alt="captcha"
+                                        class="w-32 h-12 rounded">
+                                </div>
                             </div>
                             <div class=""></div>
                         </div>

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Merchant;
 
+use App\Models\Tnx;
 use App\Models\Links;
+use App\Models\Merchants;
 use App\Service\SMSService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Merchants;
-use App\Models\Tnx;
+use Illuminate\Support\Facades\Auth;
 
 class SMSController extends Controller
 {
@@ -18,6 +19,40 @@ class SMSController extends Controller
     {
         $this->SMSService = $SMSService;
     }
+
+    public function index(Request $request)
+    {
+        $id = Auth::user()->user_id;
+        $m_id = Merchants::where('user_id', $id)->select('merchant_id')->first();
+        $query = Links::where('created_by', $m_id['merchant_id'])
+            ->whereNotIn('id', function ($q) {
+                $q->select('link_id')->from('tnxes');
+            });
+        if ($request->filled('start-date')) {
+            $query->where('created_at', '>=', $request->input('start-date'));
+        }
+        if ($request->filled('end-date')) {
+            $query->where('created_at', '<=', $request->input('end-date'));
+        }
+        if ($request->filled('notification-type')) {
+            $query->where('link_type', $request->input('notification-type'));
+        }
+        if ($request->filled('status')) {
+            $query->where('link_status', $request->input('status'));
+        }
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('link_invoiceNo', 'like', "%$search%")
+                    ->orWhere('link_name', 'like', "%$search%")
+                    ->orWhere('link_amount', 'like', "%$search%");
+            });
+        }
+
+        $links = $query->latest('created_at')->paginate(10)->withQueryString();
+        return view('Merchant.sms.index', compact('links'));
+    }
+
 
     public function show(Request $request)
     {
@@ -35,7 +70,7 @@ class SMSController extends Controller
         $link_id = $request->id;
         $link = Links::where('id', $link_id)->first();
         $method = $link['link_type'];
-        $Merchant = Merchants::where('merchant_id', $link['merchant_id'])->select('merchant_name','merchant_Cemail','merchant_address')->first();
+        $Merchant = Merchants::where('merchant_id', $link['merchant_id'])->select('merchant_name', 'merchant_Cemail', 'merchant_address')->first();
         $id = $link['merchant_id'];
         $Sendername = $Merchant['merchant_name'];
         if ($method == 'S') {
@@ -48,8 +83,8 @@ class SMSController extends Controller
             $this->SMSService->sendSMS($phoneNumber, $message, $id);
         }
         if ($method == 'E') {
-           $message = [
-               $link['link_invoiceNo'],
+            $message = [
+                $link['link_invoiceNo'],
                 $link['link_amount'],
                 $link['link_currency'],
                 $Sendername,
@@ -64,7 +99,7 @@ class SMSController extends Controller
                 'remark' => $link['link_description'] ?? 'N/A',
             ];
             $email = $link['link_email'];
-           // dd($message,$details,$email,$link);
+            // dd($message,$details,$email,$link);
             $this->SMSService->sendEmail($email, 'Octoverse Payment Link', $message, $details);
         }
         $notifatcion = '';

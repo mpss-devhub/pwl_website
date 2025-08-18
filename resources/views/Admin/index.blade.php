@@ -89,7 +89,7 @@
                         <label class="flex items-center gap-1">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" onchange="this.form.submit()"
-                                class="py-1 rounded-md text-sm focus:ring focus:ring-blue-300">
+                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
@@ -102,7 +102,7 @@
                         <label class="flex items-center gap-1">
                             <span class="text-sm text-gray-700">Month</span>
                             <select name="month" onchange="this.form.submit()"
-                                class=" py-1 border rounded-md text-sm focus:ring focus:ring-blue-300"
+                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900"
                                 {{ request('year') === 'all' ? 'disabled' : '' }}>
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
                                     {{ request('year') === 'all' ? 'Select A Year ' : 'All' }}

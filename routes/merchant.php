@@ -58,14 +58,7 @@ Route::middleware(['merchant'])->group(function () {
 
 
     //Tnx Management
-    Route::get('/merchant/transactions', function () {
-        $id = Auth::user()->user_id;
-        $Merchant = Merchants::where('user_id', $id)->select('merchant_id')->first();
-        $tnx = Tnx::where('created_by', $Merchant['merchant_id'])
-            ->latest()
-            ->get();
-        return view('Merchant.tnx.transactions', compact('tnx'));
-    })->name('merchant.tnx');
+    Route::get('/merchant/transactions',[TnxController::class , 'index'])->name('merchant.tnx');
     Route::post('/tnx/Links/detail', [TnxController::class, 'detail'])->name('tnx.detail');
     Route::post('/tnx/Payment/detail', [TnxController::class, 'paymentdetail'])->name('Payment.detail');
     Route::get('/Merchant/tnx/Exports', function () {
@@ -79,17 +72,7 @@ Route::middleware(['merchant'])->group(function () {
 
 
     //SMS&Email Management
-    Route::get('/merchant/sms&email', function () {
-        $id = Auth::user()->user_id;
-        $m_id = Merchants::where('user_id', $id)->select('merchant_id')->first();
-        $links = Links::where('created_by', $m_id['merchant_id'])
-            ->whereNotIn('id', function ($query) {
-                $query->select('link_id')->from('tnxes');
-            })
-            ->latest('created_at')
-            ->get();
-        return view('Merchant.sms.index', compact('links'));
-    })->name('merchant.sms');
+    Route::get('/merchant/sms&email',[SMSController::class,'index'])->name('merchant.sms');
     Route::post('/sms/details', [SMSController::class, 'show'])->name(name: 'sms.details');
     Route::post('sms/email/resent', [SMSController::class, 'resent'])->name('sms.resent');
 

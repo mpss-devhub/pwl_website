@@ -19,7 +19,7 @@
     }
 }
 
-@keyframes bounce {
+@keyframes gentle-bounce {
     0%,
     100% {
         transform: translateY(0);
@@ -29,17 +29,17 @@
     }
 }
 
-/* Continuous animations */
+.animate-gentle-bounce {
+    animation: gentle-bounce 8s ease-in-out infinite;
+}
+
+
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
 
 .animate-pulse {
     animation: pulse 4s ease-in-out infinite;
-}
-
-.animate-bounce {
-    animation: bounce 3s ease-in-out infinite;
 }
 
 /* Scroll-triggered animations (keep your existing styles) */
