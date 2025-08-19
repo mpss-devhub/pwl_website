@@ -74,11 +74,12 @@
                         <label class="flex items-center gap-2">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" onchange="this.form.submit()"
-                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900">
+                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
-                                        {{ $y }}</option>
+                                        {{ $y }}
+                                    </option>
                                 @endfor
                             </select>
                         </label>
@@ -87,10 +88,10 @@
                         <label class="flex items-center gap-2 mx-5">
                             <span class="text-sm text-gray-700">Month</span>
                             <select name="month" onchange="this.form.submit()"
-                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900"
-                                {{ request('year') === 'all' ? 'disabled' : '' }}>
+                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900"
+                                @if (request('year') === 'all') disabled @endif>
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
-                                    {{ request('year') === 'all' ? 'Select A Year ' : 'All' }}
+                                    {{ request('year') === 'all' ? 'Select A Year' : 'All' }}
                                 </option>
                                 @if (request('year') !== 'all')
                                     @foreach (range(1, 12) as $m)

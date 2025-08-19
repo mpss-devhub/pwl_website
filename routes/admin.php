@@ -42,8 +42,8 @@ Route::middleware(['admin'])
             return view('Admin.user.update', compact('users', 'permi'));
         })->name('user.show.update');
         Route::get('/UserCreate', function () {
-            $per = Permissions::all();
-            return view('Admin.user.create', compact('per'));
+            $permi = Permissions::all();
+            return view('Admin.user.create', compact('permi'));
         })->name('user.create');
         Route::get('/User/Delete/{id}', [UserController::class, 'delete'])->name('user.delete');
         Route::post('/Create', [UserController::class, 'store'])->name('user.store');

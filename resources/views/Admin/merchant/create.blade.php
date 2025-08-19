@@ -134,7 +134,8 @@
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name <span
                                             class="text-red-500">*</span></label>
-                                    <input type="text" id='name' name="merchant_name" value="{{ old('merchant_name') }}"
+                                    <input type="text" id='name' name="merchant_name"
+                                        value="{{ old('merchant_name') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
@@ -173,13 +174,15 @@
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             https://
                                         </span>
-                                        <input type="text" name="merchant_frontendURL" value="{{ old('merchant_frontendURL') }}"
+                                        <input type="text" name="merchant_frontendURL"
+                                            value="{{ old('merchant_frontendURL') }}"
                                             class="  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email</label>
-                                    <input type="email" name="merchant_notifyemail" value="{{ old('merchant_notifyemail') }}"
+                                    <input type="email" name="merchant_notifyemail"
+                                        value="{{ old('merchant_notifyemail') }}"
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
@@ -189,7 +192,8 @@
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             Address
                                         </span>
-                                        <input type="text" name="merchant_address" value="{{ old('merchant_address') }}"
+                                        <input type="text" name="merchant_address"
+                                            value="{{ old('merchant_address') }}"
                                             class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
@@ -293,59 +297,58 @@
 
     </form>
     <script>
-    // image preview
-    function loadFile(event) {
-        var reader = new FileReader();
-        reader.onload = function() {
-            var output = document.getElementById("output");
-            output.src = reader.result;
+        function loadFile(event) {
+            var reader = new FileReader();
+            reader.onload = function() {
+                var output = document.getElementById("output");
+                output.src = reader.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
         }
-        reader.readAsDataURL(event.target.files[0]);
-    }
 
-    // Function to shuffle string for password generation
-    function shuffleString(str) {
-        return str.split('').sort(() => Math.random() - 0.5).join('');
-    }
-
-    // Function to generate credentials
-    function generateCredentials() {
-        const name = document.getElementById('name').value.trim();
-        if (name) {
-            // Generate user ID
-            const firstLetter = name.charAt(0).toUpperCase();
-            const digits = Math.floor(1000 + Math.random() * 9000);
-            const userId = 'M_' + firstLetter + digits;
-            document.getElementById('user_id').value = userId;
-            console.log('Generated User ID:', userId);
-
-            // Generate password
-            const nameWithoutSpaces = name.replace(/\s+/g, '');
-            const passDigits = Math.floor(1000 + Math.random() * 9000).toString();
-            const password = shuffleString(nameWithoutSpaces + passDigits);
-            document.getElementById('password').value = password;
-            console.log('Generated Password:', password);
+        // Function to shuffle string for password generation
+        function shuffleString(str) {
+            return str.split('').sort(() => Math.random() - 0.5).join('');
         }
-    }
 
-    document.getElementById('name').addEventListener('input', generateCredentials);
+        // Function to generate credentials
+        function generateCredentials() {
+            const name = document.getElementById('name').value.trim();
+            if (name) {
+                // Generate user ID
+                const firstLetter = name.charAt(0).toUpperCase();
+                const digits = Math.floor(1000 + Math.random() * 9000);
+                const userId = 'M_' + firstLetter + digits;
+                document.getElementById('user_id').value = userId;
+                console.log('Generated User ID:', userId);
 
-    // Also generate on form submit to ensure values are set
-    document.querySelector('form').addEventListener('submit', function(e) {
-        generateCredentials();
-
-        // Show loading spinner
-        const btn = document.querySelector('button[type="submit"]');
-        if (btn) {
-            const text = btn.querySelector('.text');
-            const spinner = btn.querySelector('.spinner');
-            if (text && spinner) {
-                text.style.display = 'none';
-                spinner.style.display = 'inline-block';
+                // Generate password
+                const nameWithoutSpaces = name.replace(/\s+/g, '');
+                const passDigits = Math.floor(1000 + Math.random() * 9000).toString();
+                const password = shuffleString(nameWithoutSpaces + passDigits);
+                document.getElementById('password').value = password;
+                console.log('Generated Password:', password);
             }
         }
 
-    });
-</script>
+        document.getElementById('name').addEventListener('input', generateCredentials);
+
+        // Also generate on form submit to ensure values are set
+        document.querySelector('form').addEventListener('submit', function(e) {
+            generateCredentials();
+
+            // Show loading spinner
+            const btn = document.querySelector('button[type="submit"]');
+            if (btn) {
+                const text = btn.querySelector('.text');
+                const spinner = btn.querySelector('.spinner');
+                if (text && spinner) {
+                    text.style.display = 'none';
+                    spinner.style.display = 'inline-block';
+                }
+            }
+
+        });
+    </script>
 
 @endsection
