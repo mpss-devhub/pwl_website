@@ -157,8 +157,8 @@
                                         made a
                                         <span class="font-medium">{{ $tx->payment_status }}</span>
                                         transaction with
-                                        <span class="font-medium text-pink-600">
-                                            {{ $tx->merchant->merchant_name ?? 'Unknown Merchant' }}
+                                        <span class="font-medium text-pink-500">
+                                            {{ $tx->created_by   ?? 'Unknown Merchant' }}
                                         </span>
                                     </p>
                                     <p class="text-xs text-gray-400">
@@ -167,7 +167,7 @@
                                     </p>
                                 </div>
                                 <div class="text-sm font-semibold text-green-600">
-                                    +{{ number_format($tx->net_amount, 2) }}
+                                    +{{ number_format($tx->req_amount, 2) }}
                                 </div>
                             </div>
                             <hr>

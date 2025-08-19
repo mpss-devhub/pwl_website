@@ -279,8 +279,6 @@
                                             </label>
                                         </div>
                                     </div>
-
-                                    <!-- Remarks -->
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
                                         <textarea rows="5" name="merchant_remark"
