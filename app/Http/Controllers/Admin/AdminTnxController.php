@@ -25,7 +25,7 @@ class AdminTnxController extends Controller
                 $q->where('id', $search)
                     ->orWhere('tranref_no', 'like', "%{$search}%")
                     ->orWhere('payment_user_name', 'like', "%{$search}%")
-                    ->orWhere('payment_user_phone', 'like', "%{$search}%");
+                    ->orWhere('tnx_phonenumber', 'like', "%{$search}%");
             });
         }
 

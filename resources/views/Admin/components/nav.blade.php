@@ -1,7 +1,4 @@
-@php
-    $user = Auth::user();
-    $per = explode('-', Auth::user()->permission->permission);
-@endphp
+
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
@@ -47,18 +44,13 @@
                                 <a href=""
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
                                     role="menuitem">
-                                    {{ Auth::user()->permission->user_group }} Dep
+                                    {{ Auth::user()->permission->user_group }} Dept
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('support.show') }}"
+                                <a href="{{ route('forgotpassword') }}"
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Announcement</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                    role="menuitem">Dashboard</a>
+                                    role="menuitem">Change Password</a>
                             </li>
                             <li>
                                 <a href=""
@@ -111,15 +103,13 @@
                     </a>
                 </li>
             @endif
-
-
             @if (in_array('S', $per))
                 <li>
                     <a href="{{ route('admin.links') }}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="fa-solid fa-shield-halved text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                             aria-hidden="true"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">SMS Control</span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Links</span>
 
                     </a>
                 </li>

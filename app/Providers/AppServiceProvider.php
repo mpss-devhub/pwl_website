@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useTailwind();
 
-        View::composer('*', function ($view) {
+        View::composer('Merchant.*', function ($view) {
             if (Auth::check()) {
                 $userId = Auth::user()->user_id;
 
@@ -38,6 +38,27 @@ class AppServiceProvider extends ServiceProvider
                     ->count();
                 $view->with('notificationCount', $count);
             }
+        });
+        View::composer('Admin.*', function ($view) {
+            $user = Auth::user();
+            $per = [];
+            $access = [];
+            if ($user && $user->permission) {
+                $per = explode('-', $user->permission->permission ?? '');
+                $allowed = $user->permission->allowed ?? '';
+                $sections = explode(';', $allowed);
+                foreach ($sections as $section) {
+                    if (trim($section) == '') continue;
+
+                    [$key, $value] = explode(':', $section);
+                    $access[$key] = explode(',', $value);
+                }
+            }
+            $view->with([
+                'user' => $user,
+                'per' => $per,
+                'access' => $access,
+            ]);
         });
     }
 }

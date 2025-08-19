@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Merchants;
 use App\Models\Permissions;
 use App\Service\UserService;
@@ -106,5 +107,12 @@ class UserController extends Controller
         }
 
         return response()->json(['error' => 'Missing merchantInfo field'], 400);
+    }
+
+    public  function index ()
+    {
+        $admins = User::where('role', 'admin')->paginate(10);
+        $permi = Permissions::all();
+        return view('Admin.user.list',compact('admins','permi'));
     }
 }

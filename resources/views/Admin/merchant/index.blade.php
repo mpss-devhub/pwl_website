@@ -107,13 +107,15 @@ Login At: www.paywithlink.com/login
                         </div>
 
                         <!-- Buttons -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                            <div class="w-full">
-                                <a href="{{ route('merchant.create') }}"
-                                    class="bg-gray-700 hover:bg-gray-800 text-white w-full inline-flex justify-center items-center px-4 py-2 rounded-md transition">
-                                    <i class="fa-solid fa-user-plus mr-2"></i> Create New Merchant
-                                </a>
-                            </div>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4  justify-center">
+                            @if (in_array('C', $access['M'] ?? []))
+                                <div class="w-full">
+                                    <a href="{{ route('merchant.create') }}"
+                                        class="bg-gray-700 hover:bg-gray-800 text-white w-full inline-flex justify-center items-center px-4 py-2 rounded-md transition">
+                                        <i class="fa-solid fa-user-plus mr-2"></i> Create New Merchant
+                                    </a>
+                                </div>
+                            @endif
 
                             <div class="flex gap-2">
                                 <button type="submit"
@@ -179,16 +181,22 @@ Login At: www.paywithlink.com/login
                                     </td>
                                     <td class="px-6 py-4 text-right">
                                         <div class="flex flex-wrap justify-end gap-2">
-                                            <a href="{{ route('merchant.detail', $info->user_id) }}"
-                                                class="text-green-600 hover:text-green-900"><i
-                                                    class="fa-solid fa-circle-info"></i></a>
+                                            @if (in_array('I', $access['M'] ?? []))
+                                                <a href="{{ route('merchant.detail', $info->user_id) }}"
+                                                    class="text-green-600 hover:text-green-900"><i
+                                                        class="fa-solid fa-circle-info"></i></a>
+                                            @endif
                                             @if ($info->merchant_id)
-                                                <a href="{{ route('merchant.update', $info->user_id) }}"
-                                                    class="text-blue-600 hover:text-blue-900"><i
-                                                        class="fa-solid fa-pen-to-square"></i></a>
-                                                <a href="{{ route('sms.show', $info->user_id) }}"
-                                                    class="text-yellow-600 hover:text-yellow-900"><i
-                                                        class="fa-solid fa-comment-sms"></i></a>
+                                                @if (in_array('U', $access['M'] ?? []))
+                                                    <a href="{{ route('merchant.update', $info->user_id) }}"
+                                                        class="text-blue-600 hover:text-blue-900"><i
+                                                            class="fa-solid fa-pen-to-square"></i></a>
+                                                @endif
+                                                @if (in_array('S', $access['M'] ?? []))
+                                                    <a href="{{ route('sms.show', $info->user_id) }}"
+                                                        class="text-yellow-600 hover:text-yellow-900"><i
+                                                            class="fa-solid fa-comment-sms"></i></a>
+                                                @endif
                                             @endif
                                         </div>
                                     </td>

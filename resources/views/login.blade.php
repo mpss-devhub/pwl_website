@@ -43,11 +43,11 @@
                 <div class="mt-7 space-y-2">
                     <input style="font-family: 'Libre Baskerville';" type="text" placeholder="Enter Your User ID"
                         name="user_id" value="{{ old('user_id') }}"
-                        class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
+                        class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400     text-gray-700 placeholder-gray-500 text-sm" />
 
                     <input style="font-family: 'Libre Baskerville';" type="password" name="password"
                         placeholder="Enter Your Password"
-                        class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
+                        class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400     text-gray-700 placeholder-gray-500 text-sm" />
 
                     <div class="w-full flex justify-between my-4">
 
@@ -68,7 +68,7 @@
                         <div class="">
                             <input type="text" name="captcha" placeholder="Enter Captcha"
                                 style="font-family: 'Libre Baskerville';"
-                                class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
+                                class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 text-gray-700 placeholder-gray-500 text-sm" />
 
                         </div>
                     </div>

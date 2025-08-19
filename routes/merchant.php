@@ -84,6 +84,8 @@ Route::middleware(['merchant'])->group(function () {
     //Settlement Status
     Route::get('merchant/Settlement', [SettlementController::class, 'show'])->name('merchant.settlement');
     Route::get('merchant/Settlement/details/{id}', [SettlementController::class, 'details'])->name('merchant.settlement.details');
+    Route::get('merchant/Settlement/Export', [SettlementController::class, 'export'])->name('merchant.settlement.export');
+    Route::get('merchant/Settlement/CSVExport', [SettlementController::class, 'csvExport'])->name('merchant.settlement.csv.export');
 
     //MDR Rate
     Route::get('/View/Merchant/MDRSetup',[MerchantsController::class,'mdr'])->name('mdr');

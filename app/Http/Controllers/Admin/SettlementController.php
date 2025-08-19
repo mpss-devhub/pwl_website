@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Tnx;
 use App\Models\Merchants;
 use Illuminate\Http\Request;
+use App\Exports\AllSettlementExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SettlementController extends Controller
 {
@@ -85,5 +87,15 @@ class SettlementController extends Controller
             abort(404, 'Transaction not found');
         }
         return view('Admin.Settlement.details', compact('data', 'details'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new AllSettlementExport, 'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
+    }
+
+    public function exportCsv()
+    {
+        return Excel::download(new AllSettlementExport, 'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
     }
 }

@@ -23,21 +23,14 @@
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex items-center mb-2">
-                                @if (!$exists)
-
-
+                                @if (!$exists && in_array('U', $access['L'] ?? []))
                                         <button type="submit"
                                             class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none">
-                                            <a href="{{ route('admin.link.edit',$sms['id']) }}">
-                                            <i class="fa-solid fa-file-pen"></i>
-
+                                            <a href="{{ route('admin.link.edit',$sms['id']) }}" >
+                                            <i class="fa-solid fa-file-pen"></i> Edit
                                             </a>
-
                                         </button>
-
                                 @endif
-
-
                                 <h3
                                     class="font-medium text-gray-500 px-2 {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">
                                     Basic Information

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Merchant;
 
+use App\Models\Tnx;
 use App\Models\Merchants;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Tnx;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\MerchantSettlementExport;
 
 class SettlementController extends Controller
 {
@@ -23,14 +25,12 @@ class SettlementController extends Controller
             return redirect()->back()->with('error', 'No settlement data found.');
         }
         $tnx = collect($data['data']);
-
-        //dd( $tnx['dataList']);
         return view('Merchant.Settlement.index', compact('tnx'));
     }
 
     private function getSettlementData($merchant)
     {
-         $app_id = config('services.b2b.x_app_id');
+        $app_id = config('services.b2b.x_app_id');
         $xAppApiKey = config('services.b2b.x_app_api_key');
         $externalUrl2 = config('services.b2b.external_url_2');
         $response = Http::withHeaders([
@@ -85,9 +85,19 @@ class SettlementController extends Controller
     public function details($id)
     {
         $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
-        $settlement = $this->getSettlementDetails($merchant['merchant_id'],$id);
+        $settlement = $this->getSettlementDetails($merchant['merchant_id'], $id);
         $details = $settlement['data']['dataList'][0];
         $data = Tnx::where('tranref_no', $id)->first();
-        return view('Merchant.Settlement.details', compact('data','details'));
+        return view('Merchant.Settlement.details', compact('data', 'details'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new MerchantSettlementExport,'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
+    }
+
+    public function csvExport()
+    {
+        return Excel::download(new MerchantSettlementExport,'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
     }
 }

@@ -89,7 +89,8 @@
             </div>
 
             <!-- Export Buttons -->
-            <div class="flex items-end gap-2">
+            @if (in_array('E', $access['L'] ?? []))
+                <div class="flex items-end gap-2">
                 <a href="{{ route('admin.link.csv.export') }}?{{ http_build_query(request()->all()) }}"
                     class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center">
@@ -101,6 +102,7 @@
                     Export Excel
                 </a>
             </div>
+            @endif
         </div>
     </form>
 </div>
@@ -178,18 +180,23 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex space-x-3">
-                                            <form action="{{ route('admin.sms.details') }}" method="POST">
+                                            @if (in_array('V', $access['L'] ?? []))
+                                                <form action="{{ route('admin.sms.details') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
                                                 <button type="submit"
                                                     class="text-blue-600 hover:text-blue-900">View</button>
                                             </form>
-                                            <form action="{{ route('admin.sms.resent') }}" method="POST">
+                                            @endif
+                                            @if (in_array('R', $access['L'] ?? []))
+                                                    <form action="{{ route('admin.sms.resent') }}" method="POST">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $item->id }}">
                                                 <button type="submit"
                                                     class="text-red-600 hover:text-red-900">Resend</button>
                                             </form>
+                                            @endif
+
                                         </div>
                                     </td>
                                 </tr>

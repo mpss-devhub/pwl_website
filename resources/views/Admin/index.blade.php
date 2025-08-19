@@ -86,7 +86,7 @@
                     <h3 class="text-lg font-semibold text-gray-800">Revenue Analytics</h3>
                     <form method="GET" action="{{ route('admin.dashboard') }}" class="flex gap-2">
                         {{-- Year Filter --}}
-                        <label class="flex items-center gap-1">
+                        <label class="flex items-center gap-1 mr-5">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" onchange="this.form.submit()"
                                 class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900">

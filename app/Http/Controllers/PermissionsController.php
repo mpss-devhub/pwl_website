@@ -13,10 +13,20 @@ class PermissionsController extends Controller
     public function edit($id)
     {
         $permission = Permissions::findOrFail($id);
-        return view('Admin.access.edit', compact('permission'));
+        $allowed = [];
+        if ($permission->allowed) {
+            $groups = explode(';', $permission->allowed);
+            foreach ($groups as $group) {
+                [$code, $actions] = explode(':', $group);
+                $allowed[$code] = explode(',', $actions);
+            }
+        }
+        //dd($allowed);
+        return view('Admin.access.edit', compact('permission', 'allowed'));
     }
     public function store(Request $request)
     {
+        //dd($request->all());
         $permission = collect($request->permission)->implode('-');
         $allowedArray = $request->allowed;
         $allowedActions = collect($allowedArray)->map(function ($actions, $perm) {

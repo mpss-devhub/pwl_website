@@ -81,8 +81,8 @@
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
-                    1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
-                    010-1.414z" clip-rule="evenodd" />
+                            1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
+                            010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
 
@@ -165,7 +165,8 @@
                             </div>
 
                             <!-- Export Buttons -->
-                            <div class="flex items-end gap-2">
+                            @if (in_array('E', $access['T'] ?? []))
+                                 <div class="flex items-end gap-2">
                                 <a href="{{ route('admin.merchant.tnx.export') }}"
                                     class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center">
@@ -177,6 +178,7 @@
                                     Export Excel
                                 </a>
                             </div>
+                            @endif
                         </div>
                     </form>
                 </div>
@@ -186,132 +188,140 @@
         <!-- Transactions Table -->
         <div class="p-4">
             <div class="bg-white rounded-lg shadow overflow-hidden">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-800 text-white">
-                        <tr>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                ID
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Merchant ID
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Invoice No
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Name
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Amount
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Currency
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Payment
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Status
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Paid At
-                            </th>
-                            <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
-                        @foreach ($tnx as $item)
-                            <tr class="transaction-row hover:bg-gray-50">
-                                <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ $loop->iteration }}
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
-                                    {{ $item->created_by }}
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
-                                    {{ $item->tranref_no }}
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900 truncate max-w-[120px]">
-                                        {{ $item->payment_user_name }}</div>
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
-                                        <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
-                                    </div>
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    @if ($item->payment_status == 'SUCCESS')
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            {{ $item->payment_status }}
-                                        </span>
-                                    @elseif ($item->payment_status == 'FAIL')
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
-                                            {{ $item->payment_status }}
-                                        </span>
-                                    @elseif ($item->payment_status == 'Pending')
-                                        <span
-                                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            {{ $item->payment_status }}
-                                        </span>
-                                    @endif
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    @if ($item->trans_date_time)
-                                        {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
-                                    @else
-                                        Pending
-                                    @endif
-                                </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
-                                    <div class="flex space-x-1">
-                                        <form action="{{ route('admin.tnx.detail') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id }}" required>
-                                            <button
-                                                class=" px-2 py-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
-                                                <i class="fa-solid fa-circle-info"></i>
-                                            </button>
-                                        </form>
-                                        <form action="{{ route('admin.Payment.detail') }}" method="POST">
-                                            @csrf
-                                            <input type="hidden" name="id" value="{{ $item->id }}" required>
-                                            <button
-                                                class=" px-2 py-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
-                                                <i class="fa-solid fa-building-columns"></i>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-800 text-white">
+                            <tr>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    ID
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Merchant ID
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Invoice No
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Name
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Amount
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Currency
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Payment
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Status
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Paid At
+                                </th>
 
+                                    <th scope="col"
+                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Action
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
+                            @foreach ($tnx as $item)
+                                <tr class="transaction-row hover:bg-gray-50">
+                                    <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                        {{ $loop->iteration }}
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                        {{ $item->created_by }}
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                        {{ $item->tranref_no }}
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900 truncate max-w-[120px]">
+                                            {{ $item->payment_user_name }}</div>
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">MMK</div>
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
+                                            <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        @if ($item->payment_status == 'SUCCESS')
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                {{ $item->payment_status }}
+                                            </span>
+                                        @elseif ($item->payment_status == 'FAIL')
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                {{ $item->payment_status }}
+                                            </span>
+                                        @elseif ($item->payment_status == 'Pending')
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                {{ $item->payment_status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        @if ($item->trans_date_time)
+                                            {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
+                                        @else
+                                            Pending
+                                        @endif
+                                    </td>
+                                    <td class="px-3 py-4 whitespace-nowrap">
+                                        <div class="flex space-x-1">
+                                            @if (in_array('TD', $access['T'] ?? []))
+                                                <form action="{{ route('admin.tnx.detail') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}"
+                                                        required>
+                                                    <button
+                                                        class=" px-2 py-1  rounded text-green-700 ">
+                                                        <i class="fa-solid fa-circle-info"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            @if (in_array('P', $access['T'] ?? []))
+                                                <form action="{{ route('admin.Payment.detail') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}"
+                                                        required>
+                                                    <button
+                                                        class=" px-2 py-1  rounded text-blue-700 ">
+                                                        <i class="fa-solid fa-building-columns"></i>
+                                                    </button>
+                                                </form>
+                                            @endif
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
-        </div>
         </div>
         <!-- Pagination -->
         <div class="mt-6">

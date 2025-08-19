@@ -16,4 +16,5 @@ document.addEventListener("DOMContentLoaded", function () {
         filterContent.classList.add("hidden");
         filterArrow.classList.remove("rotate-180");
     }
+
 });

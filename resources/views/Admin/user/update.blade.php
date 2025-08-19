@@ -61,7 +61,7 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">User Group</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
-                                @foreach ($per as $item)
+                                @foreach ($permi as $item)
                                 <div class="flex items-center">
                                     <input id="permission-{{ $item->id }}" name="permission_id" type="checkbox"
                                         value="{{ $item->id }}" @checked($user->permission_id == $item->id)

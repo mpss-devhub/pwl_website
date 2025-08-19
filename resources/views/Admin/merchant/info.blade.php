@@ -56,7 +56,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-white p-3 rounded-lg shadow mt-2">
+                        @if (in_array('M', $access['M'] ?? []))
+                            <div class="bg-white p-3 rounded-lg shadow mt-2">
                             <a href="{{ route('merchant.mdr',$detail->user_id) }}" class="text-decoration-none ">
                                 <div class="text-center">
                                     <span class="text-sm font-semibold text-gray-700 mr-1"> MDR Rates</span>
@@ -64,6 +65,7 @@
                                 </div>
                             </a>
                         </div>
+                        @endif
                         <div class="bg-white p-6 rounded-lg shadow mt-3">
                             <h2 class="text-lg font-semibold text-gray-800">Download Information <i
                                     class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>

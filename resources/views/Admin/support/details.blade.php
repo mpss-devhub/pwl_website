@@ -12,7 +12,7 @@
                     </div>
                     <hr>
                     <div class="flex justify-between  mt-4 text-gray-700 text-sm">
-                         <div class="px-7">By : OCT_L025151</div>
+                        <div class="px-7">By : OCT_L025151</div>
                         <div class="px-7">
                             Created : {{ $item->created_at->format('Y-m-d') }}
                         </div>
@@ -63,13 +63,24 @@
                 class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
                 Back to List
             </a>
-            <a href="{{ route('support.edit',$data[0]['id']) }}"
+            @if (in_array('C', $access['AN'] ?? []))
+                <a href="{{ route('support.show') }}"
+                class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
+                Create New
+            </a>
+            @endif
+            @if (in_array('R', $access['AN'] ?? []))
+                <a href="{{ route('support.edit', $data[0]['id']) }}"
                 class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
                 <i class="fa-solid fa-pen-to-square mx-1"></i> Edit Announcement
-                <a href="{{ route('support.delete',$data[0]['id']) }}"
+                </a>
+            @endif
+                @if (in_array('D', $access['AN'] ?? []))
+                    <a href="{{ route('support.delete', $data[0]['id']) }}"
                     class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
                     <i class="fa-solid fa-delete-left mx-1"></i> Delete Announcement
                 </a>
+                @endif
 
         </div>
     </div>

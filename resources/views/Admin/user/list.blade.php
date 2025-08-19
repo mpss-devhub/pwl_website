@@ -51,7 +51,7 @@
             </button>
 
             <!-- Filter Content (Initially visible) -->
-            <div id="filter-content" class="px-6 pb-6">
+            <div id="filter-content" class="px-6 pb-6 hidden">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <!-- Search Field -->
                     <div class="space-y-2">
@@ -91,7 +91,7 @@
                         <select id="user-group-filter"
                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             <option value="">All Groups</option>
-                            @foreach($per as $item)
+                            @foreach($permi as $item)
                             <option value="{{ $item->id }}">{{$item->user_group}}</option>
                             @endforeach
                         </select>
@@ -100,13 +100,15 @@
 
                 <!-- Search & Actions -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-                    <div class="flex justify-end">
+                    @if (in_array('C', $access['U'] ?? []))
+                         <div class="flex justify-end">
                         <div class="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-md transition-colors flex items-center">
                             <a href="{{ route('user.create') }}" class="text-decoration-none">
                                 <i class="fa-solid fa-user-plus mx-2"></i> Add User
                             </a>
                         </div>
                     </div>
+                    @endif
 
                     <div class="flex items-end gap-2">
                         <button id="search-button"
@@ -130,116 +132,9 @@
                             Reset
                         </button>
                     </div>
-
-                    <div class="flex items-end gap-2">
-                        <button
-                            class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Export CSV
-                        </button>
-                        <button
-                            class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Export Excel
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-
-                // Search functionality
-                const searchInput = document.getElementById('search-input');
-                const searchType = document.getElementById('search-type');
-                const userGroupFilter = document.getElementById('user-group-filter');
-                const searchButton = document.getElementById('search-button');
-                const resetButton = document.getElementById('reset-button');
-                const tableRows = document.querySelectorAll('tbody tr');
-
-                function performSearch() {
-                    const searchTerm = searchInput.value.toLowerCase();
-                    const searchField = searchType.value;
-                    const selectedGroup = userGroupFilter.value;
-
-                    tableRows.forEach(row => {
-                        let rowText = '';
-                        let rowGroup = row.querySelector('td:nth-child(4)')?.textContent.trim() || '';
-
-                        // Check user group filter first
-                        if (selectedGroup && rowGroup !== document.querySelector(`#user-group-filter option[value="${selectedGroup}"]`)?.textContent.trim()) {
-                            row.style.display = 'none';
-                            return;
-                        }
-
-                        if (searchField === 'all') {
-                            // Search all columns except actions
-                            rowText = Array.from(row.cells)
-                                .slice(0, -1) // exclude last cell (actions)
-                                .map(cell => cell.textContent.toLowerCase())
-                                .join(' ');
-                        } else {
-                            // Search specific column
-                            let cellIndex;
-                            switch(searchField) {
-                                case 'id': cellIndex = 1; break; // User ID column
-                                case 'name':
-                                    // For name which is inside a div in the 3rd column
-                                    cellIndex = 2;
-                                    rowText = row.cells[cellIndex].querySelector('.text-sm.font-medium')?.textContent.toLowerCase() || '';
-                                    break;
-                                case 'group': cellIndex = 3; break;
-                                case 'phone': cellIndex = 4; break;
-                                case 'email': cellIndex = 5; break;
-                                case 'status':
-                                    // Status is in a span in the 6th column
-                                    cellIndex = 6;
-                                    rowText = row.cells[cellIndex].querySelector('span')?.textContent.toLowerCase() || '';
-                                    break;
-                                default: cellIndex = -1;
-                            }
-
-                            if (cellIndex >= 0 && searchField !== 'name' && searchField !== 'status') {
-                                rowText = row.cells[cellIndex].textContent.toLowerCase();
-                            }
-                        }
-
-                        if (rowText.includes(searchTerm)) {
-                            row.style.display = '';
-                        } else {
-                            row.style.display = 'none';
-                        }
-                    });
-                }
-
-                // Search on input change or button click
-                searchInput.addEventListener('input', performSearch);
-                searchButton.addEventListener('click', performSearch);
-                userGroupFilter.addEventListener('change', performSearch);
-
-                // Reset search
-                resetButton.addEventListener('click', function() {
-                    searchInput.value = '';
-                    searchType.value = 'all';
-                    userGroupFilter.value = '';
-                    tableRows.forEach(row => {
-                        row.style.display = '';
-                    });
-                });
-            });
-        </script>
-
         <!-- User Table Section -->
         <div class="bg-white rounded-lg shadow overflow-hidden">
             <div class="overflow-x-auto">
@@ -315,12 +210,16 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ route('user.show.update',$admin->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">
+                                    @if (in_array('U', $access['U'] ?? []))
+                                        <a href="{{ route('user.show.update',$admin->id) }}" class="text-blue-600 hover:text-blue-900 mr-3">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
-                                    <a href="{{ route('user.delete',$admin->id) }}" class="text-red-600 hover:text-red-900">
+                                    @endif
+                                    @if (in_array('D', $access['U'] ?? []))
+                                        <a href="{{ route('user.delete',$admin->id) }}" class="text-red-600 hover:text-red-900">
                                         <i class="fa-solid fa-trash"></i>
                                     </a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
