@@ -26,3 +26,7 @@ window.axios = axios;
 // SweetAlert2
 import Swal from 'sweetalert2';
 window.Swal = Swal;
+
+import QRCode from "qrcode";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";

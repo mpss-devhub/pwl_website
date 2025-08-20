@@ -3,10 +3,6 @@ import laravel from 'laravel-vite-plugin';
 import path from 'path';
 
 export default defineConfig({
-      server: {
-        host: '0.0.0.0', // listen on all network interfaces
-        port: 5173,       // Vite default port
-    },
   plugins: [
     laravel({
       input: [

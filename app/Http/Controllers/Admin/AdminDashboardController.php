@@ -57,6 +57,7 @@ class AdminDashboardController extends Controller
     private function getLatestTransactions($limit = 5)
     {
         return Tnx::with('merchant', 'link')
+            ->where('payment_status', 'Success')
             ->latest()
             ->take($limit)
             ->get();

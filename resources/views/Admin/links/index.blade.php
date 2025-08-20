@@ -206,7 +206,7 @@
                 </div>
             </div>
             <!-- Pagination -->
-            <div class="mt-6">
+            <div class="mt-3">
                 {{ $links->links('pagination::tailwind') }}
             </div>
         </div>

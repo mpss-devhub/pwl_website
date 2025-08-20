@@ -4,33 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voucher Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <style>
-        body {
-            font-family: "Poppins", sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            position: relative;
-            background-color: white;
-        }
-
-        [x-cloak] {
-            display: none !important;
-        }
-
-        @media (max-width: 640px) {
-            .success-content {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <title>Payment Fail</title>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
+    <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>
+    <script src="{{ asset('common/checkout/js/prevent.js') }}"></script>
 </head>
 
 <body class="p-4">
@@ -63,7 +41,7 @@
                 @endif
             <div class="text-xs sm:text-sm mt-3 text-gray-700">
                 <!-- Merchant Info -->
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Merchant Name</span>
                         <span class="text-center">:</span>
@@ -83,7 +61,7 @@
 
                 <hr class="border-t border-dotted border-gray-400 my-3 sm:my-4">
 
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Invoice</span>
                         <span class="text-center">:</span>
@@ -100,7 +78,7 @@
                         <span class="truncate">{{ $tnx['req_amount'] }}</span>
                     </div>
                 </div>
-                <div class="flex justify-start mt-2 mx-6">
+                <div class="flex justify-end mt-2 mx-6">
                                      <img src="{{ Storage::url('common/f.png') }}" class="w-16 h-16 sm:w-24 sm:h-24 " alt="Success Image">
                 </div>
 

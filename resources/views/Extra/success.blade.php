@@ -4,33 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Voucher Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
-    <style>
-        body {
-            font-family: "Poppins", sans-serif;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow-x: hidden;
-            position: relative;
-            background-color: white;
-        }
-
-        [x-cloak] {
-            display: none !important;
-        }
-
-        @media (max-width: 640px) {
-            .success-content {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    <title>Payment Success</title>
+     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
+    <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>
+    <script src="{{ asset('common/checkout/js/prevent.js') }}"></script>
 </head>
 
 <body class="p-4">
@@ -48,21 +26,16 @@
         </div>
 
         <!-- Merchant Info -->
-        <div class="border border-[#bdc9fe] rounded-lg p-4 sm:p-6 shadow bg-[#f9faff]" style="font-family: 'Libre Baskerville'">
+        <div class="border border-[#bdc9fe] rounded-lg p-6 shadow bg-[#f9faff]" style="font-family: 'Libre Baskerville'">
                 @if ($tnx['payment_status'] == 'SUCCESS')
                     <div class="flex items-center justify-center space-x-2">
                 <p class="text-center text-gray-700 font-medium">Payment Success</p>
                 <i class="fa-solid fa-circle-check text-green-500 text-md"></i>
             </div>
-                @else
-                    <div class="flex items-center justify-center space-x-2">
-                <p class="text-center text-gray-700 font-medium">Payment Fail</p>
-                <i class="fa-solid fa-circle-check text-red-500 text-md"></i>
-            </div>
                 @endif
             <div class="text-xs sm:text-sm mt-3 text-gray-700">
                 <!-- Merchant Info -->
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Merchant Name</span>
                         <span class="text-center">:</span>
@@ -82,7 +55,7 @@
 
                 <hr class="border-t border-dotted border-gray-400 my-3 sm:my-4">
 
-                <div class="space-y-2">
+                <div class="space-y-1">
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Invoice</span>
                         <span class="text-center">:</span>
@@ -104,7 +77,7 @@
                 </div>
 
                 <div class="flex justify-center mt-2 sm:mt-2">
-                    <button class="bg-[#637AE2] py-2 px-4 rounded-md text-white hover:bg-[#5469c0] transition text-sm sm:text-base">
+                    <button class="bg-[#637AE2] py-2 px-4 rounded-md text-white hover:bg-[#5469c0] transition text-xs sm:text-base">
                         Save Image
                     </button>
                 </div>

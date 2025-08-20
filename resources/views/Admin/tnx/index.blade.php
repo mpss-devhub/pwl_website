@@ -81,8 +81,8 @@
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
-                            1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
-                            010-1.414z" clip-rule="evenodd" />
+                                1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
+                                010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
 
@@ -166,18 +166,21 @@
 
                             <!-- Export Buttons -->
                             @if (in_array('E', $access['T'] ?? []))
-                                 <div class="flex items-end gap-2">
-                                <a href="{{ route('admin.merchant.tnx.export') }}"
-                                    class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
+                                <div class="flex items-end gap-2">
+                                    <a href="{{ route('admin.merchant.tnx.export') }}"
+                                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center">
-                                    Export CSV
-                                </a>
-                                <a href="{{ route('admin.merchant.csv.export') }}"
-                                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
+                                        Export CSV
+                                        <span class="spinner" style="display:none;">
+                                            <i class="fa fa-spinner fa-spin"></i>
+                                        </span>
+                                    </a>
+                                    <a href="{{ route('admin.merchant.csv.export') }}"
+                                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center">
-                                    Export Excel
-                                </a>
-                            </div>
+                                        Export Excel
+                                    </a>
+                                </div>
                             @endif
                         </div>
                     </form>
@@ -229,7 +232,7 @@
                                     Paid At
                                 </th>
 
-                                    <th scope="col"
+                                <th scope="col"
                                     class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Action
                                 </th>
@@ -296,8 +299,7 @@
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $item->id }}"
                                                         required>
-                                                    <button
-                                                        class=" px-2 py-1  rounded text-green-700 ">
+                                                    <button class=" px-2 py-1  rounded text-green-700 ">
                                                         <i class="fa-solid fa-circle-info"></i>
                                                     </button>
                                                 </form>
@@ -307,8 +309,7 @@
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $item->id }}"
                                                         required>
-                                                    <button
-                                                        class=" px-2 py-1  rounded text-blue-700 ">
+                                                    <button class=" px-2 py-1  rounded text-blue-700 ">
                                                         <i class="fa-solid fa-building-columns"></i>
                                                     </button>
                                                 </form>
@@ -324,7 +325,7 @@
             </div>
         </div>
         <!-- Pagination -->
-        <div class="mt-6">
+        <div class="mt-3 ">
             {{ $tnx->links('pagination::tailwind') }}
         </div>
     @endsection

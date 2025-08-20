@@ -235,25 +235,24 @@
                     categories: @json($revenueData['labels']),
                     labels: {
                         style: {
-                            fontSize: '12px'
+                            fontSize: '10px',
                         }
                     }
                 },
                 yaxis: {
                     labels: {
-                        formatter: function(value) {
-                            return (value / 1000000).toFixed(1) + 'M';
-                        },
+                         formatter: (value) => "MMK " + value.toLocaleString(),
                         style: {
-                            fontSize: '12px'
+                            fontSize: '10px',
                         }
                     }
                 },
                 tooltip: {
                     enabled: true,
                     y: {
-                        formatter: function(value) {
-                            return 'MMK ' + value.toLocaleString();
+                        formatter: (value) => "MMK " + value.toLocaleString(),
+                        style: {
+                            fontSize: '10px',
                         }
                     }
                 },

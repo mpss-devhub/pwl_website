@@ -54,28 +54,31 @@ Login At: www.paywithlink.com/login
                 </button>
 
                 <div id="filter-content" class="px-6 pb-6 hidden">
-                    <form method="GET" action="{{ route('merchant.show') }}">
+                    <form method="GET" action="{{ route('merchant.show') }}" class="">
                         <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                            <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-800">Search</label>
+
+                            <!-- Search Input -->
+                            <div>
+                                <label for="search-input"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Search</label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </div>
+                                    <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </span>
                                     <input type="text" name="search" id="search-input"
-                                        placeholder="Search by ID, name, email or phone" value="{{ request('search') }}"
-                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                        placeholder="ID, name, email or phone" value="{{ request('search') }}"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                             </div>
-                            <div class="space-y-1">
-                                <label class="block text-sm font-medium text-gray-700">Search By</label>
+
+                            <!-- Search Type -->
+                            <div>
+                                <label for="search-type" class="block text-sm font-medium text-gray-700 mb-1">Search
+                                    By</label>
                                 <select name="search_type" id="search-type"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="all" {{ request('search_type') == 'all' ? 'selected' : '' }}>All
                                         Fields</option>
                                     <option value="id" {{ request('search_type') == 'id' ? 'selected' : '' }}>Merchant
@@ -89,52 +92,57 @@ Login At: www.paywithlink.com/login
                                     <option value="contact_name"
                                         {{ request('search_type') == 'contact_name' ? 'selected' : '' }}>Contact Name
                                     </option>
-
                                 </select>
                             </div>
 
-                            <div class="space-y-1">
-                                <label class="block text-sm font-medium text-gray-700">Status</label>
+                            <!-- Status -->
+                            <div>
+                                <label for="active-status"
+                                    class="block text-sm font-medium text-gray-700 mb-1">Status</label>
                                 <select name="active_status" id="active-status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="">All</option>
-                                    <option value="active" {{ request('active_status') == 'active' ? 'selected' : '' }}>
+                                    <option value="on" {{ request('active_status') == 'active' ? 'selected' : '' }}>
                                         Active</option>
-                                    <option value="inactive"
+                                    <option value="off"
                                         {{ request('active_status') == 'inactive' ? 'selected' : '' }}>Not Active</option>
+
                                 </select>
                             </div>
-                        </div>
 
-                        <!-- Buttons -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4  justify-center">
-                            @if (in_array('C', $access['M'] ?? []))
-                                <div class="w-full">
-                                    <a href="{{ route('merchant.create') }}"
-                                        class="bg-gray-700 hover:bg-gray-800 text-white w-full inline-flex justify-center items-center px-4 py-2 rounded-md transition">
-                                        <i class="fa-solid fa-user-plus mr-2"></i> Create New Merchant
-                                    </a>
-                                </div>
-                            @endif
-
-                            <div class="flex gap-2">
+                            <!-- Buttons -->
+                            <div class="flex items-end gap-1">
                                 <button type="submit"
-                                    class="bg-blue-600 hover:bg-blue-700 text-white w-full px-4 py-2 rounded-md flex items-center justify-center">
+                                    class="flex-1 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow-sm
+                       flex items-center justify-center text-sm font-medium transition">
                                     <i class="fa-solid fa-magnifying-glass mr-2"></i> Search
                                 </button>
                                 <a href="{{ route('merchant.show') }}"
-                                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 w-full px-4 py-2 rounded-md flex items-center justify-center">
+                                    class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md shadow-sm
+                       flex items-center justify-center text-sm font-medium transition">
                                     <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset
                                 </a>
+                                @if (in_array('C', $access['M'] ?? []))
+                                    <a href="{{ route('merchant.create') }}"
+                                        class="bg-gray-700 hover:bg-gray-800 text-sm text-white inline-flex justify-center items-center px-4 py-2 rounded-md transition">
+                                        <i class="fa-solid fa-user-plus mr-2"></i> Create
+                                    </a>
+                                @endif
                             </div>
+
+
                         </div>
                     </form>
+
                 </div>
 
 
             </div>
 
+
             <div class="bg-white rounded-lg shadow overflow-hidden">
+
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200 text-sm">
                         <thead class="bg-gray-800 text-white">
@@ -205,11 +213,8 @@ Login At: www.paywithlink.com/login
                         </tbody>
                     </table>
                 </div>
-                <div
-                    class="bg-white px-4 py-3 flex flex-col sm:flex-row items-center justify-between border-t border-gray-200">
-                    <div class="mt-2 sm:mt-0 sm:ml-auto">
-                        {{ $merchantInfo->links() }}
-                    </div>
+                <div class="mt-3 ">
+                    {{ $merchantInfo->links('pagination::tailwind') }}
                 </div>
             </div>
         </div>

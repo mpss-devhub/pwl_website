@@ -8,8 +8,8 @@
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                     <div>
-                        <h1 class="text-2xl font-bold text-gray-800">Create Payment Link</h1>
-                        <p class="text-sm text-gray-500 mt-1">Generate secure payment links to share with customers</p>
+                        <h1 class="text-xl font-bold text-gray-800">Create Payment Link</h1>
+                        <p class="text-xs text-gray-500 mt-1">Generate secure payment links to share with customers</p>
                     </div>
                     <div class="flex items-center gap-3">
                         <span
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <!-- Payment Form -->
-                <form action="{{ route('links.store') }}" method="POST" class="space-y-8" id="paymentForm">
+                <form action="{{ route('links.store') }}" method="POST" class="space-y-4" id="paymentForm">
                     @csrf
                     <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
 
@@ -27,7 +27,7 @@
                     <div class="space-y-6">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
-                            <h2 class="text-lg font-semibold text-gray-800">Payment Details</h2>
+                            <p class="text-lg font-semibold text-gray-800">Payment Details</p>
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-5">
@@ -105,10 +105,10 @@
                     <div class="space-y-6">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
-                            <h2 class="text-lg font-semibold text-gray-800">Currency Options</h2>
+                            <p class="text-md font-semibold text-gray-800">Currency Options</p>
                         </div>
 
-                        <div class="grid sm:grid-cols-2 gap-4">
+                        <div class="grid sm:grid-cols-5 gap-4">
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="currency" value="MMK" checked
@@ -137,10 +137,10 @@
                     <div class="space-y-6">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
-                            <h2 class="text-lg font-semibold text-gray-800">Delivery Options</h2>
+                            <p class="text-md font-semibold text-gray-800">Delivery Options</p>
                         </div>
 
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
                             @if (!$email->isEmpty())
                                 <label
                                     class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
@@ -149,7 +149,7 @@
                                         class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                     <div>
                                         <span class="block text-sm font-medium text-gray-800">SMS</span>
-                                        <span class="block text-xs text-gray-500 mt-1">Send payment link via SMS</span>
+                                        <span class="block text-[11px] text-gray-500 mt-1">Send payment link via SMS</span>
                                     </div>
                                 </label>
                             @endif
@@ -161,7 +161,7 @@
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">Email</span>
-                                    <span class="block text-xs text-gray-500 mt-1">Send payment link via Email</span>
+                                    <span class="block text-[11px] text-gray-500 mt-1">Send payment link via Email</span>
                                 </div>
                             </label>
 
@@ -172,7 +172,7 @@
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">Copy Link</span>
-                                    <span class="block text-xs text-gray-500 mt-1">Get a copy of the payment link</span>
+                                    <span class="block text-[11px] text-gray-500 mt-1">Get a copy of the payment link</span>
                                 </div>
                             </label>
 
@@ -183,7 +183,7 @@
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>
                                     <span class="block text-sm font-medium text-gray-800">QR Code</span>
-                                    <span class="block text-xs text-gray-500 mt-1">Generate QR code for payment</span>
+                                    <span class="block text-[11px] text-gray-500 mt-1">Generate QR code for payment</span>
                                 </div>
                             </label>
                         </div>
@@ -191,7 +191,7 @@
                     </div>
 
                     <!-- Form Actions -->
-                    <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 pt-4">
+                    <div class="flex flex-col-reverse sm:flex-row justify-end gap-4 ">
                         <button id="submitButton" type="submit"
                             class="px-6 py-3 bg-[#3164c1] text-white rounded-lg hover:bg-[#2f549a] focus:ring-4 focus:ring-blue-100 transition-colors font-medium shadow-sm flex items-center justify-center">
                             <span id="btnText"><i class="fas fa-link mr-2"></i> Create Payment Link</span>

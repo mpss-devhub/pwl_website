@@ -33,27 +33,36 @@ class AdminController extends Controller
         if ($request->filled('search')) {
             $search = $request->search;
             $type = $request->search_type ?? 'all';
+            $columns = [
+                'id' => 'merchant_id',
+                'name' => 'merchant_name',
+                'email' => 'merchant_Cemail',
+                'phone' => 'merchant_Cphone',
+                'contact_name' => 'merchant_Cname',
+            ];
 
             if ($type === 'all') {
                 $query->where(function ($q) use ($search) {
-                    $q->where('user_id', 'like', "%{$search}%")
+                    $q->where('merchant_id', 'like', "%{$search}%")
                         ->orWhere('merchant_name', 'like', "%{$search}%")
                         ->orWhere('merchant_Cemail', 'like', "%{$search}%")
                         ->orWhere('merchant_Cphone', 'like', "%{$search}%")
                         ->orWhere('merchant_Cname', 'like', "%{$search}%");
                 });
-            } else {
-                $query->where($type, 'like', "%{$search}%");
+            } elseif (isset($columns[$type])) {
+                $query->where($columns[$type], 'like', "%{$search}%");
             }
         }
         if ($request->filled('active_status')) {
-            $status = $request->active_status === 'active' ? 1 : 0;
+            $status = $request->active_status === 'on' ? 'on' : 'off';
             $query->where('status', $status);
         }
+
         $merchantInfo = $query->paginate(10)->withQueryString();
 
         return view('Admin.merchant.index', compact('merchantInfo'));
     }
+
 
     public function merchantdetail($id)
     {

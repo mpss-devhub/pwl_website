@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 style: {
                     colors: "#6b7280",
                 },
-                formatter: (value) => (value / 1_000_000).toFixed(1) + "M",
+                formatter: (value) => "MMK " + value.toLocaleString(),
             },
         },
         grid: {
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         tooltip: {
             y: {
-                formatter: (val) => val + " new users",
+                formatter: (value) => value.toLocaleString() + " users",
             },
         },
     };

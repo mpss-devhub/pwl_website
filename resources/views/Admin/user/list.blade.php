@@ -228,15 +228,9 @@
             </div>
 
             <!-- Pagination -->
-            <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-                <div class="flex-1 flex justify-end">
-                    <div>
-                        <nav class="relative z-0 flex justify-between rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                            {{ $admins->links() }}
-                        </nav>
-                    </div>
-                </div>
-            </div>
+              <div class="mt-3 ">
+            {{ $admins->links('pagination::tailwind') }}
+        </div>
         </div>
     </div>
 </div>
