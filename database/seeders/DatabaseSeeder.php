@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
 
         Permissions::create([
             'user_group' => 'Admin',
-            'permission' => 'T-U-M-S-AA',
-            'allowed' => 'T:R,W,D;U:R,W,D;M:R,W,D;S:R,W,D;AA:R,W,D',
+            'permission' => 'T-L-M-U-AA-AN-S',
+            'allowed' => 'T:E,P,TD;L:E,R,V,U;M:E,C,U,D,S,I,M;U:C,U,D;AA:C,U,D;AN:C,U,D;S:C,E',
         ]);
 
 
