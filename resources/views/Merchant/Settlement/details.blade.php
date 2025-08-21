@@ -250,7 +250,7 @@
                     class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2"></i>
                             <span class="mx-1">Back</span>
                         </a>

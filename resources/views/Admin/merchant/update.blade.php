@@ -94,7 +94,9 @@
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-600">Total Transactions</span>
-                            <span class="text-sm font-medium">0</span>
+                            <span class="text-sm ">
+                                <span class="font-medium">{{$count}}</span>
+                                Tnx</span>
                         </div>
                     </div>
                 </div>

@@ -49,8 +49,8 @@ class AdminTnxController extends Controller
         $total = Tnx::count();
         $Fail = Tnx::where('payment_status', 'FAIL')->count();
         $SuccessTotal = Tnx::where('payment_status', 'SUCCESS')->sum('req_amount');
-
-        return view('Admin.tnx.index', compact('tnx', 'Success', 'total', 'Fail', 'SuccessTotal'));
+        $paymentMethods = Tnx::select('paymentCode')->distinct()->get();
+        return view('Admin.tnx.index', compact('tnx', 'Success', 'total', 'Fail', 'SuccessTotal','paymentMethods'));
     }
 
     public function exportCsv()

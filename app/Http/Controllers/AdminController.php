@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Service\AdminService;
 use App\Http\Requests\MerchantRequest;
 use App\Http\Requests\MerchantUpdateRequest;
+use App\Models\Tnx;
 
 class AdminController extends Controller
 {
@@ -74,7 +75,9 @@ class AdminController extends Controller
     public function update($id)
     {
         $details = Merchants::where('user_id', $id)->get()->all();
-        return view('Admin.merchant.update', compact('details'));
+        $count = Tnx::where('created_by',$details[0]['merchant_id'])->count();
+       // dd($count);
+        return view('Admin.merchant.update', compact('details','count'));
     }
 
     public function merchantupdate(MerchantUpdateRequest $request)

@@ -113,10 +113,10 @@
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md
                                focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="">All Methods</option>
-                                    @foreach ($tnx->pluck('paymentCode')->unique() as $method)
-                                        <option value="{{ $method }}"
-                                            {{ request('payment_method') == $method ? 'selected' : '' }}>
-                                            {{ $method }}
+                                    @foreach ($paymentMethods as $method)
+                                        <option value="{{ $method['paymentCode'] }}"
+                                            {{ request('payment_method') == $method['paymentCode'] ? 'selected' : '' }}>
+                                            {{ $method['paymentCode'] }}
                                         </option>
                                     @endforeach
                                 </select>

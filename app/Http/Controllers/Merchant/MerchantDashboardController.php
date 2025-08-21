@@ -128,7 +128,7 @@ class MerchantDashboardController extends Controller
             $query->whereMonth('created_at', $month)
                 ->whereYear('created_at', $year);
         }
-
+            //  dd($query);
         return $query->sum('net_amount');
     }
 
