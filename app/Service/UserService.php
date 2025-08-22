@@ -47,9 +47,10 @@ class UserService
     {
          $secret_key = config('services.b2b.secret_key');
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
-         $backendURL = rtrim(config('app.url'), '/') . '/api/merchant/payment/backendcallback/' . $data['user_id'];
+         $app_id = config('services.b2b.x_app_id');
+         $backendURL = rtrim(config('app.url'),'/') . '/api/merchant/payment/backendcallback/' . $data['user_id'];
         $payload = json_encode([
-            'appId' => '000021',
+            'appId' => $app_id,
             'merchantExternalId' => $data['user_id'],
             'merchantName' => $data['merchant_name'],
             'merchantIntegrationType' => '1',
@@ -116,11 +117,12 @@ class UserService
 
     public function updateMerchant(array $data): array
     {
+         $app_id = config('services.b2b.x_app_id');
          $secret_key = config('services.b2b.secret_key');
          $updateUrl = config('services.b2b.update_url');
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
         $payload = json_encode([
-            'appId' => '000021',
+            'appId' => $app_id,
             'merchantExternalId' => $data['user_id'],
             "merchantID"=> $data['merchant_id'],
             'merchantName' => $data['merchant_name'],
@@ -156,7 +158,7 @@ class UserService
             'logoFileType' => $logoFileType,
             'registrationFileName' => $registrationFileName,
             'registrationFileValue' => $registrationFileValue,
-            'registerFileType' => $registrationFileType,
+            'registrationFileType' => $registrationFileType,
             'dicaFileName' => $dicaFileName,
             'dicaFileType' => $dicaFileType,
             'dicaFileValue' => $dicaFileValue,
