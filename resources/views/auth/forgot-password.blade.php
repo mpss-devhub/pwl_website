@@ -24,7 +24,9 @@
         <div class="bg-white rounded-xl shadow-xl p-8 w-[500px] z-20 text-center h-auto relative">
             <!-- Logo -->
             <div class="flex items-center justify-center pb-4">
-                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Logo" class="w-48">
+                <a href="{{ route('main.home') }}">
+                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" class="w-48">
+                </a>
             </div>
 
             <!-- Heading -->
@@ -55,7 +57,7 @@
                 <!-- Email input -->
                 <input style="font-family: 'Libre Baskerville';" type="email" name="email"
                     placeholder="Enter Your Email" value="{{ old('email') }}" required autofocus
-                    class="w-96 mt-1 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-sm" />
+                    class="w-96 mt-1 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400  text-gray-700 placeholder-gray-500 text-sm" />
 
                 <!-- Submit -->
                 <button id="submitBtn" class="w-96 bg-purple-100 py-2 rounded-3xl text-lg text-gray-700"

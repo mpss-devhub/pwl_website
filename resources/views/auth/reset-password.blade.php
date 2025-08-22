@@ -19,7 +19,9 @@
 
         <!-- Logo -->
         <div class="flex items-center justify-center pb-5">
-            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Octoverse Logo" class="w-48">
+            <a href="{{ route('main.home') }}">
+                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" class="w-48">
+                </a>
         </div>
 
         <!-- Header -->
@@ -35,7 +37,7 @@
             <div>
                 <input type="hidden" name="email" value="{{ old('email', $request->email) }}" required autofocus
                     placeholder="Enter Your Email"
-                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-xs" />
+                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400  text-gray-700 placeholder-gray-500 text-xs" />
                 @error('email')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror
@@ -44,7 +46,7 @@
             <!-- New Password -->
             <div>
                 <input type="password" name="password" required placeholder="Enter New Password"
-                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-xs" />
+                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400  text-gray-700 placeholder-gray-500 text-xs" />
                 @error('password')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror
@@ -53,7 +55,7 @@
             <!-- Confirm Password -->
             <div>
                 <input type="password" name="password_confirmation" required placeholder="Confirm Password"
-                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400 focus:border-transparent text-gray-700 placeholder-gray-500 text-xs" />
+                    class="w-96 px-3 py-3  border border-gray-500  rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400  text-gray-700 placeholder-gray-500 text-xs" />
                 @error('password_confirmation')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                 @enderror

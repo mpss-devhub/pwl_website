@@ -26,11 +26,13 @@
 
         <div class="bg-white rounded-xl shadow-xl p-12 w-full max-w-[500px] z-20 text-center h-auto relative">
             <div class="flex items-center justify-center pb-4">
+                <a href="{{ route('main.home') }}">
                 <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" class="w-48">
+                </a>
             </div>
 
             <div class="mt-1">
-                <h2 class="text-2xl font-semibold text-gray-700 text">
+                <h2 class="text-xl font-semibold text-gray-700 text">
                     Welcome To <span class="text-pink-600">Octoverse</span>!
                 </h2>
                 <p class="text-gray-700 text-md mt-2" style="font-family: 'Libre Baskerville';">
@@ -40,7 +42,7 @@
 
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="mt-7 space-y-2">
+                <div class="mt-5 space-y-2">
                     <input style="font-family: 'Libre Baskerville';" type="text" placeholder="Enter Your User ID"
                         name="user_id" value="{{ old('user_id') }}"
                         class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400     text-gray-700 placeholder-gray-500 text-sm" />

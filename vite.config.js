@@ -31,6 +31,8 @@ export default defineConfig({
     ]
   },
   build: {
+      outDir: 'public/build',
+    emptyOutDir: true,
     commonjsOptions: {
       include: [
         /node_modules/,
