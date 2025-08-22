@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -16,15 +18,15 @@
 
 <body>
 
-    <div class="bg-shape bg-shape-1 "></div>
-    <div class="bg-shape bg-shape-2 "></div>
-    <div class="bg-shape bg-shape-3 hidden md:block "></div>
+    <div class="bg-shape bg-shape-1 slide-left"></div>
+    <div class="bg-shape bg-shape-2 slide-left"></div>
+    <div class="bg-shape bg-shape-3 hidden md:block slide-right"></div>
 
     <div class="flex items-center justify-center min-h-screen">
         @include('layouts.alert')
         <div class=""></div>
 
-        <div class="bg-white rounded-xl shadow-xl p-12 w-full max-w-[500px] z-20 text-center h-auto relative">
+        <div class="bg-white rounded-xl shadow-xl p-12 w-full max-w-[500px] z-20 text-center h-auto relative ">
             <div class="flex items-center justify-center pb-4">
                 <a href="{{ route('main.home') }}">
                 <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" class="w-48">
@@ -42,7 +44,7 @@
 
             <form action="{{ route('login') }}" method="POST">
                 @csrf
-                <div class="mt-5 space-y-2">
+                <div class="mt-5 space-y-3">
                     <input style="font-family: 'Libre Baskerville';" type="text" placeholder="Enter Your User ID"
                         name="user_id" value="{{ old('user_id') }}"
                         class="w-full mt-1 px-3 py-3 border border-gray-500 rounded-2xl focus:outline-none focus:ring-2 focus:ring-puple-400     text-gray-700 placeholder-gray-500 text-sm" />
@@ -91,7 +93,7 @@
 
             </form>
 
-            <div class="text-sm text-center mt-10" style="font-family: 'Libre Baskerville';">
+            <div class="text-sm text-center mt-6" style="font-family: 'Libre Baskerville';">
                 <a href="{{ route('password.request') }}" class="text-gray-800 fw-semibold">Forget Password?</a>
             </div>
         </div>

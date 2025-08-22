@@ -56,7 +56,9 @@
                             <select id="payment-method"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
-
+                                @foreach ($paymentCodes as $item)
+                                <option value="{{ $item }}">{{ $item }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -193,7 +195,7 @@
                             @foreach ($tnx['dataList'] as $item)
                                 <tr class="transaction-row hover:bg-gray-50"
                                     data-created="{{ $item['created_at'] ?? '' }}"
-                                    data-method="{{ $item['paymentMethod'] ?? '' }}"
+                                    data-method="{{ $item['paymentCode'] ?? '' }}"
                                     data-status="{{ $item['status'] ?? '' }}"
                                     data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
                                     data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
@@ -278,7 +280,6 @@
                 const paymentMethod = document.getElementById('payment-method').value;
                 const status = document.getElementById('status').value;
                 const searchTerm = document.getElementById('search').value.toLowerCase();
-
                 const rows = document.querySelectorAll('.transaction-row');
 
                 rows.forEach(row => {

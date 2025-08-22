@@ -63,12 +63,7 @@
                 class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
                 Back to List
             </a>
-            @if (in_array('C', $access['AN'] ?? []))
-                <a href="{{ route('support.show') }}"
-                class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
-                Create New
-            </a>
-            @endif
+
             @if (in_array('R', $access['AN'] ?? []))
                 <a href="{{ route('support.edit', $data[0]['id']) }}"
                 class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">

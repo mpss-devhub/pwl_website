@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>PaywithLink</title>
+    <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/main/css/home.css') }}">
     <script src="{{ asset('common/main/js/home.js') }}"></script>

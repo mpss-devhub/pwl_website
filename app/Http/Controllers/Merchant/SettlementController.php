@@ -25,7 +25,10 @@ class SettlementController extends Controller
             return redirect()->back()->with('error', 'No settlement data found.');
         }
         $tnx = collect($data['data']);
-        return view('Merchant.Settlement.index', compact('tnx'));
+        $tnxs = collect($data['data']['dataList']);
+        $paymentCodes = $tnxs->pluck('paymentCode')->unique();
+        //dd($paymentCodes);
+        return view('Merchant.Settlement.index', compact('tnx','paymentCodes'));
     }
 
     private function getSettlementData($merchant)

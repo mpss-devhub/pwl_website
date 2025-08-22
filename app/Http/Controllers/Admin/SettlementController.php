@@ -18,8 +18,11 @@ class SettlementController extends Controller
     public function show()
     {
         $data = $this->getSettlementData();
-        //dd($data);
-        return view('Admin.Settlement.index', compact('data'));
+        $tnx = collect($data['data']);
+        $tnxs = collect($data['data']['dataList']);
+        $paymentCodes = $tnxs->pluck('paymentCode')->unique();
+        //dd($paymentCodes);
+        return view('Admin.Settlement.index', compact('data','paymentCodes'));
     }
 
 
