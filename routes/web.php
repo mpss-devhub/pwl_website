@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckUserController;
+use App\Http\Controllers\PaymentGatewayController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 require __DIR__ . '/auth.php';
@@ -39,7 +40,8 @@ Route::get('/changepassword', function () {
 })->name('forgotpassword');
 
 Route::get('/pay/{token}', [LinksController::class, 'show']);
-
+Route::post('/merchant/payment', [PaymentGatewayController::class, 'Auth'])->name('Auth');
+Route::post('/merchant/PayNow', [PaymentGatewayController::class, 'Pwl'])->name('Pwl');
 
 Route::get('Check/user', [CheckUserController::class, 'page'])
     ->name('check.page');

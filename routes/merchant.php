@@ -43,8 +43,6 @@ Route::middleware(['merchant'])->group(function () {
         return view('Merchant.paywithlink.pwl', compact('email', 'merchant'));
     })->name('merchant.paywithlink');
     Route::post('/CreateLink', [LinksController::class, 'store'])->name('links.store');
-    Route::post('/merchant/payment', [PaymentGatewayController::class, 'Auth'])->name('Auth');
-    Route::post('/merchant/PayNow', [PaymentGatewayController::class, 'Pwl'])->name('Pwl');
     Route::get('/Link/Edit/{id}', [LinksController::class, 'edit'])->name('merchant.link.edit');
     Route::put('/Links/{id}/Update', [LinksController::class, 'update'])->name('links.update');
     Route::get('/Merchant/Link/CSV/Exports', function () {

@@ -82,8 +82,13 @@
                                      <img src="{{ Storage::url('common/f.png') }}" class="w-16 h-16 sm:w-24 sm:h-24 " alt="Success Image">
                 </div>
 
-                <div class="flex justify-center mt-2 sm:mt-2">
-                    <button class="bg-[#637AE2] py-2 px-4 rounded-md text-white hover:bg-[#5469c0] transition text-sm sm:text-base">
+                 <div class="flex justify-evenly mt-2 sm:mt-2">
+                    <button class="bg-[#cacaca] py-2 px-4 rounded-md text-dark hover:bg-[#c4c4d0] transition text-[13px] border border-dotted">
+                      <a href="{{ $merchant['merchant_frontendURL'] }}">
+                        <i class="fa-solid fa-arrow-left mt-2"></i>  Return Back
+                      </a>
+                    </button>
+                      <button class="bg-[#637AE2] py-2 px-4 rounded-md text-white hover:bg-[#5469c0] transition text-xs sm:text-base">
                         Save Image
                     </button>
                 </div>
