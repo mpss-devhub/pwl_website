@@ -80,7 +80,7 @@
                                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                     <div class="flex items-center justify-between bg-gray-50 cursor-pointer">
                                         <div class="flex items-center">
-                                            <input id="module-{{ $code }}" type="checkbox"
+                                            <input id="module-{{ $code }}" type="checkbox" {{ isset($allowed[$code]) ? 'checked' : '' }}
                                                 class="module-toggle h-4 w-4 text-blue-600 focus:ring-blue-500 rounded">
                                             <label for="module-{{ $code }}"
                                                 class="ml-2 text-sm font-medium text-gray-700">

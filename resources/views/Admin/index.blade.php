@@ -46,10 +46,11 @@
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Transaction Amount</p>
                             <div class="flex ">
-                                <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
-                                </p><small class="text-muted text-gray-500 mt-2 mx-1">MMK</small>
+                                <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }} <span class="text-xs text-gray-500">MMK</span></p>
+                                <p class="text-xs text-blue-500 mt-3 mx-2">{{ number_format($totalTransactionAmountUSD) }} USD</p>
                             </div>
-                            <!--<p class="text-xs text-red-500 mt-1">- 1.4% from yesterday</p>-->
+
+
                         </div>
                         <div class="p-3 rounded-full bg-purple-50 text-purple-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

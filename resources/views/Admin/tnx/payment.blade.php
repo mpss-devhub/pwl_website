@@ -101,17 +101,8 @@
                                     <span
                                         class="text-sm font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
                                 </div>
-                            </div>
-                        </div>
-
-                        <!-- Card Details (if applicable) -->
-                        @if ($data['cardNumber'])
-                            <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
-                                <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
-                                    Card Details
-                                </h3>
-                                <div class="space-y-4">
-                                    <div class="grid grid-cols-3">
+                                @if ($data['cardNumber'])
+                                     <div class="grid grid-cols-3">
                                         <span class="text-sm text-gray-500 col-span-1">Card Number</span>
                                         <span class="text-sm font-medium text-gray-800 col-span-2">•••• •••• ••••
                                             {{ substr($data['cardNumber'], -4) }}</span>
@@ -121,9 +112,9 @@
                                         <span
                                             class="text-sm font-medium text-gray-800 col-span-2">{{ $data['expiryMonth'] }}/{{ $data['expiryYear'] }}</span>
                                     </div>
-                                </div>
+                                @endif
                             </div>
-                        @endif
+                        </div>
                     </div>
 
                     <!-- Right Column -->
@@ -182,7 +173,7 @@
                                     <img src="{{ Storage::url('common/success.png') }}" class="mt-1 w-[110px]"
                                         alt="Payment QR" loading="lazy">
                                 @endif
-                                @if ($data['payment_status'] == 'Pending')
+                                @if ($data['payment_status'] == 'PENDING')
                                     <img src="{{ Storage::url('common/pe.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
                                         loading="lazy">
                                 @endif

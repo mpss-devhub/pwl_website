@@ -21,12 +21,13 @@
             });
         </script>
     @endif
+
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14 sm:mt-16">
-            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 " >
+            <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 ">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
                     <p class="text-sm sm:text-md font-semibold text-gray-800">
-                     Bundle Upload With Excel
+                        Bundle Upload With Excel
                     </p>
                     <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20 sm:w-24" alt="Octoverse Logo">
                 </div>
@@ -38,7 +39,7 @@
 
 
                     <p class="text-xs  text-gray-500 mb-4">
-                         Make sure to fill correctly
+                        Make sure to fill correctly
                         For expired_at use format <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code>
                         (e.g., 2025-07-12T15:39).
 
@@ -169,39 +170,15 @@
 
 
                 </div>
-
-                <script>
-                    document.getElementById('file-upload').addEventListener('change', function(e) {
-                        const fileName = document.getElementById('file-name');
-                        if (this.files.length > 0) {
-
-                            // Update the label text
-                            const label = document.querySelector('label[for="file-upload"] span:first-child');
-                            label.textContent = this.files[0].name;
-                            label.classList.remove('text-gray-700');
-                            label.classList.add('text-gray-900', 'font-medium');
-                        } else {
-                            fileName.textContent = '';
-                        }
-                    });
-                    const form = document.querySelector('form[action="{{ route('links.import') }}"]');
-                    const uploadBtn = document.getElementById('upload-btn');
-                    const spinner = document.getElementById('upload-spinner');
-                    const uploadText = uploadBtn.querySelector('.upload-text');
-
-                    form.addEventListener('submit', function() {
-                        uploadBtn.disabled = true;
-                        uploadText.classList.add('hidden');
-                        spinner.classList.remove('hidden');
-                    });
-                </script>
             </div>
-             <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
+            <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
                 <div
                     class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
+                    <div
+                        class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('tnx.show') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <a href="{{ route('merchant.paywithlink') }}"
+                            class="text-gray-600 hover:text-gray-900   flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2 mt-2"></i>
                         </a>
                     </div>
@@ -221,4 +198,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            const fileName = document.getElementById('file-name');
+            if (this.files.length > 0) {
+
+                // Update the label text
+                const label = document.querySelector('label[for="file-upload"] span:first-child');
+                label.textContent = this.files[0].name;
+                label.classList.remove('text-gray-700');
+                label.classList.add('text-gray-900', 'font-medium');
+            } else {
+                fileName.textContent = '';
+            }
+        });
+        const form = document.querySelector('form[action="{{ route('links.import') }}"]');
+        const uploadBtn = document.getElementById('upload-btn');
+        const spinner = document.getElementById('upload-spinner');
+        const uploadText = uploadBtn.querySelector('.upload-text');
+
+        form.addEventListener('submit', function() {
+            uploadBtn.disabled = true;
+            uploadText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+        });
+    </script>
 @endsection

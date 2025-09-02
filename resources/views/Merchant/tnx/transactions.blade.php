@@ -231,7 +231,7 @@
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                             {{ $item->payment_status }}
                                         </span>
-                                    @elseif ($item->payment_status == 'Pending')
+                                    @elseif ($item->payment_status == 'PENDING')
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                             {{ $item->payment_status }}

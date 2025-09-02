@@ -20,7 +20,8 @@ class MerchantDashboardController extends Controller
         $currentMonth = now()->month;
         $currentYear = now()->year;
 
-        $TotalMMK = $this->totalMMK($merchantId, $currentMonth, $currentYear);
+        $TotalMMK = $this->totalMMK($merchantId);
+        $TotalUSD = $this->totalUSD($merchantId);
         $TotalSuccess = $this->totalSuccess($merchantId, $currentMonth, $currentYear);
         $TotalPending = $this->totalPending($merchantId, $currentMonth, $currentYear);
         $TotalFailed = $this->totalFailed($merchantId, $currentMonth, $currentYear);
@@ -37,6 +38,7 @@ class MerchantDashboardController extends Controller
         return view('Merchant.index', compact(
             'revenueData',
             'TotalMMK',
+            'TotalUSD',
             'TotalSuccess',
             'TotalFailed',
             'TotalPending',
@@ -118,17 +120,23 @@ class MerchantDashboardController extends Controller
 
 
 
-    private function TotalMMK($id, $month = null, $year = null)
+    private function TotalMMK($id)
     {
         $query = Tnx::where('created_by', $id)
             ->where('currencyCode', 'MMK')
             ->where('payment_status', 'SUCCESS');
 
-        if ($month && $year) {
-            $query->whereMonth('created_at', $month)
-                ->whereYear('created_at', $year);
-        }
-            //  dd($query);
+
+        return $query->sum('net_amount');
+    }
+
+    private function TotalUSD($id)
+    {
+        $query = Tnx::where('created_by', $id)
+            ->where('currencyCode', 'USD')
+            ->where('payment_status', 'SUCCESS');
+
+
         return $query->sum('net_amount');
     }
 

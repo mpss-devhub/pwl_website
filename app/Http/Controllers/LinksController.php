@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\LinkUpdateRequest;
 use App\Http\Requests\Merchant\LinkRequest;
+use App\Models\sms;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Maatwebsite\Excel\Validators\ValidationException;
 
@@ -92,7 +93,7 @@ class LinksController extends Controller
 
     private function click($id)
     {
-        $ip = '103.105.172.32' ; // For testing purposes, you can replace this with a real IP address.
+        $ip = '103.105.172.32'; // For testing purposes, you can replace this with a real IP address.
         $ip = request()->ip();
         if ($ip === '127.0.0.1') {
             $info = null;
@@ -139,7 +140,8 @@ class LinksController extends Controller
     public function edit($id)
     {
         $link = Links::findOrFail($id);
-        return view('merchant.sms.edit', compact('link'));
+        $sms = sms::where('merchant_id', $link['created_by'])->get();
+        return view('Merchant.sms.edit', compact('link', 'sms'));
     }
 
     public function update(LinkUpdateRequest $request, $id)
@@ -159,37 +161,35 @@ class LinksController extends Controller
             'link_currency'      => $validatedData['currency'],
         ]);
 
-        return redirect()->back()->with('success', 'Link updated successfully.');
+        return to_route('merchant.sms')->with('Success', 'Link updated successfully.');
     }
 
     public function importLinks(Request $request)
-{
-    $request->validate([
-        'excel_file' => 'required|mimes:xlsx,xls,csv',
-    ]);
+    {
+        $request->validate([
+            'excel_file' => 'required|mimes:xlsx',
+        ]);
+        try {
+            $import = new LinksImport(app(SMSService::class));
+            Excel::import($import, $request->file('excel_file'));
 
-    try {
-        $import = new LinksImport(app(SMSService::class));
-        Excel::import($import, $request->file('excel_file'));
+            if ($import->getSuccessCount() === 0) {
+                return back()->withErrors(['import' => 'No rows were imported. Please check for validation errors or duplicates.']);
+            }
 
-        if ($import->getSuccessCount() === 0) {
-            return back()->withErrors(['No rows were imported. Please check for validation errors or duplicates.']);
+            return back()->with('success', $import->getSuccessCount() . ' payment links generated successfully!');
+        } catch (ValidationException $e) {
+            $messages = [];
+
+            foreach ($e->failures() as $failure) {
+                $row = $failure->row();
+                $errors = implode(', ', $failure->errors());
+                $messages[] = "Row {$row}: {$errors}";
+            }
+
+            return back()->withErrors($messages);
+        } catch (\Throwable $e) {
+            return back()->withErrors(['error' => $e->getMessage()]);
         }
-
-        return back()->with('success', $import->getSuccessCount() . ' payment links generated successfully!');
-    } catch (ValidationException $e) {
-        $messages = [];
-
-        foreach ($e->failures() as $failure) {
-            $row = $failure->row();
-            $errors = implode(', ', $failure->errors());
-            $messages[] = "Row {$row}: {$errors}";
-        }
-
-        return back()->withErrors($messages);
-    } catch (\Throwable $e) {
-        return back()->withErrors(['error' => $e->getMessage()]);
     }
-}
-
 }

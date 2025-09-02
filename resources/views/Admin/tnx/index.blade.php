@@ -133,7 +133,7 @@
                                     </option>
                                     <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }}>FAIL
                                     </option>
-                                    <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>PENDING
+                                    <option value="Pending" {{ request('status') == 'PENDING' ? 'selected' : '' }}>PENDING
                                     </option>
                                 </select>
                             </div>
@@ -278,7 +278,7 @@
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 {{ $item->payment_status }}
                                             </span>
-                                        @elseif ($item->payment_status == 'Pending')
+                                        @elseif ($item->payment_status == 'PENDING')
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 {{ $item->payment_status }}

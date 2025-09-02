@@ -21,7 +21,8 @@ class AdminDashboardController extends Controller
         $totalUsers = User::count();
         $activeMerchants = Merchants::where('status', 'on')->count();
         $latestTransactions = $this->getLatestTransactions();
-        $totalTransactionAmount = Tnx::sum('net_amount');
+        $totalTransactionAmount = Tnx::where('payment_status','SUCCESS')->where('currencyCode','MMK')->sum('net_amount');
+        $totalTransactionAmountUSD = Tnx::where('payment_status','SUCCESS')->where('currencyCode','USD')->sum('net_amount');
         $totalTransactions = Tnx::count();
 
         $revenueData = $this->getRevenueData($year, $month);
@@ -43,6 +44,7 @@ class AdminDashboardController extends Controller
             'totalUsers',
             'activeMerchants',
             'totalTransactionAmount',
+            'totalTransactionAmountUSD',
             'totalTransactions',
             'revenueData',
             'userGrowthData',

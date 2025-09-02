@@ -87,6 +87,12 @@ class AdminController extends Controller
         return redirect()->route('merchant.show')->with('success', 'Merchant updated successfully!');
     }
 
+    public function destory($id){
+        Merchants::where('user_id',$id)->delete();
+        User::where('user_id',$id)->delete();
+        return to_route('merchant.show')->with('Success','Merchant Delete Successfully');
+    }
+
     public function sms($id)
     {
         $details = Merchants::where('user_id', $id)->select('merchant_id')->first();

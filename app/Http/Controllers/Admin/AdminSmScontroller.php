@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\AllMerchantLinksExport;
 use App\Http\Requests\LinkUpdateRequest;
+use App\Models\sms;
 
 class AdminSmScontroller extends Controller
 {
@@ -142,7 +143,8 @@ class AdminSmScontroller extends Controller
     public function edit($id)
     {
         $link = Links::findOrFail($id);
-        return view('Admin.links.edit', compact('link'));
+        $sms = sms::where('merchant_id',$link['created_by'])->get();
+        return view('Admin.links.edit', compact('link','sms'));
     }
 
     public function update(LinkUpdateRequest $request, $id)
@@ -162,6 +164,6 @@ class AdminSmScontroller extends Controller
             'link_currency'      => $validatedData['currency'],
         ]);
 
-        return redirect()->back()->with('Success', 'Link updated successfully.');
+        return to_route('admin.links')->with('Success', 'Link updated successfully.');
     }
 }

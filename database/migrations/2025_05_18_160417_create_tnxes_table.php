@@ -18,11 +18,11 @@ return new class extends Migration
             $table->string('payment_status')->nullable();
             $table->string('payment_expired_at')->nullable();
             $table->string('payment_created_at')->nullable();
-            $table->integer('tnx_phonenumber')->nullable();
-            $table->integer('cardNumber')->nullable();
-            $table->integer('expiryMonth')->nullable();
-            $table->integer('expiryYear')->nullable();
-            $table->integer('secuirtyNumber')->nullable();
+            $table->string('tnx_phonenumber')->nullable();
+            $table->string('cardNumber')->nullable();
+            $table->string('expiryMonth')->nullable();
+            $table->string('expiryYear')->nullable();
+            $table->string('secuirtyNumber')->nullable();
             $table->string('tranref_no')->nullable(); //invoniceNo
             $table->string('tnx_tranref_no')->nullable();
             $table->string('bank_tranref_no')->nullable();

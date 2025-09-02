@@ -1,50 +1,9 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
-    @include('Merchant.paywithlink.alert')
-    <div class="p-4 sm:ml-64 bg-gray-50 min-h-screen">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
             <div class="max-w-6xl mx-auto">
-                <!-- Header Section -->
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-                    <!-- Logo and Title -->
-                    <div class="flex items-center gap-3">
 
-                        <div>
-                            <h1 class="text-md md:text-xl font-bold text-gray-800">Update Payment Link</h1>
-                            <p class="text-gray-500 text-sm mt-0.5">Edit your payment link details below</p>
-                        </div>
-
-                    </div>
-
-                    <!-- Back Button -->
-                    <div class="w-full sm:w-auto">
-                        <a href="{{ route('merchant.sms') }}"
-                            class="inline-flex items-center px-4 py-2.5 bg-white border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition-all duration-200 shadow-sm hover:shadow-md">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            Back to Links
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Success Message -->
-                @if (session('success'))
-                    <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-6 rounded">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                            <p>{{ session('success') }}</p>
-                        </div>
-                    </div>
-                @endif
 
                 <!-- Form Card -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
@@ -151,9 +110,11 @@
                                         <option value="Q"
                                             {{ old('notification', $link->notification) == 'Q' ? 'selected' : '' }}>QR
                                         </option>
-                                        <option value="S"
-                                            {{ old('notification', $link->notification) == 'S' ? 'selected' : '' }}>SMS
-                                        </option>
+                                        @if ($sms)
+                                            <option value="S"
+                                                {{ old('notification', $link->notification) == 'S' ? 'selected' : '' }}>SMS
+                                            </option>
+                                        @endif
                                         <option value="E"
                                             {{ old('notification', $link->notification) == 'E' ? 'selected' : '' }}>Email
                                         </option>

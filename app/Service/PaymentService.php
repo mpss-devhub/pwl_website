@@ -98,9 +98,7 @@ class PaymentService
         }
         $token = $response['data'];
         $decode = $this->get($token, $secret_key);
-        //dd($decode);
         if ($decode) {
-            // dd($data, $decode, $paymentCode, $data_Key,$paymentInfo);
             $data = $this->dopay($decode, $paymentCode, $data_Key, $data);
         }
         return $data;
@@ -187,7 +185,6 @@ class PaymentService
                 'tranref_no' => $data['invoiceNo'] ?? '',
                 'bank_tranref_no' => $data['bankTranrefNo'] ?? '',
                 'txn_amount' => $data['txnAmount'] ?? '',
-                'currencyCode' => $data['currencyCode'] ?? '',
                 'req_amount' => $data['reqAmount'] ?? '',
                 'net_amount' => $data['netAmount'] ?? '',
                 'created_by' => $merchant_id,

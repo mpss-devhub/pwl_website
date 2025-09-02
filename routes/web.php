@@ -56,7 +56,7 @@ Route::get('/invoice/{invoiceNo}', function ($invoiceNo) {
     if ($tnx->payment_status === 'SUCCESS') {
         return view('Extra.success', compact('merchant', 'link', 'tnx'));
     }
-    if ($tnx->payment_status === 'FAILED') {
+    if ($tnx->payment_status === 'FAIL') {
         return view('Extra.fail', compact('merchant', 'link', 'tnx'));
     }
 })->name('payment.invoice');

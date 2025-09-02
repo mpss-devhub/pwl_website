@@ -17,7 +17,7 @@
             <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                 <!-- Invoice Header -->
                 <div class="text-center">
-                   <p class="text-center text-gray-700 text-xs py-2" > Please Do Not Reload The Page</p>
+                    <p class="text-center text-gray-700 text-xs py-2"> Please Do Not Reload The Page</p>
                     <div role="status mt-2">
                         <svg aria-hidden="true"
                             class="inline w-9 h-9 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
@@ -73,7 +73,8 @@
                 <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                     <!-- Invoice Header -->
                     <div class="text-center text-gray-800 text-[13px]">
-                        <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please Do Not Reload The Page</p>
+                        <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please
+                            Do Not Reload The Page</p>
                         <div class="flex justify-center ">
                             <img src="{{ $data['qrImg'] }}" alt="QR Code" class="w-48 h-48 mx-auto" />
                         </div>
@@ -127,7 +128,7 @@
                     function downloadQR() {
                         const link = document.createElement('a');
                         link.href = {{ $data['qrImg'] }};
-                        link.download = "QR-Code.png"; // file name
+                        link.download = "QR-Code.png";
                         document.body.appendChild(link);
                         link.click();
                         document.body.removeChild(link);
@@ -138,7 +139,8 @@
                 <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                     <!-- Invoice Header -->
                     <div class="text-center">
-                      <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please Do Not Reload The Page</p>
+                        <p class="text-center text-gray-700 text-xs py-2" style="font-family: 'Libre Baskerville'"> Please
+                            Do Not Reload The Page</p>
                         <div role="status">
                             <svg aria-hidden="true"
                                 class="inline w-9 h-9 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
@@ -226,20 +228,29 @@
     @endif
     <script>
         //Redirect
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", () => {
             const invoiceNo = "{{ $link->link_invoiceNo }}";
-            const checkInterval = setInterval(() => {
-                fetch(`http://127.0.0.1:8000/check-payment/${invoiceNo}`)
-                    .then((res) => res.json())
-                    .then((data) => {
-                        if (data.status) {
-                            clearInterval(checkInterval);
-                            window.location.href = "http://127.0.0.1:8000/invoice/" + invoiceNo;
-                        }
-                    })
-                    .catch((err) => console.error("Error checking payment:", err));
-            }, 2000);
-        });
+            let attempts = 0;
+            const maxAttempts = 150;
 
+            const checkPayment = async () => {
+                attempts++;
+                try {
+                    const res = await fetch("{{ url('check-payment') }}/" + invoiceNo);
+                    const data = await res.json();
+                    if (data.status) {
+                        clearInterval(checkInterval);
+                        window.location.href = "{{ url('invoice') }}/" + invoiceNo;
+                    } else if (attempts >= maxAttempts) {
+                        clearInterval(checkInterval);
+                        console.warn("Payment check timed out.");
+                    }
+                } catch (err) {
+                    console.error("Error checking payment:", err);
+                }
+            };
+
+            const checkInterval = setInterval(checkPayment, 2000);
+        });
     </script>
 @endsection
