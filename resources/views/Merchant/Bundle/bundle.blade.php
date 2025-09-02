@@ -1,5 +1,7 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     @if (session('success'))
         <script>
             Swal.fire({
@@ -11,16 +13,17 @@
         </script>
     @endif
 
-    @if ($errors->any())
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Validation Errors',
-                html: `{!! implode('<br>', $errors->all()) !!}`,
-                confirmButtonText: 'OK'
-            });
-        </script>
-    @endif
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Errors',
+            html: `{!! implode('<br>', $errors->all()) !!}`,
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14 sm:mt-16">
@@ -177,8 +180,7 @@
                     <div
                         class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('merchant.paywithlink') }}"
-                            class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <a href="{{ route('merchant.paywithlink') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2 mt-2"></i>
                         </a>
                     </div>

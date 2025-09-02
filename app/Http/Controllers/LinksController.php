@@ -169,11 +169,13 @@ class LinksController extends Controller
         $request->validate([
             'excel_file' => 'required|mimes:xlsx',
         ]);
+
         try {
             $import = new LinksImport(app(SMSService::class));
             Excel::import($import, $request->file('excel_file'));
 
             if ($import->getSuccessCount() === 0) {
+              //  dd('pass');
                 return back()->withErrors(['import' => 'No rows were imported. Please check for validation errors or duplicates.']);
             }
 

@@ -51,7 +51,7 @@
 
                     <div class="mt-6 space-y-4">
                         <div>
-                            <label class="block text-sm font-medium text-gray-700 mb-1">Merchant ID</label>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Merchant ID </label>
                             <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md">
                                 <span class="text-gray-600">{{ $detail->merchant_id }}</span>
                                 <button class="ml-auto text-gray-500 hover:text-gray-700">
@@ -100,6 +100,34 @@
                         </div>
                     </div>
                 </div>
+                  <div class="bg-white p-6 rounded-lg shadow mt-3">
+                            <h2 class="text-lg font-semibold text-gray-800">Download Information <i
+                                    class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>
+
+                            <div class=" space-y-2 mt-4 ">
+                                <!-- Company Registration -->
+                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm ">
+                                    <a href="{{ $detail->merchant_registration }}" download class="">
+                                        <p class="flex text-sm font-medium text-gray-700 mb-2 mx-10">Company Registration
+                                        </p>
+                                    </a>
+                                </div>
+
+                                <!-- Shareholder List -->
+                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ $detail->merchant_shareholder }}" download class="">
+                                        <p class="flex text-sm font-medium text-gray-700 mb-2  mx-14">Company Extract
+                                        </p>
+                                    </a>
+                                </div>
+                                <!-- DICA File -->
+                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ $detail->merchant_dica }}" download class="">
+                                        <p class="flex text-sm font-medium text-gray-700 mb-2 mx-14">Corporate Profile</p>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
             </div>
 
             <!-- Right Column - Forms -->
@@ -114,22 +142,22 @@
                     <div class="grid md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name <span class="text-red-500">*</span></label>
-                            <input  value="{{ $detail->merchant_name }}" type="text" id='name' name="merchant_name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input required  value="{{ $detail->merchant_name }}" type="text" id='name' name="merchant_name" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name <span class="text-red-500">*</span></label>
-                            <input value="{{ $detail->merchant_Cname }}" type="text" name="merchant_Cname" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input required value="{{ $detail->merchant_Cname }}" type="text" name="merchant_Cname" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Contact Phone <span class="text-red-500">*</span></label>
                             <div class="flex">
 
-                                <input value="{{ $detail->merchant_Cphone }}" type="tel" name="merchant_Cphone" class="flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <input required minlength="4" maxlength="12" value="{{ $detail->merchant_Cphone }}" type="tel" name="merchant_Cphone" class="flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                         </div>
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email <span class="text-red-500">*</span></label>
-                            <input value="{{ $detail->merchant_Cemail }}" type="email" name="merchant_Cemail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                            <input required value="{{ $detail->merchant_Cemail }}" type="email" name="merchant_Cemail" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                         </div>
                     </div>
                 </div>
@@ -154,7 +182,7 @@
                                 <span class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                     https://
                                 </span>
-                                <input value="{{ $detail->merchant_backendURL }}" type="text" name="merchant_backendURL" class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <input readonly value="{{ $detail->merchant_backendURL }}" type="text" name="merchant_backendURL" class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                             </div>
                         </div>
                         <div>
@@ -173,74 +201,93 @@
                     </div>
                 </div>
 
-                <!-- Documents Section -->
-                <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Required Documents</h2>
+               <!-- Documents Section -->
+                        <div class="bg-white p-6 rounded-lg shadow">
+                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Required Documents</h2>
 
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <div class="space-y-4">
-                            <!-- Company Registration -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Company Registration</label>
-                                <div class="flex items-center space-x-3">
-                                    <label class="flex-1">
-                                        <div class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <p class="text-sm text-gray-500 mt-2">Click to upload</p>
-                                            <p class="text-xs text-gray-400">PDF, JPG, PNG (max 5MB)</p>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div class="space-y-4">
+                                    <!-- Company Registration -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Company
+                                            Registration</label>
+                                        <div class="flex items-center space-x-3">
+                                            <label class="flex-1">
+                                                <div
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                    </svg>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to Reupload</p>
+                                                    <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
+                                                </div>
+                                                <input type="file" class="hidden file-input"
+                                                    name="merchant_registration" accept=".pdf,.jpg,.png">
+                                            </label>
                                         </div>
-                                        <input type="file" class="hidden" name="merchant_registration" accept=".pdf,.jpg,.png">
-                                    </label>
+                                    </div>
+
+                                    <!-- Shareholder List -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Company Extract</label>
+                                        <div class="flex items-center space-x-3">
+                                            <label class="flex-1">
+                                                <div
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                    </svg>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to Reupload</p>
+                                                    <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
+                                                </div>
+                                                <input type="file" class="hidden file-input"
+                                                    name="merchant_shareholder" accept=".pdf,.jpg,.png">
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Shareholder List -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Shareholder List</label>
-                                <div class="flex items-center space-x-3">
-                                    <label class="flex-1">
-                                        <div class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <p class="text-sm text-gray-500 mt-2">Click to upload</p>
-                                            <p class="text-xs text-gray-400">PDF, JPG, PNG (max 5MB)</p>
+                                <div class="space-y-4">
+                                    <!-- DICA File -->
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-2">Corporate
+                                            Profile</label>
+                                        <div class="flex items-center space-x-3">
+                                            <label class="flex-1">
+                                                <div
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
+                                                        viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                    </svg>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to Reupload</p>
+                                                    <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
+                                                </div>
+                                                <input type="file" class="hidden file-input" name="merchant_dica"
+                                                    accept=".pdf,.jpg,.png">
+                                            </label>
                                         </div>
-                                        <input type="file" class="hidden" name="merchant_shareholder" accept=".pdf,.jpg,.png">
-                                    </label>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
+                                        <textarea rows="5" name="merchant_remark"
+                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="Any additional notes..."></textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="space-y-4">
-                            <!-- DICA File -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">DICA File</label>
-                                <div class="flex items-center space-x-3">
-                                    <label class="flex-1">
-                                        <div class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                            </svg>
-                                            <p class="text-sm text-gray-500 mt-2">Click to upload</p>
-                                            <p class="text-xs text-gray-400">PDF, JPG, PNG (max 5MB)</p>
-                                        </div>
-                                        <input type="file" class="hidden" name="merchant_dica" accept=".pdf,.jpg,.png">
-                                    </label>
-                                </div>
-                            </div>
-
-                            <!-- Remarks -->
-                            <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
-                                <textarea rows="5" name="merchant_remark" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Any additional notes...">{{ $detail->merchant_remark }}
-                                </textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -248,5 +295,35 @@
     <input type="hidden" id="user_id" name="user_id" value={{ $detail->user_id }}></input>
     </form>
 @endforeach
-
+    <script>
+        document.querySelectorAll('.file-input').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert("File size must be less than 2MB!");
+                        this.value = "";
+                    }
+                }
+                const box = this.closest('label').querySelector('.upload-box');
+                const icon = box.querySelector('.upload-icon');
+                const text = box.querySelector('.upload-text');
+                if (this.files.length > 0) {
+                    box.classList.remove('border-gray-300', 'bg-gray-50');
+                    box.classList.add('border-yellow-500', 'bg-yellow-50');
+                    icon.classList.remove('text-gray-400');
+                    icon.classList.add('text-yellow-500');
+                    text.textContent = this.files[0].name; // Show file name
+                    text.classList.add('text-gray-600');
+                } else {
+                    box.classList.remove('border-green-500', 'bg-green-50');
+                    box.classList.add('border-gray-300', 'bg-gray-50');
+                    icon.classList.remove('text-green-500');
+                    icon.classList.add('text-gray-400');
+                    text.textContent = "Click to upload";
+                    text.classList.remove('text-green-600');
+                }
+            });
+        });
+    </script>
 @endsection

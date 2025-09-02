@@ -43,13 +43,13 @@
                                     </div>
                                 </div>
 
-                                <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden "
-                                    required onchange="loadFile(event)">
+                                <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden"
+                                    required onchange="validateImage(event)">
                                 <label for="file-upload"
-                                    class=" px-4 py-2 bg-gray-100  rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
+                                    class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                                     <i class="fas fa-upload mr-2"></i>Upload Logo
                                 </label>
-                                <p class="text-xs text-gray-500 text-center">JPG, PNG (1:1 ratio, max 2MB)</p>
+                                <p class="text-xs text-gray-500 text-center">JPG, PNG (must be 300×300px, max 2MB)</p>
                             </div>
 
                             <div class="mt-6 space-y-4">
@@ -293,6 +293,7 @@
         </div>
 
     </form>
+
     <script>
         document.querySelectorAll('.file-input').forEach(input => {
             input.addEventListener('change', function() {

@@ -1,14 +1,11 @@
 // Tailwind CSS
 import '../css/app.css';
 
-// FontAwesome
+// FontAwesome (CSS only)
 import '@fortawesome/fontawesome-free/css/all.css';
-import '@fortawesome/fontawesome-free/js/all.js';
-import 'flowbite/dist/flowbite.min.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  window.Flowbite.init();
-});
+// Flowbite
+import 'flowbite';
 
 // Alpine.js
 import Alpine from 'alpinejs';
@@ -27,6 +24,7 @@ window.axios = axios;
 import Swal from 'sweetalert2';
 window.Swal = Swal;
 
+// PDF/QR tools
 import QRCode from "qrcode";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";

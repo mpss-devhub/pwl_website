@@ -24,8 +24,8 @@ class UserRequest extends FormRequest
         return [
             'user_id'=>'required',
             'name'=>'required',
-            'email'=>'required|email',
-            'phone'=>'required|max:12|min:6',
+            'email'=>'required|email|unique:users,email',
+            'phone'=>'required|max:12|min:6|unique:users,phone',
             'status'=>'required',
             'permission_id'=>'required',
             "role" => 'required',
