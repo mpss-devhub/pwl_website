@@ -64,7 +64,7 @@
                 Back to List
             </a>
 
-            @if (in_array('R', $access['AN'] ?? []))
+            @if (in_array('U', $access['AN'] ?? []))
                 <a href="{{ route('support.edit', $data[0]['id']) }}"
                 class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
                 <i class="fa-solid fa-pen-to-square mx-1"></i> Edit Announcement
