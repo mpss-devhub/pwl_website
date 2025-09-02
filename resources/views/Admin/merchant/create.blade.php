@@ -1,6 +1,5 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
-
     <form action="{{ route('merchant.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="p-4 sm:ml-64 bg-gray-100 min-h-screen">
@@ -19,19 +18,11 @@
                             </div>
 
                         </div>
-                        @if ($errors->any())
-                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-                                role="alert">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                        <br>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Logo</h2>
+                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Logo
+                                <span class="text-red-500 ">*
+                                </span>
+                            </h2>
 
                             <div class="flex flex-col items-center">
                                 <div class="relative mb-4 group">
@@ -52,29 +43,30 @@
                                     </div>
                                 </div>
 
-                                <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden"
-                                    onchange="loadFile(event)">
+                                <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden "
+                                    required onchange="loadFile(event)">
                                 <label for="file-upload"
-                                    class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
+                                    class=" px-4 py-2 bg-gray-100  rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                                     <i class="fas fa-upload mr-2"></i>Upload Logo
                                 </label>
                                 <p class="text-xs text-gray-500 text-center">JPG, PNG (1:1 ratio, max 2MB)</p>
                             </div>
 
                             <div class="mt-6 space-y-4">
-
-
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-2">Account Status</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Account Status
+                                        <span class="text-red-500 ">*
+                                        </span>
+                                    </label>
                                     <div class="flex space-x-4">
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on">
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 " value="on">
                                             <span class="ml-2 text-gray-700">Active</span>
                                         </label>
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off">
+                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 " value="off">
                                             <span class="ml-2 text-gray-700">Inactive</span>
                                         </label>
                                     </div>
@@ -95,13 +87,13 @@
 
                             <button type="button"
                                 class="px-4 py-2 md:px-5 md:py-2.5 text-xs md:text-sm font-medium text-gray-800 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:ring-4 focus:outline-none focus:ring-gray-200 transition-colors flex items-center justify-center">
-                                <a href="{{ route('merchant.show') }}"> <i
-                                        class="fas fa-times mr-2 text-xs md:text-sm"></i>Cancel</a>
+                                <a href="{{ route('merchant.show') }}">
+                                    <i class="fas fa-times mr-2 text-xs md:text-sm"></i>Cancel</a>
                             </button>
                         </div>
                         <!-- Quick Stats Card -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">This Merchant will be</h2>
+                            <h2 class="text-md font-semibold text-gray-800 mb-4">This Merchant will be</h2>
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm text-gray-600">Created by</span>
@@ -132,32 +124,36 @@
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name <span
-                                            class="text-red-500">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name
+                                        <span class="text-red-500 text-[11px]">*
+                                        </span>
+                                    </label>
                                     <input type="text" id='name' name="merchant_name"
-                                        value="{{ old('merchant_name') }}"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        value="{{ old('merchant_name') }}" required
+                                        class="@error('merchant_name') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name <span
                                             class="text-red-500">*</span></label>
                                     <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        required
+                                        class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Contact Phone <span
                                             class="text-red-500">*</span></label>
                                     <div class="flex">
-
                                         <input type="tel" name="merchant_Cphone" value="{{ old('merchant_Cphone') }}"
-                                            class="flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            required minlength="4" maxlength="12"
+                                            class="@error('merchant_Cphone') border-red-400 focus:outline-none @enderror flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email <span
                                             class="text-red-500">*</span></label>
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        required
+                                        class="@error('merchant_Cphone') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                             </div>
                         </div>
@@ -176,14 +172,17 @@
                                         </span>
                                         <input type="text" name="merchant_frontendURL"
                                             value="{{ old('merchant_frontendURL') }}"
-                                            class="  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            class="@error('merchant_frontendURL') border-red-400 focus:outline-none @enderror  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email
+                                        <span class="text-red-500 ">*
+                                        </span>
+                                    </label>
                                     <input type="email" name="merchant_notifyemail"
-                                        value="{{ old('merchant_notifyemail') }}"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        value="{{ old('merchant_notifyemail') }}" required
+                                        class="@error('merchant_notifyemail') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Address</label>
@@ -194,7 +193,7 @@
                                         </span>
                                         <input type="text" name="merchant_address"
                                             value="{{ old('merchant_address') }}"
-                                            class="flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            class="@error('merchant_address') border-red-400 focus:outline-none @enderror flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
 
@@ -214,19 +213,19 @@
                                         <div class="flex items-center space-x-3">
                                             <label class="flex-1">
                                                 <div
-                                                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-10 w-10 text-gray-400" fill="none"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
                                                         viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                     </svg>
-                                                    <p class="text-sm text-gray-500 mt-2">Click to upload</p>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to upload</p>
                                                     <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
                                                 </div>
-                                                <input type="file" class="hidden" name="merchant_registration"
-                                                    accept=".pdf,.jpg,.png">
+                                                <input type="file" class="hidden file-input"
+                                                    name="merchant_registration" accept=".pdf,.jpg,.png">
                                             </label>
                                         </div>
                                     </div>
@@ -237,19 +236,19 @@
                                         <div class="flex items-center space-x-3">
                                             <label class="flex-1">
                                                 <div
-                                                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-10 w-10 text-gray-400" fill="none"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
                                                         viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                     </svg>
-                                                    <p class="text-sm text-gray-500 mt-2">Click to upload</p>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to upload</p>
                                                     <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
                                                 </div>
-                                                <input type="file" class="hidden" name="merchant_shareholder"
-                                                    accept=".pdf,.jpg,.png">
+                                                <input type="file" class="hidden file-input"
+                                                    name="merchant_shareholder" accept=".pdf,.jpg,.png">
                                             </label>
                                         </div>
                                     </div>
@@ -263,18 +262,18 @@
                                         <div class="flex items-center space-x-3">
                                             <label class="flex-1">
                                                 <div
-                                                    class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
+                                                    class="upload-box flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors p-4">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        class="h-10 w-10 text-gray-400" fill="none"
+                                                        class="upload-icon h-10 w-10 text-gray-400" fill="none"
                                                         viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2"
                                                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                                                     </svg>
-                                                    <p class="text-sm text-gray-500 mt-2">Click to upload</p>
+                                                    <p class="upload-text text-sm text-gray-500 mt-2">Click to upload</p>
                                                     <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
                                                 </div>
-                                                <input type="file" class="hidden" name="merchant_dica"
+                                                <input type="file" class="hidden file-input" name="merchant_dica"
                                                     accept=".pdf,.jpg,.png">
                                             </label>
                                         </div>
@@ -294,6 +293,37 @@
         </div>
 
     </form>
+    <script>
+        document.querySelectorAll('.file-input').forEach(input => {
+            input.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    const file = this.files[0];
+                    if (file.size > 2 * 1024 * 1024) {
+                        alert("File size must be less than 2MB!");
+                        this.value = "";
+                    }
+                }
+                const box = this.closest('label').querySelector('.upload-box');
+                const icon = box.querySelector('.upload-icon');
+                const text = box.querySelector('.upload-text');
+                if (this.files.length > 0) {
+                    box.classList.remove('border-gray-300', 'bg-gray-50');
+                    box.classList.add('border-yellow-500', 'bg-yellow-50');
+                    icon.classList.remove('text-gray-400');
+                    icon.classList.add('text-yellow-500');
+                    text.textContent = this.files[0].name; // Show file name
+                    text.classList.add('text-gray-600');
+                } else {
+                    box.classList.remove('border-green-500', 'bg-green-50');
+                    box.classList.add('border-gray-300', 'bg-gray-50');
+                    icon.classList.remove('text-green-500');
+                    icon.classList.add('text-gray-400');
+                    text.textContent = "Click to upload";
+                    text.classList.remove('text-green-600');
+                }
+            });
+        });
+    </script>
     <script>
         function loadFile(event) {
             var reader = new FileReader();
@@ -348,5 +378,4 @@
 
         });
     </script>
-
 @endsection
