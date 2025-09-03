@@ -72,22 +72,30 @@ class PaymentService
         $paymentCode = $data['paymentCode'] ?? '';
         $links = Links::where('id', $data['link_id'])->get()->toArray();
         $paymentInfo = $links[0];
+
         $merchants = Merchants::where('merchant_id', $paymentInfo['merchant_id'])->get()->toArray();
         $merchantInfo = $merchants[0];
+
         $secret_key = $merchantInfo['merchant_secretkey'];
-        $data_Key = $merchantInfo['merchant_datakey'];
+        $data_Key   = $merchantInfo['merchant_datakey'];
+
         $header = json_encode(['alg' => 'HS256', 'typ' => 'JWT']);
-        $payload = json_encode([
-            'merchantID' => $paymentInfo['merchant_id'],
-            'invoiceNo' => $paymentInfo['link_invoiceNo'],
-            'amount' => $paymentInfo['link_amount'],
+
+        // build array first
+        $payloadData = [
+            'merchantID'   => $paymentInfo['merchant_id'],
+            'invoiceNo'    => $paymentInfo['link_invoiceNo'],
+            'amount'       => $paymentInfo['link_amount'],
             'currencyCode' => $paymentInfo['link_currency'],
-            'frontendUrl' => $merchantInfo['merchant_frontendURL'],
-            'backendUrl' => $merchantInfo['merchant_backendURL'],
-        ]);
+            'frontendUrl'  => $merchantInfo['merchant_frontendURL'],
+            'backendUrl'   => $merchantInfo['merchant_backendURL'],
+        ];
+
         if (!empty($paymentInfo['link_description'])) {
-            $payload['userDefination1'] = $paymentInfo['link_description'];
+            $payloadData['userDefination1'] = trim($paymentInfo['link_description']);
         }
+
+        $payload = json_encode($payloadData);
         $authTokenUrl = config('services.payment_gateway.auth_token_url');
         $jwt = $this->jwt($header, $payload, $secret_key);
         $response = Http::withHeaders([
