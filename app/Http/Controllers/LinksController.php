@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Dao\LinkDao;
 use App\Models\Links;
 use App\Models\Merchants;
+use App\Models\Tnx;
 use App\Models\Click_Logs;
 use App\Service\SMSService;
 use App\Imports\LinksImport;
@@ -77,17 +78,36 @@ class LinksController extends Controller
     public function show($token)
     {
         $data = $this->linkDao->getByToken($token);
+
         if (!$data) {
             Links::where('link_url', url("/pay/" . $token))->update(['link_status' => 'expired']);
             return response()->view('Extra.expired', [], 410);
         }
+
         [$details, $link] = $data;
         $details = $details->toArray();
         $link = $link[0];
         $links = $link->toArray();
-        $this->click($links['id']);
 
-        return view('checkout.checkout', compact('details', 'links'));
+        $status = Tnx::where('link_id', $links['id'])->select('payment_status')->first();
+             //dd($status['payment_status']);
+        if ($status == null ) {
+            $this->click($links['id']);
+            return view('checkout.checkout', compact('details', 'links'));
+        }
+        $link = Links::where('id', $links['id'])->firstOrFail();
+        $tnx = Tnx::where('link_id', $links['id'])->latest()->firstOrFail();
+        $merchant = Merchants::where('user_id', $links['user_id'])->firstOrFail();
+        if ($status['payment_status'] == 'SUCCESS') {
+            //dd($link,$tnx,$merchant);
+            return view('Extra.success', compact('merchant', 'link', 'tnx'));
+        }
+        if ($status['payment_status'] == 'FAIL') {
+            return view('Extra.fail', compact('merchant', 'link', 'tnx'));
+        }
+         if ($status['payment_status'] == 'PENDING') {
+             return response()->view('Extra.expired', [], 410);
+        }
     }
 
 
@@ -175,7 +195,7 @@ class LinksController extends Controller
             Excel::import($import, $request->file('excel_file'));
 
             if ($import->getSuccessCount() === 0) {
-              //  dd('pass');
+                //  dd('pass');
                 return back()->withErrors(['import' => 'No rows were imported. Please check for validation errors or duplicates.']);
             }
 
