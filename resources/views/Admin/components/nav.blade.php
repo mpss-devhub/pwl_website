@@ -1,4 +1,3 @@
-
 <nav class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="px-3 py-3 lg:px-5 lg:pl-3">
         <div class="flex items-center justify-between">
@@ -15,7 +14,12 @@
                     </svg>
                 </button>
 
-                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-1" alt="Octoverse Logo" />
+                <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-1 dark:hidden"
+                    alt="Octoverse Logo (Light Mode)" />
+
+                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-1 hidden dark:block"
+                    alt="Octoverse Logo (Dark Mode)" />
+
 
             </div>
             <div class="flex items-center">

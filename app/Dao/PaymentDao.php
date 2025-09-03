@@ -22,23 +22,41 @@ class PaymentDao
     public function store(array $data)
     {
         $expired = Links::where('id', $data['link_id'])->select('link_currency', 'link_invoiceNo', 'link_amount', 'merchant_id', 'link_name', 'link_expired_at')->first();
-        //dd($data);
 
+        if (isset($data['cardNumber'])) {
             $tnx = Tnx::create([
-                'payment_user_name' => $expired['link_name'],
-                'link_id' => $data['link_id'],
-                'currencyCode' => $expired['link_currency'],
-                'paymentCode' => $data['paymentCode'],
-                'payment_logo' => $data['payment_logo'],
-                'tnx_phonenumber' => $data['tnx_phonenumber'],
-                'payment_status' => 'PENDING',
-                'tranref_no' => $expired['link_invoiceNo'],
-                'req_amount' => $expired['link_amount'],
-                'payment_expired_at' => $expired['link_expired_at'],
-                'created_by' => $expired['merchant_id'],
-                'created_at' => Carbon::now(),
+                'payment_user_name'   => $expired['link_name'],
+                'link_id'             => $data['link_id'],
+                'currencyCode'        => $expired['link_currency'],
+                'paymentCode'         => $data['paymentCode'],
+                'payment_logo'        => $data['payment_logo'],
+                'tnx_phonenumber'     => $data['tnx_phonenumber'],
+                'cardNumber'          => $data['cardNumber'],
+                'expiryMonth'         => $data['expiryMonth'] ?? null,
+                'expiryYear'          => $data['expiryYear'] ?? null,
+                'payment_status'      => 'PENDING',
+                'tranref_no'          => $expired['link_invoiceNo'],
+                'req_amount'          => $expired['link_amount'],
+                'payment_expired_at'  => $expired['link_expired_at'],
+                'created_by'          => $expired['merchant_id'],
+                'created_at'          => Carbon::now(),
             ]);
-
+        } else {
+            $tnx = Tnx::create([
+                'payment_user_name'   => $expired['link_name'],
+                'link_id'             => $data['link_id'],
+                'currencyCode'        => $expired['link_currency'],
+                'paymentCode'         => $data['paymentCode'],
+                'payment_logo'        => $data['payment_logo'],
+                'tnx_phonenumber'     => $data['tnx_phonenumber'],
+                'payment_status'      => 'PENDING',
+                'tranref_no'          => $expired['link_invoiceNo'],
+                'req_amount'          => $expired['link_amount'],
+                'payment_expired_at'  => $expired['link_expired_at'],
+                'created_by'          => $expired['merchant_id'],
+                'created_at'          => Carbon::now(),
+            ]);
+        }
 
         return $tnx;
     }

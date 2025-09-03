@@ -13,7 +13,11 @@
                         </path>
                     </svg>
                 </button>
-                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-1" alt="Octoverse Logo" />
+                 <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-1 dark:hidden"
+                    alt="Octoverse Logo (Light Mode)" />
+
+                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-1 hidden dark:block"
+                    alt="Octoverse Logo (Dark Mode)" />
             </div>
             <div class="flex items-center">
                 <div class="flex items-center ms-3">

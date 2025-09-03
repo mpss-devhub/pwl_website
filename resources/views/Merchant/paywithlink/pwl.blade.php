@@ -34,7 +34,10 @@
                             <!-- Invoice Number -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Invoice Number <span
-                                        class="text-red-500">*</span></label>
+                                        class="text-red-500">* @error('invoiceNo')
+                                            <span class="text-[12px]"> {{ $message }}</span>
+                                        @enderror
+                                    </span></label>
                                 <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
@@ -48,9 +51,9 @@
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500">Ks</span>
                                     </div>
-                                    <input name="amount" type="number" required value="{{ old('amount') }}"
+                                    <input name="amount" type="number" required value="{{ old('amount') }}"  min="1" max="9999999"
                                         class="pl-12 w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
-                                        placeholder="10,000">
+                                        placeholder="1500">
                                 </div>
                             </div>
 
@@ -67,7 +70,7 @@
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Phone <span
                                         class="text-red-500">*</span></label>
-                                <input name="phone" type="tel" required value="{{ old('phone') }}"
+                                <input name="phone" type="tel" required value="{{ old('phone') }}" minlength="4" maxlength="12"
                                     class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="09xxxxxxxxx">
                             </div>
@@ -167,7 +170,7 @@
 
                             <label
                                 class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
-                                <input type="radio" name="notification" value="Copy"
+                                <input type="radio" name="notification" value="Copy" checked
                                     {{ old('notification') === 'Copy' ? 'checked' : '' }}
                                     class="mt-1 h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300">
                                 <div>

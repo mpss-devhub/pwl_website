@@ -160,7 +160,7 @@
                             </p>
                             <button
                                 class="mt-1 shadow-sm border py-2 px-3 rounded-lg hover:bg-[#C2CDF1] text-white bg-[#7589E1]">
-                                <a href="{{ $data['redirectUrl'] }}">Click Me</a>
+                                <a href="{{ $data['redirectUrl'] }}" target="_blank">Click Me</a>
                             </button>
                         </div>
                     </div>
