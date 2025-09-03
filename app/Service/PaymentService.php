@@ -84,8 +84,10 @@ class PaymentService
             'currencyCode' => $paymentInfo['link_currency'],
             'frontendUrl' => $merchantInfo['merchant_frontendURL'],
             'backendUrl' => $merchantInfo['merchant_backendURL'],
-            'userDefination1' => $paymentInfo['link_description'],
         ]);
+        if (!empty($paymentInfo['link_description'])) {
+            $payload['userDefination1'] = $paymentInfo['link_description'];
+        }
         $authTokenUrl = config('services.payment_gateway.auth_token_url');
         $jwt = $this->jwt($header, $payload, $secret_key);
         $response = Http::withHeaders([
