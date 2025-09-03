@@ -97,7 +97,6 @@ class UserDao
                 'merchant_Cphone' => $data['merchant_Cphone'],
                 'merchant_Cemail' => $data['merchant_Cemail'],
                 'merchant_frontendURL' => $data['merchant_frontendURL'],
-                'merchant_backendURL' => $data['merchant_backendURL'],
                 'merchant_address' => $data['merchant_address'],
                 'merchant_notifyemail' => $data['merchant_notifyemail'],
                 'merchant_remark' => $data['merchant_remark'],

@@ -132,7 +132,6 @@ class UserService
             'contactEmail' => $data['merchant_Cemail'],
             'notifyEmail' => $data['merchant_notifyemail'],
             'frontendUrl' => $data['merchant_frontendURL'],
-            'backendUrl' => $data['merchant_backendURL'],
             'remark' => $data['merchant_remark'],
         ]);
          $jwt = $this->jwt($header, $payload, $secret_key);
