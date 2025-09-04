@@ -85,7 +85,7 @@ class AdminController extends Controller
     {
         //dd($request->validated());
         $this->user_service->updateMerchant($request->validated());
-        return redirect()->route('merchant.show')->with('success', 'Merchant updated successfully!');
+        return redirect()->route('merchant.show')->with('success', 'Merchant Updated  Successfully! Please send Callback From Payment Gateway');
     }
 
     public function destory($id){
