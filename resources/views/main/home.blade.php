@@ -31,21 +31,21 @@
             <div class="relative flex justify-center items-center w-full max-w-full sm:max-w-4xl xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0 mt-8">
                 <!-- Background shape (always pulsing) -->
                 <img src="{{ Storage::url('common/phone-bg.png') }}"
-                    class=" absolute z-0 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] h-auto top-2 right-[-70px] sm:right-[-80px] md:right-[-100px] rounded-l-full
+                    class=" absolute z-0 w-[320px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] h-auto top-2 right-[-70px] sm:right-[-80px] md:right-[-100px] rounded-l-full
                             animate-[pulse_5s_ease-in-out_infinite]"
                     alt="">
 
                 <!-- Phone & chats -->
                 <div
-                    class="relative left-[85px] top-[-24px] sm:left-[220px] sm:top-[-5px] md:left-[100px] lg:left-[110px] xl:left-[120px] 2xl:left-[170px]">
+                    class="relative left-[80px] top-[-24px] sm:left-[220px] sm:top-[-5px] md:left-[100px] lg:left-[110px] xl:left-[120px] 2xl:left-[170px]">
                     <!-- Phone (always bouncing) -->
                     <img src="{{ Storage::url('common/phone.png') }}"
-                        class="relative z-10 drop-shadow-xl w-[140px] sm:w-[170px] md:w-[180px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto
+                        class="relative z-10 drop-shadow-xl w-[150px] sm:w-[170px] md:w-[180px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto
             animate-gentle-bounce"
                         alt="Phone mockup">
 
                     <!-- Chat 1 -->
-                    <div class="absolute flex items-center space-x-1 z-10 left-[-60px] sm:left-[-60px] md:left-[-70px] top-[20px] sm:top-[30px] md:top-[40px]
+                    <div class="absolute flex items-center space-x-1 z-10 left-[-70px] sm:left-[-60px] md:left-[-70px] top-[10px] sm:top-[30px] md:top-[40px]
                                scroll-animate slide-left"
                         data-delay="0.3">
                         <img src="{{ Storage::url('common/demo.png') }}" alt="User"

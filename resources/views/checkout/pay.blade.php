@@ -64,9 +64,9 @@
 
             </div>
         @elseif (is_array($data))
-            @if (!empty($data['deeplink']))
+           @if (!empty($data['deeplink']))
                 <script>
-                    window.open("{{ $data['deeplink'] }}", "_blank");
+                    window.location.href = "{{ $data['deeplink'] }}";
                 </script>
             @endif
 
