@@ -8,17 +8,18 @@
             <!-- Text content -->
             <div class="max-w-xl flex justify-center w-full md:w-auto mb-10 md:mb-0">
                 <div class="sm:ml-18 md:ml-12 lg:ml-24 xl:ml-48 text-center md:text-left">
-                    <h3 class="text-pink-500 font-semibold tracking-widest mb-2 text-sm md:text-md text-left
+                    <h3 class="text-pink-500 font-semibold tracking-widest mb-2 text-[9px] sm:text-sm md:text-md sm:text-left
                            scroll-animate fade-in"
                         data-delay="0.1">SOLUTIONS</h3>
-                    <h1 class="text-left  text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#2d2c3c] leading-tight mb-6 font-serif
+                    <h1 class="sm:text-left  text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl
+                           font-bold text-[#2d2c3c] leading-tight lg:mb-6 md:mb-5 sm:mb-5 mb-4 font-serif
                            scroll-animate fade-in"
                         data-delay="0.2">
                         Ready
-                        <br class="">
+                        <br  class="hidden sm:inline">
                         To Pay?
                     </h1>
-                    <p class="text-base sm:text-lg md:text-xl text-[#5c5b6a] leading-relaxed font-sans
+                    <p class="  text-sm sm:text-lg md:text-xl text-[#5c5b6a] leading-relaxed font-sans
                           scroll-animate fade-in"
                         data-delay="0.3">
                         Pay for your items or services with ease using our secure payment link. No need to enter lengthy
@@ -27,24 +28,24 @@
                 </div>
             </div>
 
-            <div class="relative flex justify-center items-center w-full max-w-full sm:max-w-4xl">
+            <div class="relative flex justify-center items-center w-full max-w-full sm:max-w-4xl xl:mt-0 lg:mt-0 md:mt-0 sm:mt-0 mt-8">
                 <!-- Background shape (always pulsing) -->
                 <img src="{{ Storage::url('common/phone-bg.png') }}"
-                    class="absolute z-0 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] h-auto top-7 right-[-50px] sm:right-[-80px] md:right-[-100px] rounded-l-full
+                    class=" absolute z-0 w-[300px] sm:w-[400px] md:w-[500px] lg:w-[600px] xl:w-[700px] h-auto top-2 right-[-70px] sm:right-[-80px] md:right-[-100px] rounded-l-full
                             animate-[pulse_5s_ease-in-out_infinite]"
                     alt="">
 
                 <!-- Phone & chats -->
                 <div
-                    class="relative left-[90px] top-[-24px] sm:left-[220px] sm:top-[-5px] md:left-[100px] lg:left-[110px] xl:left-[120px] 2xl:left-[170px]">
+                    class="relative left-[85px] top-[-24px] sm:left-[220px] sm:top-[-5px] md:left-[100px] lg:left-[110px] xl:left-[120px] 2xl:left-[170px]">
                     <!-- Phone (always bouncing) -->
-                  <img src="{{ Storage::url('common/phone.png') }}"
-     class="relative z-10 drop-shadow-xl w-[140px] sm:w-[170px] md:w-[180px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto
+                    <img src="{{ Storage::url('common/phone.png') }}"
+                        class="relative z-10 drop-shadow-xl w-[140px] sm:w-[170px] md:w-[180px] lg:w-[240px] xl:w-[300px] -mt-30 mx-auto
             animate-gentle-bounce"
-     alt="Phone mockup">
+                        alt="Phone mockup">
 
                     <!-- Chat 1 -->
-                    <div class="absolute flex items-center space-x-1 z-10 left-[-50px] sm:left-[-60px] md:left-[-70px] top-[20px] sm:top-[30px] md:top-[40px]
+                    <div class="absolute flex items-center space-x-1 z-10 left-[-60px] sm:left-[-60px] md:left-[-70px] top-[20px] sm:top-[30px] md:top-[40px]
                                scroll-animate slide-left"
                         data-delay="0.3">
                         <img src="{{ Storage::url('common/demo.png') }}" alt="User"
@@ -84,8 +85,8 @@
             data-delay="0.5">
             <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-[#3C425D] mb-4 md:mb-6 font-serif">What is Pay With
                 Link?</h2>
-            <p class="text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-sans">
-                "Pay with link" is a simple, secure web link for online payments, shared directly with customers for quick
+            <p class="text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-sans text-[#5c5b6a]">
+                <b>“Pay with link”</b> is a simple, secure web link for online payments, shared directly with customers for quick
                 transactions without needing a website.
             </p>
         </div>

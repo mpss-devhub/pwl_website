@@ -15,7 +15,7 @@
                         <h2 class="text-lg sm:text-xl font-semibold text-gray-800 mb-4">
                             We are here to help you
                         </h2>
-                        <p class="text-gray-600 text-base sm:text-lg leading-relaxed">
+                        <p class=" text-base sm:text-lg leading-relaxed text-[#5c5b6a]">
                             If you have any questions or need assistance, feel free to reach out to us.
                             We are committed to providing you with the best support possible.
                         </p>
