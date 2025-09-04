@@ -66,9 +66,10 @@
         @elseif (is_array($data))
             @if (!empty($data['deeplink']))
                 <script>
-                    window.location.href = "{{ $data['deeplink'] }}";
+                    window.open("{{ $data['deeplink'] }}", "_blank");
                 </script>
             @endif
+
             @if (!empty($data['qrImg']))
                 <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                     <!-- Invoice Header -->

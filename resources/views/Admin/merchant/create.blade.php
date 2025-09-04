@@ -191,7 +191,7 @@
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
                                             https://
                                         </span>
-                                        <input type="text" name="merchant_frontendURL"
+                                        <input type="text" name="merchant_frontendURL" required
                                             value="{{ old('merchant_frontendURL') }}"
                                             class="@error('merchant_frontendURL') border-red-400 focus:outline-none @enderror  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
