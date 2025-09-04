@@ -9,7 +9,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Users</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalUsers) }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ number_format($totalUsers) }}</p>
                             <!--<p class="text-xs text-green-500 mt-1">+ 5.2% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
@@ -27,7 +27,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Active Merchants</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ number_format($activeMerchants) }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ number_format($activeMerchants) }}</p>
                             <!-- <p class="text-xs text-green-500 mt-1">+ 3.1% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
@@ -44,12 +44,12 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total Transaction Amount</p>
+                            <p class="text-sm font-medium text-gray-500">Total  Amount</p>
                             <div class="flex ">
-                                <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
+                                <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
                                     <span class="text-xs text-gray-500">MMK</span></p>
-                                <p class="text-xs text-blue-500 mt-3 mx-2">{{ number_format($totalTransactionAmountUSD) }}
-                                    USD</p>
+                                  <p class="text-md font-semibold text-gray-800 mx-2">{{ number_format($totalTransactionAmountUSD) }}
+                                    <span class="text-xs text-gray-500">USD</span></p>
                             </div>
 
 
@@ -69,7 +69,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Transaction</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactions) }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactions) }}</p>
                             <!--<p class="text-xs text-red-500 mt-1">- 2 from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-yellow-50 text-yellow-600">

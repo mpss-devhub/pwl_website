@@ -11,7 +11,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Transactions</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ $total }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ $total }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -28,7 +28,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Successful</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ $Success }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ $Success }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -45,7 +45,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Failed</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ $Fail }}</p>
+                            <p class="text-md font-semibold text-gray-800">{{ $Fail }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-red-50 text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -62,7 +62,7 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Amount</p>
-                            <p class="text-2xl font-semibold text-gray-800">{{ $SuccessTotal }} MMK</p>
+                            <p class="text-md font-semibold text-gray-800">{{ $SuccessTotal }} MMK</p>
                         </div>
                         <div class="p-3 rounded-full bg-purple-50 text-purple-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
