@@ -26,20 +26,24 @@
         @include('layouts.alert')
         <div class=""></div>
 
-        <div class="bg-white rounded-xl shadow-xl p-12 w-full max-w-[500px] z-20 text-center h-auto relative ">
+        <div
+            class="bg-white rounded-xl shadow-xl w-full max-w-[500px] z-20 text-center h-auto relative
+            p-6 sm:p-12 mx-4 sm:mx-auto">
             <div class="flex items-center justify-center pb-4">
                 <a href="{{ route('main.home') }}">
-                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="" class="w-48">
+                    <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt=""
+                        class="w-32 sm:w-48 max-w-full h-auto">
                 </a>
             </div>
 
             <div class="mt-1">
-                <h2 class="text-xl font-semibold text-gray-700 text">
-                    Welcome To <span class="text-pink-600">Octoverse</span>!
-                </h2>
-                <p class="text-gray-700 text-md mt-2" style="font-family: 'Libre Baskerville';">
+                <p class="text-md sm:text-xl font-semibold text-gray-700 text">
+                    Welcome To <span class="text-pink-600">Octoverse</span>
+                </p>
+                <p class="text-sm sm:text-md text-gray-700 mt-2" style="font-family: 'Libre Baskerville';">
                     Login to get started.
                 </p>
+
             </div>
 
             <form action="{{ route('login') }}" method="POST">
@@ -81,14 +85,15 @@
                     @enderror
                     <div>
                         <button id="submitBtn"
-                            class="w-full bg-purple-100 py-2 rounded-3xl text-lg text-gray-700 space-x-1"
+                            class="w-full bg-purple-100 py-2 sm:py-3 rounded-3xl text-base sm:text-lg text-gray-700 flex items-center justify-center space-x-2"
                             style="font-family: 'Libre Baskerville'; background-color: #8FA5F499;">
                             <span class="text">LOGIN</span>
-                            <span class="spinner" style="display:none;">
+                            <span class="spinner hidden">
                                 <i class="fa fa-spinner fa-spin"></i>
                             </span>
                         </button>
                     </div>
+
                 </div>
 
             </form>
