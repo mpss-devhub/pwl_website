@@ -23,7 +23,7 @@ class UserRequest extends FormRequest
     {
         return [
             'user_id'=>'required',
-            'name'=>'required',
+            'name'=>'required|max:255',
             'email'=>'required|email|unique:users,email',
             'phone'=>'required|max:12|min:6|unique:users,phone',
             'status'=>'required',

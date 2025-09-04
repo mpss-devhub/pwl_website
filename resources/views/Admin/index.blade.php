@@ -46,8 +46,10 @@
                         <div>
                             <p class="text-sm font-medium text-gray-500">Total Transaction Amount</p>
                             <div class="flex ">
-                                <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }} <span class="text-xs text-gray-500">MMK</span></p>
-                                <p class="text-xs text-blue-500 mt-3 mx-2">{{ number_format($totalTransactionAmountUSD) }} USD</p>
+                                <p class="text-2xl font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
+                                    <span class="text-xs text-gray-500">MMK</span></p>
+                                <p class="text-xs text-blue-500 mt-3 mx-2">{{ number_format($totalTransactionAmountUSD) }}
+                                    USD</p>
                             </div>
 
 
@@ -85,12 +87,12 @@
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-lg font-semibold text-gray-800">Revenue Analytics</h3>
-                    <form method="GET" action="{{ route('admin.dashboard') }}" class="flex gap-2">
+                    <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm" class="flex gap-2">
                         {{-- Year Filter --}}
                         <label class="flex items-center gap-1 mr-5">
                             <span class="text-sm text-gray-700">Years</span>
-                            <select name="year" onchange="this.form.submit()"
-                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900">
+                            <select name="year" id="yearSelect"
+                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
@@ -102,20 +104,16 @@
                         {{-- Month Filter --}}
                         <label class="flex items-center gap-1">
                             <span class="text-sm text-gray-700">Month</span>
-                            <select name="month" onchange="this.form.submit()"
-                                class="py-1 text-center text-sm  focus:ring-blue-300 border-0 border-b border-blue-900"
-                                {{ request('year') === 'all' ? 'disabled' : '' }}>
+                            <select name="month" id="monthSelect"
+                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
-                                    {{ request('year') === 'all' ? 'Select A Year ' : 'All' }}
+                                    {{ request('year') === 'all' ? 'Select A Year' : 'All' }}
                                 </option>
-                                @if (request('year') !== 'all')
-                                    @foreach (range(1, 12) as $m)
-                                        <option value="{{ $m }}"
-                                            {{ request('month') == $m ? 'selected' : '' }}>
-                                            {{ \Carbon\Carbon::create()->month($m)->format('F') }}
-                                        </option>
-                                    @endforeach
-                                @endif
+                                @foreach (range(1, 12) as $m)
+                                    <option value="{{ $m }}" {{ request('month') == $m ? 'selected' : '' }}>
+                                        {{ \Carbon\Carbon::create()->month($m)->format('F') }}
+                                    </option>
+                                @endforeach
                             </select>
                         </label>
                     </form>
@@ -159,12 +157,12 @@
                                         <span class="font-medium">{{ $tx->payment_status }}</span>
                                         transaction with
                                         <span class="font-medium text-pink-500">
-                                            {{ $tx->created_by   ?? 'Unknown Merchant' }}
+                                            {{ $tx->created_by ?? 'Unknown Merchant' }}
                                         </span>
                                     </p>
                                     <p class="text-xs text-gray-400">
-                                        {{ $tx->created_at->diffForHumans() }}
-                                        ({{ $tx->created_at->format('d M Y, h:i A') }})
+                                        {{ $tx->updated_at->diffForHumans() }}
+                                        ({{ $tx->updated_at->format('d M Y, h:i A') }})
                                     </p>
                                 </div>
                                 <div class="text-sm font-semibold text-green-600">
@@ -180,22 +178,22 @@
 
 
                 <!-- Quick Stats (1 column but stacked vertically inside) -->
-                <div class="flex flex-col gap-4 mt-5">
-                    <div class="p-4 bg-blue-50 rounded-lg shadow">
+                <div class="flex flex-col gap-4 ">
+                    <div class="p-5 bg-blue-50 rounded-lg shadow">
                         <p class="text-sm font-medium text-blue-800">New User Registration</p>
                         <p class="text-2xl font-semibold text-blue-600">{{ $quickStats['new_users'] }}</p>
                     </div>
-                    <div class="p-4 bg-green-50 rounded-lg shadow">
+                    <div class="p-5 bg-green-50 rounded-lg shadow">
                         <p class="text-sm font-medium text-green-800">Today's Transaction Amount</p>
                         <p class="text-2xl font-semibold text-green-600">
                             {{ number_format($quickStats['todays_transactions']) }} MMK</p>
                     </div>
-                    <div class="p-4 bg-purple-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-purple-800">Today SMS</p>
+                    <div class="p-5 bg-purple-50 rounded-lg shadow">
+                        <p class="text-sm font-medium text-purple-800">Today Created Link</p>
                         <p class="text-2xl font-semibold text-purple-600">{{ $quickStats['todays_sms'] }}</p>
                     </div>
-                    <div class="p-4 bg-yellow-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-yellow-800">Pending Payment</p>
+                    <div class="p-5 bg-yellow-50 rounded-lg shadow">
+                        <p class="text-sm font-medium text-yellow-800">Pending To Pay</p>
                         <p class="text-2xl font-semibold text-yellow-600">{{ $quickStats['pending_payments'] }}</p>
                     </div>
                 </div>
@@ -203,4 +201,23 @@
 
         </div>
     </div>
+    <script>
+        const yearSelect = document.getElementById('yearSelect');
+        const monthSelect = document.getElementById('monthSelect');
+        const form = document.getElementById('filterForm');
+
+        function toggleOptions() {
+            monthSelect.disabled = yearSelect.value === 'all';
+            yearSelect.querySelector('option[value="all"]').disabled = monthSelect.value !== 'all';
+        }
+        yearSelect.addEventListener('change', () => {
+            toggleOptions();
+            form.submit();
+        });
+        monthSelect.addEventListener('change', () => {
+            toggleOptions();
+            form.submit();
+        });
+        toggleOptions();
+    </script>
 @endsection

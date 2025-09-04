@@ -3,16 +3,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const filterContent = document.getElementById("filter-content");
     const filterArrow = document.getElementById("filter-arrow");
 
-
-    toggleButton.addEventListener("click", function () {
+    filterArrow.addEventListener("click", function (e) {
+        e.stopPropagation();
         const isHidden = filterContent.classList.toggle("hidden");
         filterArrow.classList.toggle("rotate-180", !isHidden);
-
         localStorage.setItem("filterVisible", !isHidden);
     });
 
-    const filterVisible = localStorage.getItem("filterVisible");
+    toggleButton.addEventListener("click", function (e) {
+        e.preventDefault();
+    });
 
+    const filterVisible = localStorage.getItem("filterVisible");
     if (filterVisible === "true") {
         filterContent.classList.remove("hidden");
         filterArrow.classList.add("rotate-180");
@@ -21,4 +23,3 @@ document.addEventListener("DOMContentLoaded", function () {
         filterArrow.classList.remove("rotate-180");
     }
 });
-

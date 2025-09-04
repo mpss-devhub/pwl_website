@@ -26,6 +26,9 @@ class AdminSmScontroller extends Controller
     public function index(Request $request)
     {
         $links = Links::query()
+            ->whereNotIn('id', function ($q) {
+                $q->select('link_id')->from('tnxes');
+            })
             ->when(
                 $request->start_date,
                 fn($q) =>
@@ -143,8 +146,8 @@ class AdminSmScontroller extends Controller
     public function edit($id)
     {
         $link = Links::findOrFail($id);
-        $sms = sms::where('merchant_id',$link['created_by'])->get();
-        return view('Admin.links.edit', compact('link','sms'));
+        $sms = sms::where('merchant_id', $link['created_by'])->get();
+        return view('Admin.links.edit', compact('link', 'sms'));
     }
 
     public function update(LinkUpdateRequest $request, $id)

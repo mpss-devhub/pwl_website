@@ -110,7 +110,7 @@ class UserDao
                 'phone' => $data['merchant_Cphone'],
                 'status' => $data['status'],
             ]);
-
+            //dd('yes');
         return $merchant->toArray();
     }
 }

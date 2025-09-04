@@ -68,6 +68,7 @@ class AdminController extends Controller
     public function merchantdetail($id)
     {
         $details = Merchants::where('user_id', $id)->get()->all();
+        //$status =
         return view('Admin.merchant.info', compact('details'));
     }
 

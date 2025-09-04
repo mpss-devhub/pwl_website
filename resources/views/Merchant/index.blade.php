@@ -75,38 +75,33 @@
 
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
                 <div class="mb-4 flex justify-start mx-2">
-                    <form method="GET" action="{{ route('merchant.dashboard') }}" class="flex gap-2">
+                     <form method="GET" action="{{ route('merchant.dashboard') }}" id="filterForm" class="flex gap-2">
                         {{-- Year Filter --}}
-                        <label class="flex items-center gap-2">
+                        <label class="flex items-center gap-1 mr-5">
                             <span class="text-sm text-gray-700">Years</span>
-                            <select name="year" onchange="this.form.submit()"
+                            <select name="year" id="yearSelect"
                                 class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
-                                        {{ $y }}
-                                    </option>
+                                        {{ $y }}</option>
                                 @endfor
                             </select>
                         </label>
 
                         {{-- Month Filter --}}
-                        <label class="flex items-center gap-2 mx-5">
+                        <label class="flex items-center gap-1">
                             <span class="text-sm text-gray-700">Month</span>
-                            <select name="month" onchange="this.form.submit()"
-                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900"
-                                @if (request('year') === 'all') disabled @endif>
+                            <select name="month" id="monthSelect"
+                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
                                     {{ request('year') === 'all' ? 'Select A Year' : 'All' }}
                                 </option>
-                                @if (request('year') !== 'all')
-                                    @foreach (range(1, 12) as $m)
-                                        <option value="{{ $m }}"
-                                            {{ request('month') == $m ? 'selected' : '' }}>
-                                            {{ \Carbon\Carbon::create()->month($m)->format('F') }}
-                                        </option>
-                                    @endforeach
-                                @endif
+                                @foreach (range(1, 12) as $m)
+                                    <option value="{{ $m }}" {{ request('month') == $m ? 'selected' : '' }}>
+                                        {{ \Carbon\Carbon::create()->month($m)->format('F') }}
+                                    </option>
+                                @endforeach
                             </select>
                         </label>
                     </form>
@@ -276,5 +271,24 @@
                 console.error("Error rendering chart:", error);
             }
         });
+    </script>
+        <script>
+        const yearSelect = document.getElementById('yearSelect');
+        const monthSelect = document.getElementById('monthSelect');
+        const form = document.getElementById('filterForm');
+
+        function toggleOptions() {
+            monthSelect.disabled = yearSelect.value === 'all';
+            yearSelect.querySelector('option[value="all"]').disabled = monthSelect.value !== 'all';
+        }
+        yearSelect.addEventListener('change', () => {
+            toggleOptions();
+            form.submit();
+        });
+        monthSelect.addEventListener('change', () => {
+            toggleOptions();
+            form.submit();
+        });
+        toggleOptions();
     </script>
 @endsection

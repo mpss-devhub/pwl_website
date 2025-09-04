@@ -42,11 +42,11 @@
                             </div>
                         </div>
 
-                        <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden">
+                        <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden" >
                         <label for="file-upload" class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                             <i class="fas fa-upload mr-2"></i>Upload Logo
                         </label>
-                        <p class="text-xs text-gray-500 text-center">JPG, PNG (1:1 ratio, max 2MB)</p>
+                        <p class="text-xs text-gray-500 text-center">JPG, PNG (300 x 300 px, max 2MB)</p>
                     </div>
 
                     <div class="mt-6 space-y-4">
@@ -67,12 +67,13 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Account Status</label>
                             <div class="flex space-x-4">
+
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on" >
+                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on" @checked($detail->status == 'on') >
                                     <span class="ml-2 text-gray-700">Active</span>
                                 </label>
                                 <label class="inline-flex items-center">
-                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off" >
+                                    <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off" @checked($detail->status == 'off')  >
                                     <span class="ml-2 text-gray-700">Inactive</span>
                                 </label>
                             </div>
@@ -275,7 +276,7 @@
                                                     <p class="text-xs text-gray-400">PDF, JPG, PNG (max 2MB)</p>
                                                 </div>
                                                 <input type="file" class="hidden file-input" name="merchant_dica"
-                                                    accept=".pdf,.jpg,.png">
+                                                    accept=".svg,.jpg,.png">
                                             </label>
                                         </div>
                                     </div>
@@ -283,7 +284,7 @@
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
                                         <textarea rows="5" name="merchant_remark"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                            placeholder="Any additional notes..."></textarea>
+                                            placeholder="Any additional notes...">{{  $detail->merchant_remark }}</textarea>
                                     </div>
                                 </div>
                             </div>

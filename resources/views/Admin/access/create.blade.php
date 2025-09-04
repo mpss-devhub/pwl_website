@@ -12,7 +12,7 @@
                                     Group Name <span class="text-red-500">*</span>
                                 </label>
                                 <input type="text" name="user_group" id="user_group" required
-                                    value="{{ old('user_group') }}"
+                                    value="{{ old('user_group') }}" minlength="2" maxlength="30"
                                     class="w-72 p-2 border rounded-md border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 placeholder-gray-400 text-sm">
                             </div>
                             <p class="text-md font-semibold text-gray-700  pr-4 pb-2 md:pb-0 mx-2">

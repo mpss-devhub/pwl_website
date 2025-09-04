@@ -125,7 +125,10 @@
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name
-                                        <span class="text-red-500 text-[11px]">*
+                                        <span class="text-red-500 text-[11px]">
+                                            @error('merchant_name')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
                                         </span>
                                     </label>
                                     <input type="text" id='name' name="merchant_name"
@@ -133,15 +136,23 @@
                                         class="@error('merchant_name') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name <span
-                                            class="text-red-500">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name
+                                          <span class="text-red-500 text-[11px]">
+                                            @error('merchant_Cname')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
+                                        </span>
                                     <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
                                         required
                                         class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Phone <span
-                                            class="text-red-500">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Phone
+                                             <span class="text-red-500 text-[11px]">
+                                            @error('merchant_Cphone')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
+                                        </span>
                                     <div class="flex">
                                         <input type="tel" name="merchant_Cphone" value="{{ old('merchant_Cphone') }}"
                                             required minlength="4" maxlength="12"
@@ -149,11 +160,15 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email <span
-                                            class="text-red-500">*</span></label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email
+                                          <span class="text-red-500 text-[11px]">
+                                            @error('merchant_Cemail')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
+                                        </span>
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
                                         required
-                                        class="@error('merchant_Cphone') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        class="@error('merchant_Cemail') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +179,13 @@
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Frontend URL</label>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Frontend URL
+                                        <span class="text-red-500 text-[11px]">
+                                            @error('merchant_frontendURL')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
+                                        </span>
+                                    </label>
                                     <div class="flex">
                                         <span
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -177,7 +198,10 @@
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email
-                                        <span class="text-red-500 ">*
+                                         <span class="text-red-500 text-[11px]">
+                                            @error('merchant_notifyemail')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
                                         </span>
                                     </label>
                                     <input type="email" name="merchant_notifyemail"
@@ -279,7 +303,13 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Remarks</label>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Remarks
+                                           <span class="text-red-500 text-[11px]">
+                                            @error('merchant_remark')
+                                               <span class="mx-2"> {{ $message }}</span>
+                                            @enderror
+                                        </span>
+                                        </label>
                                         <textarea rows="5" name="merchant_remark"
                                             class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="Any additional notes..."></textarea>

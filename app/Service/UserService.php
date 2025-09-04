@@ -117,6 +117,7 @@ class UserService
 
     public function updateMerchant(array $data): array
     {
+           // dd($data);
          $app_id = config('services.b2b.x_app_id');
          $secret_key = config('services.b2b.secret_key');
          $updateUrl = config('services.b2b.update_url');

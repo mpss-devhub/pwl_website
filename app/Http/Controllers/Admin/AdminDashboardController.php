@@ -144,7 +144,7 @@ class AdminDashboardController extends Controller
                 $values[] = isset($growth[$y]) ? (int) $growth[$y] : 0;
             }
         } elseif ($month === 'all') {
-            // Rest of your existing code...
+
             $growth = Merchants::selectRaw('MONTH(created_at) as month, COUNT(*) as total')
                 ->whereYear('created_at', $year)
                 ->groupBy('month')
@@ -158,7 +158,7 @@ class AdminDashboardController extends Controller
                 $values[] = isset($growth[$m]) ? (int) $growth[$m] : 0;
             }
         } else {
-            // Rest of your existing code...
+
             $daysInMonth = Carbon::create($year, $month, 1)->daysInMonth;
             $growth = Merchants::selectRaw('DAY(created_at) as day, COUNT(*) as total')
                 ->whereYear('created_at', $year)

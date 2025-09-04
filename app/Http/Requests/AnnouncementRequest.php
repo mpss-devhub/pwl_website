@@ -24,7 +24,7 @@ class AnnouncementRequest extends FormRequest
         return [
             'letter' => 'required|string',
             'title' => 'required|string|max:255',
-            'content' => 'nullable|string',
+            'content' => 'nullable|string|url',
             'merchant_id' => 'required',
         ];
     }
