@@ -14,10 +14,10 @@
                     </svg>
                 </button>
 
-                <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-1 dark:hidden"
+                <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-2 dark:hidden"
                     alt="Octoverse Logo (Light Mode)" />
 
-                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-1 hidden dark:block"
+                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-2 hidden dark:block"
                     alt="Octoverse Logo (Dark Mode)" />
 
 
@@ -74,7 +74,7 @@
     </div>
 </nav>
 <aside id="logo-sidebar"
-    class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
+    class="fixed top-0 px-1 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
     aria-label="Sidebar">
     <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
