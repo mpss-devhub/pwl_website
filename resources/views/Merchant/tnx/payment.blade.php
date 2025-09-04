@@ -86,8 +86,8 @@
                             </div>
                         </div>
 
-                         <!-- Payer Information -->
-                           <div>
+                        <!-- Payer Information -->
+                        <div>
                             <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-100">
                                 Payer Information
                             </h3>
@@ -103,7 +103,7 @@
                                         class="text-sm font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
                                 </div>
                                 @if ($data['cardNumber'])
-                                     <div class="grid grid-cols-3">
+                                    <div class="grid grid-cols-3">
                                         <span class="text-sm text-gray-500 col-span-1">Card Number</span>
                                         <span class="text-sm font-medium text-gray-800 col-span-2">•••• •••• ••••
                                             {{ substr($data['cardNumber'], -4) }}</span>
@@ -185,7 +185,11 @@
                             </div>
                         </div>
 
-                        <!-- Footer Section -->
+
+                    </div>
+
+                </div>
+                   <!-- Footer Section -->
                         <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200">
                             <div
                                 class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
@@ -200,8 +204,6 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
             <!-- Footer Section -->
             <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
@@ -209,7 +211,8 @@
                     class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <a href="{{ route('merchant.tnx') }}"
+                            class="text-gray-600 hover:text-gray-900   flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2"></i>
                             <span class="mx-1">Back</span>
                         </a>
@@ -242,5 +245,4 @@
 
         </div>
     </div>
-
 @endsection

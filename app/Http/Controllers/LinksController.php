@@ -78,20 +78,16 @@ class LinksController extends Controller
     public function show($token)
     {
         $data = $this->linkDao->getByToken($token);
-
         if (!$data) {
             Links::where('link_url', url("/pay/" . $token))->update(['link_status' => 'expired']);
             return response()->view('Extra.expired', [], 410);
         }
-
         [$details, $link] = $data;
         $details = $details->toArray();
         $link = $link[0];
         $links = $link->toArray();
-
         $status = Tnx::where('link_id', $links['id'])->select('payment_status')->first();
-             //dd($status['payment_status']);
-        if ($status == null ) {
+        if ($status == null) {
             $this->click($links['id']);
             return view('checkout.checkout', compact('details', 'links'));
         }
@@ -105,15 +101,15 @@ class LinksController extends Controller
         if ($status['payment_status'] == 'FAIL') {
             return view('Extra.fail', compact('merchant', 'link', 'tnx'));
         }
-         if ($status['payment_status'] == 'PENDING') {
-             return response()->view('Extra.expired', [], 410);
+        if ($status['payment_status'] == 'PENDING') {
+            return response()->view('Extra.expired', [], 410);
         }
     }
 
 
     private function click($id)
     {
-        $ip = '103.105.172.32'; // For testing purposes, you can replace this with a real IP address.
+        $ip = '103.105.172.32'; // For testing purposes, can replace this with a real IP address.
         $ip = request()->ip();
         if ($ip === '127.0.0.1') {
             $info = null;

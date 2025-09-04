@@ -57,7 +57,7 @@
                         <div class="space-y-2">
                             <label for="notification-type" class="block text-sm font-medium text-gray-700">Notification</label>
                             <select id="notification-type" name="notification-type"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
                                 <option value="C">Copy Link</option>
                                 <option value="S">SMS</option>
@@ -70,7 +70,7 @@
                         <div class="space-y-2">
                             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                             <select id="status" name="status"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
                                 <option value="active">Active</option>
                                 <option value="expired">Expired</option>

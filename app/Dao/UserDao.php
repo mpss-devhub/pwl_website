@@ -26,7 +26,6 @@ class UserDao
 
     public function updateOrCreate(array $data, $id): User
     {
-
         $user = User::updateOrCreate(
             ['id' => $id],
             [

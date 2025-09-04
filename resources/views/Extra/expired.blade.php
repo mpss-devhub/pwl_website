@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Payment Link Expired</title>
+    <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
      @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
     <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>
@@ -31,7 +32,7 @@
 
         <div class="text-xs text-gray-700 space-y-1">
             <p class="text-center">
-                <i class="fa-solid fa-bolt-lightning"></i> Powered by
+                 Powered by
                 <a href="https://www.octoverse.com.mm/" class="text-[#8a9adb]">Octoverse.com.mm</a>
             </p>
         </div>

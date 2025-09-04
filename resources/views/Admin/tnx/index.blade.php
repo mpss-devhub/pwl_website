@@ -110,7 +110,7 @@
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Payment Method</label>
                                 <select name="payment_method"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
                                focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="">All Methods</option>
                                     @foreach ($paymentMethods as $method)
@@ -126,7 +126,7 @@
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Status</label>
                                 <select name="status"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
                                focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="">All Statuses</option>
                                     <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }}>SUCCESS

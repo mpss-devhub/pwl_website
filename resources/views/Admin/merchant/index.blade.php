@@ -77,7 +77,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                 <label for="search-type" class="block text-sm font-medium text-gray-700 mb-1">Search
                                     By</label>
                                 <select name="search_type" id="search-type"
-                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
+                                    class="block text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                     <option value="all" {{ request('search_type') == 'all' ? 'selected' : '' }}>All
                                         Fields</option>
@@ -98,7 +98,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                             <!-- Status -->
                             <div>
                                 <label for="active-status"
-                                    class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                                    class="block text-gray-800 text-sm font-medium text-gray-700 mb-1">Status</label>
                                 <select name="active_status" id="active-status"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
                        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm">

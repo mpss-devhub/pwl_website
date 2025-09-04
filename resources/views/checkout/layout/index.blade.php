@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Voucher Page</title>
+    <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
     <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>

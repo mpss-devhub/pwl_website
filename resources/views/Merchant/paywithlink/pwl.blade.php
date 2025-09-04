@@ -40,7 +40,7 @@
                                         @enderror
                                     </span></label>
                                 <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}" minlength="3" maxlength="30"
-                                    class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                    class="w-full px-4 text-gray-700 placeholder-gray-400 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
                             </div>
 
@@ -58,7 +58,7 @@
                                     </div>
                                     <input name="amount" type="number" required value="{{ old('amount') }}" min="1"
                                         max="9999999"
-                                        class="pl-12 w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                        class="pl-12 w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                         placeholder="1500">
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     </span></label>
                                 <input name="name" type="text" required value="{{ old('name') }}" minlength="4"
                                     maxlength="20"
-                                    class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                    class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="John Doe">
                             </div>
 
@@ -87,7 +87,7 @@
                                     </span></label>
                                 <input name="phone" type="tel" required value="{{ old('phone') }}" minlength="4"
                                     maxlength="12"
-                                    class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                    class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="09xxxxxxxxx">
                             </div>
 
@@ -99,7 +99,7 @@
                                     @enderror
                                 </label>
                                 <input name="email" type="email" value="{{ old('email') }}"
-                                    class="w-full px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                    class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="customer@example.com">
                             </div>
 
@@ -127,7 +127,7 @@
                                 @enderror
                             </label>
                             <textarea name="description" rows="3"
-                                class="w-full px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
+                                class="w-full text-gray-700 placeholder-gray-400 px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                 placeholder="Additional information about this payment">{{ old('description') }}</textarea>
                         </div>
                     </div>

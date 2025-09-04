@@ -61,9 +61,9 @@
                                 </label>
                                 <select name="status" id="status" required
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>Active
+                                    <option value="on" {{ old('status') === 'on' ? 'selected' : '' }}>Active
                                     </option>
-                                    <option value="inactive" {{ old('status') === 'inactive' ? 'selected' : '' }}>Inactive
+                                    <option value="off" {{ old('status') === 'off' ? 'selected' : '' }}>Inactive
                                     </option>
                                 </select>
                             </div>

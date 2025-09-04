@@ -17,95 +17,101 @@
 
 
                 <!-- Filter Content -->
-<div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
-    <form method="GET" action="{{ route('admin.links') }}">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <!-- Start Date -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">Start Date</label>
-                <input type="datetime-local" name="start_date" value="{{ request('start_date') }}"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
+                <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
+                    <form method="GET" action="{{ route('admin.links') }}">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Start Date -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                                <input type="datetime-local" name="start_date" value="{{ request('start_date') }}"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
+                            </div>
 
-            <!-- End Date -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">End Date</label>
-                <input type="datetime-local" name="end_date" value="{{ request('end_date') }}"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
+                            <!-- End Date -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">End Date</label>
+                                <input type="datetime-local" name="end_date" value="{{ request('end_date') }}"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
+                            </div>
 
-            <!-- Notification Type -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">Notification Method</label>
-                <select name="notification_type"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md
+                            <!-- Notification Type -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Notification Method</label>
+                                <select name="notification_type"
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <option value="">All Methods</option>
-                    <option value="C" {{ request('notification_type') == 'C' ? 'selected' : '' }}>Copy Link</option>
-                    <option value="S" {{ request('notification_type') == 'S' ? 'selected' : '' }}>SMS</option>
-                    <option value="E" {{ request('notification_type') == 'E' ? 'selected' : '' }}>Email</option>
-                    <option value="Q" {{ request('notification_type') == 'Q' ? 'selected' : '' }}>QR</option>
-                </select>
-            </div>
+                                    <option value="">All Methods</option>
+                                    <option value="C" {{ request('notification_type') == 'C' ? 'selected' : '' }}>Copy
+                                        Link</option>
+                                    <option value="S" {{ request('notification_type') == 'S' ? 'selected' : '' }}>SMS
+                                    </option>
+                                    <option value="E" {{ request('notification_type') == 'E' ? 'selected' : '' }}>Email
+                                    </option>
+                                    <option value="Q" {{ request('notification_type') == 'Q' ? 'selected' : '' }}>QR
+                                    </option>
+                                </select>
+                            </div>
 
-            <!-- Status -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">Status</label>
-                <select name="status"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md
+                            <!-- Status -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Status</label>
+                                <select name="status"
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <option value="">All Statuses</option>
-                    <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
-                    <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
-                </select>
-            </div>
-        </div>
+                                    <option value="">All Statuses</option>
+                                    <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active
+                                    </option>
+                                    <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
-        <!-- Search & Buttons -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            <!-- Search -->
-            <div class="space-y-2">
-                <label class="block text-sm font-medium text-gray-700">Search</label>
-                <input type="text" name="search" placeholder="Search by ID, name or phone"
-                    value="{{ request('search') }}"
-                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
+                        <!-- Search & Buttons -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                            <!-- Search -->
+                            <div class="space-y-2">
+                                <label class="block text-sm font-medium text-gray-700">Search</label>
+                                <input type="text" name="search" placeholder="Search by ID, name or phone"
+                                    value="{{ request('search') }}"
+                                    class="block w-full px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-            </div>
+                            </div>
 
-            <!-- Action Buttons -->
-            <div class="flex items-end gap-2">
-                <button type="submit"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md
+                            <!-- Action Buttons -->
+                            <div class="flex items-end gap-2">
+                                <button type="submit"
+                                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center">
-                    Search
-                </button>
-                <a href="{{ route('admin.links') }}"
-                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md
+                                    Search
+                                </button>
+                                <a href="{{ route('admin.links') }}"
+                                    class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center">
-                    Reset
-                </a>
-            </div>
+                                    Reset
+                                </a>
+                            </div>
 
-            <!-- Export Buttons -->
-            @if (in_array('E', $access['L'] ?? []))
-                <div class="flex items-end gap-2">
-                <a href="{{ route('admin.link.csv.export') }}?{{ http_build_query(request()->all()) }}"
-                    class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
+                            <!-- Export Buttons -->
+                            @if (in_array('E', $access['L'] ?? []))
+                                <div class="flex items-end gap-2">
+                                    <a href="{{ route('admin.link.csv.export') }}?{{ http_build_query(request()->all()) }}"
+                                        class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center">
-                    Export CSV
-                </a>
-                <a href="{{ route('admin.link.tnx.export') }}?{{ http_build_query(request()->all()) }}"
-                    class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
+                                        Export CSV
+                                    </a>
+                                    <a href="{{ route('admin.link.tnx.export') }}?{{ http_build_query(request()->all()) }}"
+                                        class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center">
-                    Export Excel
-                </a>
-            </div>
-            @endif
-        </div>
-    </form>
-</div>
+                                        Export Excel
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
+                    </form>
+                </div>
 
             </div>
 
@@ -182,19 +188,19 @@
                                         <div class="flex space-x-3">
                                             @if (in_array('V', $access['L'] ?? []))
                                                 <form action="{{ route('admin.sms.details') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $item->id }}">
-                                                <button type="submit"
-                                                    class="text-blue-600 hover:text-blue-900">View</button>
-                                            </form>
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <button type="submit"
+                                                        class="text-blue-600 hover:text-blue-900">View</button>
+                                                </form>
                                             @endif
                                             @if (in_array('R', $access['L'] ?? []))
-                                                    <form action="{{ route('admin.sms.resent') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="id" value="{{ $item->id }}">
-                                                <button type="submit"
-                                                    class="text-red-600 hover:text-red-900">Resend</button>
-                                            </form>
+                                                <form action="{{ route('admin.sms.resent') }}" method="POST">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $item->id }}">
+                                                    <button type="submit"
+                                                        class="text-red-600 hover:text-red-900">Resend</button>
+                                                </form>
                                             @endif
 
                                         </div>

@@ -11,7 +11,7 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
 use App\Http\Requests\MerchantRequest;
-
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -24,16 +24,16 @@ class UserController extends Controller
     }
 
 
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
-         $per = Permissions::all();
-        $this->user_service->updateOrCreate($request->validated(), $id);
+        $per = Permissions::all();
+        $this->user_service->updateOrCreate($request->all(), $id);
         return redirect()->route('user.show')->with('success', 'User updated successfully!');
     }
 
     public function store(UserRequest $request)
     {
-       // dd($request->validated());
+        // dd($request->validated());
         $this->user_service->create($request->validated());
         return redirect()->route('user.show')
             ->with('success', 'User created successfully!')
@@ -65,14 +65,14 @@ class UserController extends Controller
 
     public function backendcallback(Request $request)
     {
-        if ($request->has('data.merchantInfo')){
+        if ($request->has('data.merchantInfo')) {
             $data_key = config('services.b2b.data_key');
             $merchantInfo = $request->input('data.merchantInfo');
             $encrypted = base64_decode($merchantInfo, true);
             if (!$encrypted) {
                 return response()->json(['error' => 'Invalid base64'], 400);
             }
-            $decrypted = openssl_decrypt($encrypted,'AES-128-ECB',$data_key,OPENSSL_RAW_DATA);
+            $decrypted = openssl_decrypt($encrypted, 'AES-128-ECB', $data_key, OPENSSL_RAW_DATA);
             if (!$decrypted) {
                 return response()->json(['error' => 'Decryption failed'], 400);
             }
@@ -81,9 +81,9 @@ class UserController extends Controller
             if (!$data) {
                 return response()->json(['error' => 'Invalid JSON in decrypted string'], 400);
             }
-           // $backendURL = 'http://127.0.0.1:8000/api/merchant/payment/backendcallback/'+ $data['merchantID'];
+            // $backendURL = 'http://127.0.0.1:8000/api/merchant/payment/backendcallback/'+ $data['merchantID'];
             Merchants::updateOrCreate(
-                ['user_id' => $data['merchantExternalId'] ],
+                ['user_id' => $data['merchantExternalId']],
                 [
                     'merchant_id' => $data['merchantID'] ?? '',
                     'merchant_Cemail' => $data['contactEmail'] ?? '',
@@ -103,16 +103,23 @@ class UserController extends Controller
 
                 ]
             );
+            User::updateOrCreate(
+                ['user_id' => $data['merchantExternalId']],
+                [
+                    'name' => $data['merchantName'] ?? '',
+                    'email' => $data['notifyEmail'] ?? '',
+                ]
+            );
             return response()->json(['status' => 'saved', 'data' => $data]);
         }
 
         return response()->json(['error' => 'Missing merchantInfo field'], 400);
     }
 
-    public  function index ()
+    public  function index()
     {
         $admins = User::where('role', 'admin')->paginate(10);
         $permi = Permissions::all();
-        return view('Admin.user.list',compact('admins','permi'));
+        return view('Admin.user.list', compact('admins', 'permi'));
     }
 }
