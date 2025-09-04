@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const userGrowthEl = document.querySelector("#AdminuserGrowthChart");
     const revenueData = JSON.parse(revenueEl.dataset.revenue);
     const userGrowthData = JSON.parse(userGrowthEl.dataset.userGrowth);
-
     const revenueOptions = {
         series: [
             {
@@ -46,6 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
         dataLabels: {
             enabled: true,
         },
+
+        tooltip: {
+            enabled: true,
+            y: {
+                formatter: (value) => {
+                    if (value === null || value === undefined) return "0";
+                    const num = Number(value);
+                    return isNaN(num) ? value : "MMK " + num.toLocaleString();
+                },
+            },
+        },
+
         xaxis: {
             categories: revenueData.labels,
             labels: {
@@ -158,7 +169,4 @@ document.addEventListener("DOMContentLoaded", function () {
         userGrowthOptions
     );
     userGrowthChart.render();
-
-
-
 });

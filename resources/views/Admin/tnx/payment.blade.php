@@ -39,7 +39,7 @@
                     <div class="space-y-6 bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
                         <!-- Payment Information -->
                         <div>
-                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-100 text-center">
+                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200 text-center">
                                 Payment Information
                             </h3>
 
@@ -87,8 +87,8 @@
 
                         <!-- Payer Information -->
                         <div>
-                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-100">
-                                Payer Information
+                            <h3 class="text-base text-center font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
+                                User Information
                             </h3>
                             <div class="space-y-4">
                                 <div class="grid grid-cols-3">

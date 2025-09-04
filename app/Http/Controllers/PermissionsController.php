@@ -26,7 +26,11 @@ class PermissionsController extends Controller
     }
     public function store(Request $request)
     {
-        //dd($request->all());
+         $request->validate([
+            'user_group' => 'required|string|max:255',
+            'permission' => 'required|array',
+            'allowed' => 'nullable|array',
+        ]);
         $permission = collect($request->permission)->implode('-');
         $allowedArray = $request->allowed;
         $allowedActions = collect($allowedArray)->map(function ($actions, $perm) {

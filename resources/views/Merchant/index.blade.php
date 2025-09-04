@@ -9,9 +9,9 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-xl sm:text-2xl font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
+                            <p class="text-md font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
                             @if ($TotalUSD)
-                                 <p class="text-sm font-semibold text-gray-800">USD {{ $TotalUSD }}</p>
+                                <p class="text-sm font-semibold text-gray-800">USD {{ $TotalUSD }}</p>
                             @endif
 
                         </div>
@@ -32,13 +32,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Transactions</p>
-                            <p class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $TotalTnx }}</p>
-                            <div class="flex space-x-3">
-                                <p class="text-xs text-green-500 mt-1">{{ $TotalSuccess }} Success</p>
-                                <p class="text-xs text-red-500 mt-1">{{ $TotalFailed }} Failed</p>
-                                <p class="text-xs text-yellow-500 mt-1">{{ $TotalPending }} Pending</p>
+                            <p class="text-md font-semibold text-gray-800">{{ $TotalTnx }}</p>
 
-                            </div>
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-green-50 text-green-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none"
@@ -55,12 +50,13 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs sm:text-sm font-medium text-gray-500">Success Rate</p>
-                            <p class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $SuccessRate }}%</p>
-                            <div class=" text-xs mt-1">
-                                <span class=" text-green-500 mt-1">{{ $TotalSuccess }} Tnx </span>
-                                <span>Success at </span>
-                                <span class=" text-red-500 mt-1">{{ $Totallink }} Links </span> created
-                            </div>
+                            <p class="text-md font-semibold text-gray-800 flex items-center gap-2">
+                                {{ number_format($SuccessRate, 2) }}%
+                                <span
+                                    class="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700 font-medium mt-1">
+                                    {{ $Totallink }} Links Created
+                                </span>
+                            </p>
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-purple-50 text-purple-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6" fill="none"
@@ -72,25 +68,42 @@
                     </div>
                 </div>
             </div>
-
             <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
-                <div class="mb-4 flex justify-start mx-2">
-                     <form method="GET" action="{{ route('merchant.dashboard') }}" id="filterForm" class="flex gap-2">
+                <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+
+                    <!-- Pills -->
+                    <div class="flex flex-wrap gap-2 mx-3">
+                        <span class="px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full">
+                            {{ $TotalSuccess }} Success
+                        </span>
+                        <span class="px-3 py-1 text-xs font-medium text-red-700 bg-red-100 rounded-full">
+                            {{ $TotalFailed }} Failed
+                        </span>
+                        <span class="px-3 py-1 text-xs font-medium text-yellow-700 bg-yellow-100 rounded-full">
+                            {{ $TotalPending }} Pending
+                        </span>
+                    </div>
+
+                    <!-- Filters -->
+                    <form method="GET" action="{{ route('merchant.dashboard') }}" id="filterForm"
+                        class="flex flex-wrap items-center gap-4">
+
                         {{-- Year Filter --}}
-                        <label class="flex items-center gap-1 mr-5">
+                        <label class="flex items-center gap-2">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" id="yearSelect"
                                 class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
-                                        {{ $y }}</option>
+                                        {{ $y }}
+                                    </option>
                                 @endfor
                             </select>
                         </label>
 
                         {{-- Month Filter --}}
-                        <label class="flex items-center gap-1">
+                        <label class="flex items-center gap-2">
                             <span class="text-sm text-gray-700">Month</span>
                             <select name="month" id="monthSelect"
                                 class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
@@ -113,7 +126,11 @@
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- Transaction Types Table - Improved Responsiveness -->
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Most Used Payment Type</h3>
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                        Most Used Payment Type
+                    </h3>
+
+
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
@@ -242,7 +259,7 @@
                 },
                 yaxis: {
                     labels: {
-                         formatter: (value) => "MMK " + value.toLocaleString(),
+                        formatter: (value) => "MMK " + value.toLocaleString(),
                         style: {
                             fontSize: '10px',
                         }
@@ -272,7 +289,7 @@
             }
         });
     </script>
-        <script>
+    <script>
         const yearSelect = document.getElementById('yearSelect');
         const monthSelect = document.getElementById('monthSelect');
         const form = document.getElementById('filterForm');

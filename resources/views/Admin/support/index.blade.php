@@ -16,7 +16,7 @@
                             <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20" alt="">
                         </div>
                         <div class="">
-                            <p class="text-md font-semibold text-gray-800 mb-6 mx-2 "> Octoverse Annuncement </p>
+                            <p class="text-md font-semibold text-gray-800 mb-6 mx-2 "> Octoverse Announcement </p>
                         </div>
 
                     </div>
@@ -33,7 +33,7 @@
                                     @enderror
                                 </label>
                                 <input type="text" name="content" id="name" value="{{ old('content') }}" placeholder="https://www.youtube.com/watch?v=..."
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    class="placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Announcement
@@ -41,8 +41,8 @@
                                 @error('title')
                                         <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
                                     @enderror</label>
-                                <input type="text" name="title" id="name" required value="{{ old('title') }}" required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <input type="text" name="title" id="name" required value="{{ old('title') }}" required placeholder="Enter Title"
+                                    class="placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Announcement
@@ -50,8 +50,8 @@
                                  @error('letter')
                                         <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
                                     @enderror</label>
-                                <textarea type="text" name="letter" id="name" required cols="20" rows="5" value="{{ old('letter') }}" required
-                                    class="w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                                <textarea type="text" name="letter" id="name" required cols="20" rows="5" value="{{ old('letter') }}" required required placeholder="Enter Message"
+                                    class="placeholder-gray-400 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
                             </div>
 
 
