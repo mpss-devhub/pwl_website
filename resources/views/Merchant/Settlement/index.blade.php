@@ -120,7 +120,7 @@
                         </div>
 
                         <div class="flex items-end gap-2">
-                            <a href="{{ route('merchant.settlement.export') }}"
+                            <a href="{{ route('merchant.settlement.csv.export') }}"
                                 class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
