@@ -31,7 +31,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="start-date" name="start-date"
+                                <input type="datetime-local"  name="start-date" id="start_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="end-date" name="end-date"
+                                <input type="datetime-local"  name="end-date" id="end_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                                 </svg>
                                 Search
                             </button>
-                            <button id="reset-btn"
+                            <button id="reset-btn" type="button"
                                 class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -168,7 +168,7 @@
                         <tbody class="bg-white divide-y divide-gray-200" id="links-body">
                             @foreach ($links as $item)
                                 <tr class="link-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"> {{ ($links->currentPage() - 1) * $links->perPage() + $loop->iteration }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_url }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_phone }}</td>
                                     <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_name }}</td>

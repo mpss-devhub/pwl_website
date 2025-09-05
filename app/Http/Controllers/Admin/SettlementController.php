@@ -20,7 +20,10 @@ class SettlementController extends Controller
         $data = $this->getSettlementData();
         $tnx = collect($data['data']);
         $tnxs = collect($data['data']['dataList']);
-        $paymentCodes = $tnxs->pluck('paymentCode')->unique();
+         $paymentCodes = $tnxs->pluck('paymentCode')
+            ->unique()
+            ->filter(fn($code) => !empty($code))
+            ->values();
         //dd($paymentCodes);
         return view('Admin.Settlement.index', compact('data','paymentCodes'));
     }

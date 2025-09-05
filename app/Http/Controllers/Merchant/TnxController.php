@@ -41,8 +41,13 @@ class TnxController extends Controller
             });
         }
         $tnx = $query->latest()->paginate(10)->withQueryString();
-        $paymentMethods = Tnx::select('paymentCode')->distinct()->get();
-        return view('Merchant.tnx.transactions', compact('tnx','paymentMethods'));
+        $paymentMethods = Tnx::whereNotNull('paymentCode')
+            ->where('paymentCode', '!=', '')
+            ->distinct()
+            ->pluck('paymentCode')
+            ->values();
+        //dd($paymentMethods);
+        return view('Merchant.tnx.transactions', compact('tnx', 'paymentMethods'));
     }
 
     public function detail(Request $request)

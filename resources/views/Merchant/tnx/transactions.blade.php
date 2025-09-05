@@ -29,8 +29,11 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <input type="datetime-local" id="start-date" name="start_date"
-                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    <input type="datetime-local" id="start_date" name="start_date"
+                                        value="{{ request('start_date') }}"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md
+                   leading-5 bg-white placeholder-gray-500 focus:outline-none
+                   focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                             </div>
 
@@ -45,8 +48,11 @@
                                                 clip-rule="evenodd" />
                                         </svg>
                                     </div>
-                                    <input type="datetime-local" id="end-date" name="end_date"
-                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    <input type="datetime-local" id="end_date" name="end_date"
+                                        value="{{ request('end_date') }}"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md
+                   leading-5 bg-white placeholder-gray-500 focus:outline-none
+                   focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                                 </div>
                             </div>
 
@@ -56,7 +62,7 @@
                                 <select id="payment-method" name="payment_method"
                                     class="w-full text-gray-800 px-3 py-2 border border-gray-300  rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                     <option value="">All Methods</option>
-                                    @foreach ($paymentMethods->pluck('paymentCode')->unique() as $method)
+                                    @foreach ($paymentMethods as $method)
                                         <option value="{{ $method }}">{{ $method }}</option>
                                     @endforeach
                                 </select>
@@ -106,7 +112,7 @@
                                     </svg>
                                     Search
                                 </button>
-                                <button id="reset-btn"
+                                <button id="reset-btn" type="button"
                                     class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -153,74 +159,70 @@
                     <thead class="bg-gray-800 text-white">
                         <tr>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 ID
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Invoice No
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Name
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Amount
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Currency
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Payment
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Status
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Paid At
                             </th>
                             <th scope="col"
-                                class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                 Action
                             </th>
                         </tr>
                     </thead>
                     <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
                         @foreach ($tnx as $item)
-                            <tr class="transaction-row hover:bg-gray-50" data-id="{{ $loop->iteration }}"
-                                data-invoice="{{ $item->tranref_no }}" data-name="{{ $item->payment_user_name }}"
-                                data-amount="{{ $item->req_amount }}" data-currency="MMK"
-                                data-method="{{ $item->paymentCode }}" data-status="{{ $item->payment_status }}"
-                                data-created="{{ \Carbon\Carbon::parse($item->created_at)->format('Y-m-d H:i:s') }}"
-                                data-date="{{ $item->trans_date_time ? \Carbon\Carbon::parse($item->trans_date_time)->format('Y-m-d H:i:s') : '' }}">
-                                <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    {{ $loop->iteration }}
+                            <tr class="transaction-row hover:bg-gray-50">
+                                <td class="px-3 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    {{ ($tnx->currentPage() - 1) * $tnx->perPage() + $loop->iteration }}
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                <td
+                                    class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
                                     {{ $item->tranref_no }}
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900 truncate max-w-[120px]">
                                         {{ $item->payment_user_name }}</div>
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">MMK</div>
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
                                         <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
                                     </div>
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     @if ($item->payment_status == 'SUCCESS')
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -238,14 +240,14 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500">
                                     @if ($item->trans_date_time)
                                         {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
                                     @else
                                         Pending
                                     @endif
                                 </td>
-                                <td class="px-3 py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-4 whitespace-nowrap">
                                     <div class="flex space-x-1">
                                         <form action="{{ route('tnx.detail') }}" method="POST">
                                             @csrf

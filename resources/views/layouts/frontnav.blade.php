@@ -1,33 +1,38 @@
+<nav class="bg-white/80 backdrop-blur-md md:bg-transparent md:backdrop-blur-0 shadow md:shadow-none rounded-b-lg md:rounded-none">
+  <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
 
-<nav class="" >
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="{{ route('main.home') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
-       <div class="">
-        <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-28" alt="Pay With Link Logo" />
-       </div>
+      <!-- Logo -->
+      <a href="{{ route('main.home') }}" class="flex items-center">
+        <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20 sm:w-28 h-auto" alt="Octoverse Logo">
       </a>
-      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-          <span class="sr-only">Open main menu</span>
-          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-          </svg>
-      </button>
-      <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-        <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 ">
-          <li>
-            <a href="{{ route('main.home') }}" class="hover:text-purple-300  fw-bold text-gray-700 " >HOME</a>
-          </li>
-          <li>
-            <a href="{{ route('main.aboutus') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">ABOUT US</a>
-          </li>
 
-          <li>
-            <a href="{{ route('login') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">LOGIN</a>
-          </li>
-          <li>
-            <a href="{{ route('main.contactus') }}" class="hover:text-purple-300  fw-bold text-gray-700 ">CONTACT US</a>
-          </li>
-        </ul>
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button type="button" class="text-gray-700 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-md"
+                aria-controls="mobile-menu" aria-expanded="false" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex space-x-6 font-medium">
+        <a href="{{ route('main.home') }}" class="text-gray-700 hover:text-purple-500">HOME</a>
+        <a href="{{ route('main.aboutus') }}" class="text-gray-700 hover:text-purple-500">ABOUT US</a>
+        <a href="{{ route('login') }}" class="text-gray-700 hover:text-purple-500">LOGIN</a>
+        <a href="{{ route('main.contactus') }}" class="text-gray-700 hover:text-purple-500">CONTACT US</a>
       </div>
     </div>
-  </nav>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="md:hidden hidden px-4 pt-2 pb-3 space-y-1 bg-white/90 backdrop-blur-md rounded-b-lg shadow" id="mobile-menu">
+    <a href="{{ route('main.home') }}" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-purple-100 hover:text-purple-600">HOME</a>
+    <a href="{{ route('main.aboutus') }}" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-purple-100 hover:text-purple-600">ABOUT US</a>
+    <a href="{{ route('login') }}" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-purple-100 hover:text-purple-600">LOGIN</a>
+    <a href="{{ route('main.contactus') }}" class="block px-3 py-2 rounded-md text-gray-700 hover:bg-purple-100 hover:text-purple-600">CONTACT US</a>
+  </div>
+</nav>

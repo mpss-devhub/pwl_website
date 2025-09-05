@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Links;
-use App\Models\tnx;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class AllMerchantLinksExport implements FromCollection

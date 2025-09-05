@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\tnx;
+use App\Models\Tnx;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
 class AllMerchantTransactionsExport implements FromCollection
@@ -12,6 +12,6 @@ class AllMerchantTransactionsExport implements FromCollection
     */
     public function collection()
     {
-        return tnx::all();
+        return Tnx::all();
     }
 }

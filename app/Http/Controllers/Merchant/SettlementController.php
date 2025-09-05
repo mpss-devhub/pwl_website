@@ -26,9 +26,12 @@ class SettlementController extends Controller
         }
         $tnx = collect($data['data']);
         $tnxs = collect($data['data']['dataList']);
-        $paymentCodes = $tnxs->pluck('paymentCode')->unique();
+        $paymentCodes = $tnxs->pluck('paymentCode')
+            ->unique()
+            ->filter(fn($code) => !empty($code))
+            ->values();
         //dd($paymentCodes);
-        return view('Merchant.Settlement.index', compact('tnx','paymentCodes'));
+        return view('Merchant.Settlement.index', compact('tnx', 'paymentCodes'));
     }
 
     private function getSettlementData($merchant)
@@ -96,11 +99,11 @@ class SettlementController extends Controller
 
     public function export()
     {
-        return Excel::download(new MerchantSettlementExport,'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
+        return Excel::download(new MerchantSettlementExport, 'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
     }
 
     public function csvExport()
     {
-        return Excel::download(new MerchantSettlementExport,'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
+        return Excel::download(new MerchantSettlementExport, 'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
     }
 }

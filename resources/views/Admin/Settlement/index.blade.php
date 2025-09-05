@@ -29,7 +29,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="start-date"
+                                <input type="datetime-local" id="start_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="end-date"
+                                <input type="datetime-local" id="end_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -280,8 +280,8 @@
         document.addEventListener('DOMContentLoaded', function() {
 
             function filterTransactions() {
-                const startDate = document.getElementById('start-date').value;
-                const endDate = document.getElementById('end-date').value;
+                const startDate = document.getElementById('start_date').value;
+                const endDate = document.getElementById('end_date').value;
                 const paymentMethod = document.getElementById('payment-method').value;
                 const status = document.getElementById('status').value;
                 const searchTerm = document.getElementById('search').value.toLowerCase();
@@ -322,8 +322,8 @@
 
             // Reset filters function
             function resetFilters() {
-                document.getElementById('start-date').value = '';
-                document.getElementById('end-date').value = '';
+                document.getElementById('start_date').value = '';
+                document.getElementById('end_date').value = '';
                 document.getElementById('payment-method').value = '';
                 document.getElementById('status').value = '';
                 document.getElementById('search').value = '';
@@ -341,8 +341,8 @@
             document.getElementById('search').addEventListener('input', filterTransactions);
             document.getElementById('payment-method').addEventListener('change', filterTransactions);
             document.getElementById('status').addEventListener('change', filterTransactions);
-            document.getElementById('start-date').addEventListener('change', filterTransactions);
-            document.getElementById('end-date').addEventListener('change', filterTransactions);
+            document.getElementById('start_date').addEventListener('change', filterTransactions);
+            document.getElementById('end_date').addEventListener('change', filterTransactions);
         });
     </script>
 @endsection

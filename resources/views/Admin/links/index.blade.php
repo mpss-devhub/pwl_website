@@ -23,7 +23,8 @@
                             <!-- Start Date -->
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">Start Date</label>
-                                <input type="datetime-local" name="start_date" value="{{ request('start_date') }}"
+                                <input type="datetime-local" id="start_date" name="start_date"
+                                    value="{{ request('start_date') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
@@ -31,7 +32,8 @@
                             <!-- End Date -->
                             <div class="space-y-2">
                                 <label class="block text-sm font-medium text-gray-700">End Date</label>
-                                <input type="datetime-local" name="end_date" value="{{ request('end_date') }}"
+                                <input type="datetime-local" id="end_date" name="end_date"
+                                    value="{{ request('end_date') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
@@ -121,29 +123,30 @@
                     <table class="min-w-full divide-y divide-gray-200" id="link-table">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">ID</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Message</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">To</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Type</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Link Status
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">ID</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Message</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">To</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Type</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Link Status
                                 </th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Link Track</th>
-                                <th class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">Actions</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Link Track</th>
+                                <th class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200" id="links-body">
                             @foreach ($links as $item)
                                 <tr class="link-row hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_url }}
+                                    <td class="px-6 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                      {{ ($links->currentPage() - 1) * $links->perPage() + $loop->iteration }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_phone }}
+                                    <td class="px-6 text-center  py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_url }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_name }}
+                                    <td class="px-6 text-center  py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_phone }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <td class="px-6 text-center  py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->link_name }}
+                                    </td>
+                                    <td class="px-6 text-center  py-4 whitespace-nowrap">
                                         @switch($item->link_type)
                                             @case('S')
                                                 <span
@@ -170,7 +173,7 @@
                                                     class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-200 text-gray-800">Unknown</span>
                                         @endswitch
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-6 text-center  py-4 whitespace-nowrap text-sm text-gray-500">
                                         @if ($item->link_status === 'active')
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-blue-800">Active</span>
@@ -179,12 +182,12 @@
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-6 text-center  py-4 whitespace-nowrap text-sm text-gray-500">
                                         <p class="px-2 inline-flex text-sm leading-5 font-semibold">
                                             {{ $item->link_click_status === 'Clicked' ? 'Clicked' : 'Unclick' }}
                                         </p>
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 text-center  py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <div class="flex space-x-3">
                                             @if (in_array('V', $access['L'] ?? []))
                                                 <form action="{{ route('admin.sms.details') }}" method="POST">

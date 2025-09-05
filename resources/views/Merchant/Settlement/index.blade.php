@@ -29,7 +29,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="start-date"
+                                <input type="datetime-local" id="start_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="end-date"
+                                <input type="datetime-local" id="end_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -120,7 +120,7 @@
                         </div>
 
                         <div class="flex items-end gap-2">
-                            <a href="{{ route('merchant.settlement.csv.export') }}"
+                            <a href="{{ route('merchant.settlement.export') }}"
                                 class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
@@ -153,40 +153,40 @@
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Invoice No
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Amount
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Currency
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Status
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     MDR Rate
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3  text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Code
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Settlement Status
                                 </th>
 
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Action
                                 </th>
                             </tr>
@@ -200,21 +200,21 @@
                                     data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
                                     data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
 
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
                                         {{ $item['merchantInvoiceNo'] }}
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900 truncate max-w-[120px]">
                                             {{ $item['amount'] }}
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">{{ $item['currency'] }}</div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         @if ($item['status'] == 'SUCCESS')
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -232,17 +232,17 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <span class="ml-2 text-sm">{{ $item['merchantFeeRate'] }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <span class="ml-2 text-sm">{{ $item['paymentCode'] ?? 'N/A' }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap">
                                         <div class="ml-2 text-xs font-medium">
                                             <span
                                                 class="inline-block px-3 rounded-full ml-5 text-xs leading-5
@@ -251,7 +251,7 @@
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500">
                                         <div class="text-xs">
                                             <a
                                                 href="{{ route('merchant.settlement.details', $item['merchantInvoiceNo']) }}">
@@ -275,8 +275,8 @@
         document.addEventListener('DOMContentLoaded', function() {
 
             function filterTransactions() {
-                const startDate = document.getElementById('start-date').value;
-                const endDate = document.getElementById('end-date').value;
+                const startDate = document.getElementById('start_date').value;
+                const endDate = document.getElementById('end_date').value;
                 const paymentMethod = document.getElementById('payment-method').value;
                 const status = document.getElementById('status').value;
                 const searchTerm = document.getElementById('search').value.toLowerCase();
@@ -316,8 +316,8 @@
 
             // Reset filters function
             function resetFilters() {
-                document.getElementById('start-date').value = '';
-                document.getElementById('end-date').value = '';
+                document.getElementById('start_date').value = '';
+                document.getElementById('end_date').value = '';
                 document.getElementById('payment-method').value = '';
                 document.getElementById('status').value = '';
                 document.getElementById('search').value = '';
@@ -335,8 +335,8 @@
             document.getElementById('search').addEventListener('input', filterTransactions);
             document.getElementById('payment-method').addEventListener('change', filterTransactions);
             document.getElementById('status').addEventListener('change', filterTransactions);
-            document.getElementById('start-date').addEventListener('change', filterTransactions);
-            document.getElementById('end-date').addEventListener('change', filterTransactions);
+            document.getElementById('start_date').addEventListener('change', filterTransactions);
+            document.getElementById('end_date').addEventListener('change', filterTransactions);
         });
     </script>
 @endsection

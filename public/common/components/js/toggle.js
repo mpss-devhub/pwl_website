@@ -20,6 +20,35 @@ document.addEventListener("DOMContentLoaded", function () {
         filterArrow.classList.add("rotate-180");
     } else {
         filterContent.classList.add("hidden");
+
         filterArrow.classList.remove("rotate-180");
     }
+
+const startDate = document.getElementById("start_date");
+const endDate = document.getElementById("end_date");
+
+// Enable/disable endDate depending on startDate
+startDate.addEventListener("input", function () {
+    if (startDate.value) {
+        endDate.disabled = false;
+    } else {
+        endDate.disabled = true;
+        endDate.value = "";
+    }
+});
+
+startDate.addEventListener("change", () => {
+    endDate.min = startDate.value;
+    if (endDate.value && endDate.value < startDate.value) {
+        endDate.value = "";
+    }
+});
+
+if (startDate.value) {
+    endDate.min = startDate.value;
+    endDate.disabled = false;
+} else {
+    endDate.disabled = true;
+}
+
 });
