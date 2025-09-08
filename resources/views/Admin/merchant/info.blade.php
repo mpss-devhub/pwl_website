@@ -16,7 +16,7 @@
                             </a>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow mt-3">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">{{ $detail->merchant_name }}
+                            <h2 class="text-md font-semibold text-gray-800 mb-4">{{ $detail->merchant_name }}
                                 <span class="ml-2 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
                             </h2>
                             <div class="mt-6">
@@ -111,7 +111,7 @@
                         <!-- Basic Information Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
                             <div class="flex items-center justify-between mb-4">
-                                <h2 class="text-lg font-semibold text-gray-800"><i
+                                <h2 class="text-md font-semibold text-gray-800"><i
                                         class="fa-regular fa-circle-user mr-2"></i>
                                     Basic Information</h2>
                                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">User ID :
@@ -147,7 +147,7 @@
 
                         <!-- URL Information Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4"> <i
+                            <h2 class="text-md font-semibold text-gray-800 mb-4"> <i
                                     class="fa-solid fa-earth-americas mr-2"></i> URL Information</h2>
 
                             <div class="grid md:grid-cols-2 gap-4 space-y-1">

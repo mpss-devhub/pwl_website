@@ -8,8 +8,8 @@
         <!-- Page Header -->
         <div class="flex justify-between items-center mb-6">
             <div>
-                <h1 class="text-2xl font-bold text-gray-800">Update Merchant Data</h1>
-                <p class="text-sm text-gray-600">Fill in the merchant details below</p>
+                <h1 class="text-md md:text-md lg:text-lg  font-bold text-gray-800">Update Merchant Data</h1>
+                <p class="text-xs text-gray-600">Fill in the merchant details below</p>
             </div>
             <div class="flex space-x-3">
                 <button type="submit" id='btn' class="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 transition-colors">
@@ -26,7 +26,7 @@
             <div class="lg:col-span-1 space-y-6">
                 <!-- Profile Card -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Logo</h2>
+                    <h2 class="text-md font-semibold text-gray-800 mb-4">Merchant Logo</h2>
 
                     <div class="flex flex-col items-center">
                         <div class="relative mb-4 group">
@@ -46,14 +46,14 @@
                         <label for="file-upload" class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                             <i class="fas fa-upload mr-2"></i>Upload Logo
                         </label>
-                        <p class="text-xs text-gray-500 text-center">JPG, PNG (300 x 300 px, max 2MB)</p>
+                        <p class="text-[11px] mt-1 text-gray-500 text-center">JPG, PNG (300 x 300 px, max 2MB)</p>
                     </div>
 
                     <div class="mt-6 space-y-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-1">Merchant ID </label>
                             <div class="flex items-center bg-gray-100 px-3 py-2 rounded-md">
-                                <span class="text-gray-600">{{ $detail->merchant_id }}</span>
+                                <span class="text-gray-600 text-sm">{{ $detail->merchant_id }}</span>
                                 <button class="ml-auto text-gray-500 hover:text-gray-700">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                         <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
@@ -70,11 +70,11 @@
 
                                 <label class="inline-flex items-center">
                                     <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="on" @checked($detail->status == 'on') >
-                                    <span class="ml-2 text-gray-700">Active</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Active</span>
                                 </label>
                                 <label class="inline-flex items-center">
                                     <input type="radio" name="status" class="h-4 w-4 text-blue-600 focus:ring-blue-500" value="off" @checked($detail->status == 'off')  >
-                                    <span class="ml-2 text-gray-700">Inactive</span>
+                                    <span class="ml-2 text-gray-700 text-sm">Inactive</span>
                                 </label>
                             </div>
                         </div>
@@ -83,26 +83,26 @@
 
                 <!-- Quick Stats Card -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Summary</h2>
+                    <h2 class="text-md font-semibold text-gray-800 mb-4">Merchant Summary</h2>
                     <div class="space-y-3">
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-600">Created On</span>
-                            <span class="text-sm font-sm">{{ $detail->created_at }}</span>
+                            <span class="text-xs font-sm">{{ $detail->created_at }}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-600">Last Updated</span>
-                            <span class="text-sm font-sm">{{$detail->updated_at}}</span>
+                            <span class="text-xs font-sm">{{$detail->updated_at}}</span>
                         </div>
                         <div class="flex justify-between items-center">
                             <span class="text-sm text-gray-600">Total Transactions</span>
-                            <span class="text-sm ">
+                            <span class="text-xs ">
                                 <span class="font-medium">{{$count}}</span>
                                 Tnx</span>
                         </div>
                     </div>
                 </div>
                   <div class="bg-white p-6 rounded-lg shadow mt-3">
-                            <h2 class="text-lg font-semibold text-gray-800">Download Information <i
+                            <h2 class="text-md font-semibold text-gray-800">Download Information <i
                                     class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>
 
                             <div class=" space-y-2 mt-4 ">
@@ -136,7 +136,7 @@
                 <!-- Basic Information Section -->
                 <div class="bg-white p-6 rounded-lg shadow">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-lg font-semibold text-gray-800">Basic Information</h2>
+                        <h2 class="text-md font-semibold text-gray-800">Basic Information</h2>
                         <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Required Fields</span>
                     </div>
 
@@ -165,7 +165,7 @@
 
                 <!-- URL Information Section -->
                 <div class="bg-white p-6 rounded-lg shadow">
-                    <h2 class="text-lg font-semibold text-gray-800 mb-4">URL Information</h2>
+                    <h2 class="text-md font-semibold text-gray-800 mb-4">URL Information</h2>
 
                     <div class="grid md:grid-cols-2 gap-4">
                         <div>
@@ -204,7 +204,7 @@
 
                <!-- Documents Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Required Documents</h2>
+                            <h2 class="text-md font-semibold text-gray-800 mb-4">Required Documents</h2>
 
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="space-y-4">

@@ -177,7 +177,7 @@
                                     MDR Rate
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3  text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Code
                                 </th>
                                 <th scope="col"
@@ -200,21 +200,21 @@
                                     data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
                                     data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
 
-                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap text-xs font-medium text-gray-900">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap text-xs text-gray-500 truncate max-w-[100px]">
                                         {{ $item['merchantInvoiceNo'] }}
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 truncate max-w-[120px]">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
+                                        <div class="text-xs text-gray-900 truncate max-w-[120px]">
                                             {{ $item['amount'] }}
                                         </div>
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $item['currency'] }}</div>
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
+                                        <div class="text-xs text-gray-900">{{ $item['currency'] }}</div>
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
                                         @if ($item['status'] == 'SUCCESS')
                                             <span
                                                 class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -232,17 +232,17 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="ml-2 text-sm">{{ $item['merchantFeeRate'] }}</span>
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
+                                        <div class="">
+                                            <span class=" text-xs">{{ $item['merchantFeeRate'] }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="ml-2 text-sm">{{ $item['paymentCode'] ?? 'N/A' }}</span>
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
+                                        <div class="">
+                                            <span class="text-xs">{{ $item['paymentCode'] ?? 'N/A' }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap">
                                         <div class="ml-2 text-xs font-medium">
                                             <span
                                                 class="inline-block px-3 rounded-full ml-5 text-xs leading-5
@@ -251,7 +251,7 @@
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-3 text-center py-3 whitespace-nowrap text-xs text-gray-500">
                                         <div class="text-xs">
                                             <a
                                                 href="{{ route('merchant.settlement.details', $item['merchantInvoiceNo']) }}">

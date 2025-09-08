@@ -35,49 +35,52 @@
 
                 <!-- Link Info Grid -->
                 <div class="p-4 text-sm">
-                    <div
-                        class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl shadow-sm p-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white rounded-xl shadow-sm p-5">
                         <!-- Left Column -->
                         <div class="flex flex-col gap-4 border rounded-lg p-4 bg-gray-50 ">
                             <div class="flex items-center gap-2">
 
-                                <h3 class="text-md font-semibold text-gray-700">Click Info</h3>
+                                <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-700">Click Info</h3>
                             </div>
 
                             <div class="space-y-3 ">
-                                <div><span class="font-medium text-gray-600">Country Flag:</span>
-                                    @if(isset($click[0]['info']['country_flag']))
+                                <div><span class="text-xs font-medium text-gray-600">Country Flag:</span>
+                                    @if (isset($click[0]['info']['country_flag']))
                                         <img src="{{ $click[0]['info']['country_flag'] }}" alt="Country Flag"
                                             class="w-6 h-4 inline-block mx-1">
                                     @else
-                                        N/A
+                                        <span class="text-xs" >N/A</span>
                                     @endif
                                 </div>
-                                <div><span class="font-medium text-gray-600">Link Click At:</span>
-                                {{ $click[0]['created_at'] ?? 'N/A' }}
+                                <div><span class="text-xs font-medium text-gray-600">Link Click At:</span>
+                                    <span class="text-xs" > {{ $click[0]['created_at'] ?? 'N/A' }}</span>
                                 </div>
-                                <div><span class="font-medium text-gray-600">IP Address:</span> {{ $click[0]['ip_address'] ?? 'N/A' }}
+                                <div><span class="text-xs font-medium text-gray-600">IP Address:</span>
+                                    <span class="text-xs" > {{ $click[0]['ip_address'] ?? 'N/A' }} </span>
                                 </div>
-                                <div><span class="font-medium text-gray-600">Location:</span>
-                                    {{ $click[0]['info']['country'] ?? 'N/A' }},
-                                    {{ $click[0]['info']['city'] ?? 'N/A' }}
+                                <div><span class="text-xs font-medium text-gray-600">Location:</span>
+                                    <span class="text-xs" >
+                                        {{ $click[0]['info']['country'] ?? 'N/A' }},
+                                        {{ $click[0]['info']['city'] ?? 'N/A' }}
+                                    </span>
                                 </div>
 
-                                    @php
-                                        $linkTypeText = match ($links['link_type']) {
-                                            'C' => 'Copy',
-                                            'Q' => 'QR',
-                                            'S' => 'SMS',
-                                            'E' => 'Email',
-                                            default => 'Unknown',
-                                        };
-                                    @endphp
+                                @php
+                                    $linkTypeText = match ($links['link_type']) {
+                                        'C' => 'Copy',
+                                        'Q' => 'QR',
+                                        'S' => 'SMS',
+                                        'E' => 'Email',
+                                        default => 'Unknown',
+                                    };
+                                @endphp
 
-                                <div><span class="font-medium text-gray-600">Country Code:</span> {{ $click[0]['info']['country_phone'] ?? 'N/A'}}</div>
+                                <div><span class="text-xs font-medium text-gray-600">Country Code:</span>
+                                   <span class="text-xs" > {{ $click[0]['info']['country_phone'] ?? 'N/A' }}</div></span>
                                 <div>
-                                    <span class="font-medium text-gray-600">Provider Name:</span>
-                                    <span>
-                                       {{ $click[0]['info']['provider'] ?? 'N/A' }}
+                                    <span class="text-xs font-medium text-gray-600">Provider Name:</span>
+                                    <span class="text-xs" >
+                                        {{ $click[0]['info']['provider'] ?? 'N/A' }}
                                     </span>
                                 </div>
                             </div>
@@ -85,19 +88,19 @@
 
                         <!-- Right Column -->
                         <div class="flex flex-col gap-4 border p-4 rounded-lg bg-gray-50 ">
-                            <h3 class="text-md font-semibold text-gray-700">Payment Link Info</h3>
+                            <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-700 ">Payment Link Info</h3>
                             <div class="space-y-3 text-sm">
-                                <div><span class="font-medium text-gray-600">Customer Name:</span>
-                                    {{ $links['link_name'] }}</div>
-                                <div><span class="font-medium text-gray-600">Phone:</span> {{ $links['link_phone'] }}</div>
-                                <div><span class="font-medium text-gray-600">Email:</span> {{ $links['link_email'] }}</div>
-                                <div><span class="font-medium text-gray-600">Amount:</span>
-                                    {{ $links['link_currency'] . ' ' . $links['link_amount'] }}</div>
-                                <div><span class="font-medium text-gray-600">Type:</span> {{ $linkTypeText }}</div>
+                                <div><span class="font-medium text-gray-600 text-xs">Customer Name:</span>
+                                   <span class="text-xs"> {{ $links['link_name'] }}</span></div>
+                                <div><span class="font-medium text-gray-600 text-xs">Phone:</span> <span class="text-xs">{{ $links['link_phone'] }}</span></div>
+                                <div><span class="font-medium text-gray-600 text-xs">Email:</span> <span class="text-xs">{{ $links['link_email'] }}</span></div>
+                                <div><span class="font-medium text-gray-600 text-xs">Amount:</span>
+                                    <span class="text-xs">{{ $links['link_currency'] . ' ' . $links['link_amount'] }}</span></div>
+                                <div><span class="font-medium text-gray-600 text-xs">Type:</span> {{ $linkTypeText }}</div>
                                 <div>
-                                    <span class="font-medium text-gray-600">Status:</span>
+                                    <span class="font-medium text-gray-600 text-xs">Status:</span>
                                     <span
-                                        class="{{ $links['link_status'] === 'active' ? 'text-green-600 font-semibold' : 'text-red-600 font-semibold' }}">
+                                        class="{{ $links['link_status'] === 'active' ? 'text-green-600 font-semibold text-xs' : 'text-red-600 font-semibold text-xs' }}">
                                         {{ ucfirst($links['link_status']) }}
                                     </span>
                                 </div>

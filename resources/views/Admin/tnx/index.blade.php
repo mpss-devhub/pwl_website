@@ -10,8 +10,8 @@
                 <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total Transactions</p>
-                            <p class="text-md font-semibold text-gray-800">{{ $total }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Transactions</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $total }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -27,8 +27,8 @@
                 <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Successful</p>
-                            <p class="text-md font-semibold text-gray-800">{{ $Success }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Successful</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $Success }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -44,8 +44,8 @@
                 <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Failed</p>
-                            <p class="text-md font-semibold text-gray-800">{{ $Fail }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Failed</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $Fail }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-red-50 text-red-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -61,8 +61,8 @@
                 <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total Amount</p>
-                            <p class="text-md font-semibold text-gray-800">{{ $SuccessTotal }} MMK</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Amount</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $SuccessTotal }} MMK</p>
                         </div>
                         <div class="p-3 rounded-full bg-purple-50 text-purple-600">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -77,12 +77,12 @@
 
             <div class="bg-white rounded-lg shadow ">
                 <button id="filter-toggle" class="w-full flex justify-between items-center p-4 sm:p-6 focus:outline-none">
-                    <h2 class="text-lg font-semibold text-gray-800">Filter Transactions</h2>
+                    <h2 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">Filter Transactions</h2>
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
-                                    1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
-                                    010-1.414z" clip-rule="evenodd" />
+                                        1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
+                                        010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
 
@@ -92,28 +92,28 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <!-- Start Date -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start Date</label>
                                 <input type="datetime-local" id="start_date" name="start_date"
                                     value="{{ request('start_date') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md
-               focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
 
                             <!-- End Date -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">End Date</label>
+                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End Date</label>
                                 <input type="datetime-local" id="end_date" name="end_date"
                                     value="{{ request('end_date') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md
-               focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
 
                             <!-- Payment Method -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Payment Method</label>
+                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment Method</label>
                                 <select name="payment_method"
                                     class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
-                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="">All Methods</option>
                                     @foreach ($paymentMethods as $method)
                                         <option value="{{ $method }}"
@@ -126,10 +126,10 @@
 
                             <!-- Status -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Status</label>
+                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
                                 <select name="status"
                                     class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
-                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="">All Statuses</option>
                                     <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }}>SUCCESS
                                     </option>
@@ -142,26 +142,26 @@
                         </div>
 
                         <!-- Search & Buttons -->
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                             <!-- Search -->
                             <div class="space-y-2">
-                                <label class="block text-sm font-medium text-gray-700">Search</label>
+                                <label class="block text-sm font-medium text-gray-700 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">Search</label>
                                 <input type="text" name="search" placeholder="Search by ID, name or phone"
                                     value="{{ request('search') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400
-                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:xs">
                             </div>
 
                             <!--  Buttons -->
                             <div class="flex items-end gap-2">
                                 <button type="submit"
                                     class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md
-                               transition-colors w-full flex items-center justify-center">
+                               transition-colors w-full flex items-center justify-center  text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                     Search
                                 </button>
                                 <a href="{{ route('tnx.show') }}"
                                     class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md
-                               transition-colors w-full flex items-center justify-center">
+                               transition-colors w-full flex items-center justify-center  text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                     Reset
                                 </a>
                             </div>
@@ -171,7 +171,7 @@
                                 <div class="flex items-end gap-2">
                                     <a href="{{ route('admin.merchant.tnx.export') }}"
                                         class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
-                               transition-colors w-full flex items-center justify-center">
+                               transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                         Export CSV
                                         <span class="spinner" style="display:none;">
                                             <i class="fa fa-spinner fa-spin"></i>
@@ -179,7 +179,7 @@
                                     </a>
                                     <a href="{{ route('admin.merchant.csv.export') }}"
                                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
-                               transition-colors w-full flex items-center justify-center">
+                               transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                         Export Excel
                                     </a>
                                 </div>
@@ -198,44 +198,44 @@
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Merchant ID
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Invoice No
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Name
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Amount
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Currency
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Status
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Paid At
                                 </th>
 
                                 <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Action
                                 </th>
 
@@ -244,59 +244,68 @@
                         <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
                             @foreach ($tnx as $item)
                                 <tr class="transaction-row hover:bg-gray-50">
-                                    <td class="px-3  py-4 whitespace-nowrap text-sm font-medium text-gray-900" text-center>
+                                    <td class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center font-medium text-gray-900"
+                                        text-center>
                                         {{ ($tnx->currentPage() - 1) * $tnx->perPage() + $loop->iteration }}
                                     </td>
                                     <td
-                                        class="px-3  py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px] text-center">
+                                        class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 text-center">
                                         {{ $item->created_by }}
                                     </td>
                                     <td
-                                        class="px-3  py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px] text-center">
+                                        class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500  text-center">
                                         {{ $item->tranref_no }}
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
-                                        <div class="text-sm text-gray-900 truncate max-w-[120px]">
+                                    <td class="px-3  py-3 whitespace-nowrap text-center">
+                                        <div
+                                            class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-900 truncate max-w-[120px]">
                                             {{ $item->payment_user_name }}</div>
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
-                                        <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
+                                    <td class="px-3  py-3 whitespace-nowrap text-center">
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-900">
+                                            {{ $item->req_amount }}</div>
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
-                                        <div class="text-sm text-gray-900">MMK</div>
+                                    <td class="px-3  py-3 whitespace-nowrap text-center">
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-900">
+                                            {{ $item->currencyCode ? $item->currencyCode : 'MMK' }}</div>
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
-                                        <div class="flex items-center ">
-                                            <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
-                                            <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class="flex items-center justify-center">
+                                            <img src="{{ $item->payment_logo }}" alt="Logo" class="h-6 w-6 rounded">
+                                            <span
+                                                class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium">
+                                                {{ $item->paymentCode }}
+                                            </span>
                                         </div>
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
+
+                                    <td class="px-3  py-3 whitespace-nowrap text-center">
                                         @if ($item->payment_status == 'SUCCESS')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                class="px-2 inline-flex text-[6px] md:text-[8px] lg:text-[9px]  leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 {{ $item->payment_status }}
                                             </span>
                                         @elseif ($item->payment_status == 'FAIL')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                class="px-2 inline-flex text-[6px] md:text-[8px] lg:text-[9px]  leading-5 font-semibold rounded-full bg-red-100 text-red-800">
                                                 {{ $item->payment_status }}
                                             </span>
                                         @elseif ($item->payment_status == 'PENDING')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                class="px-2 inline-flex text-[6px] md:text-[8px] lg:text-[9px]  leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 {{ $item->payment_status }}
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-sm text-gray-500 text-center">
+                                    <td
+                                        class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-500 text-center">
                                         @if ($item->trans_date_time)
                                             {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
                                         @else
                                             Pending
                                         @endif
                                     </td>
-                                    <td class="px-3  py-4 whitespace-nowrap text-center">
+                                    <td class="px-3  py-3 whitespace-nowrap text-center">
                                         <div class="flex space-x-1">
                                             @if (in_array('TD', $access['T'] ?? []))
                                                 <form action="{{ route('admin.tnx.detail') }}" method="POST">

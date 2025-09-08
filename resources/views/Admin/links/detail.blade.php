@@ -8,7 +8,7 @@
                         <span>
                             <a href="{{ route('admin.links') }}"> <i class="fa-solid fa-arrow-left "></i></a>
                         </span>
-                        <h2 class="text-lg font-semibold text-gray-800 ml-2">Payment Link Details</h2>
+                        <h2 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 ml-3">Payment Link Details</h2>
 
                     </div>
                     <div class="">
@@ -22,65 +22,65 @@
                     <!-- Left Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
+                            <div class="flex items-between mb-2">
                                 @if (!$exists && in_array('U', $access['L'] ?? []))
                                         <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none">
+                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-xs md:text-md lg:text-md">
                                             <a href="{{ route('admin.link.edit',$sms['id']) }}" >
                                             <i class="fa-solid fa-file-pen"></i> Edit
                                             </a>
                                         </button>
                                 @endif
                                 <h3
-                                    class="font-medium text-gray-500 px-2 {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">
+                                    class="font-medium text-gray-500 text-xs md:text-md lg:text-md   px-2 {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">
                                     Basic Information
                                 </h3>
                             </div>
 
                             <div class="space-y-4">
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">From</span>
-                                    <span class="text-sm font-semibold">{{ $sms['created_by'] }}</span>
+                                    <span class="text-gray-600 text-xs ">From</span>
+                                    <span class="text-xs  font-semibold">{{ $sms['created_by'] }}</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Invoice No</span>
-                                    <span class="text-sm font-semibold">{{ $sms['link_invoiceNo'] }}</span>
+                                    <span class="text-gray-600 text-xs">Invoice No</span>
+                                    <span class="text-xs font-semibold">{{ $sms['link_invoiceNo'] }}</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Sent By</span>
+                                    <span class="text-gray-600 text-xs">Sent By</span>
                                     @if ($sms['link_type'] === 'S')
-                                        <span class="text-sm font-semibold capitalize">
+                                        <span class="text-xs font-semibold capitalize">
                                             SMS
                                         </span>
                                     @endif
                                     @if ($sms['link_type'] === 'C')
-                                        <span class="textx-sm font-semibold capitalize">
+                                        <span class="textx-xs font-semibold capitalize">
                                             Copy
                                         </span>
                                     @endif
                                     @if ($sms['link_type'] === 'Q')
-                                        <span class="text-sm font-semibold capitalize">
+                                        <span class="text-xs font-semibold capitalize">
                                             QR
                                         </span>
                                     @endif
                                     @if ($sms['link_type'] === 'E')
-                                        <span class="text-sm font-semibold capitalize">
+                                        <span class="text-xs font-semibold capitalize">
                                             Email
                                         </span>
                                     @endif
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Created At</span>
+                                    <span class="text-gray-600 text-xs">Created At</span>
                                     <span
-                                        class="text-sm font-semibold">{{ \Carbon\Carbon::parse($sms['created_at'])->format('M d, Y H:i') }}</span>
+                                        class="text-xs font-semibold">{{ \Carbon\Carbon::parse($sms['created_at'])->format('M d, Y H:i') }}</span>
                                 </div>
                             </div>
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg h-60">
 
-                            <h3 class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2">Description
+                            <h3 class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">Description
                             </h3>
-                            <p class="text-gray-700">{{ $sms['link_description'] ?? 'No description provided' }}</p>
+                            <p class="text-gray-700 text-xs">{{ $sms['link_description'] ?? 'No description provided' }}</p>
                         </div>
 
 
@@ -90,43 +90,43 @@
                     <!-- Right Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center">Payment Details</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Payment Details</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Amount</span>
-                                    <span class=" text-sm font-semibold">
+                                    <span class="text-gray-600 text-xs">Amount</span>
+                                    <span class=" text-xs font-semibold">
                                         {{ $sms['link_currency'] }} {{ number_format($sms['link_amount'], 2) }}
                                     </span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Expires At</span>
-                                    <span class=" text-sm font-semibold">
+                                    <span class="text-gray-600 text-xs">Expires At</span>
+                                    <span class=" text-xs font-semibold">
                                         {{ $sms['link_expired_at'] ? \Carbon\Carbon::parse($sms['link_expired_at'])->format('M d, Y H:i') : 'Never' }}
                                     </span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Click Status</span>
-                                    <span class=" text-sm font-semibold capitalize">{{ $sms['link_click_status'] }}</span>
+                                    <span class="text-gray-600 text-xs">Click Status</span>
+                                    <span class=" text-xs font-semibold capitalize">{{ $sms['link_click_status'] }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center">Customer Information</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Customer Information</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 ">Customer Name</span>
-                                    <span class="font-semibold text-sm ">{{ $sms['link_name'] ?? 'N/A' }}</span>
+                                    <span class="text-gray-600 text-xs">Customer Name</span>
+                                    <span class="font-semibold text-xs ">{{ $sms['link_name'] ?? 'N/A' }}</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Email</span>
-                                    <span class="font-semibold text-sm ">{{ $sms['link_email'] ?? 'N/A' }}</span>
+                                    <span class="text-gray-600 text-xs">Email</span>
+                                    <span class="font-semibold text-xs ">{{ $sms['link_email'] ?? 'N/A' }}</span>
                                 </div>
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-sm">Phone</span>
-                                    <span class="font-semibold text-sm ">{{ $sms['link_phone'] ?? 'N/A' }}</span>
+                                    <span class="text-gray-600 text-xs">Phone</span>
+                                    <span class="font-semibold text-xs ">{{ $sms['link_phone'] ?? 'N/A' }}</span>
                                 </div>
                             </div>
                         </div>

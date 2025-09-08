@@ -199,30 +199,30 @@
                     <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
                         @foreach ($tnx as $item)
                             <tr class="transaction-row hover:bg-gray-50">
-                                <td class="px-3 text-center py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <td class="px-3 text-center py-3 whitespace-nowrap text-xs font-medium text-gray-900">
                                     {{ ($tnx->currentPage() - 1) * $tnx->perPage() + $loop->iteration }}
                                 </td>
                                 <td
-                                    class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                    class="px-3 text-center py-3 whitespace-nowrap text-xs text-gray-500 ">
                                     {{ $item->tranref_no }}
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900 truncate max-w-[120px]">
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
+                                    <div class="text-xs text-gray-900 ">
                                         {{ $item->payment_user_name }}</div>
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $item->req_amount }}</div>
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
+                                    <div class="text-xs text-gray-900">{{ $item->req_amount }}</div>
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">MMK</div>
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
+                                    <div class="text-xs text-gray-900">MMK</div>
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
+                                    <div class="flex items-center ">
                                         <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
-                                        <span class="ml-2 text-sm font-medium">{{ $item->paymentCode }}</span>
+                                        <span class="ml-2 text-xs font-medium">{{ $item->paymentCode }}</span>
                                     </div>
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
                                     @if ($item->payment_status == 'SUCCESS')
                                         <span
                                             class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -240,14 +240,14 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap text-sm text-gray-500">
+                                <td class="px-3 text-center py-3 whitespace-nowrap text-xs text-gray-500">
                                     @if ($item->trans_date_time)
                                         {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
                                     @else
                                         Pending
                                     @endif
                                 </td>
-                                <td class="px-3 text-center py-4 whitespace-nowrap">
+                                <td class="px-3 text-center py-3 whitespace-nowrap">
                                     <div class="flex space-x-1">
                                         <form action="{{ route('tnx.detail') }}" method="POST">
                                             @csrf

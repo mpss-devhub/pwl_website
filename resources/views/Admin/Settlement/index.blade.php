@@ -5,7 +5,7 @@
             <!-- Filter Section -->
             <div class="bg-white rounded-lg shadow mb-6">
                 <button id="filter-toggle" class="w-full flex justify-between items-center p-4 sm:p-6 focus:outline-none">
-                    <h2 class="text-lg font-semibold text-gray-800">Settlement</h2>
+                    <h2 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">Settlement</h2>
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -19,7 +19,7 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Date Range -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -30,12 +30,12 @@
                                     </svg>
                                 </div>
                                 <input type="datetime-local" id="start_date"
-                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
 
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">End Date</label>
+                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -46,15 +46,15 @@
                                     </svg>
                                 </div>
                                 <input type="datetime-local" id="end_date"
-                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
 
                         <!-- Payment Method -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Payment Method</label>
+                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment Method</label>
                             <select id="payment-method"
-                                class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
                                 @foreach ($paymentCodes as $item)
                                 <option value="{{ $item }}">{{ $item }}</option>
@@ -64,9 +64,9 @@
 
                         <!-- Status -->
                         <div class="space-y-2">
-                            <label class="block text-sm font-medium text-gray-700">Status</label>
+                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
                             <select id="status"
-                                class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
                                 <option value="SUCCESS">SUCCESS</option>
                                 <option value="FAIL">FAIL</option>
@@ -76,10 +76,10 @@
                     </div>
 
                     <!-- Search & Actions -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                         <!-- Search -->
                         <div class="space-y-2">
-                            <label for="search" class="block text-sm font-medium text-gray-800">Search</label>
+                            <label for="search" class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-800">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -91,14 +91,14 @@
                                 </div>
                                 <input type="text" id="search" name="search"
                                     placeholder="Search by ID, name or phone"
-                                    class="block  w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                    class="block  w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
 
                         <!-- Buttons -->
                         <div class="flex items-end gap-2">
                             <button id="search-btn"
-                                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                class="bg-blue-600 hover:bg-blue-700 text-white text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -108,7 +108,7 @@
                                 Search
                             </button>
                             <button id="reset-btn"
-                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                     fill="currentColor">
                                     <path fill-rule="evenodd"
@@ -121,24 +121,14 @@
 
                         <div class="flex items-end gap-2">
                             <a href="{{ route('admin.settlement.csv.export') }}"
-                                class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+
                                 Export CSV
                             </a>
 
                             <a href="{{ route('admin.settlement.xlsx') }}"
-                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
+                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+
                                 Export Excel
                             </a>
                         </div>
@@ -153,41 +143,41 @@
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Invoice No
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Amount
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Currency
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Status
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     MDR Rate
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Code
                                 </th>
                                 <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Settlement Status
                                 </th>
 
                               @if (in_array('C', $access['S'] ?? []))
                                     <th scope="col"
-                                    class="px-3 py-3 text-left text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Action
                                 </th>
                               @endif
@@ -202,63 +192,63 @@
                                     data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
                                     data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
 
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center font-medium text-gray-900">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500 truncate max-w-[100px]">
+                                    <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-500 ">
                                         {{ $item['merchantInvoiceNo'] }}
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900 truncate max-w-[120px]">
+                                    <td class="px-3 py-3 whitespace-nowrap">
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-900 truncate max-w-[120px]">
                                             {{ $item['amount'] }}
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">{{ $item['currency'] }}</div>
+                                    <td class="px-3 py-3 whitespace-nowrap">
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-900">{{ $item['currency'] }}</div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
                                         @if ($item['status'] == 'SUCCESS')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                class="px-3 inline-flex text-[9px] leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                 {{ $item['status'] }}
                                             </span>
                                         @elseif ($item['status'] == 'FAIL')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800 ml-2">
+                                                class="px-3 inline-flex text-[9px] leading-5 font-semibold rounded-full bg-red-100 text-red-800 ml-2">
                                                 {{ $item['status'] }}
                                             </span>
                                         @elseif ($item['status'] == 'PENDING')
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                class="px-3 inline-flex text-[9px] leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                                 {{ $item['status'] }}
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <div class="flex items-center">
-                                            <span class="ml-2 text-sm">{{ $item['merchantFeeRate'] }}</span>
+                                            <span class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ $item['merchantFeeRate'] }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <span class="ml-2 text-sm">{{ $item['paymentCode'] ?? 'N/A' }}</span>
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class="">
+                                            <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ $item['paymentCode'] ?? 'N/A' }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="ml-2 text-xs font-medium">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
                                             <span
-                                                class="inline-block px-3 rounded-full ml-5 text-xs leading-5
+                                                class="inline-block px-3 rounded-full ml-5 text-[10px] leading-5
                     {{ !empty($item['settlementStatus']) ? 'bg-green-100 text-green-800' : 'bg-[#3b9bb3] text-white' }}">
                                                 {{ !empty($item['settlementStatus']) ? $item['settlementStatus'] : 'Waiting' }}
                                             </span>
                                         </div>
                                     </td>
                                    @if (in_array('C', $access['S'] ?? []))
-                                        <td class="px-3 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        <div class="text-xs">
+                                        <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-500">
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                             <a
                                                 href="{{ route('admin.settlement.details', [$item['merchantID'], $item['merchantInvoiceNo']]) }}">
-                                                Check Details
+                                             <i class="fa-solid fa-circle-info"></i>  Check Details
                                             </a>
 
                                         </div>

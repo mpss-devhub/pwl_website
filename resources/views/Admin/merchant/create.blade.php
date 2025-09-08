@@ -12,14 +12,14 @@
                     <div class="lg:col-span-1 space-y-6">
                         <!-- Profile Card -->
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
-                            <div class="order-1 md:order-none">
-                                <h1 class="text-xl md:text-2xl font-bold text-gray-800">Create New Merchant</h1>
-                                <p class="text-xs md:text-sm text-gray-600">Fill in the merchant details below</p>
+                            <div class="order-1 md:order-none ml-1">
+                                <h1 class="text-md md:text-md lg:text-lg   font-bold text-gray-800">Create New Merchant</h1>
+                                <p class="text-xs  text-gray-600 text-center">Fill in the merchant details below</p>
                             </div>
 
                         </div>
-                        <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Merchant Logo
+                        <div class="bg-white p-4 rounded-lg shadow">
+                            <h2 class="text-md text-md font-semibold text-gray-800 mb-4">Merchant Logo
                                 <span class="text-red-500 ">*
                                 </span>
                             </h2>
@@ -28,7 +28,7 @@
                                 <div class="relative mb-4 group">
                                     <img src="{{ Storage::url('common/undraw_profile.svg') }}" alt="Merchant Profile"
                                         id="output"
-                                        class="w-40 h-40 rounded-full object-cover border-4 border-gray-200 shadow-sm">
+                                        class=" w-40 h-40  rounded-full object-cover border-4 border-gray-200 shadow-sm">
                                     <div
                                         class="absolute inset-0 bg-black bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                         <label for="file-upload" class="cursor-pointer">
@@ -46,10 +46,10 @@
                                 <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden"
                                     required onchange="validateImage(event)">
                                 <label for="file-upload"
-                                    class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
+                                    class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-[11px] text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                                     <i class="fas fa-upload mr-2"></i>Upload Logo
                                 </label>
-                                <p class="text-xs text-gray-500 text-center">JPG, PNG (must be 300×300px, max 2MB)</p>
+                                <p class="text-[11px] text-gray-500 text-center">JPG, PNG (must be 300×300px, max 2MB)</p>
                             </div>
 
                             <div class="mt-6 space-y-4">
@@ -62,12 +62,12 @@
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
                                                 class="h-4 w-4 text-blue-600 focus:ring-blue-500 " value="on">
-                                            <span class="ml-2 text-gray-700">Active</span>
+                                            <span class="ml-2 text-sm text-gray-700">Active</span>
                                         </label>
                                         <label class="inline-flex items-center">
                                             <input type="radio" name="status"
                                                 class="h-4 w-4 text-blue-600 focus:ring-blue-500 " value="off">
-                                            <span class="ml-2 text-gray-700">Inactive</span>
+                                            <span class="ml-2 text-sm text-gray-700">Inactive</span>
                                         </label>
                                     </div>
                                 </div>
@@ -93,19 +93,19 @@
                         </div>
                         <!-- Quick Stats Card -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-md font-semibold text-gray-800 mb-4">This Merchant will be</h2>
+                            <h2 class="text-sm font-semibold text-gray-800 mb-3">This Merchant will be</h2>
                             <div class="space-y-3">
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm text-gray-600">Created by</span>
-                                    <span class="text-sm font-medium">{{ Auth::user()->name }}</span>
+                                    <span class="text-xs font-medium">{{ Auth::user()->name }}</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm text-gray-600">Who work at</span>
-                                    <span class="text-sm font-medium">{{ Auth::user()->permission->user_group }} Dep</span>
+                                    <span class="text-xs font-medium">{{ Auth::user()->permission->user_group }} Dep</span>
                                 </div>
                                 <div class="flex justify-between items-center">
                                     <span class="text-sm text-gray-600">User ID</span>
-                                    <span class="text-sm font-medium">{{ Auth::user()->user_id }}</span>
+                                    <span class="text-xs font-medium">{{ Auth::user()->user_id }}</span>
                                 </div>
                             </div>
                         </div>
@@ -117,8 +117,8 @@
                     <div class="lg:col-span-3 space-y-6">
                         <!-- Basic Information Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <div class="flex items-center justify-between mb-4">
-                                <h2 class="text-lg font-semibold text-gray-800">Basic Information</h2>
+                            <div class="flex items-center justify-between mb-3">
+                                <h2 class="text-md font-semibold text-gray-800">Basic Information</h2>
                                 <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Required Fields</span>
                             </div>
 
@@ -127,86 +127,105 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name
                                         <span class="text-red-500 text-[11px]">
                                             @error('merchant_name')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2"> {{ $message }}</span>
                                             @enderror
                                         </span>
                                     </label>
                                     <input type="text" id='name' name="merchant_name"
-                                        value="{{ old('merchant_name') }}" required
-                                        class="@error('merchant_name') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        value="{{ old('merchant_name') }}" required placeholder="Enter Merchant Name"
+                                        class="@error('merchant_name') border-red-400 focus:outline-none @enderror placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Name
-                                          <span class="text-red-500 text-[11px]">
+                                <div >
+                                    <label class="block text-sm font-medium text-gray-700 mt-1">Contact Name
+                                        <span class="text-red-500 text-[11px]">
                                             @error('merchant_Cname')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2"> {{ $message }}</span>
                                             @enderror
                                         </span>
-                                    <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
-                                        required
-                                        class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
+                                            required placeholder="Enter Contact Name"
+                                            class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror
+                                             placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Phone
-                                             <span class="text-red-500 text-[11px]">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                                        Contact Phone
+                                        <span class="text-red-500 text-[11px]">
                                             @error('merchant_Cphone')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2">{{ $message }}</span>
                                             @enderror
                                         </span>
+                                    </label>
+
                                     <div class="flex">
-                                        <input type="tel" name="merchant_Cphone" value="{{ old('merchant_Cphone') }}"
-                                            required minlength="4" maxlength="12"
-                                            class="@error('merchant_Cphone') border-red-400 focus:outline-none @enderror flex-1 px-3 py-2 border-t border border-b border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        <input type="tel" name="merchant_Cphone"
+                                            value="{{ old('merchant_Cphone') }}" required minlength="4" maxlength="12"
+                                            placeholder="09xxxxxxx" pattern="[0-9]*" inputmode="numeric"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            class="@error('merchant_Cphone') border-red-400 focus:outline-none @enderror
+               placeholder-gray-400 flex-1 px-3 py-2 border border-gray-300
+               rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500
+               focus:border-blue-500">
                                     </div>
+
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Contact Email
-                                          <span class="text-red-500 text-[11px]">
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">
+                                        Contact Email
+                                        <span class="text-red-500 text-[11px]">
                                             @error('merchant_Cemail')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2">{{ $message }}</span>
                                             @enderror
                                         </span>
+                                    </label>
+
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
-                                        required
-                                        class="@error('merchant_Cemail') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        required placeholder="Contact Email"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                        class="@error('merchant_Cemail') border-red-400 focus:outline-none @enderror
+               placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
+
                             </div>
                         </div>
 
                         <!-- URL Information Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">URL Information</h2>
+                            <h2 class="text-md font-semibold text-gray-800 mb-3">URL Information</h2>
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Frontend URL
                                         <span class="text-red-500 text-[11px]">
                                             @error('merchant_frontendURL')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2"> {{ $message }}</span>
                                             @enderror
                                         </span>
                                     </label>
                                     <div class="flex">
                                         <span
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                            https://
+                                            Example
                                         </span>
                                         <input type="text" name="merchant_frontendURL" required
                                             value="{{ old('merchant_frontendURL') }}"
-                                            class="@error('merchant_frontendURL') border-red-400 focus:outline-none @enderror  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            placeholder="https://www.octoverse.com.mm"
+                                            class="@error('merchant_frontendURL') border-red-400 focus:outline-none @enderror placeholder-gray-400  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email
-                                         <span class="text-red-500 text-[11px]">
+                                        <span class="text-red-500 text-[11px]">
                                             @error('merchant_notifyemail')
-                                               <span class="mx-2"> {{ $message }}</span>
+                                                <span class="mx-2"> {{ $message }}</span>
                                             @enderror
                                         </span>
                                     </label>
                                     <input type="email" name="merchant_notifyemail"
-                                        value="{{ old('merchant_notifyemail') }}" required
-                                        class="@error('merchant_notifyemail') border-red-400 focus:outline-none @enderror w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        value="{{ old('merchant_notifyemail') }}" required placeholder="Notify Email"
+                                        class="@error('merchant_notifyemail') border-red-400 focus:outline-none @enderror placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Address</label>
@@ -216,8 +235,8 @@
                                             Address
                                         </span>
                                         <input type="text" name="merchant_address"
-                                            value="{{ old('merchant_address') }}"
-                                            class="@error('merchant_address') border-red-400 focus:outline-none @enderror flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                            value="{{ old('merchant_address') }}" placeholder="Merchant Address"
+                                            class="@error('merchant_address') border-red-400 focus:outline-none @enderror placeholder-gray-400 flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
 
@@ -226,7 +245,7 @@
 
                         <!-- Documents Section -->
                         <div class="bg-white p-6 rounded-lg shadow">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4">Required Documents</h2>
+                            <h2 class="text-md font-semibold text-gray-800 mb-3">Required Documents</h2>
 
                             <div class="grid md:grid-cols-2 gap-6">
                                 <div class="space-y-4">
@@ -304,14 +323,14 @@
                                     </div>
                                     <div>
                                         <label class="block text-sm font-medium text-gray-700 mb-1">Remarks
-                                           <span class="text-red-500 text-[11px]">
-                                            @error('merchant_remark')
-                                               <span class="mx-2"> {{ $message }}</span>
-                                            @enderror
-                                        </span>
+                                            <span class="text-red-500 text-[11px]">
+                                                @error('merchant_remark')
+                                                    <span class="mx-2"> {{ $message }}</span>
+                                                @enderror
+                                            </span>
                                         </label>
                                         <textarea rows="5" name="merchant_remark"
-                                            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                            class="w-full px-3 py-2 border border-gray-300 placeholder-gray-400 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                                             placeholder="Any additional notes..."></textarea>
                                     </div>
                                 </div>

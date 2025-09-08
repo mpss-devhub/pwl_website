@@ -44,7 +44,7 @@
             @if (in_array('C', $access['U'] ?? []))
                 <div class="flex justify-end">
                     <div
-                        class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-lg">
+                        class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-lg text-xs">
                         <a href="{{ route('user.create') }}" class="text-decoration-none">
                             <i class="fa-solid fa-user-plus mx-2"></i> Add User
                         </a>
@@ -57,29 +57,29 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     ID
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     User ID
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     User Info
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     User Group
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Phone Number
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Actions
                                 </th>
                             </tr>
@@ -87,33 +87,33 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($admins as $admin)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                        {{ $loop->iteration }}
+                                    <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium text-gray-900">
+                                         {{ ($admins->currentPage() - 1) * $admins->perPage() + $loop->iteration }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $admin->user_id }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-10 w-10">
                                                 <img class="h-10 w-10 rounded-full"
                                                     src="{{ Storage::url('common/undraw_profile.svg') }}" alt="">
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">{{ $admin->name }}</div>
+                                                <div class="text-xs text-center font-medium text-gray-900">{{ $admin->name }}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ optional($admin->permission)->user_group }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $admin->phone }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    <td class="px-6 py-3 whitespace-nowrap text-xs text-center text-gray-500">
                                         {{ $admin->email }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
+                                    <td class="px-6 py-3 whitespace-nowrap">
                                         @if ($admin->status == 'on')
                                             <span
                                                 class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
@@ -126,7 +126,7 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium">
                                         @if (in_array('U', $access['U'] ?? []))
                                             <a href="{{ route('user.show.update', $admin->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 mr-3">

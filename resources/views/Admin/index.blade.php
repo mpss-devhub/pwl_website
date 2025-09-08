@@ -8,8 +8,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total Users</p>
-                            <p class="text-md font-semibold text-gray-800">{{ number_format($totalUsers) }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Users</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($totalUsers) }}</p>
                             <!--<p class="text-xs text-green-500 mt-1">+ 5.2% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
@@ -26,8 +26,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Active Merchants</p>
-                            <p class="text-md font-semibold text-gray-800">{{ number_format($activeMerchants) }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Active Merchants</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($activeMerchants) }}</p>
                             <!-- <p class="text-xs text-green-500 mt-1">+ 3.1% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
@@ -44,7 +44,7 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total  Amount</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total  Amount</p>
                             <div class="flex ">
                                 <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
                                     <span class="text-xs text-gray-500">MMK</span></p>
@@ -68,8 +68,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm font-medium text-gray-500">Total Transaction</p>
-                            <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactions) }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Transaction</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($totalTransactions) }}</p>
                             <!--<p class="text-xs text-red-500 mt-1">- 2 from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-yellow-50 text-yellow-600">
@@ -86,7 +86,7 @@
             <!-- Revenue Chart -->
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">Revenue Analytics</h3>
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">Revenue Analytics</h3>
                     <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm" class="flex gap-2">
                         {{-- Year Filter --}}
                         <label class="flex items-center gap-1 mr-5">
@@ -130,7 +130,7 @@
             <!-- User Growth Chart -->
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100 mt-3">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-semibold text-gray-800">User Growth</h3>
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">User Growth</h3>
 
                 </div>
 
@@ -144,28 +144,28 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-3">
                 <!-- Recent Activities (Spanning 2 columns) -->
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-100 lg:col-span-2">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Activities</h3>
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Activities</h3>
                     <div class="space-y-4">
                         @forelse($latestTransactions as $tx)
                             <div class="flex items-start justify-between">
                                 <div>
                                     <p class="text-sm text-gray-600">
-                                        <span class="font-medium text-gray-800">
+                                        <span class="font-medium text-gray-800 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->link->link_name ?? 'Unknown User' }}
                                         </span>
                                         made a
-                                        <span class="font-medium">{{ $tx->payment_status }}</span>
+                                        <span class="font-medium text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">{{ $tx->payment_status }}</span>
                                         transaction with
-                                        <span class="font-medium text-pink-500">
+                                        <span class="font-medium text-pink-500 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->created_by ?? 'Unknown Merchant' }}
                                         </span>
                                     </p>
-                                    <p class="text-xs text-gray-400">
+                                    <p class="text-xs text-gray-400 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                         {{ $tx->updated_at->diffForHumans() }}
                                         ({{ $tx->updated_at->format('d M Y, h:i A') }})
                                     </p>
                                 </div>
-                                <div class="text-sm font-semibold text-green-600">
+                                <div class="text-sm font-semibold text-green-600 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                     +{{ number_format($tx->req_amount, 2) }}
                                 </div>
                             </div>
@@ -179,22 +179,22 @@
 
                 <!-- Quick Stats (1 column but stacked vertically inside) -->
                 <div class="flex flex-col gap-4 ">
-                    <div class="p-5 bg-blue-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-blue-800">New User Registration</p>
-                        <p class="text-2xl font-semibold text-blue-600">{{ $quickStats['new_users'] }}</p>
+                    <div class="p-6 bg-blue-50 rounded-lg shadow">
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-blue-800">New User Registration</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-blue-600">{{ $quickStats['new_users'] }}</p>
                     </div>
-                    <div class="p-5 bg-green-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-green-800">Today's Transaction Amount</p>
-                        <p class="text-2xl font-semibold text-green-600">
+                    <div class="p-6 bg-green-50 rounded-lg shadow">
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-green-800">Today's Transaction Amount</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-green-600">
                             {{ number_format($quickStats['todays_transactions']) }} MMK</p>
                     </div>
-                    <div class="p-5 bg-purple-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-purple-800">Today Created Link</p>
-                        <p class="text-2xl font-semibold text-purple-600">{{ $quickStats['todays_sms'] }}</p>
+                    <div class="p-6 bg-purple-50 rounded-lg shadow">
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-purple-800">Today Created Link</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-purple-600">{{ $quickStats['todays_sms'] }}</p>
                     </div>
-                    <div class="p-5 bg-yellow-50 rounded-lg shadow">
-                        <p class="text-sm font-medium text-yellow-800">Pending To Pay</p>
-                        <p class="text-2xl font-semibold text-yellow-600">{{ $quickStats['pending_payments'] }}</p>
+                    <div class="p-6 bg-yellow-50 rounded-lg shadow">
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-yellow-800">Pending To Pay</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-yellow-600">{{ $quickStats['pending_payments'] }}</p>
                     </div>
                 </div>
             </div>
