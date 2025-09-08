@@ -156,43 +156,43 @@ Login At: https://paywithlink.octoverse.com.mm/login
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     ID</th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Merchant ID
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Profile
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Email</th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Phone</th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Name
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-left text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Status</th>
                                 <th
-                                    class="px-6 py-3 text-right text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($merchantInfo as $info)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 text-xs py-3 text-gray-900">
+                                    <td class="px-6 text-xs py-3 text-gray-900 text-center">
                                         {{ ($merchantInfo->currentPage() - 1) * $merchantInfo->perPage() + $loop->iteration }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500">
-                                        {{ $info->merchant_id ?? 'Waiting Approval' }}</td>
                                     <td class="px-6 text-xs py-3 text-gray-500 text-center">
+                                        {{ $info->merchant_id ?? 'Waiting Approval' }}</td>
+                                    <td class=" text-xs py-3 text-gray-500">
                                         <div class="flex items-center justify-center">
                                             <img class="h-10 w-10 rounded-full"
                                                 src="{{ $info->merchant_logo ?? Storage::url('common/approved.png') }}"
@@ -200,20 +200,21 @@ Login At: https://paywithlink.octoverse.com.mm/login
 
                                             <div
                                                 class="ml-3 text-xs font-medium merchant-name
-                    max-w-[120px] truncate overflow-hidden text-ellipsis whitespace-nowrap">
+                    max-w-[120px] truncate overflow-hidden text-ellipsis whitespace-nowrap text-center">
                                                 {{ $info->merchant_name }}
                                             </div>
                                         </div>
                                     </td>
 
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-email">{{ $info->merchant_Cemail }}
+
+                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-email text-center">{{ $info->merchant_Cemail }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-phone">{{ $info->merchant_Cphone }}
+                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-phone text-center">{{ $info->merchant_Cphone }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-contact">
+                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
                                         {{ $info->merchant_Cname }}</td>
 
-                                    <td class="px-6 text-xs py-3 merchant-status">
+                                    <td class="px-6 text-xs py-3 merchant-status text-center">
                                         @if ($info->status === 'on')
                                             <span
                                                 class="bg-green-100 text-green-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium px-2.5 py-0.5 rounded-full">Active</span>

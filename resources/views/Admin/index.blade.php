@@ -9,7 +9,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Users</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($totalUsers) }}</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                                {{ number_format($totalUsers) }}</p>
                             <!--<p class="text-xs text-green-500 mt-1">+ 5.2% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
@@ -27,7 +28,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Active Merchants</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($activeMerchants) }}</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                                {{ number_format($activeMerchants) }}</p>
                             <!-- <p class="text-xs text-green-500 mt-1">+ 3.1% from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
@@ -44,12 +46,15 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total  Amount</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Amount</p>
                             <div class="flex ">
                                 <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
-                                    <span class="text-xs text-gray-500">MMK</span></p>
-                                  <p class="text-md font-semibold text-gray-800 mx-2">{{ number_format($totalTransactionAmountUSD) }}
-                                    <span class="text-xs text-gray-500">USD</span></p>
+                                    <span class="text-xs text-gray-500">MMK</span>
+                                </p>
+                                <p class="text-md font-semibold text-gray-800 mx-2">
+                                    {{ number_format($totalTransactionAmountUSD) }}
+                                    <span class="text-xs text-gray-500">USD</span>
+                                </p>
                             </div>
 
 
@@ -69,7 +74,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Transaction</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ number_format($totalTransactions) }}</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                                {{ number_format($totalTransactions) }}</p>
                             <!--<p class="text-xs text-red-500 mt-1">- 2 from yesterday</p>-->
                         </div>
                         <div class="p-3 rounded-full bg-yellow-50 text-yellow-600">
@@ -85,18 +91,24 @@
 
             <!-- Revenue Chart -->
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
-                <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">Revenue Analytics</h3>
-                    <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm" class="flex gap-2">
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 text-center sm:text-left">
+                        Revenue Analytics
+                    </h3>
+
+                    <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm"
+                        class="flex flex-col sm:flex-row gap-3 sm:gap-5 items-center sm:items-end">
+
                         {{-- Year Filter --}}
-                        <label class="flex items-center gap-1 mr-5">
+                        <label class="flex items-center gap-1">
                             <span class="text-sm text-gray-700">Years</span>
                             <select name="year" id="yearSelect"
                                 class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
-                                        {{ $y }}</option>
+                                        {{ $y }}
+                                    </option>
                                 @endfor
                             </select>
                         </label>
@@ -117,8 +129,8 @@
                             </select>
                         </label>
                     </form>
-
                 </div>
+
                 <div class="">
                     <div class="flex items-center justify-center h-full bg-gray-50 rounded-md">
                         <div id="AdminrevenueChart" data-revenue='@json($revenueData)' class="w-full"
@@ -150,13 +162,16 @@
                             <div class="flex items-start justify-between">
                                 <div>
                                     <p class="text-sm text-gray-600">
-                                        <span class="font-medium text-gray-800 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                        <span
+                                            class="font-medium text-gray-800 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->link->link_name ?? 'Unknown User' }}
                                         </span>
                                         made a
-                                        <span class="font-medium text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">{{ $tx->payment_status }}</span>
+                                        <span
+                                            class="font-medium text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">{{ $tx->payment_status }}</span>
                                         transaction with
-                                        <span class="font-medium text-pink-500 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                        <span
+                                            class="font-medium text-pink-500 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->created_by ?? 'Unknown Merchant' }}
                                         </span>
                                     </p>
@@ -165,7 +180,8 @@
                                         ({{ $tx->updated_at->format('d M Y, h:i A') }})
                                     </p>
                                 </div>
-                                <div class="text-sm font-semibold text-green-600 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                <div
+                                    class="text-sm font-semibold text-green-600 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                     +{{ number_format($tx->req_amount, 2) }}
                                 </div>
                             </div>
@@ -180,21 +196,28 @@
                 <!-- Quick Stats (1 column but stacked vertically inside) -->
                 <div class="flex flex-col gap-4 ">
                     <div class="p-6 bg-blue-50 rounded-lg shadow">
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-blue-800">New User Registration</p>
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-blue-600">{{ $quickStats['new_users'] }}</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-blue-800">New User
+                            Registration</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-blue-600">
+                            {{ $quickStats['new_users'] }}</p>
                     </div>
                     <div class="p-6 bg-green-50 rounded-lg shadow">
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-green-800">Today's Transaction Amount</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-green-800">Today's
+                            Transaction Amount</p>
                         <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-green-600">
                             {{ number_format($quickStats['todays_transactions']) }} MMK</p>
                     </div>
                     <div class="p-6 bg-purple-50 rounded-lg shadow">
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-purple-800">Today Created Link</p>
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-purple-600">{{ $quickStats['todays_sms'] }}</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-purple-800">Today
+                            Created Link</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-purple-600">
+                            {{ $quickStats['todays_sms'] }}</p>
                     </div>
                     <div class="p-6 bg-yellow-50 rounded-lg shadow">
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-yellow-800">Pending To Pay</p>
-                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-yellow-600">{{ $quickStats['pending_payments'] }}</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-medium text-yellow-800">Pending
+                            To Pay</p>
+                        <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-yellow-600">
+                            {{ $quickStats['pending_payments'] }}</p>
                     </div>
                 </div>
             </div>

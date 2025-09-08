@@ -8,7 +8,7 @@
                         <div class="flex justify-end ">
                             <div class="bg-gray-800 py-2 px-3 rounded text-white">
                                 <i class="fa-solid fa-users-gear mx-1"></i>
-                              <span class="text-sm">Create User Group</span>
+                              <span class="text-xs">Create User Group</span>
                             </div>
                         </div>
                     </a>
@@ -21,27 +21,27 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     ID
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     User Group
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Permission
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Allow Permissions
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     User Count
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Created At
                                 </th>
                                 @if (in_array('U', $access['AA'] ?? []) || in_array('D', $access['AA'] ?? []))
                                       <th scope="col"
-                                    class="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider">
+                                    class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Actions
                                 </th>
                                 @endif
@@ -51,20 +51,20 @@
                             <!-- Sample Row 1 -->
                             @foreach ($p as $item)
                                 <tr class="hover:bg-gray-50">
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    <td class="px-6 py-4 text-center whitespace-nowrap text-xs font-medium text-gray-900">
                                         {{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
-                                        <div class="text-sm font-medium text-gray-900">{{ $item->user_group }}</div>
+                                    <td class="px-6 py-4 text-center text-xs text-gray-500 max-w-xs truncate">
+                                        <div class="text-xs font-medium text-gray-900">{{ $item->user_group }}</div>
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->permission }}
+                                    <td class="px-6 py-4 text-center text-xs text-gray-500 max-w-xs truncate">{{ $item->permission }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">{{ $item->allowed }}</td>
-                                    <td class="px-6 py-4 text-sm text-gray-500 max-w-xs truncate">
+                                    <td class="px-6 py-4 text-center text-xs text-gray-500 max-w-xs truncate">{{ $item->allowed }}</td>
+                                    <td class="px-6 py-4 text-center text-xs text-gray-500 max-w-xs truncate">
                                         {{ $item->users_count }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{{ $item->created_at }}
+                                    <td class="px-6 py-4 text-center whitespace-nowrap text-xs text-gray-500">{{ $item->created_at }}
                                     </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <td class="px-6 py-4 text-center whitespace-nowrap text-right text-xs font-medium">
                                         @if (in_array('U', $access['AA'] ?? []))
                                             <a href="{{ route('access.edit', $item->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 mr-3">
