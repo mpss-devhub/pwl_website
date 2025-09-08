@@ -20,7 +20,7 @@
     @endphp
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
-        <div class="p-4 mt-14 max-w-7xl mx-auto">
+        <div class="p-4 mt-10 max-w-7xl mx-auto">
 
             <!-- Payment Details Card -->
             <div id="exportArea" class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
@@ -46,7 +46,7 @@
 
                             <div class="space-y-4">
                                 <div class="grid grid-cols-3 items-center gap-2">
-                                    <span class="text-sm text-gray-600">Status</span>
+                                    <span class="text-xs text-gray-500">Status</span>
                                     <span class="col-span-2">
                                         <span
                                             class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium {{ $statusColor }}">
@@ -55,18 +55,18 @@
                                     </span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Amount</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Amount</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Currency</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Currency</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['currencyCode'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['currencyCode'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Payment Code</span>
-                                    <span class="text-sm font-medium text-gray-800 col-span-2">
+                                    <span class="text-xs text-gray-500 col-span-1">Payment Code</span>
+                                    <span class="text-xs font-medium text-gray-800 col-span-2">
                                         <div class="flex items-center">
                                             <span>{{ $data['paymentCode'] }}</span>
                                             <img src="{{ $data['payment_logo'] }}" class="ml-2 w-5" alt="">
@@ -74,14 +74,14 @@
                                     </span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Created At</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Created At</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['created_at'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['created_at'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Expires At</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Expires At</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['payment_expired_at'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_expired_at'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -93,25 +93,25 @@
                             </h3>
                             <div class="space-y-4">
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Name</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Name</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['payment_user_name'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_user_name'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Phone Number</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Phone Number</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
                                 </div>
                                 @if ($data['cardNumber'])
                                     <div class="grid grid-cols-3">
-                                        <span class="text-sm text-gray-500 col-span-1">Card Number</span>
-                                        <span class="text-sm font-medium text-gray-800 col-span-2">•••• •••• ••••
+                                        <span class="text-xs text-gray-500 col-span-1">Card Number</span>
+                                        <span class="text-xs font-medium text-gray-800 col-span-2">•••• •••• ••••
                                             {{ substr($data['cardNumber'], -4) }}</span>
                                     </div>
                                     <div class="grid grid-cols-3">
-                                        <span class="text-sm text-gray-500 col-span-1">Expiry Date</span>
+                                        <span class="text-xs text-gray-500 col-span-1">Expiry Date</span>
                                         <span
-                                            class="text-sm font-medium text-gray-800 col-span-2">{{ $data['expiryMonth'] }}/{{ $data['expiryYear'] }}</span>
+                                            class="text-xs font-medium text-gray-800 col-span-2">{{ $data['expiryMonth'] }}/{{ $data['expiryYear'] }}</span>
                                     </div>
                                 @endif
                             </div>
@@ -127,19 +127,19 @@
                             </h3>
                             <div class="space-y-4">
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Requested Amount</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Requested Amount</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Transaction Amount</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Transaction Amount</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['txn_amount'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['txn_amount'] }}</span>
                                 </div>
                                 <div class="grid grid-cols-3">
-                                    <span class="text-sm text-gray-500 col-span-1">Net Amount</span>
+                                    <span class="text-xs text-gray-500 col-span-1">Net Amount</span>
                                     <span
-                                        class="text-sm font-medium text-gray-800 col-span-2">{{ $data['net_amount'] }}</span>
+                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['net_amount'] }}</span>
                                 </div>
                             </div>
                         </div>
@@ -152,20 +152,20 @@
                             <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
                                 <div class="space-y-4 w-full">
                                     <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-sm text-gray-600">Invoice No</span>
-                                        <span class="text-sm font-medium text-gray-900 col-span-2">
+                                        <span class="text-xs text-gray-600">Invoice No</span>
+                                        <span class="text-xs font-medium text-gray-900 col-span-2">
                                             {{ $data['tranref_no'] ?? '—' }}
                                         </span>
                                     </div>
                                     <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-sm text-gray-600">Bank Ref</span>
-                                        <span class="text-sm font-medium text-gray-900 col-span-2">
+                                        <span class="text-xs text-gray-600">Bank Ref</span>
+                                        <span class="text-xs font-medium text-gray-900 col-span-2">
                                             {{ $data['bank_tranref_no'] ?? '—' }}
                                         </span>
                                     </div>
                                     <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-sm text-gray-600">Date & Time</span>
-                                        <span class="text-sm font-medium text-gray-900 col-span-2">
+                                        <span class="text-xs text-gray-600">Date & Time</span>
+                                        <span class="text-xs font-medium text-gray-900 col-span-2">
                                             {{ $data['trans_date_time'] ? date('d M Y, h:i A', strtotime($data['trans_date_time'])) : '—' }}
                                         </span>
                                     </div>

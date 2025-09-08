@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow mt-3">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-4">Octoverse Merchant
+                        <h2 class="text-md font-semibold text-gray-800 mb-4">Octoverse Merchant
                             <span class="ml-2 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
                         </h2>
                         <div class="mt-6">
@@ -66,7 +66,7 @@
                         </a>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow mt-3">
-                        <h2 class="text-lg font-semibold text-gray-800">Download Information <i
+                        <h2 class="text-md font-semibold text-gray-800">Download Information <i
                                 class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>
 
                         <div class=" space-y-2 mt-4 ">
@@ -103,7 +103,7 @@
                     <!-- Basic Information Section -->
                     <div class="bg-white p-6 rounded-lg shadow">
                         <div class="flex items-center justify-between mb-4">
-                            <h2 class="text-lg font-semibold text-gray-800"><i class="fa-regular fa-circle-user mr-2"></i>
+                            <h2 class="text-md font-semibold text-gray-800"><i class="fa-regular fa-circle-user mr-2"></i>
                                 Basic Information</h2>
                             <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">User ID :
                                 {{ Auth::user()->user_id }}</span>
@@ -135,7 +135,7 @@
 
                     <!-- URL Information Section -->
                     <div class="bg-white p-6 rounded-lg shadow">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-4"> <i
+                        <h2 class="text-md font-semibold text-gray-800 mb-4"> <i
                                 class="fa-solid fa-earth-americas mr-2"></i> URL Information</h2>
 
                         <div class="grid md:grid-cols-2 gap-4 space-y-1">

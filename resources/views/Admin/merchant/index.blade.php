@@ -200,7 +200,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
 
                                             <div
                                                 class="ml-3 text-xs font-medium merchant-name
-                    max-w-[120px] truncate overflow-hidden text-ellipsis whitespace-nowrap">
+                     ">
                                                 {{ $info->merchant_name }}
                                             </div>
                                         </div>

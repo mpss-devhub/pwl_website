@@ -8,7 +8,7 @@
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                     <div>
-                        <h1 class="text-xl font-bold text-gray-800">Create Payment Link</h1>
+                        <h1 class="text-md font-bold text-gray-800">Create Payment Link</h1>
                         <p class="text-xs text-gray-500 mt-1">Generate secure payment links to share with customers</p>
                     </div>
                     <div class="flex items-center gap-3">
@@ -27,7 +27,7 @@
                     <div class="space-y-6">
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
-                            <p class="text-lg font-semibold text-gray-800">Payment Details</p>
+                            <p class="text-md font-semibold text-gray-800">Payment Details</p>
                         </div>
 
                         <div class="grid md:grid-cols-2 gap-5">

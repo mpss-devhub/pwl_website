@@ -8,10 +8,10 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-xs sm:text-sm font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-md font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Revenue</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
                             @if ($TotalUSD)
-                                <p class="text-sm font-semibold text-gray-800">USD {{ $TotalUSD }}</p>
+                                <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">USD {{ $TotalUSD }}</p>
                             @endif
 
                         </div>
@@ -31,8 +31,8 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-xs sm:text-sm font-medium text-gray-500">Transactions</p>
-                            <p class="text-md font-semibold text-gray-800">{{ $TotalTnx }}</p>
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Transactions</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $TotalTnx }}</p>
 
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-green-50 text-green-600">
@@ -49,8 +49,8 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-xs sm:text-sm font-medium text-gray-500">Success Rate</p>
-                            <p class="text-md font-semibold text-gray-800 flex items-center gap-2">
+                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Success Rate</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 flex items-center gap-2">
                                 {{ number_format($SuccessRate, 2) }}%
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700 font-medium mt-1">
@@ -73,13 +73,13 @@
 
                     <!-- Pills -->
                     <div class="flex flex-wrap gap-2 mx-3">
-                        <span class="px-3 py-1 text-xs font-medium text-green-700 bg-green-100 rounded-full">
+                        <span class="px-3 py-1 text-[11px] font-medium text-green-700 bg-green-100 rounded-full">
                             {{ $TotalSuccess }} Success
                         </span>
-                        <span class="px-3 py-1 text-xs font-medium text-red-700 bg-red-100 rounded-full">
+                        <span class="px-3 py-1 text-[11px] font-medium text-red-700 bg-red-100 rounded-full">
                             {{ $TotalFailed }} Failed
                         </span>
-                        <span class="px-3 py-1 text-xs font-medium text-yellow-700 bg-yellow-100 rounded-full">
+                        <span class="px-3 py-1 text-[11px] font-medium text-yellow-700 bg-yellow-100 rounded-full">
                             {{ $TotalPending }} Pending
                         </span>
                     </div>
@@ -126,7 +126,7 @@
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- Transaction Types Table - Improved Responsiveness -->
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">
                         Most Used Payment Type
                     </h3>
 
@@ -136,16 +136,16 @@
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider text-center">
                                         No</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider text-center">
                                         Logo</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider text-center">
                                         Payment Name</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider text-center">
                                         Count</th>
                                 </tr>
                             </thead>
@@ -153,15 +153,15 @@
                                 @foreach ($Mostuse as $item)
                                     <tr>
                                         <td
-                                            class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center font-medium text-gray-900">
                                             {{ $loop->iteration }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-2 whitespace-nowrap">
+                                        <td class="px-3 py-2 sm:px-6 sm:py-2 flex justify-center whitespace-nowrap">
                                             <img src="{{ $item->payment_logo }}" alt="{{ $item->paymentCode }}"
-                                                class="w-8 sm:w-10 rounded-md">
+                                                class="w-8  rounded-md">
                                         </td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
                                             {{ $item->paymentCode }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
                                             {{ $item->total }}</td>
                                     </tr>
                                 @endforeach
@@ -172,22 +172,22 @@
 
                 <!-- Recent Transactions Table - Improved Responsiveness -->
                 <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-4">Recent Transactions</h3>
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Transactions</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">
                                 <tr>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-1 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider">
                                         Invoice No</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-1 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider">
                                         Amount</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-1 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider">
                                         Status</th>
                                     <th scope="col"
-                                        class="px-3 py-2 sm:px-6 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        class="px-3 py-1 sm:px-6 sm:py-3 text-left text-[11px] font-medium text-gray-500 uppercase tracking-wider">
                                         Created By</th>
                                 </tr>
                             </thead>
@@ -195,17 +195,17 @@
                                 @foreach ($Latest as $item)
                                     <tr>
                                         <td
-                                            class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm font-medium text-gray-900 truncate max-w-[120px] sm:max-w-none">
+                                            class="px-3 py-1 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] font-medium text-gray-900 truncate max-w-[120px] sm:max-w-none">
                                             {{ $item->tranref_no }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td class="px-3 py-1 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-gray-500">
                                             {{ $item->req_amount }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap">
+                                        <td class="px-3 py-1 sm:px-6 sm:py-4 whitespace-nowrap">
                                             @if ($item->payment_status == 'SUCCESS')
                                                 <span
-                                                    class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Success</span>
+                                                    class="px-2 inline-flex text-[10px] leading-5 font-semibold rounded-full bg-green-100 text-green-800">Success</span>
                                             @endif
                                         </td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <td class="px-3 py-1 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-gray-500">
                                             {{ $item->created_by }}</td>
                                     </tr>
                                 @endforeach
