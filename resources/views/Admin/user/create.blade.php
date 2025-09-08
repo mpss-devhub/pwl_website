@@ -9,8 +9,7 @@
                             <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20" alt="">
                         </div>
                         <div class="">
-                            <p class="text-md font-semibold text-gray-800 mb-6 mx-2 "> <i
-                                    class="fa-solid fa-user-plus mx-1"></i> New User Registrion</p>
+                            <p class="text-md font-semibold text-gray-800 mb-6 mx-2 ">   New User Registration </p>
                         </div>
 
                     </div>
@@ -26,8 +25,8 @@
                                         <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input type="text" name="name" id="name" required value="{{ old('name') }}" required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <input type="text" minlength="2" maxlength="20" name="name" id="name" required value="{{ old('name') }}" required placeholder="Enter User Name"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none placeholder-gray-300 focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Email Field -->
@@ -37,8 +36,8 @@
                                         <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input type="email" name="email" id="email" required value="{{ old('email') }}" required
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <input type="email" minlength="6" maxlength="20" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" id="email" required value="{{ old('email') }}" required placeholder="Enter Email Address"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none placeholder-gray-300 focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Phone Field -->
@@ -48,8 +47,9 @@
                                  @error('phone')
                                         <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror</label>
-                                <input type="tel" name="phone" id="phone" value="{{ old('phone') }}" required minlength="6" maxlength="12"
-                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                <input type="tel" pattern="[0-9]*" inputmode="numeric" minlength="4" maxlength="12"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')" name="phone" id="phone" value="{{ old('phone') }}" required minlength="6" maxlength="12" placeholder="Enter Phonenumber"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none placeholder-gray-300 focus:ring-1 focus:ring-blue-500">
                             </div>
 
                             <!-- Status Field -->
