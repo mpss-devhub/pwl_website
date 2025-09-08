@@ -192,7 +192,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                     </td>
                                     <td class="px-6 text-xs py-3 text-gray-500 text-center">
                                         {{ $info->merchant_id ?? 'Waiting Approval' }}</td>
-                                    <td class=" text-xs py-3 text-gray-500">
+                                    <td class="px-6 text-xs py-3 text-gray-500 text-center">
                                         <div class="flex items-center justify-center">
                                             <img class="h-10 w-10 rounded-full"
                                                 src="{{ $info->merchant_logo ?? Storage::url('common/approved.png') }}"
@@ -200,16 +200,19 @@ Login At: https://paywithlink.octoverse.com.mm/login
 
                                             <div
                                                 class="ml-3 text-xs font-medium merchant-name
-                    max-w-[120px] truncate overflow-hidden text-ellipsis whitespace-nowrap text-center">
+                    max-w-[120px] truncate overflow-hidden text-ellipsis whitespace-nowrap">
                                                 {{ $info->merchant_name }}
                                             </div>
                                         </div>
                                     </td>
 
 
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-email text-center">{{ $info->merchant_Cemail }}
+
+                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-email text-center">
+                                        {{ $info->merchant_Cemail }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-phone text-center">{{ $info->merchant_Cphone }}
+                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-phone text-center">
+                                        {{ $info->merchant_Cphone }}
                                     </td>
                                     <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
                                         {{ $info->merchant_Cname }}</td>
