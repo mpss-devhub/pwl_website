@@ -193,7 +193,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                     <td class="px-6 text-xs py-3 text-gray-500 text-center">
                                         {{ $info->merchant_id ?? 'Waiting Approval' }}</td>
                                     <td class="px-6 text-xs py-3 text-gray-500 text-center">
-                                        <div class="flex items-center justify-center">
+                                        <div class="flex items-center justify-start">
                                             <img class="h-10 w-10 rounded-full"
                                                 src="{{ $info->merchant_logo ?? Storage::url('common/approved.png') }}"
                                                 alt="Logo">

@@ -269,8 +269,8 @@
                                         <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-900">
                                             {{ $item->currencyCode ? $item->currencyCode : 'MMK' }}</div>
                                     </td>
-                                    <td class="px-3 py-3 whitespace-nowrap text-center">
-                                        <div class="flex items-center justify-center">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center ">
+                                        <div class="flex items-center justify-start ">
                                             <img src="{{ $item->payment_logo }}" alt="Logo" class="h-6 w-6 rounded">
                                             <span
                                                 class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium">
@@ -279,7 +279,7 @@
                                         </div>
                                     </td>
 
-                                    <td class="px-3  py-3 whitespace-nowrap text-center">
+                                    <td class="  py-3 whitespace-nowrap text-center">
                                         @if ($item->payment_status == 'SUCCESS')
                                             <span
                                                 class="px-2 inline-flex text-[6px] md:text-[8px] lg:text-[9px]  leading-5 font-semibold rounded-full bg-green-100 text-green-800">
