@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
             toolbar: {
                 show: false,
                 tools: {
-                    download: true,
+                    download: '<i class="fa-solid fa-download"></i>',
                 },
             },
             animations: {
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
             toolbar: {
                 show: true,
                 tools: {
-                    download: true,
+                    download: '<i class="fa-solid fa-download"></i>',
                     reset: true,
                 },
             },

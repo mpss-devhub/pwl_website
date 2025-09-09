@@ -9,9 +9,11 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">MMK {{ $TotalMMK }}</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">MMK
+                                {{ $TotalMMK }}</p>
                             @if ($TotalUSD)
-                                <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">USD {{ $TotalUSD }}</p>
+                                <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                                    USD {{ $TotalUSD }}</p>
                             @endif
 
                         </div>
@@ -32,7 +34,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Transactions</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">{{ $TotalTnx }}</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                                {{ $TotalTnx }}</p>
 
                         </div>
                         <div class="p-2 sm:p-3 rounded-full bg-green-50 text-green-600">
@@ -50,7 +53,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Success Rate</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 flex items-center gap-2">
+                            <p
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 flex items-center gap-2">
                                 {{ number_format($SuccessRate, 2) }}%
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700 font-medium mt-1">
@@ -159,9 +163,11 @@
                                             <img src="{{ $item->payment_logo }}" alt="{{ $item->paymentCode }}"
                                                 class="w-8  rounded-md">
                                         </td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
+                                        <td
+                                            class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
                                             {{ $item->paymentCode }}</td>
-                                        <td class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
+                                        <td
+                                            class="px-3 py-2 sm:px-6 sm:py-4 whitespace-nowrap text-[11px] text-center text-gray-500">
                                             {{ $item->total }}</td>
                                     </tr>
                                 @endforeach
@@ -229,7 +235,11 @@
                     height: '100%',
                     width: '100%',
                     toolbar: {
-                        show: true
+                        show: true,
+                        tools: {
+                            download: '<i class="fa-solid fa-download"></i>',
+                            reset: true,
+                        },
                     },
                     zoom: {
                         enabled: false

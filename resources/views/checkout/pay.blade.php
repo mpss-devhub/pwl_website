@@ -64,7 +64,7 @@
 
             </div>
         @elseif (is_array($data))
-           @if (!empty($data['deeplink']))
+            @if (!empty($data['deeplink']))
                 <script>
                     window.location.href = "{{ $data['deeplink'] }}";
                 </script>
@@ -94,8 +94,11 @@
                             <span class="sr-only">Loading...</span>
                         </div>
                         Please scan this QR to pay. Or
-                        <a href="{{ $data['qrImg'] }}" @click.prevent="downloadQR"
-                            class="text-blue-600 hover:underline">Download</a>
+                        <a href="{{ route('qr.download', basename($data['qrImg'])) }}"
+                            class="text-blue-600 hover:underline">
+                            Download
+                        </a>
+
                         </p>
                     </div>
                     <hr class="border-t border-dotted border-gray-400 my-3">

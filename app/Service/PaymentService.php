@@ -48,10 +48,7 @@ class PaymentService
 
         ]);
         if ($response->failed()) {
-            return [
-                'status' => 'error',
-                'message' => 'Failed ',
-            ];
+            abort(404, 'Page Expired');
         }
         $data = $response['data']['dataList'][0]['paymentMdrInfoList'];
         return $data;
@@ -103,9 +100,19 @@ class PaymentService
         ])->post($authTokenUrl, [
             'payData' => $jwt,
         ]);
+
+
+        //Redirect as payment Failed when its reload the page
         if ($response['data'] === null) {
-            abort(404, 'Page Expired');
+
+            $link = Links::where('id', $links[0]['id'])->firstOrFail();
+            $tnx = Tnx::where('link_id', $links[0]['id'])->latest()->firstOrFail();
+            $merchant = Merchants::where('user_id', $links[0]['user_id'])->firstOrFail();
+            $tnx->update(['payment_status' => 'FAIL']);
+            $link->update(['link_status' => 'expired']);
+            abort(404, 'This link has expired.');
         }
+
         $token = $response['data'];
         $decode = $this->get($token, $secret_key);
         if ($decode) {

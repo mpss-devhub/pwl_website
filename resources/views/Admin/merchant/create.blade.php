@@ -124,39 +124,42 @@
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Name
-                                        <span class="text-red-500 text-[11px]">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">Merchant Name
+
                                             @error('merchant_name')
-                                                <span class="mx-2"> {{ $message }}</span>
+                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
                                             @enderror
-                                        </span>
-                                    </label>
+
+                                        </label>
+                                    </div>
                                     <input type="text" id='name' name="merchant_name"
                                         value="{{ old('merchant_name') }}" required placeholder="Enter Merchant Name"
                                         class="@error('merchant_name') border-red-400 focus:outline-none @enderror placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
-                                <div >
-                                    <label class="block text-sm font-medium text-gray-700 mt-1">Contact Name
-                                        <span class="text-red-500 text-[11px]">
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mt-1">Contact Name
                                             @error('merchant_Cname')
-                                                <span class="mx-2"> {{ $message }}</span>
+                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
                                             @enderror
-                                        </span>
-                                        <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
-                                            required placeholder="Enter Contact Name"
-                                            class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror
+                                        </label>
+                                    </div>
+                                    <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
+                                        required placeholder="Enter Contact Name"
+                                        class="@error('merchant_Cname') border-red-400 focus:outline-none @enderror
                                              placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md
                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Phone
-                                        <span class="text-red-500 text-[11px]">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">
+                                            Contact Phone
                                             @error('merchant_Cphone')
-                                                <span class="mx-2">{{ $message }}</span>
+                                                <span class="text-red-500 text-[9px]">{{ $message }}</span>
                                             @enderror
-                                        </span>
-                                    </label>
+                                        </label>
+                                    </div>
 
                                     <div class="flex">
                                         <input type="tel" name="merchant_Cphone"
@@ -171,14 +174,14 @@
 
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Email
-                                        <span class="text-red-500 text-[11px]">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">
+                                            Contact Email
                                             @error('merchant_Cemail')
-                                                <span class="mx-2">{{ $message }}</span>
+                                                <span class="text-red-500 text-[9px]">{{ $message }}</span>
                                             @enderror
-                                        </span>
-                                    </label>
+                                        </label>
+                                    </div>
 
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
                                         required placeholder="Contact Email"
@@ -197,13 +200,13 @@
 
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Frontend URL
-                                        <span class="text-red-500 text-[11px]">
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">Frontend URL
                                             @error('merchant_frontendURL')
-                                                <span class="mx-2"> {{ $message }}</span>
+                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
                                             @enderror
-                                        </span>
-                                    </label>
+                                        </label>
+                                    </div>
                                     <div class="flex">
                                         <span
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -216,19 +219,22 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email
-                                        <span class="text-red-500 text-[11px]">
-                                            @error('merchant_notifyemail')
-                                                <span class="mx-2"> {{ $message }}</span>
-                                            @enderror
-                                        </span>
-                                    </label>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700">Notify Email</label>
+                                        @error('merchant_notifyemail')
+                                            <span class="text-red-500 text-[9px]">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
                                     <input type="email" name="merchant_notifyemail"
                                         value="{{ old('merchant_notifyemail') }}" required placeholder="Notify Email"
-                                        class="@error('merchant_notifyemail') border-red-400 focus:outline-none @enderror placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                        class="@error('merchant_notifyemail') border-red-400 focus:outline-none @enderror
+               placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md
+               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                 </div>
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Merchant Address</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-1">Merchant Address</label>
                                     <div class="flex">
                                         <span
                                             class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -322,10 +328,10 @@
                                         </div>
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Remarks
-                                            <span class="text-red-500 text-[11px]">
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">Remarks
+                                            <span class="text-red-500 text-[9px]">
                                                 @error('merchant_remark')
-                                                    <span class="mx-2"> {{ $message }}</span>
+                                                    <span class="mx-2 "> {{ $message }}</span>
                                                 @enderror
                                             </span>
                                         </label>
@@ -398,14 +404,14 @@
                 const digits = Math.floor(1000 + Math.random() * 9000);
                 const userId = 'M_' + firstLetter + digits;
                 document.getElementById('user_id').value = userId;
-                console.log('Generated User ID:', userId);
+                // console.log('Generated User ID:', userId);
 
                 // Generate password
                 const nameWithoutSpaces = name.replace(/\s+/g, '');
                 const passDigits = Math.floor(1000 + Math.random() * 9000).toString();
                 const password = shuffleString(nameWithoutSpaces + passDigits);
                 document.getElementById('password').value = password;
-                console.log('Generated Password:', password);
+                //console.log('Generated Password:', password);
             }
         }
 

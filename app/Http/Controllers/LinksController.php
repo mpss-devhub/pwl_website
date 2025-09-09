@@ -94,15 +94,22 @@ class LinksController extends Controller
         $link = Links::where('id', $links['id'])->firstOrFail();
         $tnx = Tnx::where('link_id', $links['id'])->latest()->firstOrFail();
         $merchant = Merchants::where('user_id', $links['user_id'])->firstOrFail();
+
+        //Check Status If The Link is Reclick
         if ($status['payment_status'] == 'SUCCESS') {
-            //dd($link,$tnx,$merchant);
             return view('Extra.success', compact('merchant', 'link', 'tnx'));
         }
         if ($status['payment_status'] == 'FAIL') {
             return view('Extra.fail', compact('merchant', 'link', 'tnx'));
         }
         if ($status['payment_status'] == 'PENDING') {
-            return response()->view('Extra.expired', [], 410);
+            Tnx::where('link_id', $links['id'])->update([
+                'payment_status' => 'FAIL'
+            ]);
+             $link = Links::where('id', $links['id'])->update([
+                'link_status' => 'expired'
+            ]);;
+             return view('Extra.fail', compact('merchant', 'link', 'tnx'));
         }
     }
 

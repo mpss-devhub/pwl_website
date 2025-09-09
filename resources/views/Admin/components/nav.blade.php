@@ -14,11 +14,14 @@
                     </svg>
                 </button>
 
-                <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-2 dark:hidden"
-                    alt="Octoverse Logo (Light Mode)" />
+                <a href="{{ route('admin.dashboard') }}">
+                    <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-18 h-10 ml-2 dark:hidden"
+                        alt="Octoverse Logo (Light Mode)" />
 
-                <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-2 hidden dark:block"
-                    alt="Octoverse Logo (Dark Mode)" />
+                    <img src="{{ Storage::url('common/o2.png') }}" class="w-18 h-10 ml-2 hidden dark:block"
+                        alt="Octoverse Logo (Dark Mode)" />
+                </a>
+
 
 
             </div>

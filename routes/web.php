@@ -14,15 +14,28 @@ use App\Http\Controllers\CheckUserController;
 use App\Http\Controllers\PaymentGatewayController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+
+require __DIR__ . '/api.php';
 require __DIR__ . '/auth.php';
+
+Route::middleware(['auth', 'session'])->group(function () {
 require __DIR__ . '/admin.php';
 require __DIR__ . '/merchant.php';
-require __DIR__ . '/api.php';
-
+});
 
 Route::get('/', function () {
     return view('main.home');
 })->name('main.home');
+
+Route::get('/download/{file}', function ($file) {
+    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/qr/$file";
+
+    $content = file_get_contents($url);
+    return response($content, 200)
+        ->header('Content-Type', 'image/png')
+        ->header('Content-Disposition', 'attachment; filename="'.$file.'"');
+})->name('qr.download');
+
 
 Route::get('/contactus', function () {
     return view('main.contactus');
@@ -31,6 +44,7 @@ Route::get('/contactus', function () {
 Route::get('/aboutus', function () {
     return view('main.aboutus');
 })->name('main.aboutus');
+
 
 
 //Change Password
@@ -71,3 +85,4 @@ Route::get('/check-payment/{invoiceNo}', function ($invoiceNo) {
         return response()->json(['status' => true]);
     }
 });
+

@@ -22,7 +22,7 @@
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Full
                                     Name
                                     @error('name')
-                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                        <span class="text-[10px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
                                 <input type="text" minlength="2" maxlength="20" name="name" id="name" required value="{{ old('name') }}" required placeholder="Enter User Name"
@@ -33,7 +33,7 @@
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email
                                     @error('email')
-                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                        <span class="text-[10px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
                                 <input type="email" minlength="6" maxlength="20" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" id="email" required value="{{ old('email') }}" required placeholder="Enter Email Address"
@@ -45,7 +45,7 @@
                                 <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone
                                     Number
                                  @error('phone')
-                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                        <span class="text-[10px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror</label>
                                 <input type="tel" pattern="[0-9]*" inputmode="numeric" minlength="4" maxlength="12"
                                             oninput="this.value = this.value.replace(/[^0-9]/g, '')" name="phone" id="phone" value="{{ old('phone') }}" required minlength="6" maxlength="12" placeholder="Enter Phonenumber"
@@ -56,7 +56,7 @@
                             <div>
                                 <label for="status" class="block text-sm font-medium text-gray-700 mb-1">Status
                                          @error('status')
-                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                        <span class="text-[10px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
                                 <select name="status" id="status" required
@@ -135,8 +135,8 @@
                     .join('');
                 document.getElementById('password').value = mixedChars;
 
-                console.log('Generated User ID:', userId);
-                console.log('Generated Password:', mixedChars);
+                //console.log('Generated User ID:', userId);
+                //console.log('Generated Password:', mixedChars);
             });
         });
     </script>
