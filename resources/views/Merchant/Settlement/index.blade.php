@@ -220,7 +220,7 @@
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <div class="">
                                             <span
-                                                class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ !empty($item['paymentTransactionId']) ? $item['paymentTransactionId'] : 'N/A' }}
+                                                class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ !empty($item['transactionId']) ? $item['transactionId'] : 'N/A' }}
                                             </span>
                                         </div>
                                     </td>

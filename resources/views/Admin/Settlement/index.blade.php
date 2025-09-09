@@ -148,6 +148,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                  TRANS id
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Invoice No
                                 </th>
                                 <th scope="col"
@@ -170,10 +174,7 @@
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Code
                                 </th>
-                                <th scope="col"
-                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
-                                  TRANS id
-                                </th>
+
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Settlement Status
@@ -198,6 +199,11 @@
 
                                     <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center font-medium text-gray-900">
                                         {{ $loop->iteration }}
+                                    </td>
+                                     <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class="">
+                                            <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ !empty($item['transactionId']) ? $item['transactionId'] : 'N/A' }}</span>
+                                        </div>
                                     </td>
                                     <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-500 ">
                                         {{ $item['merchantInvoiceNo'] }}
@@ -238,11 +244,7 @@
                                             <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ $item['paymentCode'] ?? 'N/A' }}</span>
                                         </div>
                                     </td>
-                                    <td class="px-3 py-3 whitespace-nowrap text-center">
-                                        <div class="">
-                                            <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ $item['paymentTransactionId'] ?? 'N/A' }}</span>
-                                        </div>
-                                    </td>
+
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <div class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
                                             <span
