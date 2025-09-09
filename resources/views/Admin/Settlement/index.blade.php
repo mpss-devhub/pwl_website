@@ -172,6 +172,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                  TRANS id
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Settlement Status
                                 </th>
 
@@ -235,6 +239,11 @@
                                         </div>
                                     </td>
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class="">
+                                            <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ $item['paymentTransactionId'] ?? 'N/A' }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <div class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
                                             <span
                                                 class="inline-block px-3 rounded-full ml-5 text-[10px] leading-5
@@ -243,6 +252,7 @@
                                             </span>
                                         </div>
                                     </td>
+
                                    @if (in_array('C', $access['S'] ?? []))
                                         <td class="px-3 py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-center text-gray-500">
                                         <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">

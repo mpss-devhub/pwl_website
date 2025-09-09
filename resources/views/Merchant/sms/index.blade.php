@@ -31,7 +31,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local"  name="start-date" id="start_date"
+                                <input type="datetime-local"  name="start-date" id="start_date"  value="{{ request('start-date') }}"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local"  name="end-date" id="end_date"
+                                <input type="datetime-local"  name="end-date" id="end_date"  value="{{ request('end-date') }}"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
@@ -59,10 +59,10 @@
                             <select id="notification-type" name="notification-type"
                                 class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
-                                <option value="C">Copy Link</option>
-                                <option value="S">SMS</option>
-                                <option value="E">Email</option>
-                                <option value="Q">QR</option>
+                                <option value="C" {{ request('notification-type') == 'C' ? 'selected' : '' }} >Copy Link</option>
+                                <option value="S" {{ request('notification-type') == 'S' ? 'selected' : '' }} >SMS</option>
+                                <option value="E" {{ request('notification-type') == 'E' ? 'selected' : '' }} >Email</option>
+                                <option value="Q" {{ request('notification-type') == 'Q' ? 'selected' : '' }} >QR</option>
                             </select>
                         </div>
 
@@ -72,8 +72,8 @@
                             <select id="status" name="status"
                                 class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
-                                <option value="active">Active</option>
-                                <option value="expired">Expired</option>
+                                <option value="active" {{ request('status') == 'active' ? 'selected' : '' }}>Active</option>
+                                <option value="expired" {{ request('status') == 'expired' ? 'selected' : '' }}>Expired</option>
                             </select>
                         </div>
                     </div>
@@ -109,16 +109,16 @@
                                 </svg>
                                 Search
                             </button>
-                            <button id="reset-btn" type="button"
-                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Reset
-                            </button>
+                              <a href="{{ route('merchant.sms') }}"
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Reset
+                                </a>
                         </div>
 
                         <div class="flex items-end gap-2">
@@ -160,8 +160,10 @@
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">To</th>
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Type</th>
-                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Link Status</th>
-                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Link Track</th>
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Click</th>
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Created AT</th>
+
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -200,6 +202,11 @@
                                     <td class="px-6 py-3 text-center whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
                                         <p class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold">
                                             {{ $item->link_click_status === 'Clicked' ? 'Clicked' : 'Unclick' }}
+                                        </p>
+                                    </td>
+                                    <td class="px-6 py-3 text-center whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
+                                        <p class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold">
+                                            {{ $item->created_at }}
                                         </p>
                                     </td>
                                     <td class="px-6 py-3 text-center whitespace-nowrap text-right text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">

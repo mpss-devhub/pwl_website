@@ -4,7 +4,7 @@
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-16">
-            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 max-w-7xl mx-auto">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6  mx-auto">
 
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
                     <div>

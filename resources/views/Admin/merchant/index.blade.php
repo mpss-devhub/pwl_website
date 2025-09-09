@@ -178,6 +178,9 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                 </th>
                                 <th
                                     class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    Created at</th>
+                                    <th
+                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
                                     Status</th>
                                 <th
                                     class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
@@ -216,6 +219,8 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                     </td>
                                     <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
                                         {{ $info->merchant_Cname }}</td>
+                                        <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
+                                        {{ $info->created_at }}</td>
 
                                     <td class="px-6 text-xs py-3 merchant-status text-center">
                                         @if ($info->status === 'on')

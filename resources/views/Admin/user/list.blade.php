@@ -76,6 +76,9 @@
                                     Email
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                    Created at
+                                </th>
+                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                     Status
                                 </th>
                                 <th scope="col"
@@ -112,6 +115,9 @@
                                     </td>
                                     <td class="px-6 py-3 whitespace-nowrap text-xs text-center text-gray-500">
                                         {{ $admin->email }}
+                                    </td>
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
+                                        {{ $admin->created_at }}
                                     </td>
                                     <td class="px-6 py-3 whitespace-nowrap">
                                         @if ($admin->status == 'on')

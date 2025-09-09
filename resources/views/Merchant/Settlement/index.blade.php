@@ -19,7 +19,9 @@
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                         <!-- Date Range -->
                         <div class="space-y-2">
-                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start Date</label>
+                            <label
+                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start
+                                Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -35,7 +37,9 @@
                         </div>
 
                         <div class="space-y-2">
-                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End Date</label>
+                            <label
+                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End
+                                Date</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -52,19 +56,22 @@
 
                         <!-- Payment Method -->
                         <div class="space-y-2">
-                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment Method</label>
+                            <label
+                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment
+                                Method</label>
                             <select id="payment-method"
                                 class="w-full text-gray-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
                                 @foreach ($paymentCodes as $item)
-                                <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}">{{ $item }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <!-- Status -->
                         <div class="space-y-2">
-                            <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
+                            <label
+                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
                             <select id="status"
                                 class="w-full text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
@@ -79,7 +86,8 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
                         <!-- Search -->
                         <div class="space-y-2">
-                            <label for="search" class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
+                            <label for="search"
+                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                     <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -158,6 +166,10 @@
                                 </th>
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
+                                    TRANS id
+                                </th>
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Invoice No
                                 </th>
                                 <th scope="col"
@@ -180,6 +192,7 @@
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Payment Code
                                 </th>
+
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider whitespace-nowrap">
                                     Settlement Status
@@ -200,50 +213,64 @@
                                     data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
                                     data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
 
-                                    <td class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-900">
+                                    <td
+                                        class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-900">
                                         {{ $loop->iteration }}
                                     </td>
-                                    <td class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 truncate max-w-[100px]">
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        <div class="">
+                                            <span
+                                                class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] ">{{ !empty($item['paymentTransactionId']) ? $item['paymentTransactionId'] : 'N/A' }}
+                                            </span>
+                                        </div>
+                                    </td>
+                                    <td
+                                        class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 truncate max-w-[100px]">
                                         {{ $item['merchantInvoiceNo'] }}
                                     </td>
                                     <td class="px-3 text-center py-3 whitespace-nowrap">
-                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900 truncate max-w-[120px]">
+                                        <div
+                                            class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900 truncate max-w-[120px]">
                                             {{ $item['amount'] }}
                                         </div>
                                     </td>
                                     <td class="px-3 text-center py-3 whitespace-nowrap">
-                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">{{ $item['currency'] }}</div>
+                                        <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">
+                                            {{ $item['currency'] }}</div>
                                     </td>
-                                    <td class="px-3 text-center py-3 whitespace-nowrap">
-                                        @if ($item['status'] == 'SUCCESS')
+                                    <td class="px-3 py-3 whitespace-nowrap text-center">
+                                        @php
+                                            $statusClasses = [
+                                                'SUCCESS' => 'bg-green-100 text-green-800',
+                                                'FAIL' => 'bg-red-100 text-red-800',
+                                                'PENDING' => 'bg-yellow-100 text-yellow-800',
+                                            ];
+                                        @endphp
+
+                                        @if (isset($statusClasses[$item['status']]))
                                             <span
-                                                class="px-2 inline-flex text-[9px]  leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                {{ $item['status'] }}
-                                            </span>
-                                        @elseif ($item['status'] == 'FAIL')
-                                            <span
-                                                class="px-2 inline-flex text-[9px]  leading-5 font-semibold rounded-full bg-red-100 text-red-800 ml-2">
-                                                {{ $item['status'] }}
-                                            </span>
-                                        @elseif ($item['status'] == 'PENDING')
-                                            <span
-                                                class="px-2 inline-flex text-[9px]  leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                                class="inline-block px-2 text-[9px] leading-5 font-semibold rounded-full {{ $statusClasses[$item['status']] }}">
                                                 {{ $item['status'] }}
                                             </span>
                                         @endif
                                     </td>
+
                                     <td class="px-3 text-center py-3 whitespace-nowrap">
                                         <div class="">
-                                            <span class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">{{ $item['merchantFeeRate'] }}</span>
+                                            <span
+                                                class=" text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">{{ $item['merchantFeeRate'] }}</span>
                                         </div>
                                     </td>
                                     <td class="px-3 text-center py-3 whitespace-nowrap">
                                         <div class="">
-                                            <span class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">{{ $item['paymentCode'] ?? 'N/A' }}</span>
+                                            <span
+                                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">{{ $item['paymentCode'] ?? 'N/A' }}</span>
                                         </div>
                                     </td>
+
                                     <td class="px-3 text-center py-3 whitespace-nowrap">
-                                        <div class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
+                                        <div
+                                            class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
                                             <span
                                                 class="inline-block px-3 rounded-full ml-5 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5
                     {{ !empty($item['settlementStatus']) ? 'bg-green-100 text-green-800' : 'bg-[#3b9bb3] text-white' }}">
@@ -251,11 +278,12 @@
                                             </span>
                                         </div>
                                     </td>
-                                    <td class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
+                                    <td
+                                        class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
                                         <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                             <a
                                                 href="{{ route('merchant.settlement.details', $item['merchantInvoiceNo']) }}">
-                                                <i class="fa-solid fa-circle-info"></i>    Check Details
+                                                <i class="fa-solid fa-circle-info"></i> Check Details
                                             </a>
                                         </div>
                                     </td>

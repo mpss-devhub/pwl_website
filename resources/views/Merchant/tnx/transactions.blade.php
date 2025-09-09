@@ -19,7 +19,9 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                             <!-- Date Range -->
                             <div class="space-y-2">
-                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start Date</label>
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start
+                                    Date</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -38,7 +40,9 @@
                             </div>
 
                             <div class="space-y-2">
-                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End Date</label>
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End
+                                    Date</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -58,25 +62,37 @@
 
                             <!-- Payment Method -->
                             <div class="space-y-2">
-                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment Method</label>
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">
+                                    Payment Method
+                                </label>
                                 <select id="payment-method" name="payment_method"
-                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300  rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="">All Methods</option>
                                     @foreach ($paymentMethods as $method)
-                                        <option value="{{ $method }}">{{ $method }}</option>
+                                        <option value="{{ $method }}"
+                                            {{ request('payment_method') == $method ? 'selected' : '' }}>
+                                            {{ $method }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
 
+
                             <!-- Status -->
                             <div class="space-y-2">
-                                <label class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
-                                <select id="status" name="status"
-                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
+                                <select name="status"
+                                    class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
+                               focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="">All Statuses</option>
-                                    <option value="SUCCESS">SUCCESS</option>
-                                    <option value="FAIL">FAIL</option>
-                                    <option value="Pending">PENDING</option>
+                                    <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }}>SUCCESS
+                                    </option>
+                                    <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }}>FAIL
+                                    </option>
+                                    <option value="Pending" {{ request('status') == 'PENDING' ? 'selected' : '' }}>PENDING
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -84,7 +100,8 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
                             <!-- Search -->
                             <div class="space-y-2">
-                                <label for="search" class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
+                                <label for="search"
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
                                 <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +129,7 @@
                                     </svg>
                                     Search
                                 </button>
-                                <button id="reset-btn" type="button"
+                                <a href="{{ route('merchant.tnx') }}"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -121,7 +138,8 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                     Reset
-                                </button>
+                                </a>
+
                             </div>
 
                             <di v class="flex items-end gap-2">
@@ -164,6 +182,10 @@
                             </th>
                             <th scope="col"
                                 class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                Trans ID
+                            </th>
+                            <th scope="col"
+                                class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                 Invoice No
                             </th>
                             <th scope="col"
@@ -199,8 +221,13 @@
                     <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
                         @foreach ($tnx as $item)
                             <tr class="transaction-row hover:bg-gray-50">
-                                <td class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-900">
+                                <td
+                                    class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-900">
                                     {{ ($tnx->currentPage() - 1) * $tnx->perPage() + $loop->iteration }}
+                                </td>
+                                <td
+                                    class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500  text-center">
+                                    {{ $item->tnx_tranref_no !== null ? $item->tnx_tranref_no : 'N/A' }}
                                 </td>
                                 <td
                                     class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 ">
@@ -211,15 +238,18 @@
                                         {{ $item->payment_user_name }}</div>
                                 </td>
                                 <td class="px-3 text-center py-3 whitespace-nowrap">
-                                    <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">{{ $item->req_amount }}</div>
+                                    <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">
+                                        {{ $item->req_amount }}</div>
                                 </td>
                                 <td class="px-3 text-center py-3 whitespace-nowrap">
-                                    <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">MMK</div>
+                                    <div class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-900">MMK
+                                    </div>
                                 </td>
                                 <td class="px-3 text-center py-3 whitespace-nowrap">
                                     <div class="flex items-center ">
                                         <img src="{{ $item->payment_logo }}" alt="Logo" class="h-8 w-8 rounded">
-                                        <span class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">{{ $item->paymentCode }}</span>
+                                        <span
+                                            class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">{{ $item->paymentCode }}</span>
                                     </div>
                                 </td>
                                 <td class="px-3 text-center py-3 whitespace-nowrap">
@@ -240,20 +270,21 @@
                                         </span>
                                     @endif
                                 </td>
-                                <td class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
+                                <td
+                                    class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
                                     @if ($item->trans_date_time)
                                         {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
                                     @else
                                         Pending
                                     @endif
                                 </td>
-                                <td class="px-3 text-center py-3 whitespace-nowrap">
-                                    <div class="flex space-x-1">
+                                <td class="px-3 py-3 whitespace-nowrap text-center">
+                                    <div class="flex justify-center space-x-1">
                                         <form action="{{ route('tnx.detail') }}" method="POST">
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $item->id }}" required>
                                             <button
-                                                class=" px-2 py-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
+                                                class="px-2 py-1 hover:bg-green-800 rounded text-green-700 hover:text-white">
                                                 <i class="fa-solid fa-circle-info"></i>
                                             </button>
                                         </form>
@@ -261,12 +292,13 @@
                                             @csrf
                                             <input type="hidden" name="id" value="{{ $item->id }}" required>
                                             <button
-                                                class=" px-2 py-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
+                                                class="px-2 py-1 hover:bg-blue-800 rounded text-blue-700 hover:text-white">
                                                 <i class="fa-solid fa-building-columns"></i>
                                             </button>
                                         </form>
                                     </div>
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

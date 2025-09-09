@@ -128,9 +128,11 @@
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">To</th>
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Name</th>
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Type</th>
-                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Link Status
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Status
                                 </th>
-                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Link Track</th>
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Click</th>
+                                <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Created At</th>
+
                                 <th class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">Actions</th>
                             </tr>
                         </thead>
@@ -185,6 +187,11 @@
                                     <td class="px-6 text-center  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
                                         <p class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold">
                                             {{ $item->link_click_status === 'Clicked' ? 'Clicked' : 'Unclick' }}
+                                        </p>
+                                    </td>
+                                      <td class="px-6 text-center  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">
+                                        <p class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold">
+                                            {{ $item->created_at }}
                                         </p>
                                     </td>
                                     <td class="px-6   py-3 whitespace-nowrap text-right text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
