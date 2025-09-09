@@ -227,7 +227,7 @@
                                 </td>
                                 <td
                                     class="px-3  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500  text-center">
-                                    {{ $item->bank_tranref_no !== null ? $item->bank_tranref_no : 'N/A' }}
+                                    {{ $item->tnx_tranref_no !== null ? $item->tnx_tranref_no : 'N/A' }}
                                 </td>
                                 <td
                                     class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500 ">
