@@ -200,6 +200,7 @@ class PaymentService
                 'trans_date_time' => $data['transDateTime'] ?? '',
                 'payment_created_at' => $ino[0]['created_at'] ?? '',
                 'tranref_no' => $data['invoiceNo'] ?? '',
+                'tnx_tranref_no' => $data['tranrefNo'] ?? '',
                 'bank_tranref_no' => $data['bankTranrefNo'] ?? '',
                 'txn_amount' => $data['txnAmount'] ?? '',
                 'req_amount' => $data['reqAmount'] ?? '',
