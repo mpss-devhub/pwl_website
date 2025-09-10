@@ -18,6 +18,7 @@ class CheckAdmin
     {
        // dd(auth()->user()->role);
         if (!auth()->check() || auth()->user()->role !== 'admin') {
+            Auth::logout();
             return to_route('main.home')->with('error', 'You do not have admin access.');
         }
         return $next($request);

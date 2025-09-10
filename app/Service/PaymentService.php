@@ -143,8 +143,10 @@ class PaymentService
 
     private function dopay($decode, $paymentCode, $data_Key, $data)
     {
+        //dd($decode, $paymentCode, $data_Key, $data);
         $dopayUrl = config('services.payment_gateway.dopay_url');
         $paydata = $this->AES($data_Key, $data);
+        //dd($paydata);
         $response = Http::withHeaders([
             'Content-Type' => 'application/json',
             'Authorization' => 'Bearer ' . $decode->accessToken,
@@ -154,6 +156,7 @@ class PaymentService
             "payData" => $paydata
         ]);
         $data = $response['data'];
+
         return $data;
     }
 
@@ -166,12 +169,13 @@ class PaymentService
         }
         if ($type === 'L_C') {
             $payload['phoneNo'] = $data['tnx_phonenumber'];
-            $payload['cardNumber'] = $data['cardNumber'];
+            $payload['number'] = $data['cardNumber'];
             $payload['expiryMonth'] = $data['expiryMonth'];
             $payload['expiryYear'] = $data['expiryYear'];
         }
         if ($type === 'G_C') {
-            $payload['cardNumber'] = $data['cardNumber'];
+            // $payload['phoneNo'] = '$data['tnx_phonenumber']';
+            $payload['number'] = $data['cardNumber'];
             $payload['expiryMonth'] = $data['expiryMonth'];
             $payload['expiryYear'] = $data['expiryYear'];
             $payload['cvv'] = $data['securityCode'];

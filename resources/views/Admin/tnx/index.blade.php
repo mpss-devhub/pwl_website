@@ -7,11 +7,11 @@
             <!-- Stats Cards -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                 <!-- Total Transactions -->
-                <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Transactions</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Total Transactions</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $total }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-blue-50 text-blue-600">
@@ -25,11 +25,12 @@
                 </div>
 
                 <!-- Successful Transactions -->
-                <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Successful</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Successful</p>
+                            <p
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $Success }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-green-50 text-green-600">
@@ -43,11 +44,12 @@
                 </div>
 
                 <!-- Failed Transactions -->
-                <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Failed</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Failed</p>
+                            <p
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $Fail }}</p>
                         </div>
                         <div class="p-3 rounded-full bg-red-50 text-red-600">
@@ -61,11 +63,12 @@
                 </div>
 
                 <!-- Total Revenue -->
-                <div class="bg-white p-4 rounded-lg shadow border border-gray-100">
+                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Amount</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Total Amount</p>
+                            <p
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $SuccessTotal }} MMK</p>
                         </div>
                         <div class="p-3 rounded-full bg-purple-50 text-purple-600">
@@ -85,8 +88,8 @@
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
-                                            1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
-                                            010-1.414z" clip-rule="evenodd" />
+                                                1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
+                                                010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
 
@@ -293,9 +296,10 @@
                                         <div class="flex items-center justify-start ">
                                             <img src="{{ $item->payment_logo }}" alt="Logo" class="h-6 w-6 rounded">
                                             <span
-                                                class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium">
+                                                class="ml-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium truncate max-w-full block">
                                                 {{ $item->paymentCode }}
                                             </span>
+
                                         </div>
                                     </td>
 

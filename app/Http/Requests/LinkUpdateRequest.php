@@ -23,13 +23,13 @@ class LinkUpdateRequest extends FormRequest
     {
         return [
             "user_id"=> "required",
-            "invoiceNo"=> "required",
+            "invoiceNo"=> "required|unique:links,link_invoiceNo",
             "amount"=> "required",
-            "name"=> "required",
+            "name"=> "required|max:100",
             "phone"=> "required",
-            "email"=> "nullable",
+            "email"=> "nullable|email",
             "expired_at"=> "required",
-            'description'=>"nullable",
+            'description'=>"nullable|max:70",
             'notification'=>'required',
             'currency'=>'required'
 

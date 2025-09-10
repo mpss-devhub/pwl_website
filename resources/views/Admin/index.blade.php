@@ -8,8 +8,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Users</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Total Users</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
                                 {{ number_format($totalUsers) }}</p>
                             <!--<p class="text-xs text-green-500 mt-1">+ 5.2% from yesterday</p>-->
                         </div>
@@ -27,8 +27,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Active Merchants</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Active Merchants</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
                                 {{ number_format($activeMerchants) }}</p>
                             <!-- <p class="text-xs text-green-500 mt-1">+ 3.1% from yesterday</p>-->
                         </div>
@@ -46,15 +46,14 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Amount</p>
+                            <p class="text-xs font-medium text-gray-500">Total Amount</p>
                             <div class="flex ">
-                                <p class="text-md font-semibold text-gray-800">{{ number_format($totalTransactionAmount) }}
-                                    <span class="text-xs text-gray-500">MMK</span>
+                                <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm  font-semibold text-gray-800 mt-1" >
+                                      <span class="text-xs text-gray-500">MMK</span>
+                                      <span class="">{{ number_format($totalTransactionAmount) }}</span>
+
                                 </p>
-                                <p class="text-md font-semibold text-gray-800 mx-2">
-                                    {{ number_format($totalTransactionAmountUSD) }}
-                                    <span class="text-xs text-gray-500">USD</span>
-                                </p>
+
                             </div>
 
 
@@ -73,8 +72,8 @@
                 <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Transaction</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Total Transaction</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
                                 {{ number_format($totalTransactions) }}</p>
                             <!--<p class="text-xs text-red-500 mt-1">- 2 from yesterday</p>-->
                         </div>
@@ -92,10 +91,16 @@
             <!-- Revenue Chart -->
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
-                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 text-center sm:text-left">
-                        Revenue Analytics
-                    </h3>
+                    <div class="flex items-center justify-between sm:justify-start">
+                        <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">
+                            Revenue Analytics
+                        </h3>
+                        <p class="flex items-center bg-[#4f6dab] text-white font-semibold text-md px-2 py-1 rounded-full text-[9px] mt-1 mx-2">
+                            {{ number_format($totalTransactionAmountUSD) }}
+                            <span class=" ml-1">USD $</span>
+                        </p>
 
+                    </div>
                     <form method="GET" action="{{ route('admin.dashboard') }}" id="filterForm"
                         class="flex flex-col sm:flex-row gap-3 sm:gap-5 items-center sm:items-end">
 
@@ -106,7 +111,7 @@
                                 class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
-                                    <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
+                                    <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }} class="border">
                                         {{ $y }}
                                     </option>
                                 @endfor
@@ -156,7 +161,9 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-3">
                 <!-- Recent Activities (Spanning 2 columns) -->
                 <div class="bg-white p-6 rounded-lg shadow border border-gray-100 lg:col-span-2">
-                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Activities</h3>
+                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Activities
+
+                    </h3>
                     <div class="space-y-4">
                         @forelse($latestTransactions as $tx)
                             <div class="flex items-start justify-between">

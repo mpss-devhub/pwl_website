@@ -25,9 +25,9 @@
                             <div class="flex items-center mb-2">
                                 @if (!$exists)
                                         <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none">
+                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-xs md:text-md lg:text-md">
                                             <a href="{{ route('merchant.link.edit',$sms['id']) }}">
-                                            <i class="fa-solid fa-file-pen"></i>
+                                            <i class="fa-solid fa-file-pen"></i> Edit
 
                                             </a>
                                         </button>

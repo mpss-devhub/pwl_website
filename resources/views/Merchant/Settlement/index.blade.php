@@ -13,7 +13,7 @@
                             clip-rule="evenodd" />
                     </svg>
                 </button>
-
+                <form action="{{ route('merchant.settlement') }}" method="GET">
                 <!-- Filter Content -->
                 <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -31,7 +31,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="start_date"
+                                <input type="datetime-local" id="start_date" value="{{ request('start_date') }}" name="start_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                             clip-rule="evenodd" />
                                     </svg>
                                 </div>
-                                <input type="datetime-local" id="end_date"
+                                <input type="datetime-local" id="end_date" value="{{ request('end_date') }}" name="end_date"
                                     class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
                         </div>
@@ -59,11 +59,14 @@
                             <label
                                 class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment
                                 Method</label>
-                            <select id="payment-method"
+                            <select id="payment-method" name="payment_method"
                                 class="w-full text-gray-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
                                 @foreach ($paymentCodes as $item)
-                                    <option value="{{ $item }}">{{ $item }}</option>
+                                    <option value="{{ $item }}"
+                                        {{ request('payment_method') == $item ? 'selected' : '' }}>
+                                        {{ $item }}
+                                        </option>
                                 @endforeach
                             </select>
                         </div>
@@ -72,12 +75,12 @@
                         <div class="space-y-2">
                             <label
                                 class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
-                            <select id="status"
+                            <select id="status" name="status"
                                 class="w-full text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Statuses</option>
-                                <option value="SUCCESS">SUCCESS</option>
-                                <option value="FAIL">FAIL</option>
-                                <option value="Pending">PENDING</option>
+                                <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }} >SUCCESS</option>
+                                <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }} >FAIL</option>
+                                <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }} >PENDING</option>
                             </select>
                         </div>
                     </div>
@@ -98,7 +101,7 @@
                                     </svg>
                                 </div>
                                 <input type="text" id="search" name="search"
-                                    placeholder="Search by ID, name or phone"
+                                    placeholder="Search by ID, name or phone"  value="{{ request('search') }}"
                                     class="block w-full pl-10 pr-3 py-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                             </div>
                         </div>
@@ -115,16 +118,16 @@
                                 </svg>
                                 Search
                             </button>
-                            <button id="reset-btn"
-                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Reset
-                            </button>
+                           <a href="{{ route('merchant.settlement') }}"
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                    Reset
+                                </a>
                         </div>
 
                         <div class="flex items-end gap-2">
@@ -152,6 +155,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
 
             <!-- Transactions Table -->
@@ -205,17 +209,12 @@
                             </tr>
                         </thead>
                         <tbody id="transactions-body" class="bg-white divide-y divide-gray-200">
-                            @foreach ($tnx['dataList'] as $item)
-                                <tr class="transaction-row hover:bg-gray-50"
-                                    data-created="{{ $item['created_at'] ?? '' }}"
-                                    data-method="{{ $item['paymentCode'] ?? '' }}"
-                                    data-status="{{ $item['status'] ?? '' }}"
-                                    data-invoice="{{ $item['merchantInvoiceNo'] ?? '' }}"
-                                    data-name="{{ $item['customerName'] ?? '' }}" data-id="{{ $loop->iteration }}">
+                            @foreach ($tnx as $item)
+                                <tr class="transaction-row hover:bg-gray-50">
 
                                     <td
                                         class="px-3 text-center py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium text-gray-900">
-                                        {{ $loop->iteration }}
+                                        {{ ($tnx->currentPage() - 1) * $tnx->perPage() + $loop->iteration }}
                                     </td>
                                     <td class="px-3 py-3 whitespace-nowrap text-center">
                                         <div class="">
@@ -295,76 +294,10 @@
 
                 </div>
             </div>
+            <div class="mt-4 ">
+                {{ $tnx->withQueryString()->links() }}
+            </div>
 
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            function filterTransactions() {
-                const startDate = document.getElementById('start_date').value;
-                const endDate = document.getElementById('end_date').value;
-                const paymentMethod = document.getElementById('payment-method').value;
-                const status = document.getElementById('status').value;
-                const searchTerm = document.getElementById('search').value.toLowerCase();
-                const rows = document.querySelectorAll('.transaction-row');
-
-                rows.forEach(row => {
-                    const rowDate = row.dataset.created;
-                    const rowMethod = row.dataset.method;
-                    const rowStatus = row.dataset.status;
-                    const rowInvoice = row.dataset.invoice.toLowerCase();
-                    const rowName = row.dataset.name.toLowerCase();
-                    const rowId = row.dataset.id.toString();
-
-
-                    let dateMatch = true;
-                    if (startDate && rowDate) {
-                        dateMatch = new Date(rowDate) >= new Date(startDate);
-                    }
-
-                    if (endDate && rowDate) {
-                        dateMatch = dateMatch && (new Date(rowDate) <= new Date(endDate));
-                    }
-                    const methodMatch = !paymentMethod || rowMethod === paymentMethod;
-                    const statusMatch = !status || rowStatus === status;
-                    const searchMatch = !searchTerm ||
-                        rowInvoice.includes(searchTerm) ||
-                        rowName.includes(searchTerm) ||
-                        rowId.includes(searchTerm);
-                    if (dateMatch && methodMatch && statusMatch && searchMatch) {
-                        row.style.display = '';
-                    } else {
-                        row.style.display = 'none';
-                    }
-                });
-            }
-
-
-            // Reset filters function
-            function resetFilters() {
-                document.getElementById('start_date').value = '';
-                document.getElementById('end_date').value = '';
-                document.getElementById('payment-method').value = '';
-                document.getElementById('status').value = '';
-                document.getElementById('search').value = '';
-
-                document.querySelectorAll('.transaction-row').forEach(row => {
-                    row.style.display = '';
-                });
-            }
-
-            // Event listeners
-            document.getElementById('search-btn').addEventListener('click', filterTransactions);
-            document.getElementById('reset-btn').addEventListener('click', resetFilters);
-
-            // Filter on input change
-            document.getElementById('search').addEventListener('input', filterTransactions);
-            document.getElementById('payment-method').addEventListener('change', filterTransactions);
-            document.getElementById('status').addEventListener('change', filterTransactions);
-            document.getElementById('start_date').addEventListener('change', filterTransactions);
-            document.getElementById('end_date').addEventListener('change', filterTransactions);
-        });
-    </script>
 @endsection

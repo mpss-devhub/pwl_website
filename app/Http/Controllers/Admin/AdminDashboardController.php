@@ -18,11 +18,11 @@ class AdminDashboardController extends Controller
         $year = $request->get('year', 'all');
         $month = $request->get('month', 'all');
 
-        $totalUsers = User::count();
+        $totalUsers = User::where('role', 'admin')->count();
         $activeMerchants = Merchants::where('status', 'on')->count();
         $latestTransactions = $this->getLatestTransactions();
-        $totalTransactionAmount = Tnx::where('payment_status','SUCCESS')->where('currencyCode','MMK')->sum('net_amount');
-        $totalTransactionAmountUSD = Tnx::where('payment_status','SUCCESS')->where('currencyCode','USD')->sum('net_amount');
+        $totalTransactionAmount = Tnx::where('payment_status', 'SUCCESS')->where('currencyCode', 'MMK')->sum('net_amount');
+        $totalTransactionAmountUSD = Tnx::where('payment_status', 'SUCCESS')->where('currencyCode', 'USD')->sum('net_amount');
         $totalTransactions = Tnx::count();
 
         $revenueData = $this->getRevenueData($year, $month);
@@ -74,6 +74,8 @@ class AdminDashboardController extends Controller
 
             $revenue = Tnx::selectRaw('YEAR(created_at) as year, SUM(net_amount) as total')
                 ->whereYear('created_at', '>=', $startYear)
+                ->where('currencyCode', 'MMK')
+                ->where('payment_status', 'Success')
                 ->groupBy('year')
                 ->orderBy('year')
                 ->pluck('total', 'year')

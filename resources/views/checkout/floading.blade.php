@@ -1,6 +1,7 @@
-
-<div x-show="open" x-transition class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" x-cloak>
-    <div class="bg-[#fbfcfffd] rounded-xl shadow-xl w-full max-w-[26rem] p-4 sm:p-6 relative border border-[#BFC7EE] mx-auto">
+<div x-show="open" x-transition class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+    x-cloak>
+    <div
+        class="bg-[#fbfcfffd] rounded-xl shadow-xl w-full max-w-[26rem] p-4 sm:p-6 relative border border-[#BFC7EE] mx-auto">
         <!-- Close Button -->
         <div class="flex justify-between items-center h-auto sm:h-[3vw]">
             <div>
@@ -10,7 +11,8 @@
             </div>
 
             <div>
-                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Logo" class="w-16 h-16 sm:w-24 sm:h-24 object-contain">
+                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Logo"
+                    class="w-16 h-16 sm:w-24 sm:h-24 object-contain">
             </div>
         </div>
 
@@ -57,8 +59,10 @@
 
                     @if ($type === 'Ewallet' || $type === 'QR' || $type === 'Web')
                         <label for="tnx_phonenumber" class="text-sm text-gray-700 text-[13px]"> Phone Number </label>
-                        <input required type="text" name="tnx_phonenumber" x-model="tnx_phonenumber"
-                            class="text-[13px] w-full max-w-xs sm:w-80 mt-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-pink-400"
+                        <input required type="text" name="tnx_phonenumber" x-model="tnx_phonenumber" minlength="4"
+                            maxlength="14" pattern="[0-9]*" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            class="placeholder-gray-400 text-[13px] w-full max-w-xs sm:w-80 mt-2 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-pink-400"
                             placeholder="Enter {{ $item['paymentName'] }} Phone Number">
                     @else
                         @if ($type === 'L_C')
@@ -68,17 +72,25 @@
                                 </label>
 
                                 <input required type="text" name="tnx_phonenumber" x-model="tnx_phonenumber"
+                                    minlength="4" maxlength="20" pattern="[0-9]*" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     placeholder="Enter Phone Number"
-                                    class="text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                 <input required type="text" name="cardNumber" x-model="cardNumber"
-                                    placeholder="Enter Card Number"
-                                    class="text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                    placeholder="Enter Card Number" minlength="6" maxlength="16" pattern="[0-9]*"
+                                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                 <div class="flex justify-center">
                                     <div class="flex space-x-2 sm:space-x-4">
-                                        <input required type="number" name="expiryMonth" x-model="expiryMonth" placeholder="MM"
-                                            class="text-[13px] w-20 sm:w-24 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
-                                        <input required type="number" name="expiryYear" x-model="expiryYear" placeholder="YYYY"
-                                            class="text-[13px] w-24 sm:w-28 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                        <input required type="number" name="expiryMonth" x-model="expiryMonth"
+                                            placeholder="MM" minlength="2" maxlength="8" pattern="[0-9]*"
+                                            inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            class="placeholder-gray-400  text-[13px] w-20 sm:w-24 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                        <input required type="number" name="expiryYear" x-model="expiryYear"
+                                            placeholder="YYYY" minlength="2" maxlength="8" pattern="[0-9]*"
+                                            inputmode="numeric"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            class="placeholder-gray-400  text-[13px] w-24 sm:w-28 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                     </div>
                                 </div>
                             </div>
@@ -89,17 +101,26 @@
                                 </label>
 
                                 <input required type="text" name="cardNumber" x-model="cardNumber"
-                                    placeholder="Enter Card Number"
-                                    class="text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                    placeholder="Enter Card Number" minlength="6" maxlength="20" pattern="[0-9]*"
+                                    inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                 <input required type="text" name="securityCode" x-model="securityCode"
+                                    minlength="2" maxlength="8" pattern="[0-9]*" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     placeholder="Enter Security Code"
-                                    class="text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                 <div class="flex justify-center">
                                     <div class="flex space-x-2 sm:space-x-4">
-                                        <input required type="text" name="expiryMonth" x-model="expiryMonth" placeholder="MM"
-                                            class="text-[13px] w-20 sm:w-24 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
-                                        <input required type="text" name="expiryYear" x-model="expiryYear" placeholder="YYYY"
-                                            class="text-[13px] w-24 sm:w-28 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                        <input required type="text" name="expiryMonth" x-model="expiryMonth"
+                                            placeholder="MM" minlength="2" maxlength="8" pattern="[0-9]*"
+                                            inputmode="numeric"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            class="placeholder-gray-400  text-[13px] w-20 sm:w-24 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                        <input required type="text" name="expiryYear" x-model="expiryYear"
+                                            placeholder="YYYY" minlength="2" maxlength="2" pattern="[0-9]*"
+                                            inputmode="numeric"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            class="placeholder-gray-400  text-[13px] w-24 sm:w-28 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                     </div>
                                 </div>
                             </div>

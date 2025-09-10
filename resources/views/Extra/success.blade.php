@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
     <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>
     <script src="{{ asset('common/checkout/js/prevent.js') }}"></script>
-    <script src="{{ asset('common/components/js/screenshoot.js') }}"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
-<body class="p-4" >
+<body class="p-4">
     <div id="exportArea"
         class="w-full max-w-[450px] bg-[#F1F2F785] shadow-lg shadow-[#B9C4FC] rounded-xl p-4 sm:p-6 space-y-4 sm:space-y-6 border border-[#C0CAFC]">
         <!-- Logo -->
         <div class="flex justify-center">
             <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full flex items-center justify-center">
-                <img src="{{ $merchant['merchant_logo'] }}" alt="Merchant Logo"
+                <img src="{{ $merchant['merchant_logo'] }}" alt="Merchant Logo" crossorigin="anonymous"
                     class="rounded-full w-full h-full object-cover" />
             </div>
         </div>
@@ -83,7 +83,7 @@
                         alt="Success Image">
                 </div>
 
-                <div class="flex justify-evenly mt-2 sm:mt-2">
+                <div class="flex justify-evenly mt-2 sm:mt-2" id='btn'>
                     <button
                         class="bg-[#cacaca] py-2 px-4 rounded-md text-dark hover:bg-[#c4c4d0] transition text-[13px] border border-dotted">
                         <a href="{{ $merchant['merchant_frontendURL'] }}">
@@ -107,9 +107,10 @@
     <script>
         function downloadAsPNG() {
             const element = document.getElementById("exportArea");
-
+            //document.getElementById('btn').hide
             html2canvas(element, {
-                scale: 2
+                scale: 2,
+                useCORS: true
             }).then((canvas) => {
                 const link = document.createElement("a");
                 link.download = "payment.png"; // file name

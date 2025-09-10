@@ -17,7 +17,8 @@ class CheckMerchant
     public function handle(Request $request, Closure $next): Response
     {
         if (!auth()->check() || auth()->user()->role !== 'merchant') {
-              return to_route('main.home')->with('error', 'You do not have Merchant access.');
+            Auth::logout();
+            return to_route('main.home')->with('error', 'You do not have Merchant access.');
         }
         return $next($request);
     }

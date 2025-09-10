@@ -55,10 +55,10 @@
                                     <th class="px-2 sm:px-4 py-2 text-left">User ID</th>
                                     <th class="px-2 sm:px-4 py-2 text-left">Invoice Number</th>
                                     <th class="px-2 sm:px-4 py-2 text-left">Amount</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">Name</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">Phone</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">Email</th>
-                                    <th class="px-2 sm:px-4 py-2 text-left">Expired_at</th>
+                                    <th class="px-2 sm:px-4 py-2 text-center">Name</th>
+                                    <th class="px-2 sm:px-4 py-2 text-center">Phone</th>
+                                    <th class="px-2 sm:px-4 py-2 text-center">Email</th>
+                                    <th class="px-2 sm:px-4 py-2 text-center">Expired_at</th>
                                     <th class="px-2 sm:px-4 py-2 text-left">Description</th>
                                     <th class="px-2 sm:px-4 py-2 text-left">Notification Type</th>
                                     <th class="px-2 sm:px-4 py-2 text-left">Currency</th>
@@ -67,38 +67,38 @@
                             <tbody class="bg-white divide-y divide-gray-100 text-[14px] sm:text-xs">
                                 <tr>
                                     <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">1000</td>
                                     <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
                                     <td class="px-2 sm:px-4 py-3 ">09960231318</td>
                                     <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
                                     <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
                                     <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-3 ">Email</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center ">Email</td>
                                     <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                                 <tr>
                                     <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">1000</td>
                                     <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
                                     <td class="px-2 sm:px-4 py-3 ">09960231318</td>
                                     <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
                                     <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
                                     <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-3 ">Copy</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center ">Copy</td>
                                     <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                                 <tr>
                                     <td class="px-2 sm:px-4 py-3 ">{{ Auth::user()->user_id }}</td>
-                                    <td class="px-2 sm:px-4 py-3 ">INO-816815</td>
-                                    <td class="px-2 sm:px-4 py-3 ">1000</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">INO-816815</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center">1000</td>
                                     <td class="px-2 sm:px-4 py-3 ">Htet Linn Aung</td>
                                     <td class="px-2 sm:px-4 py-3 ">09960231318</td>
                                     <td class="px-2 sm:px-4 py-3 ">htetlinn437@gmail.com</td>
                                     <td class="px-2 sm:px-4 py-3 ">2025-07-12T15:39</td>
                                     <td class="px-2 sm:px-4 py-3 ">Payment for July</td>
-                                    <td class="px-2 sm:px-4 py-3 ">SMS</td>
+                                    <td class="px-2 sm:px-4 py-3 text-center ">Email</td>
                                     <td class="px-2 sm:px-4 py-3 ">MMK</td>
                                 </tr>
                             </tbody>

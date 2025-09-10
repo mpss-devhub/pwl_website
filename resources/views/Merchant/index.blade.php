@@ -8,8 +8,8 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">MMK
+                            <p class="text-xs font-medium text-gray-500">Total Revenue</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">MMK
                                 {{ $TotalMMK }}</p>
                             @if ($TotalUSD)
                                 <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
@@ -33,8 +33,8 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Transactions</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
+                            <p class="text-xs font-medium text-gray-500">Transactions</p>
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
                                 {{ $TotalTnx }}</p>
 
                         </div>
@@ -52,12 +52,12 @@
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-sm md:text-md lg:text-md font-medium text-gray-500">Success Rate</p>
+                            <p class="text-xs mt-1 font-medium text-gray-500">Success Rate</p>
                             <p
-                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 flex items-center gap-2">
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1 flex items-center gap-2">
                                 {{ number_format($SuccessRate, 2) }}%
                                 <span
-                                    class="inline-flex items-center px-2 py-0.5 text-xs rounded-full bg-red-100 text-red-700 font-medium mt-1">
+                                    class="inline-flex items-center px-2 py-0.5 text-[10px] rounded-full bg-red-100 text-red-700 font-medium mt-1">
                                     {{ $Totallink }} Links Created
                                 </span>
                             </p>
