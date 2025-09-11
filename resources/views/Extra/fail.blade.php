@@ -37,7 +37,7 @@
                 </div>
             @else
                 <div class="flex items-center justify-center space-x-2">
-                    <p class="text-center text-gray-700 font-medium">Payment Fail</p>
+                    <p class="text-center text-gray-700 font-semibold text-sm">Payment Fail</p>
 
                     <i class="fa-solid fa-circle-exclamation text-red-500 text-md"></i>
                 </div>
