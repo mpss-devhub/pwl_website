@@ -7,17 +7,17 @@
             </div>
         </div>
 
-        <div class="text-xs ml-2 text-gray-600 space-y-2">
+        <div class="text-[11px] ml-2 text-gray-600 space-y-2">
             <p>Merchant Email : {{ $details['merchant_Cemail'] }}</p>
             <p>Merchant Address : {{ $details['merchant_address'] }}</p>
         </div>
 
         <div class="border border-[#bdc9fe] rounded-lg p-6 shadow-sm shadow-[#A0B1FF]  bg-[#f9faff]">
             <!-- Invoice Header -->
-            <p class="text-center text-[#3C425D] mx-28 font-semibold text-base"
+            <p class="text-center text-[#3C425D] mx-28  font-semibold text-sm"
                 style="font-family: 'Poppins'">INVOICE</p>
 
-            <div class="space-y-4 mt-8 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
+            <div class="space-y-4 mt-6 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
                 <!-- Merchant Info -->
                 <div class="space-y-2">
                     <div class="grid grid-cols-3 ">
@@ -50,7 +50,7 @@
                         <span class="text-center">
 
                         </span>
-                        <span>{{ $links['link_amount'] }} {{ $links['link_currency'] }}</span>
+                        <span>{{ $links['link_amount'] }}  {{ $links['link_currency'] }}</span>
                     </div>
 
                     <div class="grid grid-cols-3 ">
@@ -72,11 +72,11 @@
                 <button type="submit" :disabled="loading"
                     class="bg-[#637AE2] border-[#B6C2F8] shadow-[#7589E1] shadow text-white px-4 py-2 rounded-md  hover:bg-[#7a87bb] flex items-center justify-center space-x-2">
                     <template x-if="!loading">
-                        <span>Pay Now</span>
+                        <span class="text-xs sm:text-sm">Pay Now</span>
                     </template>
                     <template x-if="loading">
                         <span>
-                            <i class="fas fa-spinner fa-spin mr-1"></i> Processing...
+                            <i class="fas fa-spinner fa-spin mr-1 text-xs sm:text-sm"></i> Processing...
                         </span>
                     </template>
                 </button>

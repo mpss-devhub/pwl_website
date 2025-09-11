@@ -55,7 +55,7 @@
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Amount</span>
                         <span class="text-center">:</span>
-                        <span class="truncate">{{ $tnx['req_amount'] }}</span>
+                        <span class="truncate">{{ $tnx['req_amount'] }}{{ $tnx['currencyCode'] }}</span>
                     </div>
                 </div>
 

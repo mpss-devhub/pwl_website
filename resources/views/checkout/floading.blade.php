@@ -19,7 +19,7 @@
         <form action="{{ route('Pwl') }}" method="POST" x-data="{ loading: false }" @submit="loading = true">
             @csrf
 
-            <div class="py-4 sm:py-5">
+            <div class="py-3 sm:py-4">
                 <!-- Hidden Data -->
                 <input type="hidden" name="paymentCode" :value="payment.paymentCode">
                 <input type="hidden" name="link_id" value="{{ $link->id }}">

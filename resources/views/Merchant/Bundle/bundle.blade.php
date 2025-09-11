@@ -1,6 +1,6 @@
 @extends('Merchant.layouts.dashboard')
 @section('merchant_content')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     @if (session('success'))
         <script>
@@ -13,16 +13,16 @@
         </script>
     @endif
 
-@if ($errors->any())
-    <script>
-        Swal.fire({
-            icon: 'error',
-            title: 'Validation Errors',
-            html: `{!! implode('<br>', $errors->all()) !!}`,
-            confirmButtonText: 'OK'
-        });
-    </script>
-@endif
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Errors',
+                html: `{!! implode('<br>', $errors->all()) !!}`,
+                confirmButtonText: 'OK'
+            });
+        </script>
+    @endif
 
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
@@ -117,11 +117,21 @@
                             const h = pad(this.now.getHours());
                             const min = pad(this.now.getMinutes());
                             return `${y}-${m}-${d}T${h}:${min}`;
+                        },
+                        copyToClipboard() {
+                            navigator.clipboard.writeText(this.formatDateTime())
+                                .then(() => alert('Copied: ' + this.formatDateTime()))
+                                .catch(err => console.error('Copy failed', err));
                         }
                     }" x-init="setInterval(() => updateTime(), 1000)"
-                        class="text-xs sm:text-sm font-semibold text-gray-700  mt-8">
-                        Current Time with <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code> format is
+                        class="text-xs sm:text-sm font-semibold text-gray-700 mt-8">
+                        Current Time with
+                        <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code> format is
                         <span x-text="formatDateTime()" class="text-blue-500 text-xs"></span>
+                        <button @click="copyToClipboard"
+                            class="ml-2 px-2 py-1  text-gray-600 text-[10px] rounded  transition">
+                            <i class="fa-solid fa-clone"></i> Copy
+                        </button>
                     </div>
                 </div>
 
@@ -180,7 +190,8 @@
                     <div
                         class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('merchant.paywithlink') }}" class="text-gray-600 hover:text-gray-900   flex items-center">
+                        <a href="{{ route('merchant.paywithlink') }}"
+                            class="text-gray-600 hover:text-gray-900   flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2 mt-2"></i>
                         </a>
                     </div>

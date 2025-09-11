@@ -31,7 +31,7 @@
                         </svg>
                         <span class="sr-only">Loading...</span>
                     </div>
-                    <p class="text-gray-700  text-center py-2 mt-4 text-[13px]" x-data>
+                    <p class="text-gray-700  text-center py-2 mt-4 text-xs" x-data>
                         You will receive pay request notification at your mobile wallet and make a confirm payment
                         at your mobile wallet to complete the payment.
                     </p>
@@ -93,11 +93,11 @@
                             </svg>
                             <span class="sr-only">Loading...</span>
                         </div>
-                        Please scan this QR to pay. Or
+                       <span class="text-xs"> Please scan this QR to pay. Or
                         <a href="{{ route('qr.download', basename($data['qrImg'])) }}"
                             class="text-blue-600 hover:underline">
                             Download
-                        </a>
+                        </a></span>
 
                         </p>
                     </div>
@@ -159,7 +159,7 @@
                             <span class="sr-only">Loading...</span>
                         </div>
                         <div class="text-gray-700 text-[13px]">
-                            <p class=" text-center py-2 mt-4" x-data>
+                            <p class=" text-center py-2 mt-4 text-xs" x-data>
                                 Web and Card Payment can be pay through this button for safe and secure payment .
                             </p>
                             <button
@@ -200,11 +200,11 @@
     @endif
     @if (!$data)
         <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff] ">
-            <p class="text-center  mx-28 font-semibold text-base text-gray-700" style="font-family: 'Poppins'">Fail</p>
+            <p class="text-center mt-4 mx-28 font-semibold text-base text-gray-700" style="font-family: 'Poppins'">Fail</p>
 
             <div class="space-y-4 mt-6 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
 
-                <p class="text-sm text-center px-5 text-gray-600">Something Went Worng Please ask merchant for more
+                <p class="text-xs text-center px-5 text-gray-600">Something Went Worng Please ask merchant for more
                     information</p>
                 <hr class="border-t border-dotted border-gray-400 my-4">
                 <!-- Merchant Info -->

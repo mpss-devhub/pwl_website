@@ -1,6 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
-    switchTab("pin");
-});
 
 function switchTab(tabName) {
     // Hide all tab contents
