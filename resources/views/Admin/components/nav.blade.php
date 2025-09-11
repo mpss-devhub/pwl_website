@@ -107,11 +107,11 @@
                 <li>
                     <a href="{{ route('tnx.show') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('tnx.show')
+                      {{ request()->routeIs('tnx.show','admin.tnx.detail','admin.Payment.detail')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="w-5 h-5 transition duration-75
-                            {{ request()->routeIs('tnx.show')
+                            {{ request()->routeIs('tnx.show','admin.tnx.detail','admin.Payment.detail')
                                 ? 'text-gray-900 dark:text-white'
                                 : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -131,12 +131,12 @@
                 <li>
                     <a href="{{ route('admin.links') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('admin.links')
+                      {{ request()->routeIs('admin.links','admin.sms.details','admin.link.edit')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <i
                             class="fa-solid fa-shield-halved
-                          {{ request()->routeIs('admin.links')
+                          {{ request()->routeIs('admin.links','admin.sms.details','admin.link.edit')
                               ? 'text-gray-900 dark:text-white'
                               : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}">
                         </i>
@@ -149,11 +149,11 @@
             <li>
                 <a href="{{ route('admin.settlement') }}"
                     class="flex items-center p-2 rounded-lg group
-                  {{ request()->routeIs('admin.settlement')
+                  {{ request()->routeIs('admin.settlement','admin.settlement.details')
                       ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                       : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 transition duration-75
-                        {{ request()->routeIs('admin.settlement')
+                        {{ request()->routeIs('admin.settlement','admin.settlement.details')
                             ? 'text-gray-900 dark:text-white'
                             : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640">
@@ -169,11 +169,11 @@
                 <li>
                     <a href="{{ route('merchant.show') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('merchant.show')
+                      {{ request()->routeIs('merchant.show','merchant.create','merchant.detail','merchant.update','sms.show')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="w-5 h-5 transition duration-75
-                            {{ request()->routeIs('merchant.show')
+                            {{ request()->routeIs('merchant.show','merchant.create','merchant.detail','merchant.update','sms.show')
                                 ? 'text-gray-900 dark:text-white'
                                 : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640">
@@ -190,11 +190,11 @@
                 <li>
                     <a href="{{ route('user.show') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('user.show')
+                      {{ request()->routeIs('user.show','user.show.update','user.create')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="w-5 h-5 transition duration-75
-                            {{ request()->routeIs('user.show')
+                            {{ request()->routeIs('user.show','user.show.update','user.create')
                                 ? 'text-gray-900 dark:text-white'
                                 : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -211,12 +211,12 @@
                 <li>
                     <a href="{{ route('access.show') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('access.show')
+                      {{ request()->routeIs('access.show','access.edit','access.create')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <i
                             class="fa-solid fa-universal-access
-                          {{ request()->routeIs('access.show')
+                          {{ request()->routeIs('access.show','access.edit','access.create')
                               ? 'text-gray-900 dark:text-white'
                               : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}">
                         </i>
@@ -230,12 +230,12 @@
                 <li>
                     <a href="{{ route('support.list') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('support.list')
+                      {{ request()->routeIs('support.list','support.details','support.edit','support.show')
                           ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white'
                           : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <i
                             class="fa-solid fa-headset
-                          {{ request()->routeIs('support.list')
+                          {{ request()->routeIs('support.list','support.details','support.edit','support.show')
                               ? 'text-gray-900 dark:text-white'
                               : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}">
                         </i>

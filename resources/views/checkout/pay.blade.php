@@ -7,7 +7,7 @@
             <img src="{{ $merchant->merchant_logo }}" alt="Merchant Logo" style="border-radius: 100px" />
         </div>
     </div>
-    <div class="text-xs ml-2 text-gray-600 space-y-1">
+    <div class="text-[11px] ml-2 text-gray-600 space-y-1">
         <p>Merchant Email : {{ $merchant->merchant_Cemail }}</p>
         <p>Merchant Address : {{ $merchant->merchant_address }}</p>
     </div>

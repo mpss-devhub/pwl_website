@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="text-xs sm:text-[13px] text-gray-600 space-y-1 sm:space-y-2 px-2">
+        <div class="text-[11px] sm:text-[13px] text-gray-600 space-y-1 sm:space-y-2 px-2">
             <p class="truncate">Merchant Email: {{ $merchant['merchant_Cemail'] }}</p>
             <p class="truncate">Merchant Address: {{ $merchant['merchant_address'] }}</p>
         </div>
@@ -42,7 +42,7 @@
                     <i class="fa-solid fa-circle-exclamation text-red-500 text-md"></i>
                 </div>
             @endif
-            <div class="text-xs sm:text-sm mt-3 text-gray-700">
+            <div class="text-[13px] mt-3 text-gray-700">
                 <!-- Merchant Info -->
                 <div class="space-y-1">
                     <div class="grid grid-cols-3 gap-1">
@@ -58,7 +58,7 @@
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Amount</span>
                         <span class="text-center">:</span>
-                        <span class="truncate">{{ $tnx['req_amount'] }}</span>
+                        <span class="truncate">{{ $tnx['req_amount'] }} {{ $tnx['currencyCode'] }}</span>
                     </div>
                 </div>
 
@@ -78,7 +78,7 @@
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Amount</span>
                         <span class="text-center">:</span>
-                        <span class="truncate">{{ $tnx['req_amount'] }}</span>
+                        <span class="truncate">{{ $tnx['req_amount'] }} {{ $tnx['currencyCode'] }}</span>
                     </div>
                 </div>
                 <div class="flex justify-start mt-6 mx-6">
