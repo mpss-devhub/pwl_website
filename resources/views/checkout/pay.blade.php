@@ -204,7 +204,8 @@
 
             <div class="space-y-4 mt-6 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
 
-                <p class="text-sm text-center px-5">Something Went Worng Please ask merchant for more information</p>
+                <p class="text-sm text-center px-5 text-gray-600">Something Went Worng Please ask merchant for more
+                    information</p>
                 <hr class="border-t border-dotted border-gray-400 my-4">
                 <!-- Merchant Info -->
                 <div class="space-y-2">

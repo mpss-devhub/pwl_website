@@ -33,16 +33,19 @@
                         <div class="grid md:grid-cols-2 gap-5">
                             <!-- Invoice Number -->
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Invoice Number <span
-                                        class="text-red-500">*
+                                <label class="block text-sm font-medium text-gray-700 mb-2">
+                                    Invoice Number <span class="text-red-500">*
                                         @error('invoiceNo')
                                             <span class="text-[12px]"> {{ $message }}</span>
                                         @enderror
-                                    </span></label>
-                                <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}" minlength="3" maxlength="30"
+                                    </span>
+                                </label>
+                                <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}"
+                                    minlength="3" maxlength="30" oninput="this.value = this.value.replace(/\s/g, '')"
                                     class="w-full px-4 text-gray-700 placeholder-gray-400 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
                             </div>
+
 
                             <!-- Amount -->
                             <div>
@@ -53,11 +56,12 @@
                                         @enderror
                                     </span></label>
                                 <div class="relative">
-                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <div id="currencySymbol"
+                                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500">Ks</span>
                                     </div>
-                                    <input name="amount" type="number" required value="{{ old('amount') }}" min="1"
-                                        max="9999999"
+                                    <input name="amount" id="amountInput" type="number" required
+                                        value="{{ old('amount') }}" min="0.01" max="9999999"  step="0.01"
                                         class="pl-12 w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                         placeholder="1500">
                                 </div>
@@ -80,25 +84,18 @@
                             <!-- Customer Phone -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Phone <span
-                                        class="text-red-500">*
-                                        @error('phone')
-                                            <span class="text-[12px]"> {{ $message }}</span>
-                                        @enderror
-                                    </span></label>
-                                <input name="phone" type="tel" required value="{{ old('phone') }}" minlength="4"
-                                    maxlength="12"
+                                        class="text-red-500">*</span></label>
+                                <input id="customerPhone" name="phone" type="tel" required value="{{ old('phone') }}"
+                                    minlength="4" maxlength="14" pattern="[0-9]*" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="09xxxxxxxxx">
                             </div>
 
                             <!-- Customer Email -->
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 mb-2">Customer Email
-                                    @error('expired_at')
-                                        <span class="text-[12px]"> {{ $message }}</span>
-                                    @enderror
-                                </label>
-                                <input name="email" type="email" value="{{ old('email') }}"
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Customer Email</label>
+                                <input id="customerEmail" name="email" type="email" value="{{ old('email') }}"
                                     class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="customer@example.com">
                             </div>
@@ -173,7 +170,7 @@
                         <div class="flex items-center gap-3">
                             <div class="h-8 w-1 bg-blue-600 rounded-full"></div>
                             <p class="text-md font-semibold text-gray-800">Delivery Options
-                                  @error('notification')
+                                @error('notification')
                                     <span class="text-[12px]"> {{ $message }}</span>
                                 @enderror
                             </p>
@@ -270,6 +267,25 @@
                 btnSpinner.classList.remove('hidden');
                 submitButton.disabled = true;
                 loadingOverlay?.classList.remove('hidden');
+            });
+
+
+            const currencyRadios = document.querySelectorAll('input[name="currency"]');
+            const currencySymbol = document.getElementById('currencySymbol');
+
+
+            // Currency symbol update
+            function updateCurrencySymbol() {
+                const selected = document.querySelector('input[name="currency"]:checked')?.value;
+                currencySymbol.innerHTML = selected === 'USD' ? '$' : 'Ks';
+            }
+
+            // Initial currency
+            updateCurrencySymbol();
+
+            // Listen for changes
+            currencyRadios.forEach(radio => {
+                radio.addEventListener('change', updateCurrencySymbol);
             });
         });
     </script>

@@ -107,13 +107,43 @@
     <script>
         function downloadAsPNG() {
             const element = document.getElementById("exportArea");
-            //document.getElementById('btn').hide
+
             html2canvas(element, {
-                scale: 2,
-                useCORS: true
+                scale: 3,
+                useCORS: true,
+                backgroundColor: "#fff",
+                scrollX: 0,
+                scrollY: 0,
+                width: element.offsetWidth,
+                height: element.scrollHeight,
+                onclone: (clonedDoc) => {
+                    // Hide btn to remove from png
+                    const clonedBtn = clonedDoc.getElementById("btn");
+                    if (clonedBtn) clonedBtn.style.display = "none";
+
+                    const clonedExport = clonedDoc.getElementById("exportArea");
+                    clonedExport.style.maxWidth = "450px";
+                    clonedExport.style.width = "450px";
+                    clonedExport.style.overflow = "visible";
+
+                    //  text
+                    const truncated = clonedDoc.querySelectorAll("#exportArea .truncate");
+                    truncated.forEach(el => {
+                        el.style.overflow = "visible";
+                        el.style.whiteSpace = "normal";
+                        el.style.textOverflow = "clip";
+                    });
+
+                    //  shrinking img
+                    const imgs = clonedDoc.querySelectorAll("#exportArea img");
+                    imgs.forEach(img => {
+                        img.style.maxWidth = "none";
+                        img.style.maxHeight = "none";
+                    });
+                }
             }).then((canvas) => {
                 const link = document.createElement("a");
-                link.download = "payment.png"; // file name
+                link.download = "payment.png";
                 link.href = canvas.toDataURL("image/png");
                 link.click();
             });

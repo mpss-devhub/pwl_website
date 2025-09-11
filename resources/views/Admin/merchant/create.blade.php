@@ -44,7 +44,7 @@
                                 </div>
 
                                 <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden"
-                                    required onchange="validateImage(event)">
+                                    onchange="validateImage(event)">
                                 <label for="file-upload"
                                     class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-[11px] text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">
                                     <i class="fas fa-upload mr-2"></i>Upload Logo
@@ -185,7 +185,6 @@
 
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
                                         required placeholder="Contact Email"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                                         class="@error('merchant_Cemail') border-red-400 focus:outline-none @enderror
                placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md
                focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">

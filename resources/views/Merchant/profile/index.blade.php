@@ -71,25 +71,25 @@
 
                         <div class=" space-y-2 mt-4 ">
                             <!-- Company Registration -->
-                            <div class="border flex  py-2 tx rounded-lg hover:shadow-sm ">
+                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm ">
                                 <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_registration'])) }}" download class="" @disabled($Merchantinfo['merchant_registration'] == null)>
-                                    <p class="flex text-sm font-medium text-gray-700 mb-2 mx-10">Company Registration
+                                    <p class="text-center text-sm font-medium text-gray-700 ">Company Registration
                                     </p>
                                 </a>
                             </div>
 
                             <!-- Shareholder List -->
-                            <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
+                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
                                 <a href="{{ route('merchant.download' , basename($Merchantinfo['merchant_shareholder'])) }} " download class="" @disabled($Merchantinfo['merchant_shareholder'] == null)>
-                                    <p class="flex text-sm font-medium text-gray-700 mb-2  mx-14">Company Extract
+                                    <p class="text-center text-sm font-medium text-gray-700 ">Company Extract
                                     </p>
                                 </a>
                             </div>
                             <!-- DICA File -->
-                            <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
+                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
 
                                 <a href="{{ route('merchant.download' , basename($Merchantinfo['merchant_dica'])) }}" download class="" @disabled($Merchantinfo['merchant_dica'] == null )>
-                                    <p class="flex text-sm font-medium text-gray-700 mb-2 mx-14">Corporate Profile</p>
+                                    <p class="text-center text-sm font-medium text-gray-700 ">Corporate Profile</p>
                                 </a>
 
                             </div>

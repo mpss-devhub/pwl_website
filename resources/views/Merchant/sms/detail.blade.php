@@ -22,21 +22,23 @@
                     <!-- Left Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-center mb-2">
-                                @if (!$exists)
+                            <div class="flex justify-between mb-3">
+
+                                <h3
+                                    class="font-medium mt-1 text-gray-500 px-2 text-xs md:text-md lg:text-md border-l-4 border-l-blue-800 rounded ">
+                                    Basic Information
+                                </h3>
+                                             @if (!$exists)
                                         <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-xs md:text-md lg:text-md">
+                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
                                             <a href="{{ route('merchant.link.edit',$sms['id']) }}">
-                                            <i class="fa-solid fa-file-pen"></i> Edit
+                                            <i class="fa-solid fa-file-pen"></i>
+                                            <span class="text-sm font-semibold">Edit</span>
 
                                             </a>
                                         </button>
 
                                 @endif
-                                <h3
-                                    class="font-medium text-gray-500 px-2 text-xs md:text-md lg:text-md {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">
-                                    Basic Information
-                                </h3>
                             </div>
 
                             <div class="space-y-4">
@@ -56,7 +58,7 @@
                                         </span>
                                     @endif
                                     @if ($sms['link_type'] === 'C')
-                                        <span class="textx-sm font-semibold capitalize">
+                                        <span class="text-xs font-semibold capitalize">
                                             Copy
                                         </span>
                                     @endif

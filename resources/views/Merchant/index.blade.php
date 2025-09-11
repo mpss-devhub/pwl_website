@@ -229,6 +229,7 @@
                 series: [{
                     name: 'Revenue',
                     data: @json($revenueData['data'])
+
                 }],
                 chart: {
                     type: 'area',

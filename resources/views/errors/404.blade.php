@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Link Expired</title>
+    <title>404 Page</title>
     <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
      @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
@@ -24,8 +24,9 @@
         {{-- Warning Content --}}
         <div class="mt-8 sm:mt-12">
             <div class="text-red-600 text-3xl sm:text-4xl mb-2">⚠️</div>
-            <h2 class="text-base sm:text-sm">This payment link has <span class="text-red-500">expired</span></h2>
-            <p class="mt-4 text-gray-600 text-xs sm:text-sm">Please contact the merchant to get a new one.</p>
+            <span class="text-red-500">404</span>
+            <p class="text-base sm:text-sm "> Oppps Something wents wrongs</p>
+            <p class="mt-2 text-gray-600 text-xs sm:text-sm">Please reopen the Links for transaction status.</p>
         </div>
 
         <hr class="my-6 border-gray-300" />

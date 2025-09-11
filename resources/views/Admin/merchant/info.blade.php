@@ -58,48 +58,50 @@
                         </div>
                         @if (in_array('M', $access['M'] ?? []))
                             <div class="bg-white p-3 rounded-lg shadow mt-2">
-                            <a href="{{ route('merchant.mdr',$detail->user_id) }}" class="text-decoration-none ">
-                                <div class="text-center">
-                                    <span class="text-sm font-semibold text-gray-700 mr-1"> MDR Rates</span>
-                                    <i class="fa-solid fa-chart-pie text-gray-700"></i>
-                                </div>
-                            </a>
-                        </div>
+                                <a href="{{ route('merchant.mdr', $detail->user_id) }}" class="text-decoration-none ">
+                                    <div class="text-center">
+                                        <span class="text-sm font-semibold text-gray-700 mr-1"> MDR Rates</span>
+                                        <i class="fa-solid fa-chart-pie text-gray-700"></i>
+                                    </div>
+                                </a>
+                            </div>
                         @endif
-                         @if (in_array('D', $access['M'] ?? []))
+                        @if (in_array('D', $access['M'] ?? []))
                             <div class="bg-white p-3 rounded-lg shadow mt-2">
-                            <a href="{{ route('merchant.delete',$detail->user_id) }}" class="text-decoration-none ">
-                                <div class="text-center">
-                                    <span class="text-sm font-semibold text-gray-700 mr-1"> Delete Merchant</span>
-                                    <i class="fa-solid fa-trash text-red-700"></i>
-                                </div>
-                            </a>
-                        </div>
+                                <a href="{{ route('merchant.delete', $detail->user_id) }}" class="text-decoration-none ">
+                                    <div class="text-center">
+                                        <span class="text-sm font-semibold text-gray-700 mr-1"> Delete Merchant</span>
+                                        <i class="fa-solid fa-trash text-red-700"></i>
+                                    </div>
+                                </a>
+                            </div>
                         @endif
                         <div class="bg-white p-6 rounded-lg shadow mt-3">
-                            <h2 class="text-lg font-semibold text-gray-800">Download Information <i
-                                    class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>
+                            <h2 class="text-md font-semibold text-gray-800 text-center">
+                                Download Information
+                                <i class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i>
+                            </h2>
 
-                            <div class=" space-y-2 mt-4 ">
+                            <div class="space-y-2 mt-4">
                                 <!-- Company Registration -->
-                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm ">
-                                    <a href="{{ route('merchant.download',basename($detail->merchant_registration)) }}" download class="">
-                                        <p class="flex text-sm font-medium text-gray-700 mb-2 mx-10">Company Registration
-                                        </p>
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_registration)) }}" @disabled($detail->merchant_registration == null)
+                                        download>
+                                        <p class="text-sm font-medium text-gray-700 text-center">Company Registration</p>
                                     </a>
                                 </div>
-
                                 <!-- Shareholder List -->
-                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download' , basename($detail->merchant_shareholder)) }}" download class="">
-                                        <p class="flex text-sm font-medium text-gray-700 mb-2  mx-14">Company Extract
-                                        </p>
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_shareholder)) }}" @disabled($detail->merchant_shareholder == null)
+                                        download>
+                                        <p class="text-sm font-medium text-gray-700 text-center">Company Extract</p>
                                     </a>
                                 </div>
                                 <!-- DICA File -->
-                                <div class="border flex  py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download',basename($detail->merchant_dica)) }}" download class="">
-                                        <p class="flex text-sm font-medium text-gray-700 mb-2 mx-14">Corporate Profile</p>
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_dica)) }}"  @disabled($detail->merchant_dica == null)
+                                        download >
+                                        <p class="text-sm font-medium text-gray-700 text-center">Corporate Profile</p>
                                     </a>
                                 </div>
                             </div>

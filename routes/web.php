@@ -37,13 +37,17 @@ Route::get('/download/{file}', function ($file) {
 })->name('qr.download');
 
 //required to change
-Route::get('/download/{filename}', function ($file) {
-    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/" . $file;
-    $file = file_get_contents($url);
-    return response($file)
-        ->header('Content-Type', 'application/pdf')
-        ->header('Content-Disposition', 'attachment; filename="' . $file . '"');
+Route::get('/download/{filename}', function ($filename) {
+    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/" . $filename;
+    $fileContents = file_get_contents($url);
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mimeType = finfo_buffer($finfo, $fileContents);
+    finfo_close($finfo);
+    return response($fileContents)
+        ->header('Content-Type', $mimeType)
+        ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
 })->name('merchant.download');
+
 
 
 Route::get('/contactus', function () {

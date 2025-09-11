@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Merchant | Dashboard</title>
+    <title>Pay With Link</title>
     <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="{{ asset('common/components/js/screenshoot.js') }}"></script>

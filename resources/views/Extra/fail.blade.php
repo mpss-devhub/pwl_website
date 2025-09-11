@@ -8,9 +8,7 @@
     <link rel="icon" href="{{ Storage::url('common/icon.png') }}" type="image/png">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="{{ asset('common/checkout/style.css') }}">
-    <script src="{{ asset('common/checkout/js/checkout.js') }}"></script>
     <script src="{{ asset('common/checkout/js/prevent.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 </head>
 
 <body class="p-4" >
@@ -83,22 +81,9 @@
                         <span class="truncate">{{ $tnx['req_amount'] }}</span>
                     </div>
                 </div>
-                <div class="flex justify-end mt-2 mx-6">
+                <div class="flex justify-start mt-6 mx-6">
                     <img src="{{ Storage::url('common/f.png') }}" class="w-16 h-16 sm:w-24 sm:h-24 "
                         alt="Success Image">
-                </div>
-
-                <div class="flex justify-evenly mt-2 sm:mt-2">
-                    <button type="submit"
-                        class="bg-[#cacaca] py-2 px-4 rounded-md text-dark hover:bg-[#c4c4d0] transition text-[13px] border border-dotted">
-                        <a href="{{ $merchant['merchant_frontendURL'] }}">
-                            <i class="fa-solid fa-arrow-left mt-2"></i> Return Back
-                        </a>
-                    </button>
-                    <button onclick="downloadAsPNG()"
-                        class="bg-[#637AE2] py-2 px-4 rounded-md text-white hover:bg-[#5469c0] transition text-xs sm:text-base">
-                        Save Image
-                    </button>
                 </div>
             </div>
         </div>
@@ -109,20 +94,6 @@
             </p>
         </div>
     </div>
-    <script>
-        function downloadAsPNG() {
-            const element = document.getElementById("exportArea");
-
-            html2canvas(element, {
-                scale: 2
-            }).then((canvas) => {
-                const link = document.createElement("a");
-                link.download = "payment.png"; // file name
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            });
-        }
-    </script>
 </body>
 
 </html>

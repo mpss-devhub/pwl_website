@@ -106,10 +106,10 @@ class LinksController extends Controller
             Tnx::where('link_id', $links['id'])->update([
                 'payment_status' => 'FAIL'
             ]);
-             $link = Links::where('id', $links['id'])->update([
+            $link = Links::where('id', $links['id'])->update([
                 'link_status' => 'expired'
             ]);;
-             return view('Extra.fail', compact('merchant', 'link', 'tnx'));
+            return view('Extra.fail', compact('merchant', 'link', 'tnx'));
         }
     }
 
@@ -169,23 +169,28 @@ class LinksController extends Controller
 
     public function update(LinkUpdateRequest $request, $id)
     {
-        $link = Links::findOrFail($id);
+           //dd($request->all());
         $validatedData = $request->validated();
-        $link->update([
-            'user_id'       => $validatedData['user_id'],
-            'link_invoiceNo' => $validatedData['invoiceNo'],
-            'link_amount'        => $validatedData['amount'],
-            'link_name'          => $validatedData['name'],
-            'link_phone'         => $validatedData['phone'],
-            'link_email'         => $validatedData['email'],
-            'expired_at'    => $validatedData['expired_at'],
-            'link_description'   => $validatedData['description'],
-            'link_type'  => $validatedData['notification'],
-            'link_currency'      => $validatedData['currency'],
-        ]);
+
+        Links::updateOrCreate(
+            ['id' => $id],
+            [
+                'user_id'          => $validatedData['user_id'],
+                'link_invoiceNo'   => $validatedData['invoiceNo'],
+                'link_amount'      => $validatedData['amount'],
+                'link_name'        => $validatedData['name'],
+                'link_phone'       => $validatedData['phone'],
+                'link_email'       => $validatedData['email'],
+                'expired_at'       => $validatedData['expired_at'],
+                'link_description' => $validatedData['description'],
+                'link_type'        => $validatedData['notification'],
+                'link_currency'    => $validatedData['currency'],
+            ]
+        );
 
         return to_route('merchant.sms')->with('Success', 'Link updated successfully.');
     }
+
 
     public function importLinks(Request $request)
     {
