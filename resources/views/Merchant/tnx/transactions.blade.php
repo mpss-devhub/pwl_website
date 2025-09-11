@@ -119,15 +119,18 @@
 
                             <!-- Buttons -->
                             <div class="flex items-end gap-2">
-                                <button id="search-btn"
+                                <button id="submitBtn"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text" viewBox="0 0 20 20"
                                         fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Search
+                                    <span class="">Search</span>
+                                    <span class="spinner hidden">
+                                        <i class="fa fa-spinner fa-spin mx-1"></i>
+                                    </span>
                                 </button>
                                 <a href="{{ route('merchant.tnx') }}"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
@@ -143,16 +146,21 @@
                             </div>
 
                             <di v class="flex items-end gap-2">
-                                <a href="{{ route('merchant.csv.export') }}"
+                                <a href="{{ route('merchant.csv.export') }}" id="submitBtn"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                         fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                    Export CSV
+                                    <span class="text">Export CSV</span>
+                                    <span class="spinner hidden">
+                                        <i class="fa fa-spinner fa-spin mx-1"></i>
+                                    </span>
                                 </a>
+
 
                                 <a href="{{ route('merchant.tnx.export') }}"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">

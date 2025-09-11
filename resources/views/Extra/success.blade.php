@@ -35,7 +35,7 @@
             style="font-family: 'Libre Baskerville'">
             @if ($tnx['payment_status'] == 'SUCCESS')
                 <div class="flex items-center justify-center space-x-2">
-                    <p class="text-center text-gray-700 font-medium">Payment Success</p>
+                    <p class="text-center text-gray-700 font-semibold text-sm">Payment Success</p>
                     <i class="fa-solid fa-circle-check text-green-500 text-md"></i>
                 </div>
             @endif

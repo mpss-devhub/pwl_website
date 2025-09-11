@@ -155,8 +155,8 @@ class PaymentService
             'paymentToken' => $decode->paymentToken,
             "payData" => $paydata
         ]);
-        $data = $response['data'];
-
+        //$data = $response['data'];
+        dd($response->json());
         return $data;
     }
 
@@ -174,11 +174,11 @@ class PaymentService
             $payload['expiryYear'] = $data['expiryYear'];
         }
         if ($type === 'G_C') {
-            // $payload['phoneNo'] = '$data['tnx_phonenumber']';
+            $payload['phoneNo'] = $data['tnx_phonenumber'];
             $payload['number'] = $data['cardNumber'];
             $payload['expiryMonth'] = $data['expiryMonth'];
             $payload['expiryYear'] = $data['expiryYear'];
-            $payload['cvv'] = $data['securityCode'];
+            $payload['securityCode'] = $data['securityCode'];
         }
         $plaintext = json_encode($payload, JSON_UNESCAPED_UNICODE);
         $encrypted = openssl_encrypt($plaintext, 'AES-128-ECB', $data_Key, OPENSSL_RAW_DATA);

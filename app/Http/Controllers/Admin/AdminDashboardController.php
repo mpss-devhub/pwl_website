@@ -75,7 +75,7 @@ class AdminDashboardController extends Controller
             $revenue = Tnx::selectRaw('YEAR(created_at) as year, SUM(net_amount) as total')
                 ->whereYear('created_at', '>=', $startYear)
                 ->where('currencyCode', 'MMK')
-                ->where('payment_status', 'Success')
+                ->where('payment_status', 'SUCCESS')
                 ->groupBy('year')
                 ->orderBy('year')
                 ->pluck('total', 'year')
@@ -88,7 +88,7 @@ class AdminDashboardController extends Controller
                 $values[] = isset($revenue[$y]) ? (float) $revenue[$y] : 0;
             }
         } elseif ($month === 'all') {
-            // Rest of your existing code...
+
             $revenue = Tnx::selectRaw('MONTH(created_at) as month, SUM(net_amount) as total')
                 ->whereYear('created_at', $year)
                 ->groupBy('month')
@@ -102,7 +102,7 @@ class AdminDashboardController extends Controller
                 $values[] = isset($revenue[$m]) ? (float) $revenue[$m] : 0;
             }
         } else {
-            // Rest of your existing code...
+
             $daysInMonth = Carbon::create($year, $month, 1)->daysInMonth;
             $revenue = Tnx::selectRaw('DAY(created_at) as day, SUM(net_amount) as total')
                 ->whereYear('created_at', $year)

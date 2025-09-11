@@ -12,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
                     data: revenueData.data,
                 },
             ],
+            markers: {
+                size: 0,
+                hover: {
+                    size: 0,
+                },
+            },
+
             chart: {
                 type: "area",
                 height: "100%",
@@ -49,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
 
             tooltip: {
-                enabled: true,
+                enabled: false,
                 y: {
                     formatter: (value) => {
                         if (value === null || value === undefined) return "0";
@@ -91,11 +98,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     right: 20,
                     bottom: 0,
                     left: 20,
-                },
-            },
-            tooltip: {
-                y: {
-                    formatter: (value) => "MMK " + value.toLocaleString(),
                 },
             },
         };
@@ -163,7 +165,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 borderColor: "#e5e7eb",
                 strokeDashArray: 4,
             },
+             markers: {
+                size: 0,
+                hover: {
+                    size: 0,
+                },
+            },
             tooltip: {
+                enabled: false,
                 y: {
                     formatter: (value) => value.toLocaleString() + " users",
                 },

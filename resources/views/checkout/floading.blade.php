@@ -99,18 +99,23 @@
                                 <label for="cardNumber" class="block text-sm font-medium text-gray-700">
                                     {{ $item['paymentName'] }} Card Info
                                 </label>
-
+                                <input required type="text" name="tnx_phonenumber" x-model="tnx_phonenumber"
+                                    minlength="4" maxlength="20" pattern="[0-9]*" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                    placeholder="Enter Phone Number"
+                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                 <input required type="text" name="cardNumber" x-model="cardNumber"
                                     placeholder="Enter Card Number" minlength="6" maxlength="20" pattern="[0-9]*"
                                     inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
-                                <input required type="text" name="securityCode" x-model="securityCode"
+
+                                <div class="flex justify-center">
+                                    <div class="flex space-x-2 sm:space-x-4">
+                                         <input required type="text" name="securityCode" x-model="securityCode"
                                     minlength="2" maxlength="8" pattern="[0-9]*" inputmode="numeric"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
                                     placeholder="Enter Security Code"
                                     class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
-                                <div class="flex justify-center">
-                                    <div class="flex space-x-2 sm:space-x-4">
                                         <input required type="text" name="expiryMonth" x-model="expiryMonth"
                                             placeholder="MM" minlength="2" maxlength="8" pattern="[0-9]*"
                                             inputmode="numeric"

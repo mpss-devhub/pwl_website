@@ -9,7 +9,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Total Revenue</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">MMK
+                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
+                                MMK
                                 {{ $TotalMMK }}</p>
                             @if ($TotalUSD)
                                 <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800">
@@ -34,7 +35,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Transactions</p>
-                            <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
+                            <p
+                                class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm font-semibold text-gray-800 mt-1">
                                 {{ $TotalTnx }}</p>
 
                         </div>
@@ -231,6 +233,12 @@
                     data: @json($revenueData['data'])
 
                 }],
+                markers: {
+                    size: 0,
+                    hover: {
+                        size: 0,
+                    },
+                },
                 chart: {
                     type: 'area',
                     height: '100%',
@@ -277,7 +285,7 @@
                     }
                 },
                 tooltip: {
-                    enabled: true,
+                    enabled: false,
                     y: {
                         formatter: (value) => "MMK " + value.toLocaleString(),
                         style: {
