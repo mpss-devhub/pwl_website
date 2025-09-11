@@ -26,7 +26,7 @@
                     <form action="{{ route('links.update', $link->id) }}" method="post">
                         @csrf
                         @method('PUT')
-
+                        <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
                         <div class="p-5">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -41,7 +41,7 @@
                                         </label>
                                     </div>
                                     <input type="text" name="invoiceNo"
-                                        value="{{ old('invoiceNo', $link->link_invoiceNo) }}" minlength="3" maxlength="30"
+                                        value="{{ old('invoiceNo', $link->link_invoiceNo) }}"      minlength="3" maxlength="30" oninput="this.value = this.value.replace(/\s/g, '')"
                                         class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
                                 </div>
@@ -111,7 +111,7 @@
                                 <div>
                                     <label class="block text-xs font-medium text-gray-700 mb-2">Customer Email</label>
                                     <input type="email" name="email" value="{{ old('email', $link->link_email) }}"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" minlength="4" maxlength="16"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" minlength="4" maxlength="30"
                                         class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                 </div>
 

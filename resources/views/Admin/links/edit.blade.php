@@ -2,57 +2,82 @@
 @section('admin_content')
     @include('Admin.links.alert')
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
-        <div class="p-4 mt-14">
-            <div class="max-w-6xl mx-auto">
+        <div class="p-4 mt-12">
+            <div class="max-w-7xl mx-auto">
                 <!-- Form Card -->
                 <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                       <div class="flex items-center justify-between p-4">
+                        <div class="">
+                            <h2 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 ml-3">
+                                Payment Link Details
+                                <span
+                                    class="text-[10px] bg-blue-400 text-white p-1 mx-2 rounded-lg ">{{ $link->user_id }}</span>
+                            </h2>
+
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt=""
+                                    style="width: 120px;">
+                            </div>
+                        </div>
+                    </div>
                     <form action="{{ route('admin.links.update', $link->id) }}" method="post">
                         @csrf
                         @method('PUT')
-
-                        <div class="p-6">
+                        <input type="hidden" name="user_id" value="{{ $link->user_id }}">
+                         <div class="p-5">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <!-- User ID -->
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">User ID</label>
-                                    <input type="text" name="user_id" value="{{ $link->user_id }}"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
-                                        required readonly>
-                                </div>
 
                                 <!-- Invoice No -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Invoice Number</label>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class=" text-xs font-medium text-gray-700 mb-2">
+                                            Invoice Number
+                                            @error('invoiceNo')
+                                                <span class="text-red-500 text-[9px] mx-2">{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <input type="text" name="invoiceNo"
-                                        value="{{ old('invoiceNo', $link->link_invoiceNo) }}"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        value="{{ old('invoiceNo', $link->link_invoiceNo) }}"      minlength="3" maxlength="30" oninput="this.value = this.value.replace(/\s/g, '')"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
-                                    @error('invoiceNo')
-                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
                                 </div>
 
                                 <!-- Amount -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Amount</label>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-2">
+                                            Amount
+                                            @error('amount')
+                                                <span class="text-red-500 text-[9px] mx-2">{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <div class="relative">
                                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                            <span class="text-gray-500">$</span>
+                                            @if ($link->link_currency == 'MMK')
+                                                <span class="text-gray-500">KS</span>
+                                            @endif
+                                            @if ($link->link_currency == 'USD')
+                                                <span class="text-gray-500">$</span>
+                                            @endif
+
                                         </div>
                                         <input type="number" name="amount" value="{{ old('amount', $link->link_amount) }}"
-                                            class="w-full pl-8 px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                           min="0.01" max="9999999"  step="0.01"
+                                            class="w-full pl-8 px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                             required>
                                     </div>
-                                    @error('amount')
-                                        <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
-                                    @enderror
+
                                 </div>
 
                                 <!-- Currency -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Currency</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Currency</label>
                                     <select name="currency"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
                                         <option value="MMK"
                                             {{ old('currency', $link->link_currency) == 'MMK' ? 'selected' : '' }}>MMK
@@ -65,43 +90,46 @@
 
                                 <!-- Name -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Customer Name</label>
                                     <input type="text" name="name" value="{{ old('name', $link->link_name) }}"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
                                 </div>
 
                                 <!-- Phone -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Customer Phone</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Customer Phone</label>
                                     <input type="text" name="phone" value="{{ old('phone', $link->link_phone) }}"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        pattern="[0-9]*" inputmode="numeric" minlength="4" maxlength="14"
+                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
                                 </div>
 
                                 <!-- Email -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Customer Email</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Customer Email</label>
                                     <input type="email" name="email" value="{{ old('email', $link->link_email) }}"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" minlength="4" maxlength="30"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">
                                 </div>
 
                                 <!-- Expiration -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Expiration Date</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Expiration Date</label>
                                     <div class="relative">
-                                        <input type="datetime-local" name="expired_at"
+                                        <input type="datetime-local" name="expired_at" required
                                             value="{{ old('expired_at', \Carbon\Carbon::parse($link->expired_at)->format('Y-m-d\TH:i')) }}"
-                                            class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                            class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                             required>
                                     </div>
                                 </div>
 
                                 <!-- Notification -->
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Notifications</label>
+                                    <label class="block text-xs font-medium text-gray-700 mb-2">Notifications</label>
                                     <select name="notification"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                         required>
                                         <option value="C"
                                             {{ old('notification', $link->notification) == 'C' ? 'selected' : '' }}>Copy
@@ -109,11 +137,11 @@
                                         <option value="Q"
                                             {{ old('notification', $link->notification) == 'Q' ? 'selected' : '' }}>QR
                                         </option>
-                                       @if($sms)
+                                        @if ($sms)
                                             <option value="S"
-                                            {{ old('notification', $link->notification) == 'S' ? 'selected' : '' }}>SMS
-                                        </option>
-                                       @endif
+                                                {{ old('notification', $link->notification) == 'S' ? 'selected' : '' }}>SMS
+                                            </option>
+                                        @endif
                                         <option value="E"
                                             {{ old('notification', $link->notification) == 'E' ? 'selected' : '' }}>Email
                                         </option>
@@ -122,20 +150,27 @@
 
                                 <!-- Description -->
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="block text-xs font-medium text-gray-700 mb-2">
+                                            Description
+                                            @error('description')
+                                                <span class="text-red-500 text-[9px] mx-2">{{ $message }}</span>
+                                            @enderror
+                                        </label>
+                                    </div>
                                     <textarea name="description" rows="3"
-                                        class="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">{{ old('description', $link->link_description) }}</textarea>
+                                        class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200">{{ old('description', $link->link_description) }}</textarea>
                                 </div>
                             </div>
 
                             <!-- Form Actions -->
-                            <div class="mt-8 flex justify-end space-x-3">
+                            <div class="mt-4 flex justify-end space-x-3">
                                 <button type="button" onclick="window.location.href='{{ route('admin.links') }}'"
-                                    class="px-6 py-2.5 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-200">
+                                    class="text-sm px-6 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50 transition duration-200">
                                     Cancel
                                 </button>
                                 <button type="submit"
-                                    class="px-6 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                                    class="text-sm px-4 py-2 bg-blue-900 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
                                     <div class="flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                             fill="currentColor">

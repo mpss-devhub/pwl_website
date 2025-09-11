@@ -169,7 +169,7 @@ class LinksController extends Controller
 
     public function update(LinkUpdateRequest $request, $id)
     {
-           //dd($request->all());
+       // dd($request->all());
         $validatedData = $request->validated();
 
         Links::updateOrCreate(

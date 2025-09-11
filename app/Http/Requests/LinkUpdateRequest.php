@@ -29,7 +29,7 @@ class LinkUpdateRequest extends FormRequest
             "user_id"    => "required",
             "invoiceNo"  => [
                 "required",
-                Rule::unique('links', 'link_invoiceNo')->ignore($linkId),
+                Rule::unique('links', 'link_invoiceNo')->ignore($linkId,'id'),
             ],
             "amount"     => "required",
             "name"       => "required|max:100",

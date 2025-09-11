@@ -22,20 +22,25 @@
                     <!-- Left Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex items-between mb-2">
-                                @if (!$exists && in_array('U', $access['L'] ?? []))
-                                        <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-xs md:text-md lg:text-md">
-                                            <a href="{{ route('admin.link.edit',$sms['id']) }}" >
-                                            <i class="fa-solid fa-file-pen"></i> Edit
-                                            </a>
-                                        </button>
-                                @endif
+                            <div class="flex justify-between mb-3">
+
                                 <h3
-                                    class="font-medium text-gray-500 text-xs md:text-md lg:text-md   px-2 {{ $exists ? 'border-l-4 border-l-blue-800 rounded' : '' }}">
+                                    class="font-medium mt-1 text-gray-500 px-2 text-xs md:text-md lg:text-md border-l-4 border-l-blue-800 rounded ">
                                     Basic Information
                                 </h3>
+                                             @if (!$exists)
+                                        <button type="submit"
+                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
+                                            <a href="{{ route('admin.link.edit',$sms['id']) }}">
+                                            <i class="fa-solid fa-file-pen"></i>
+                                            <span class="text-sm font-semibold">Edit</span>
+
+                                            </a>
+                                        </button>
+
+                                @endif
                             </div>
+
 
                             <div class="space-y-4">
                                 <div class="flex justify-between">
@@ -54,7 +59,7 @@
                                         </span>
                                     @endif
                                     @if ($sms['link_type'] === 'C')
-                                        <span class="textx-xs font-semibold capitalize">
+                                        <span class="text-xs font-semibold capitalize">
                                             Copy
                                         </span>
                                     @endif
@@ -78,7 +83,9 @@
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg h-60">
 
-                            <h3 class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">Description
+                            <h3
+                                class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">
+                                Description
                             </h3>
                             <p class="text-gray-700 text-xs">{{ $sms['link_description'] ?? 'No description provided' }}</p>
                         </div>
@@ -90,7 +97,8 @@
                     <!-- Right Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Payment Details</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Payment
+                                Details</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">
@@ -113,7 +121,8 @@
                         </div>
 
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Customer Information</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Customer
+                                Information</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">

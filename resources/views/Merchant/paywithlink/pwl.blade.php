@@ -95,7 +95,7 @@
                             <!-- Customer Email -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Email</label>
-                                <input id="customerEmail" name="email" type="email" value="{{ old('email') }}"
+                                <input id="customerEmail" name="email" type="email" value="{{ old('email') }}" minlength="4" maxlength="30"
                                     class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="customer@example.com">
                             </div>
