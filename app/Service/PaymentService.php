@@ -62,6 +62,7 @@ class PaymentService
             'link' => $link,
             'merchant' => $merchant,
         ];
+        //dd($link, $merchant);
     }
 
     public function Auth(array $data)
@@ -123,6 +124,7 @@ class PaymentService
 
     public function store(array $data)
     {
+        //dd($data);
         $tnx_data = $this->paymentDao->store($data);
     }
 
@@ -155,7 +157,7 @@ class PaymentService
             'paymentToken' => $decode->paymentToken,
             "payData" => $paydata
         ]);
-        //$data = $response['data'];
+        $data = $response['data'];
        // dd($response->json());
         return $data;
     }

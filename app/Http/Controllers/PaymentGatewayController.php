@@ -28,17 +28,20 @@ class PaymentGatewayController extends Controller
         $Web = $data[2]['payments'] ?? null;
         $L_C = $data[3]['payments'] ?? null;
         $G_C = $data[4]['payments'] ?? null;
+       // dd($data);
         return view('checkout.paymentlist', compact('link', 'merchant', 'Ewallet', 'QR', 'Web', 'L_C', 'G_C'));
     }
 
     public function Pwl(Request $request)
     {
         $data = $this->paymentService->Auth($request->all());
+        //dd($data);
         $this->paymentService->store($request->all());
         $link_data = $this->paymentService->link($request->all());
         $link = $link_data['link'] ?? null;
         $link_id = $link['id'] ?? null;
         $merchant = $link_data['merchant'] ?? null;
+        //dd($data, $link, $merchant);
         return view('checkout.pay', compact('data', 'link', 'merchant'));
     }
 
