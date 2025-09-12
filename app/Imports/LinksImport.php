@@ -8,14 +8,11 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
-use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Illuminate\Validation\ValidationException;
-use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class LinksImport implements ToModel, WithValidation, SkipsOnFailure, WithStartRow
+class LinksImport implements ToModel, WithValidation, WithStartRow
 {
-    use SkipsFailures;
 
     protected $SMSService;
 
@@ -98,7 +95,7 @@ class LinksImport implements ToModel, WithValidation, SkipsOnFailure, WithStartR
                 ]
             );
         }
-           $this->successCount++;
+        $this->successCount++;
         return null;
     }
 
@@ -111,12 +108,40 @@ class LinksImport implements ToModel, WithValidation, SkipsOnFailure, WithStartR
                 'max:100',
                 Rule::unique('links', 'link_invoiceNo'),
             ],
-            '*.2' => 'required',
-            '*.4' => 'required',
-            '*.5' => 'nullable|email|max:255',
-            '*.6' => 'required',
-            '*.8' => 'required',
-            '*.9' => 'required',
+            '*.2' => [
+                'required',
+                'numeric',
+                'min:0.01',
+                'max:999999',
+            ],
+            '*.4' => [
+                'required',
+                'digits_between:4,12',
+            ],
+            '*.5' => [
+                'nullable',
+                'email',
+                'max:30',
+            ],
+            '*.6' => [
+                'required',
+                'date',
+                'after_or_equal:today',
+            ],
+            '*.7' => [
+                'nullable',
+                'string',
+                'max:30',
+            ],
+            '*.8' => [
+                'required',
+                'string',
+                'max:10',
+            ],
+            '*.9' => [
+                'required',
+                Rule::in(['MMK', 'USD']),
+            ],
         ];
     }
 }

@@ -30,7 +30,7 @@
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <!-- Left Section -->
                             <div class="flex gap-4 items-start">
-                                <img src="{{ Storage::url('/common/demo.png') }}" alt="Merchant Image"
+                                <img src="{{ $merchant->merchant_logo ? $merchant->merchant_logo : Storage::url('/common/demo.png') }}" alt="Merchant Image"
                                     class="w-24 h-24 rounded-lg object-cover">
 
                                 <div class="mt-1 space-y-2 mt-3">

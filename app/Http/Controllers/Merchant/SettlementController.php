@@ -138,11 +138,12 @@ class SettlementController extends Controller
 
     public function details($id)
     {
-        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
+        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id','merchant_logo')->first();
         $settlement = $this->getSettlementDetails($merchant['merchant_id'], $id);
         $details = $settlement['data']['dataList'][0];
         $data = Tnx::where('tranref_no', $id)->first();
-        return view('Merchant.Settlement.details', compact('data', 'details'));
+       //dd($merchant->merchant_logo, $id, $details, $data);
+        return view('Merchant.Settlement.details', compact('data', 'details','merchant'));
     }
 
     public function export()

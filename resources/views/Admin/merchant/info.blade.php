@@ -39,7 +39,11 @@
                                                 class="fa-solid fa-bell ml-1 "></i></label>
                                         <div class="flex justify-between mt-4">
                                             <div class="">
-                                                <p class="text-xs font-semibold text-gray-700 "> SMS </p>
+                                                <p
+                                                    class="text-xs font-semibold text-gray-700 {{ $data ? 'border-b-2' : '' }}">
+                                                    SMS
+                                                </p>
+
                                             </div>
                                             <div class="">
                                                 <p class="text-xs font-semibold text-gray-700 border-b-2"> Email </p>
@@ -85,22 +89,22 @@
                             <div class="space-y-2 mt-4">
                                 <!-- Company Registration -->
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_registration)) }}" @disabled($detail->merchant_registration == null)
-                                        download>
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_registration)) }}"
+                                        @disabled($detail->merchant_registration == null) download>
                                         <p class="text-sm font-medium text-gray-700 text-center">Company Registration</p>
                                     </a>
                                 </div>
                                 <!-- Shareholder List -->
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_shareholder)) }}" @disabled($detail->merchant_shareholder == null)
-                                        download>
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_shareholder)) }}"
+                                        @disabled($detail->merchant_shareholder == null) download>
                                         <p class="text-sm font-medium text-gray-700 text-center">Company Extract</p>
                                     </a>
                                 </div>
                                 <!-- DICA File -->
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_dica)) }}"  @disabled($detail->merchant_dica == null)
-                                        download >
+                                    <a href="{{ route('merchant.download', basename($detail->merchant_dica)) }}"
+                                        @disabled($detail->merchant_dica == null) download>
                                         <p class="text-sm font-medium text-gray-700 text-center">Corporate Profile</p>
                                     </a>
                                 </div>

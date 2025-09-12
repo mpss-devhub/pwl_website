@@ -134,12 +134,13 @@ class SettlementController extends Controller
     {
         $settlement = $this->getSettlementDetails($merchant, $id);
         $details = $settlement['data']['dataList'][0];
-
+        $merchant = Merchants::where('merchant_id', $merchant)->first();
+        //dd($details, $merchant->merchant_logo);
         $data = Tnx::where('tranref_no', $details['merchantInvoiceNo'])->first();
         if (!$data) {
             abort(404, 'Transaction not found');
         }
-        return view('Admin.Settlement.details', compact('data', 'details'));
+        return view('Admin.Settlement.details', compact('data', 'details','merchant'));
     }
 
     public function export()

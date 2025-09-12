@@ -28,7 +28,9 @@ Route::middleware(['merchant'])->group(function () {
         $id = Auth::user()->user_id;
         $Merchant = Merchants::where('user_id', $id)->get()->toArray();
         $Merchantinfo = $Merchant[0];
-        return view('Merchant.profile.index', compact('Merchantinfo'));
+        $data = sms::where('merchant_id', $Merchantinfo['merchant_id'])->exists();
+        //dd($data);
+        return view('Merchant.profile.index', compact('Merchantinfo','data'));
     })->name('merchant.profile');
 
 

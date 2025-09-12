@@ -11,7 +11,7 @@
                         <a href="{{ route('mdr') }}" class="text-decoration-none ">
                             <div class="text-center">
                                 <span class="text-sm font-semibold text-gray-700 mr-1"> MDR Rates</span>
-                               <i class="fa-solid fa-chart-pie text-gray-700"></i>
+                                <i class="fa-solid fa-chart-pie text-gray-700"></i>
                             </div>
                         </a>
                     </div>
@@ -22,7 +22,8 @@
                         <div class="mt-6">
                             <div class="flex flex-col items-center">
                                 <div class="relative mb-4 group">
-                                    <img src="{{ $Merchantinfo['merchant_logo'] ? $Merchantinfo['merchant_logo'] : Storage::url('common/approved.png')  }}" alt="Merchant Profile"
+                                    <img src="{{ $Merchantinfo['merchant_logo'] ? $Merchantinfo['merchant_logo'] : Storage::url('common/approved.png') }}"
+                                        alt="Merchant Profile"
                                         class="w-44 h-44 rounded-full object-cover border-4 border-gray-200 shadow-sm">
                                     <div
                                         class="absolute inset-0 bg-black bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -40,7 +41,9 @@
                                             class="fa-solid fa-bell ml-1 "></i></label>
                                     <div class="flex justify-between mt-4">
                                         <div class="">
-                                            <p class="text-xs font-semibold text-gray-700 "> SMS </p>
+                                            <p class="text-xs font-semibold text-gray-700 {{ $data ? 'border-b-2' : '' }}">
+                                                SMS
+                                            </p>
                                         </div>
                                         <div class="">
                                             <p class="text-xs font-semibold text-gray-700 border-b-2"> Email </p>
@@ -60,7 +63,7 @@
                     <div class="bg-white p-3 rounded-lg shadow mt-2">
                         <a href="{{ route('forgotpassword') }}" class="text-decoration-none ">
                             <div class="text-center">
-                               <i class="fa-solid fa-key text-gray-700"></i>
+                                <i class="fa-solid fa-key text-gray-700"></i>
                                 <span class="text-sm font-semibold text-gray-700 mr-2">Change Password</span>
                             </div>
                         </a>
@@ -72,7 +75,8 @@
                         <div class=" space-y-2 mt-4 ">
                             <!-- Company Registration -->
                             <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm ">
-                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_registration'])) }}" download class="" @disabled($Merchantinfo['merchant_registration'] == null)>
+                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_registration'])) }}"
+                                    download class="" @disabled($Merchantinfo['merchant_registration'] == null)>
                                     <p class="text-center text-sm font-medium text-gray-700 ">Company Registration
                                     </p>
                                 </a>
@@ -80,7 +84,8 @@
 
                             <!-- Shareholder List -->
                             <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
-                                <a href="{{ route('merchant.download' , basename($Merchantinfo['merchant_shareholder'])) }} " download class="" @disabled($Merchantinfo['merchant_shareholder'] == null)>
+                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_shareholder'])) }} "
+                                    download class="" @disabled($Merchantinfo['merchant_shareholder'] == null)>
                                     <p class="text-center text-sm font-medium text-gray-700 ">Company Extract
                                     </p>
                                 </a>
@@ -88,7 +93,8 @@
                             <!-- DICA File -->
                             <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
 
-                                <a href="{{ route('merchant.download' , basename($Merchantinfo['merchant_dica'])) }}" download class="" @disabled($Merchantinfo['merchant_dica'] == null )>
+                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_dica'])) }}"
+                                    download class="" @disabled($Merchantinfo['merchant_dica'] == null)>
                                     <p class="text-center text-sm font-medium text-gray-700 ">Corporate Profile</p>
                                 </a>
 
@@ -121,7 +127,8 @@
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm ">Contact Phone </label>
-                                <p class="mt-3 text-sm font-medium text-gray-700">{{ $Merchantinfo['merchant_Cphone'] }}</p>
+                                <p class="mt-3 text-sm font-medium text-gray-700">{{ $Merchantinfo['merchant_Cphone'] }}
+                                </p>
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm ">Contact Email </label>

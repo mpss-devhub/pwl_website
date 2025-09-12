@@ -10,7 +10,5 @@ document.addEventListener("DOMContentLoaded", function () {
                 spinner.style.display = 'inline-block';
             }
         });
-
-          btn.disabled = true;
     }
 });
