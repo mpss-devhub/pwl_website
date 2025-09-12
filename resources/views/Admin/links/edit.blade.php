@@ -119,7 +119,7 @@
                                     <label class="block text-xs font-medium text-gray-700 mb-2">Expiration Date</label>
                                     <div class="relative">
                                         <input type="datetime-local" name="expired_at" required
-                                            value="{{ old('expired_at', \Carbon\Carbon::parse($link->expired_at)->format('Y-m-d\TH:i')) }}"
+                                            value="{{ old('expired_at', \Carbon\Carbon::parse($link->link_expired_at)->format('Y-m-d\TH:i')) }}"
                                             class="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-200"
                                             required>
                                     </div>

@@ -161,7 +161,7 @@ class AdminSmScontroller extends Controller
             'link_name'          => $validatedData['name'],
             'link_phone'         => $validatedData['phone'],
             'link_email'         => $validatedData['email'],
-            'expired_at'    => $validatedData['expired_at'],
+            'link_expired_at'    => $validatedData['expired_at'],
             'link_description'   => $validatedData['description'],
             'link_type'  => $validatedData['notification'],
             'link_currency'      => $validatedData['currency'],

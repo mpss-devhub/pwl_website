@@ -164,6 +164,7 @@ class LinksController extends Controller
     {
         $link = Links::findOrFail($id);
         $sms = sms::where('merchant_id', $link['created_by'])->get();
+        //dd($link->link_expired_at);
         return view('Merchant.sms.edit', compact('link', 'sms'));
     }
 
@@ -171,7 +172,7 @@ class LinksController extends Controller
     {
        // dd($request->all());
         $validatedData = $request->validated();
-
+       // dd($validatedData);
         Links::updateOrCreate(
             ['id' => $id],
             [
@@ -181,7 +182,7 @@ class LinksController extends Controller
                 'link_name'        => $validatedData['name'],
                 'link_phone'       => $validatedData['phone'],
                 'link_email'       => $validatedData['email'],
-                'expired_at'       => $validatedData['expired_at'],
+                'link_expired_at'       => $validatedData['expired_at'],
                 'link_description' => $validatedData['description'],
                 'link_type'        => $validatedData['notification'],
                 'link_currency'    => $validatedData['currency'],

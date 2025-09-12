@@ -91,6 +91,7 @@ class AdminDashboardController extends Controller
 
             $revenue = Tnx::selectRaw('MONTH(created_at) as month, SUM(net_amount) as total')
                 ->whereYear('created_at', $year)
+                ->where('payment_status', 'SUCCESS')
                 ->groupBy('month')
                 ->pluck('total', 'month')
                 ->toArray();
@@ -107,6 +108,7 @@ class AdminDashboardController extends Controller
             $revenue = Tnx::selectRaw('DAY(created_at) as day, SUM(net_amount) as total')
                 ->whereYear('created_at', $year)
                 ->whereMonth('created_at', $month)
+                ->where('payment_status', 'SUCCESS')
                 ->groupBy('day')
                 ->pluck('total', 'day')
                 ->toArray();

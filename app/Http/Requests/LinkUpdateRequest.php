@@ -29,16 +29,18 @@ class LinkUpdateRequest extends FormRequest
             "user_id"    => "required",
             "invoiceNo"  => [
                 "required",
-                Rule::unique('links', 'link_invoiceNo')->ignore($linkId,'id'),
+                 "max:50",
+                Rule::unique('links', 'link_invoiceNo')->ignore($linkId, 'id'),
             ],
             "amount"     => "required",
             "name"       => "required|max:100",
-            "phone"      => "required",
-            "email"      => "nullable|email",
-            "expired_at" => "required",
+            "phone" => "required|digits_between:1,16",
+            "email"      => "nullable|email|max:30",
+            "expired_at" => "required|date|after_or_equal:today",
             "description" => "nullable|max:90",
             "notification" => "required",
-            "currency"   => "required"
+            "currency" => "required|in:MMK,USD",
+
         ];
     }
 }

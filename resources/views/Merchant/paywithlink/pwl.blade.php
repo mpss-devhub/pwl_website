@@ -41,7 +41,7 @@
                                     </span>
                                 </label>
                                 <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}"
-                                    minlength="3" maxlength="30" oninput="this.value = this.value.replace(/\s/g, '')"
+                                    minlength="3" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')"
                                     class="w-full px-4 text-gray-700 placeholder-gray-400 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
                             </div>
