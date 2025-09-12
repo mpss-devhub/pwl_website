@@ -51,7 +51,7 @@
                         <div class="grid grid-cols-3 px-2 sm:px-5">
                             <span class="truncate">Amount</span>
                             <span class="text-center">:</span>
-                            <span class="font-medium truncate">{{ $link->link_amount }}</span>
+                            <span class="font-medium truncate">{{ $link->link_amount }} {{ $link->link_currency }}</span>
                         </div>
                     </div>
 

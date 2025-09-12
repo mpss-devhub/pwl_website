@@ -156,7 +156,7 @@ class PaymentService
             "payData" => $paydata
         ]);
         //$data = $response['data'];
-        dd($response->json());
+       // dd($response->json());
         return $data;
     }
 
