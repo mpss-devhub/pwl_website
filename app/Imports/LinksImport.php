@@ -105,7 +105,7 @@ class LinksImport implements ToModel, WithValidation, WithStartRow
             '*.1' => [
                 'required',
                 'string',
-                'max:100',
+                'max:40',
                 Rule::unique('links', 'link_invoiceNo'),
             ],
             '*.2' => [
