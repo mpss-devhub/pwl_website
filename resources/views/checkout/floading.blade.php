@@ -16,7 +16,15 @@
             </div>
         </div>
 
-        <form action="{{ route('Pwl') }}" method="POST" x-data="{ loading: false }" @submit="loading = true">
+        <form action="{{ route('Pwl') }}" method="POST" x-data="{
+            loading: false,
+            tnx_phonenumber: '',
+            cardNumber: '',
+            expiryMonth: '',
+            expiryYear: '',
+            securityCode: ''
+        }" @submit="loading = true">
+
             @csrf
 
             <div class="py-3 sm:py-4">
@@ -29,10 +37,10 @@
                 <!-- Input Field -->
                 <div class="mb-4">
                     <div class="">
-                        <img src="{{ $item['logo'] }}" alt="" class="w-14 h-14  mx-auto mb-2 rounded">
+                        <img src="{{ $item['logo'] }}" alt="" class="w-12 h-12  sm:w-14 sm:h-14  mx-auto mb-2 rounded">
                     </div>
                     <br>
-                    <div class="text-[13px] sm:text-md text-gray-700 space-y-2 text-start mx-2 sm:mx-5">
+                    <div class="text-[12px] sm:text-sm text-gray-700 space-y-2 text-start mx-2 sm:mx-5">
                         <div class="grid grid-cols-3 px-2 sm:px-5">
                             <span class="truncate">To</span>
                             <span class="text-center">:</span>
@@ -51,14 +59,15 @@
                         <div class="grid grid-cols-3 px-2 sm:px-5">
                             <span class="truncate">Amount</span>
                             <span class="text-center">:</span>
-                            <span class="font-medium truncate">{{ $link->link_amount }} {{ $link->link_currency }}</span>
+                            <span class="font-medium truncate">{{ $link->link_amount }}
+                                {{ $link->link_currency }}</span>
                         </div>
                     </div>
 
                     <hr class="my-4 mx-2 sm:mx-10">
 
                     @if ($type === 'Ewallet' || $type === 'QR' || $type === 'Web')
-                        <label for="tnx_phonenumber" class="text-sm text-gray-700 text-[13px]"> Phone Number </label>
+                        <label for="tnx_phonenumber" class="text-[12px] sm:text-sm text-gray-700 "> Phone Number </label>
                         <input required type="text" name="tnx_phonenumber" x-model="tnx_phonenumber" minlength="4"
                             maxlength="14" pattern="[0-9]*" inputmode="numeric"
                             oninput="this.value = this.value.replace(/[^0-9]/g, '')"
@@ -66,7 +75,7 @@
                             placeholder="Enter {{ $item['paymentName'] }} Phone Number">
                     @else
                         @if ($type === 'L_C')
-                            <div class="space-y-4 max-w-xs sm:max-w-md mx-auto text-[13px]">
+                            <div class="space-y-4 max-w-xs sm:max-w-md mx-auto text-[12px] sm:text-sm">
                                 <label for="tnx_phonenumber" class="block text-sm font-medium text-gray-700">
                                     {{ $item['paymentName'] }} Card Info
                                 </label>
@@ -95,7 +104,7 @@
                                 </div>
                             </div>
                         @else
-                            <div class="space-y-4 max-w-xs sm:max-w-md mx-auto text-[13px]">
+                            <div class="space-y-4 max-w-xs sm:max-w-md mx-auto text-[12px] sm:text-sm">
                                 <label for="cardNumber" class="block text-sm font-medium text-gray-700">
                                     {{ $item['paymentName'] }} Card Info
                                 </label>
@@ -111,11 +120,11 @@
 
                                 <div class="flex justify-center">
                                     <div class="flex space-x-2 sm:space-x-4">
-                                         <input required type="text" name="securityCode" x-model="securityCode"
-                                    minlength="2" maxlength="8" pattern="[0-9]*" inputmode="numeric"
-                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                                    placeholder="Enter Security Code"
-                                    class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
+                                        <input required type="text" name="securityCode" x-model="securityCode"
+                                            minlength="2" maxlength="8" pattern="[0-9]*" inputmode="numeric"
+                                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                                            placeholder="Enter Security Code"
+                                            class="placeholder-gray-400  text-[13px] w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-400 focus:border-pink-400" />
                                         <input required type="text" name="expiryMonth" x-model="expiryMonth"
                                             placeholder="MM" minlength="2" maxlength="8" pattern="[0-9]*"
                                             inputmode="numeric"
@@ -139,11 +148,11 @@
                     class="w-50 sm:w-50 shadow-lg text-sm bg-[#F13D78] text-white py-2 px-3 rounded-lg hover:bg-[#ef6593] transition flex items-center justify-center space-x-2"
                     style="font-family: 'Poppins'">
                     <template x-if="!loading">
-                        <span>Submit Payment</span>
+                        <span class=" text-xs">Submit Payment</span>
                     </template>
                     <template x-if="loading">
                         <span>
-                            <i class="fas fa-spinner fa-spin mr-1"></i> Processing...
+                            <i class="fas fa-spinner fa-spin mr-1 text-xs"></i> Processing...
                         </span>
                     </template>
                 </button>

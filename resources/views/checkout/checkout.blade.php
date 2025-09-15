@@ -2,22 +2,22 @@
 @section('checkout')
         <!-- Logo -->
         <div class="flex justify-center">
-            <div class="w-24 h-24  rounded-full flex items-center justify-center text-sm font-semibold">
+            <div class="w-20 h-20  sm:w-24 sm:h-24  rounded-full flex items-center justify-center text-sm font-semibold">
                 <img src="{{ $details['merchant_logo'] }}" alt="" class="" style="border-radius: 100px">
             </div>
         </div>
 
-        <div class="text-[11px] ml-2 text-gray-600 space-y-2">
+        <div class="text-[10px] sm:text-[11px] ml-2 text-gray-600 space-y-2">
             <p>Merchant Email : {{ $details['merchant_Cemail'] }}</p>
             <p>Merchant Address : {{ $details['merchant_address'] }}</p>
         </div>
 
         <div class="border border-[#bdc9fe] rounded-lg p-6 shadow-sm shadow-[#A0B1FF]  bg-[#f9faff]">
             <!-- Invoice Header -->
-            <p class="text-center text-[#3C425D] mx-28  font-semibold text-sm"
+            <p class="text-center text-[#3C425D] mx-28  font-semibold text-xs sm:text-sm"
                 style="font-family: 'Poppins'">INVOICE</p>
 
-            <div class="space-y-4 mt-6 text-[13px] text-gray-700" style="font-family: 'Libre Baskerville'">
+            <div class="space-y-4 mt-6 text-[11px] sm:text-[12px] text-gray-700" style="font-family: 'Libre Baskerville'">
                 <!-- Merchant Info -->
                 <div class="space-y-2">
                     <div class="grid grid-cols-3 ">
@@ -76,7 +76,7 @@
                     </template>
                     <template x-if="loading">
                         <span>
-                            <i class="fas fa-spinner fa-spin mr-1 text-xs sm:text-sm"></i> Processing...
+                            <i class="fas fa-spinner fa-spin mr-1  text-xs sm:text-sm"></i> Processing...
                         </span>
                     </template>
                 </button>

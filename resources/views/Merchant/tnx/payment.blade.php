@@ -20,7 +20,7 @@
     @endphp
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
-        <div class="p-4 mt-10 max-w-7xl mx-auto">
+        <div class="p-4 mt-14  mx-auto">
 
             <!-- Payment Details Card -->
             <div id="exportArea" class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">

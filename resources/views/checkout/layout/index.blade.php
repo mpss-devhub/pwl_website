@@ -21,7 +21,7 @@
 
 
         <!-- Footer -->
-        <div class="text-xs text-gray-700 space-y-1">
+        <div class="text-[10px] sm:text-[11px] text-gray-700 space-y-1">
             <p class=" text-gray-700 text-center">
                  Power By <a href="https://www.octoverse.com.mm/"
                     class="text-[#8a9adb]">Octoverse.com.mm</a>
