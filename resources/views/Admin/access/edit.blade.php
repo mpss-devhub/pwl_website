@@ -1,7 +1,7 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
-    <div class="p-4 sm:ml-64  flex justify-center items-center min-h-screen bg-gray-200">
-        <div class="w-full max-w-6xl bg-gray-50 shadow-lg rounded-xl p-6 overflow-y-auto">
+    <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
+        <div class="p-4 mt-16 mx-auto bg-white shadow-lg rounded-xl p-6 overflow-y-auto">
             <form method="POST" action="{{ route('permissions.update', $permission->id) }}">
                 @csrf
                 @method('PUT')
@@ -68,7 +68,7 @@
                         @endphp
 
                         @foreach ($permissionGroups as $code => $group)
-                            <div class="max-w-5xl rounded-xl p-3 module-container">
+                            <div class=" rounded-xl p-3 module-container">
                                 <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                                     <div class="flex items-center justify-between bg-gray-50 cursor-pointer">
                                         <div class="flex items-center">

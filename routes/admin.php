@@ -25,7 +25,7 @@ Route::middleware(['admin'])
         Route::get('/Profile', fn() => view('Admin.profile.index'))->name('profile.show');
         Route::get('/sms&email', fn() => view('Admin.sms.index'))->name('sms.show');
         Route::get('/support/list', function () {
-            $data = announcement::get();
+            $data = announcement::orderBy('created_at','desc')->get();
             return view('Admin.support.list', compact('data'));
         })->name('support.list');
         Route::get('/support', function () {

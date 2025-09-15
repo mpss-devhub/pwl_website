@@ -14,11 +14,15 @@ class NotificationController extends Controller
     public function show()
     {
         $id = Auth::user()->user_id;
-       $notifications = announcement::where('merchant_id', '"all"')
-        ->orWhereJsonContains('merchant_id', $id)
-        ->get();
+
+        $notifications = announcement::where('merchant_id', '"all"')
+            ->orWhereJsonContains('merchant_id', $id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('Merchant.Notification.index', ['notifications' => $notifications]);
     }
+
 
     public function details($encryptedId)
     {

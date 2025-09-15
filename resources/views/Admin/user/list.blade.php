@@ -57,32 +57,32 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     User ID
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
-                                    User Info
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                   Name
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
-                                    User Group
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                   User Group
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
-                                    Phone Number
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Phonenumber
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Email
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Created at
                                 </th>
-                                <th scope="col" class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Status
                                 </th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Actions
                                 </th>
                             </tr>
