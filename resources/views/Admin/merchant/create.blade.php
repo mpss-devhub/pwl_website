@@ -126,12 +126,11 @@
                                 <div>
                                     <div class="flex justify-between items-center mb-1">
                                         <label class="block text-xs font-medium text-gray-700 mb-1">Merchant Name
-
-                                            @error('merchant_name')
-                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
-                                            @enderror
-
                                         </label>
+
+                                        @error('merchant_name')
+                                            <span class="text-red-500 text-[9px]"> {{ $message }}</span>
+                                        @enderror
                                     </div>
                                     <input type="text" id='name' name="merchant_name"
                                         value="{{ old('merchant_name') }}" required placeholder="Enter Merchant Name"
@@ -139,11 +138,11 @@
                                 </div>
                                 <div>
                                     <div class="flex justify-between items-center mb-1">
-                                        <label class="block text-xs font-medium text-gray-700 mt-1">Contact Name
-                                            @error('merchant_Cname')
-                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
-                                            @enderror
-                                        </label>
+                                        <label class="block text-xs font-medium text-gray-700 mt-1">Contact Name </label>
+                                        @error('merchant_Cname')
+                                            <span class="text-red-500 text-[9px]"> {{ $message }}</span>
+                                        @enderror
+
                                     </div>
                                     <input type="text" name="merchant_Cname" value="{{ old('merchant_Cname') }}"
                                         required placeholder="Enter Contact Name"
@@ -155,10 +154,10 @@
                                     <div class="flex justify-between items-center mb-1">
                                         <label class="block text-xs font-medium text-gray-700 mb-1">
                                             Contact Phone
-                                            @error('merchant_Cphone')
-                                                <span class="text-red-500 text-[9px]">{{ $message }}</span>
-                                            @enderror
                                         </label>
+                                        @error('merchant_Cphone')
+                                            <span class="text-red-500 text-[9px]">{{ $message }}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="flex">
@@ -177,10 +176,11 @@
                                     <div class="flex justify-between items-center mb-1">
                                         <label class="block text-xs font-medium text-gray-700 mb-1">
                                             Contact Email
-                                            @error('merchant_Cemail')
-                                                <span class="text-red-500 text-[9px]">{{ $message }}</span>
-                                            @enderror
                                         </label>
+                                        @error('merchant_Cemail')
+                                            <span class="text-red-500 text-[9px]">{{ $message }}</span>
+                                        @enderror
+
                                     </div>
 
                                     <input type="email" name="merchant_Cemail" value="{{ old('merchant_Cemail') }}"
@@ -200,20 +200,20 @@
                             <div class="grid md:grid-cols-2 gap-4">
                                 <div>
                                     <div class="flex justify-between items-center mb-1">
-                                        <label class="block text-xs font-medium text-gray-700 mb-1">Frontend URL
+                                        <label class="block text-xs font-medium text-gray-700 mb-1">Frontend URL</label>
                                             @error('merchant_frontendURL')
                                                 <span class="text-red-500 text-[9px]"> {{ $message }}</span>
                                             @enderror
-                                        </label>
+
                                     </div>
                                     <div class="flex">
                                         <span
-                                            class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                                            Example
+                                            class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-600 text-sm">
+                                            URL
                                         </span>
                                         <input type="text" name="merchant_frontendURL" required
                                             value="{{ old('merchant_frontendURL') }}"
-                                            placeholder="https://www.octoverse.com.mm"
+                                            placeholder="https://example.com.mm"
                                             class="@error('merchant_frontendURL') border-red-400 focus:outline-none @enderror placeholder-gray-400  flex-1 px-3 py-2 border-t border-r border-b border-gray-300 rounded-r-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                                     </div>
                                 </div>
@@ -236,7 +236,7 @@
                                     <label class="block text-xs font-medium text-gray-700 mb-1">Merchant Address</label>
                                     <div class="flex">
                                         <span
-                                            class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                            class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-600 text-sm">
                                             Address
                                         </span>
                                         <input type="text" name="merchant_address"

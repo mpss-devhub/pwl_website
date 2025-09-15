@@ -7,7 +7,7 @@
                    <i class="fa-solid fa-xmark"></i>
                 </a>
             </div>
-            <div class="max-w-6xl mx-auto mt-4">
+            <div class=" mx-auto mt-4">
                 @foreach ($notification as $item)
                     <div
                         class="bg-white rounded-xl shadow-md overflow-hidden mb-6 transition-all duration-300 hover:shadow-lg">
