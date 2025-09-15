@@ -69,7 +69,7 @@
                         <button id="card-tab"
                             class="flex-1 py-2 px-2 sm:px-4 font-medium  border-b-2 border-transparent rounded-r text-black {{ $link->link_currency !== 'MMK' ? 'text-start' : '' }}"
                             onclick="switchTab('card')">
-                           Card
+                            Card
                         </button>
                     </div>
                     <script>
@@ -85,10 +85,19 @@
                             <div id="pin-content" class="tab-content min-h-[180px] max-h-[250px] overflow-y-auto">
                                 <div class="grid grid-cols-4 gap-1 sm:gap-4 mb-4 mt-1">
                                     @foreach ($Ewallet as $item)
-                                        <div x-data="{ open: false, payment: {}, tnx_number: '' }">
+                                        @php
+                                            $restricted = in_array($item['paymentCode'], [
+                                                'CBPAY_PIN',
+                                                'KBZPAY_PWA',
+                                                'ABANKPAY_PIN',
+                                            ]);
+                                        @endphp
+
+                                        <div x-data="{ open: false, payment: {}, tnx_number: '' }" class="{{ $restricted ? 'block sm:hidden' : '' }}">
                                             <input type="hidden" name="paymentCode" value="{{ $item['paymentCode'] }}">
                                             <input type="hidden" name="link_id" value="{{ $link->id }}">
                                             <input type="hidden" name="payment_logo" value="{{ $item['logo'] }}">
+
                                             <button type="button" class="focus:outline-none"
                                                 @click="open = true; payment = {{ json_encode($item) }};">
                                                 <img src="{{ $item['logo'] }}" alt="Payment Option"
@@ -101,12 +110,12 @@
                                                     'type' => 'Ewallet',
                                                 ])
                                             </div>
-
                                         </div>
                                     @endforeach
                                 </div>
                                 <p class="text-[13px] text-gray-600">Enter your PIN to complete payment</p>
                             </div>
+
 
                             <!-- QR Content -->
                             <div id="qr-content" class="tab-content min-h-[180px] max-h-[250px] overflow-y-auto hidden">
