@@ -156,34 +156,34 @@ Login At: https://paywithlink.octoverse.com.mm/login
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID</th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Merchant ID
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Profile
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Email</th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Phone</th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Name
                                 </th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Created at</th>
-                                    <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                <th
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Status</th>
                                 <th
-                                    class="px-6 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider">
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Actions</th>
                             </tr>
                         </thead>
@@ -193,16 +193,15 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                     <td class="px-6 text-xs py-3 text-gray-900 text-center">
                                         {{ ($merchantInfo->currentPage() - 1) * $merchantInfo->perPage() + $loop->iteration }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $info->merchant_id ?? 'Waiting Approval' }}</td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         <div class="flex items-center justify-start">
                                             <img class="h-10 w-10 rounded-full"
                                                 src="{{ $info->merchant_logo ?? Storage::url('common/approved.png') }}"
                                                 alt="Logo">
 
-                                            <div
-                                                class="ml-3 text-xs font-medium merchant-name
+                                            <div class="ml-3 text-xs font-medium merchant-name
                      ">
                                                 {{ $info->merchant_name }}
                                             </div>
@@ -211,18 +210,18 @@ Login At: https://paywithlink.octoverse.com.mm/login
 
 
 
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-email text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $info->merchant_Cemail }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-phone text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $info->merchant_Cphone }}
                                     </td>
-                                    <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $info->merchant_Cname }}</td>
-                                        <td class="px-6 text-xs py-3 text-gray-500 merchant-contact text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $info->created_at }}</td>
 
-                                    <td class="px-6 text-xs py-3 merchant-status text-center">
+                                    <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         @if ($info->status === 'on')
                                             <span
                                                 class="bg-green-100 text-green-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium px-2.5 py-0.5 rounded-full">Active</span>

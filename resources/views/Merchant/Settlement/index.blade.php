@@ -161,7 +161,7 @@
             <!-- Transactions Table -->
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="min-w-full divide-y divide-gray-200">
+                    <table class="min-w-full  ">
                         <thead class="bg-gray-800 text-white">
                             <tr>
                                 <th scope="col"

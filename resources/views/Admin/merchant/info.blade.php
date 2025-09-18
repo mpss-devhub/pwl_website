@@ -16,7 +16,7 @@
                             </a>
                         </div>
                         <div class="bg-white p-6 rounded-lg shadow mt-3">
-                            <h2 class="text-md font-semibold text-gray-800 mb-4">{{ $detail->merchant_name }}
+                            <h2 class="text-sm font-semibold text-gray-700 mb-4">Octoverse Merchant
                                 <span class="ml-2 px-2 py-1 bg-green-100 text-green-700 rounded-full text-xs">Active</span>
                             </h2>
                             <div class="mt-6">
@@ -24,7 +24,7 @@
                                     <div class="relative mb-4 group">
                                         <img src="{{ $detail->merchant_logo ? $detail->merchant_logo : Storage::url('common/approved.png') }}"
                                             alt="Merchant Profile"
-                                            class="w-44 h-44 rounded-full object-cover border-4 border-gray-200 shadow-sm">
+                                            class="w-32 h-32 sm:w-44 sm:h-44 rounded-full object-cover border-4 border-gray-200 shadow-sm">
                                         <div
                                             class="absolute inset-0 bg-black bg-opacity-30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                                             <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt=""
@@ -81,7 +81,7 @@
                             </div>
                         @endif
                         <div class="bg-white p-6 rounded-lg shadow mt-3">
-                            <h2 class="text-md font-semibold text-gray-800 text-center">
+                            <h2 class="text-sm font-semibold text-gray-800 text-center">
                                 Download Information
                                 <i class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i>
                             </h2>
@@ -91,21 +91,21 @@
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
                                     <a href="{{ route('merchant.download', basename($detail->merchant_registration)) }}"
                                         @disabled($detail->merchant_registration == null) download>
-                                        <p class="text-sm font-medium text-gray-700 text-center">Company Registration</p>
+                                        <p class="text-[12px] font-medium text-gray-700 text-center">Company Registration</p>
                                     </a>
                                 </div>
                                 <!-- Shareholder List -->
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
                                     <a href="{{ route('merchant.download', basename($detail->merchant_shareholder)) }}"
                                         @disabled($detail->merchant_shareholder == null) download>
-                                        <p class="text-sm font-medium text-gray-700 text-center">Company Extract</p>
+                                        <p class="text-[12px] font-medium text-gray-700 text-center">Company Extract</p>
                                     </a>
                                 </div>
                                 <!-- DICA File -->
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
                                     <a href="{{ route('merchant.download', basename($detail->merchant_dica)) }}"
                                         @disabled($detail->merchant_dica == null) download>
-                                        <p class="text-sm font-medium text-gray-700 text-center">Corporate Profile</p>
+                                        <p class="text-[12px] font-medium text-gray-700 text-center">Corporate Profile</p>
                                     </a>
                                 </div>
                             </div>
@@ -127,24 +127,24 @@
                             <div class="grid md:grid-cols-2 gap-4 space-y-1">
                                 <div class="">
                                     <label
-                                        class="block mb-1 text-sm  border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">Merchant
+                                        class="block mb-1 text-sm font-semibold text-gray-700   border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">Merchant
                                         Name </label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_name }}</p>
                                 </div>
                                 <div>
-                                    <label class="block mb-1 text-sm ">Merchant ID </label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block mb-1 text-sm font-semibold text-gray-700  ">Merchant ID </label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_id }}</p>
                                 </div>
                                 <div>
-                                    <label class="block mb-1 text-sm ">Contact Phone </label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Phone </label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_Cphone }}</p>
                                 </div>
                                 <div>
-                                    <label class="block mb-1 text-sm ">Contact Email </label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Email </label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_Cemail }}
                                     </p>
                                 </div>
@@ -159,24 +159,24 @@
                             <div class="grid md:grid-cols-2 gap-4 space-y-1">
                                 <div>
                                     <label
-                                        class="block text-sm mb-1 border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">Frontend
+                                        class="block text-sm font-semibold text-gray-700  mb-1 border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">Frontend
                                         URL</label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_frontendURL }}</p>
                                 </div>
                                 <div>
-                                    <label class="block mb-1 text-sm ">Contact Name </label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Name </label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_Cname }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm  mb-1">Notify Email</label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block text-sm font-semibold text-gray-700   mb-1">Notify Email</label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_notifyemail }}</p>
                                 </div>
                                 <div>
-                                    <label class="block text-sm  mb-1">Merchant Address</label>
-                                    <p class="mt-3 text-sm font-medium text-gray-700 bg-gray-50 p-2 rounded">
+                                    <label class="block text-sm font-semibold text-gray-700   mb-1">Merchant Address</label>
+                                    <p class="mt-3 text-[13px] font-medium text-gray-700 bg-gray-50 p-2 rounded">
                                         {{ $detail->merchant_address }}
                                     </p>
                                 </div>
@@ -187,13 +187,13 @@
                         <div class="bg-white p-6 rounded-lg shadow mt-4">
                             <div class="flex">
                                 <h2
-                                    class="block text-sm font-medium text-gray-700 mb-1 border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">
+                                    class="block text-sm   font-medium text-gray-700 mb-1 border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">
                                     Other Information</h2>
                                 <p class="block text-xs font-medium text-gray-700 mt-1">( Remarks )</p>
                             </div>
                             <div class="mt-2">
                                 <div>
-                                    <p class="w-full px-3 py-2 text-xs text-gray-700 font-medium bg-gray-50 rounded"
+                                    <p class="w-full px-3 py-2 text-[13px] text-gray-700 font-medium bg-gray-50 rounded"
                                         placeholder="Any additional notes...">
                                         {{ $detail->merchant_remark ?: 'No remarks provided' }}</p>
                                 </div>

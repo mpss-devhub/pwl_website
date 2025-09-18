@@ -64,7 +64,8 @@
                                     </td>
                                     <td class="px-6 py-4 text-center whitespace-nowrap text-xs text-gray-500">{{ $item->created_at }}
                                     </td>
-                                    <td class="px-6 py-4 text-center whitespace-nowrap text-right text-xs font-medium">
+                                    @if ($item->id !== 1 )
+                                        <td class="px-6 py-4 text-center whitespace-nowrap text-right text-xs font-medium">
                                         @if (in_array('U', $access['AA'] ?? []))
                                             <a href="{{ route('access.edit', $item->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 mr-3">
@@ -83,6 +84,7 @@
                                             </form>
                                         @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

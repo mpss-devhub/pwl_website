@@ -18,9 +18,9 @@ class DatabaseSeeder extends Seeder
     {
 
         Permissions::create([
-            'user_group' => 'Admin',
-            'permission' => 'T-L-M-U-AA-AN-S',
-            'allowed' => 'T:E,P,TD;L:E,R,V,U;M:E,C,U,D,S,I,M;U:C,U,D;AA:C,U,D;AN:C,U,D;S:C,E',
+            'user_group' => 'Super Admin',
+            'permission' => 'S-U-AA-AN-T-L-M',
+            'allowed' => 'S:C,E;U:C,U,D;AA:C,U,D;AN:C,U,D;T:E,P,TD;L:E,R,V,U;M:C,U,D,S,I,M',
         ]);
 
 
@@ -34,18 +34,6 @@ class DatabaseSeeder extends Seeder
             'status' => 'on',
             'email_verified_at' => Carbon::now(),
             'permission_id' => '1',
-            'password' => Hash::make(447710052),
-        ]);
-
-        User::factory()->create([
-            'user_id' => 'OCT_L5515',
-            'name' => 'MPSS Admin',
-            'email' => 'mpss@admin.com',
-            'phone' => '09447710052',
-            'role' => 'admin',
-            'status' => 'on',
-            'permission_id' => '1',
-            'email_verified_at' => Carbon::now(),
             'password' => Hash::make(447710052),
         ]);
     }

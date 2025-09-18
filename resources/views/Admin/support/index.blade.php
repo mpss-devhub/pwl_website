@@ -2,13 +2,6 @@
 @section('admin_content')
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
-            @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
-                    role="alert">
-                    <strong class="font-bold">Success!</strong>
-                    <span class="block sm:inline">{{ session('success') }}</span>
-                </div>
-            @endif
             <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="p-6 ">
                     <div class="flex justify-between">
@@ -29,28 +22,33 @@
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Announcement
                                     Content
                                     @error('content')
-                                        <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
+                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
                                     @enderror
                                 </label>
-                                <input type="text" name="content" id="name" value="{{ old('content') }}" placeholder="https://www.youtube.com/watch?v=..."
+                                <input type="text" name="content" id="name" value="{{ old('content') }}"
+                                    placeholder="https://www.youtube.com/watch?v=..."
                                     class="placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Announcement
                                     Title
-                                @error('title')
-                                        <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
-                                    @enderror</label>
-                                <input type="text" name="title" id="name" required value="{{ old('title') }}" required placeholder="Enter Title"
+                                    @error('title')
+                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                    @enderror
+                                </label>
+                                <input type="text" name="title" id="name" required value="{{ old('title') }}"
+                                    required placeholder="Enter Title"
                                     class="placeholder-gray-400 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label for="name" class="block text-sm font-medium text-gray-700 mb-1"> Announcement
                                     Letter
-                                 @error('letter')
-                                        <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
-                                    @enderror</label>
-                                <textarea type="text" name="letter" id="name" required cols="20" rows="5" value="{{ old('letter') }}" required required placeholder="Enter Message"
+                                    @error('letter')
+                                        <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                    @enderror
+                                </label>
+                                <textarea type="text" name="letter" id="name" required cols="20" rows="5"
+                                    value="{{ old('letter') }}" required required placeholder="Enter Message"
                                     class="placeholder-gray-400 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
                             </div>
 
@@ -60,25 +58,26 @@
                         <!-- Permissions Field -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Sent this To
-                                 @error('merchant_id')
-                                        <span class="text-[12px] text-red-400 mx-3">{{$message}}</span>
-                                    @enderror
+                                @error('merchant_id')
+                                    <span class="text-[12px] text-red-400 mx-3">{{ $message }}</span>
+                                @enderror
                             </label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                 <div class="flex items-center">
-                                    <input id="permission" name="merchant_id" type="checkbox" value=all checked
+                                    <input id="allMerchants" name="merchant_id" type="checkbox" value="all"
                                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                    <label for="permission" class="ml-2 text-sm text-gray-700">
+                                    <label for="allMerchants" class="ml-2 text-sm text-gray-700">
                                         All Merchants
                                     </label>
                                 </div>
+
                                 @if ($merchants->count() > 0)
                                     @foreach ($merchants as $item)
                                         <div class="flex items-center">
-                                            <input id="merchant-{{ $item->user_id }}" name="merchant_id[]"
-                                                type="checkbox" value={{ $item->user_id }}
-                                                class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
-                                            <label for="merchant-{{ $item->name }}" class="ml-2 text-sm text-gray-700">
+                                            <input id="merchant-{{ $item->user_id }}" name="merchant_id[]" type="checkbox"
+                                                value="{{ $item->user_id }}"
+                                                class="merchant h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                            <label for="merchant-{{ $item->user_id }}" class="ml-2 text-sm text-gray-700">
                                                 {{ $item->merchant_name }}
                                             </label>
                                         </div>
@@ -103,4 +102,44 @@
             </div>
         </div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const allMerchants = document.getElementById("allMerchants");
+            const merchantCheckboxes = document.querySelectorAll(".merchant");
+
+            //  All Merchants
+            allMerchants.addEventListener("change", function() {
+                if (this.checked) {
+                    merchantCheckboxes.forEach(cb => {
+                        cb.checked = false;
+                        cb.disabled = true;
+                        cb.parentElement.classList.add("opacity-50", "cursor-not-allowed");
+                    });
+                } else {
+                    merchantCheckboxes.forEach(cb => {
+                        cb.disabled = false;
+                        cb.parentElement.classList.remove("opacity-50", "cursor-not-allowed");
+                    });
+                }
+            });
+
+            //merchant  selected
+            merchantCheckboxes.forEach(cb => {
+                cb.addEventListener("change", function() {
+                    if (this.checked) {
+                        allMerchants.checked = false;
+                        allMerchants.disabled = true;
+                        allMerchants.parentElement.classList.add("opacity-50",
+                            "cursor-not-allowed");
+                    }
+                    // If no merchant
+                    if (![...merchantCheckboxes].some(c => c.checked)) {
+                        allMerchants.disabled = false;
+                        allMerchants.parentElement.classList.remove("opacity-50",
+                            "cursor-not-allowed");
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

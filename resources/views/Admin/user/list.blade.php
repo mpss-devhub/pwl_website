@@ -132,7 +132,8 @@
                                             </span>
                                         @endif
                                     </td>
-                                    <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium">
+                                    @if ($admin->id !== 1 || $admin->id === auth()->id())
+                                        <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium">
                                         @if (in_array('U', $access['U'] ?? []))
                                             <a href="{{ route('user.show.update', $admin->id) }}"
                                                 class="text-blue-600 hover:text-blue-900 mr-3">
@@ -146,6 +147,7 @@
                                             </a>
                                         @endif
                                     </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
