@@ -149,7 +149,7 @@
                                     </option>
                                     <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }}>FAIL
                                     </option>
-                                    <option value="Pending" {{ request('status') == 'PENDING' ? 'selected' : '' }}>PENDING
+                                    <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }}>PENDING
                                     </option>
                                 </select>
                             </div>

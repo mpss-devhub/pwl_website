@@ -42,23 +42,25 @@ Login At: https://paywithlink.octoverse.com.mm/login
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
         <div class="p-4 mt-14">
-            @if (in_array('C', $access['M'] ?? []))
-                <div class="flex justify-end gap-1">
-                    <div class="">
+
+            <div class="flex justify-end gap-1">
+                <div class="">
+                    @if (in_array('C', $access['M'] ?? []))
                         <a href="{{ route('merchant.create') }}"
                             class="bg-gray-700 hover:bg-gray-800  text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-white inline-flex justify-center items-center px-4 py-2 rounded-md transition">
                             <i class="fa-solid fa-user-plus mr-2 "></i> Create
                         </a>
-                    </div>
-                    <div class="">
-                        <a href="{{ route('merchant.show') }}"
-                            class="flex-1 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-md shadow-sm
-                       flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium transition">
-                            <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset
-                        </a>
-                    </div>
+                    @endif
                 </div>
-            @endif
+                <div class="">
+                    <a href="{{ route('merchant.show') }}"
+                        class="flex-1 bg-gray-400 hover:bg-gray-300  px-4 py-2 rounded-md shadow-sm
+                       flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium transition">
+                        <i class="fa-solid fa-arrow-rotate-left mr-2"></i> Reset
+                    </a>
+                </div>
+            </div>
+
             <div class="bg-white rounded-lg shadow mb-4 mt-2">
                 <button id="filter-toggle" class="w-full flex justify-between items-center p-6 focus:outline-none">
                     <h2 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">Merchant List</h2>

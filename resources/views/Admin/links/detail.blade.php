@@ -28,6 +28,7 @@
                                     class="font-medium mt-1 text-gray-500 px-2 text-xs md:text-md lg:text-md border-l-4 border-l-blue-800 rounded ">
                                     Basic Information
                                 </h3>
+                                 @if (in_array('U', $access['L'] ?? []))
                                              @if (!$exists)
                                         <button type="submit"
                                             class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
@@ -37,7 +38,7 @@
 
                                             </a>
                                         </button>
-
+                                        @endif
                                 @endif
                             </div>
 

@@ -181,7 +181,7 @@
                                                 class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold rounded-full bg-gray-100 text-blue-800">Active</span>
                                         @elseif ($item->link_status === 'expired')
                                             <span
-                                                class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold rounded-full bg-red-100 text-red-800">Inactive</span>
+                                                class="px-2 inline-flex text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] leading-5 font-semibold rounded-full bg-red-100 text-red-800">Expired</span>
                                         @endif
                                     </td>
                                     <td class="px-6 text-center  py-3 whitespace-nowrap text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] text-gray-500">

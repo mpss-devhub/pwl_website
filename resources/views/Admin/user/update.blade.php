@@ -27,7 +27,7 @@
                             <!-- Email Field -->
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                                <input type="email" name="email" id="email" value="{{ $user->email }}" required
+                                <input type="email" name="email" id="email" value="{{ $user->email }}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                             </div>
 

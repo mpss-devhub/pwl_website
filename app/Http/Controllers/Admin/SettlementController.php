@@ -35,10 +35,10 @@ class SettlementController extends Controller
 
         // Server-side filtering
         if ($request->filled('start_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['created_at'] >= $request->start_date);
+            $tnxs = $tnxs->filter(fn($item) => $item['transactionStart'] >= $request->start_date);
         }
         if ($request->filled('end_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['created_at'] <= $request->end_date);
+            $tnxs = $tnxs->filter(fn($item) => $item['transactionEnd'] <= $request->end_date);
         }
         if ($request->filled('payment_method')) {
             $tnxs = $tnxs->filter(fn($item) => $item['paymentCode'] === $request->payment_method);

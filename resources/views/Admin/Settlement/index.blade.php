@@ -78,7 +78,7 @@
                             <div class="space-y-2">
                                 <label
                                     class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
-                                <select id="status"
+                                <select id="status" name="status"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                     <option value="">All Statuses</option>
                                     <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }}>SUCCESS
@@ -134,20 +134,24 @@
                                     Reset
                                 </a>
                             </div>
+                            @if (in_array('E', $access['S'] ?? []))
+                                <div class="flex items-end gap-2">
 
-                            <div class="flex items-end gap-2">
-                                <a href="{{ route('admin.settlement.csv.export') }}"
-                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                    <a href="{{ route('admin.settlement.csv.export') }}"
+                                        class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
 
-                                    Export CSV
-                                </a>
+                                        Export CSV
+                                    </a>
 
-                                <a href="{{ route('admin.settlement.xlsx') }}"
-                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
 
-                                    Export Excel
-                                </a>
-                            </div>
+                                    <a href="{{ route('admin.settlement.xlsx') }}"
+                                        class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+
+                                        Export Excel
+                                    </a>
+
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </form>

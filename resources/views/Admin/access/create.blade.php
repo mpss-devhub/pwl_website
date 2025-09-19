@@ -27,7 +27,7 @@
                         <div class="space-y-2">
                             @php
                                 $permissionGroups = [
-                                       'S' => ['label' => 'Settlement', 'actions' => ['C' => 'Detail', 'E' => 'Export']],
+                                    'S' => ['label' => 'Settlement', 'actions' => ['C' => 'Detail', 'E' => 'Export']],
 
                                      'U' => [
                                         'label' => 'User',
