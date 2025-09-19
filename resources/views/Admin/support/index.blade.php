@@ -48,8 +48,8 @@
                                     @enderror
                                 </label>
                                 <textarea type="text" name="letter" id="name" required cols="20" rows="5"
-                                    value="{{ old('letter') }}" required required placeholder="Enter Message"
-                                    class="placeholder-gray-400 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"></textarea>
+                                    required required placeholder="Enter Message"
+                                    class="placeholder-gray-400 w-full  border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">{{ old('letter') }}</textarea>
                             </div>
 
 
@@ -65,6 +65,7 @@
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
                                 <div class="flex items-center">
                                     <input id="allMerchants" name="merchant_id" type="checkbox" value="all"
+                                        {{ old('merchant_id') === 'all' ? 'checked' : '' }}
                                         class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
                                     <label for="allMerchants" class="ml-2 text-sm text-gray-700">
                                         All Merchants
@@ -76,7 +77,9 @@
                                         <div class="flex items-center">
                                             <input id="merchant-{{ $item->user_id }}" name="merchant_id[]" type="checkbox"
                                                 value="{{ $item->user_id }}"
-                                                class="merchant h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded">
+                                                class="merchant h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                                                {{ is_array(old('merchant_id')) && in_array($item->user_id, old('merchant_id')) ? 'checked' : '' }}>
+
                                             <label for="merchant-{{ $item->user_id }}" class="ml-2 text-sm text-gray-700">
                                                 {{ $item->merchant_name }}
                                             </label>

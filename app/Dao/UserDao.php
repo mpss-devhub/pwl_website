@@ -87,10 +87,10 @@ class UserDao
         return $merchantacc;
     }
 
-    public function updateMerchant(array $data): array
+    public function updateMerchant(array $data, $merchantId): array
     {
         $merchant = Merchants::updateOrCreate(
-            ['user_id' => $data['user_id']],
+            ['id' => $merchantId],
             [
                 'merchant_Cname' => $data['merchant_Cname'],
                 'merchant_Cphone' => $data['merchant_Cphone'],
@@ -109,7 +109,7 @@ class UserDao
                 'phone' => $data['merchant_Cphone'],
                 'status' => $data['status'],
             ]);
-        //dd('yes');
+
         return $merchant->toArray();
     }
 }

@@ -13,10 +13,12 @@ class MerchantSettlementExport implements FromArray, WithHeadings
 {
     protected $data;
 
-    public function __construct()
+    public function __construct($filters = [])
     {
+        $this->filters = $filters;
         $this->data = $this->getSettlementData();
     }
+
 
     public function array(): array
     {
@@ -59,17 +61,15 @@ class MerchantSettlementExport implements FromArray, WithHeadings
             "orderBy" => "DESC",
             "searchObj" => [
                 "merchantID" => $merchant['merchant_id'],
-                "status" => "",
-                "settlementStatus" => "",
-                "invoiceNo" => "",
-                "paymentCode" => "",
-                "fromDate" => "",
-                "toDate" => ""
+                "status" => $this->filters['status'] ?? "",
+                "settlementStatus" => $this->filters['settlement_status'] ?? "",
+                "invoiceNo" => $this->filters['search'] ?? "",
+                "paymentCode" => $this->filters['payment_method'] ?? "",
+                "fromDate" => $this->filters['start_date'] ?? "",
+                "toDate" => $this->filters['end_date'] ?? ""
             ]
         ]);
 
-        $data = $response['data']['dataList'];
-
-        return $data;
+        return $response['data']['dataList'] ?? [];
     }
 }

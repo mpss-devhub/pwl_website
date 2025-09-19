@@ -56,18 +56,26 @@ class AdminTnxController extends Controller
             ->distinct()
             ->pluck('paymentCode')
             ->values();
-        return view('Admin.tnx.index', compact('tnx', 'Success', 'total', 'Fail', 'SuccessTotal','paymentMethods'));
+        return view('Admin.tnx.index', compact('tnx', 'Success', 'total', 'Fail', 'SuccessTotal', 'paymentMethods'));
     }
 
-    public function exportCsv()
+    public function exportCsv(Request $request)
     {
-        return Excel::download(new AllMerchantTransactionsExport, 'transactions.csv', \Maatwebsite\Excel\Excel::CSV);
+        return Excel::download(
+            new AllMerchantTransactionsExport($request->all()),
+            'All_transactions_'. now()->format('Y-m-d_H-i-s') .'.csv',
+            \Maatwebsite\Excel\Excel::CSV
+        );
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        return Excel::download(new AllMerchantTransactionsExport, 'transactions.xlsx');
+        return Excel::download(
+            new AllMerchantTransactionsExport($request->all()),
+            'All_transactions_'. now()->format('Y-m-d_H-i-s') .'.xlsx'
+        );
     }
+
 
     public function detail(Request $request)
     {

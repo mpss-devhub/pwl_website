@@ -36,16 +36,22 @@ Route::get('/download/{file}', function ($file) {
         ->header('Content-Disposition', 'attachment; filename="' . $file . '"');
 })->name('qr.download');
 
-//required to change
 Route::get('/download/{filename}', function ($filename) {
-    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/" . $filename;
+    $encodedFilename = rawurlencode($filename);
+
+    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/{$encodedFilename}";
     $fileContents = file_get_contents($url);
+    if ($fileContents === false) {
+        abort(404, "File not found.");
+    }
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mimeType = finfo_buffer($finfo, $fileContents);
     finfo_close($finfo);
+
+    $cleanFilename = str_replace(['"', '\\'], '', $filename);
     return response($fileContents)
         ->header('Content-Type', $mimeType)
-        ->header('Content-Disposition', 'attachment; filename="' . $filename . '"');
+        ->header('Content-Disposition', 'attachment; filename="' . $cleanFilename . '"');
 })->name('merchant.download');
 
 

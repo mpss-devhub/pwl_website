@@ -93,9 +93,9 @@
                 <li>
                     <a href="{{ route('merchant.tnx') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('merchant.tnx','tnx.detail','Payment.detail') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                      {{ request()->routeIs('merchant.tnx', 'tnx.detail', 'Payment.detail') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="shrink-0 w-5 h-5 transition duration-75
-                            {{ request()->routeIs('merchant.tnx','tnx.detail','Payment.detail') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                            {{ request()->routeIs('merchant.tnx', 'tnx.detail', 'Payment.detail') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                             <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998
                          8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z" />
@@ -111,9 +111,9 @@
                 <li>
                     <a href="{{ route('merchant.settlement') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('merchant.settlement','merchant.settlement.details') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                      {{ request()->routeIs('merchant.settlement', 'merchant.settlement.details') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="shrink-0 w-5 h-5 transition duration-75
-                            {{ request()->routeIs('merchant.settlement','merchant.settlement.details') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                            {{ request()->routeIs('merchant.settlement', 'merchant.settlement.details') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 640 640">
                             <path
                                 d="M320 32C373 32 416 75 416 128C416 181 373 224 320 224C267 224 224 181 224 128C224 75 267 32 320 32zM80 368C80 297.9 127 236.6 197.1 203.1C222.4 244.4 268 272 320 272C375.7 272 424.1 240.3 448 194C463.8 182.7 483.1 176 504 176L523.5 176C533.9 176 541.5 185.8 539 195.9L521.9 264.2C531.8 276.6 540.1 289.9 546.3 304L568 304C581.3 304 592 314.7 592 328L592 440C592 453.3 581.3 464 568 464L528 464C511.5 486 489.5 503.6 464 514.7L464 544C464 561.7 449.7 576 432 576L399 576C384.7 576 372.2 566.5 368.2 552.8L361.1 528L278.8 528L271.7 552.8C267.8 566.5 255.3 576 241 576L208 576C190.3 576 176 561.7 176 544L176 514.7C119.5 490 80 433.6 80 368zM456 384C469.3 384 480 373.3 480 360C480 346.7 469.3 336 456 336C442.7 336 432 346.7 432 360C432 373.3 442.7 384 456 384z" />
@@ -126,10 +126,10 @@
                 <li>
                     <a href="{{ route('merchant.paywithlink') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('merchant.paywithlink','links.bundle') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                      {{ request()->routeIs('merchant.paywithlink', 'links.bundle') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <i
                             class="fa-solid fa-link transition duration-75
-                          {{ request()->routeIs('merchant.paywithlink','links.bundle') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"></i>
+                          {{ request()->routeIs('merchant.paywithlink', 'links.bundle') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"></i>
                         <span class="flex-1 ms-3 whitespace-nowrap">Pay With Link</span>
                     </a>
                 </li>
@@ -138,9 +138,9 @@
                 <li>
                     <a href="{{ route('merchant.sms') }}"
                         class="flex items-center p-2 rounded-lg group
-                      {{ request()->routeIs('merchant.sms','sms.details','merchant.link.edit') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                      {{ request()->routeIs('merchant.sms', 'sms.details', 'merchant.link.edit') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                         <svg class="shrink-0 w-5 h-5 transition duration-75
-                            {{ request()->routeIs('merchant.sms','sms.details','merchant.link.edit') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                            {{ request()->routeIs('merchant.sms', 'sms.details', 'merchant.link.edit') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                             <path
                                 d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
@@ -154,9 +154,9 @@
             <li>
                 <a href="{{ route('merchant.notification') }}"
                     class="flex items-center p-2 rounded-lg group relative
-                  {{ request()->routeIs('merchant.notification','merchant.notification.details') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                  {{ request()->routeIs('merchant.notification', 'merchant.notification.details') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                     <svg class="w-5 h-5 transition duration-75
-                        {{ request()->routeIs('merchant.notification','merchant.notification.details') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                        {{ request()->routeIs('merchant.notification', 'merchant.notification.details') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" fill="currentColor">
                         <path
                             d="M320 64C302.3 64 288 78.3 288 96L288 99.2C215 114 160 178.6 160 256L160 277.7C160 325.8 143.6 372.5 113.6 410.1L103.8 422.3C98.7 428.6 96 436.4 96 444.5C96 464.1 111.9 480 131.5 480L508.4 480C528 480 543.9 464.1 543.9 444.5C543.9 436.4 541.2 428.6 536.1 422.3L526.3 410.1C496.4 372.5 480 325.8 480 277.7L480 256C480 178.6 425 114 352 99.2L352 96C352 78.3 337.7 64 320 64zM258 528C265.1 555.6 290.2 576 320 576C349.8 576 374.9 555.6 382 528L258 528z" />
@@ -175,9 +175,9 @@
             <li>
                 <a href="{{ route('merchant.profile') }}"
                     class="flex items-center p-2 rounded-lg group
-                  {{ request()->routeIs('merchant.profile','mdr') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
+                  {{ request()->routeIs('merchant.profile', 'mdr') ? 'bg-gray-200 dark:bg-gray-700 text-blue-600 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                     <svg class="shrink-0 w-5 h-5 transition duration-75
-                        {{ request()->routeIs('merchant.profile','mdr') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
+                        {{ request()->routeIs('merchant.profile', 'mdr') ? 'text-blue-600 dark:text-white' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white' }}"
                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path
                             d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z" />
@@ -189,14 +189,19 @@
             <!-- Logout -->
             <li>
                 <form action="{{ route('logout') }}" method="POST"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    class="flex items-center p-2 rounded-lg group
+        {{ request()->routeIs('logout') ? 'bg-gray-200 text-gray-900 dark:bg-gray-700 dark:text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' }}">
                     @csrf
-                    <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:group-hover:text-white"
+                    <svg class="w-5 h-5 text-gray-500 transition duration-75
+            group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
                     </svg>
-                    <button type="submit" class="flex-1 ms-3 text-left">Sign Out</button>
+                    <button type="submit"
+                        class="flex-1 ms-3 text-left transition duration-75
+            group-hover:text-gray-900 dark:group-hover:text-white">Sign
+                        Out</button>
                 </form>
             </li>
         </ul>

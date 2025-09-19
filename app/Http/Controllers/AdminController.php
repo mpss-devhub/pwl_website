@@ -82,7 +82,7 @@ class AdminController extends Controller
         return view('Admin.merchant.update', compact('details','count'));
     }
 
-    public function merchantupdate(MerchantUpdateRequest $request)
+    public function merchantupdate(MerchantUpdateRequest $request,$id)
     {
         //dd($request->validated());
         $this->user_service->updateMerchant($request->validated());

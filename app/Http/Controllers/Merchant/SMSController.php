@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Merchant;
 
+use Carbon\Carbon;
 use App\Models\Tnx;
 use App\Models\Links;
 use App\Models\Merchants;
@@ -23,33 +24,43 @@ class SMSController extends Controller
     public function index(Request $request)
     {
         $id = Auth::user()->user_id;
-        $m_id = Merchants::where('user_id', $id)->select('merchant_id')->first();
-        $query = Links::where('created_by', $m_id['merchant_id'])
+        $m_id = Merchants::where('user_id', $id)->value('merchant_id');
+
+        $query = Links::where('created_by', $m_id)
             ->whereNotIn('id', function ($q) {
                 $q->select('link_id')->from('tnxes');
             });
+
+        // Convert datetime-local inputs to proper format
         if ($request->filled('start-date')) {
-            $query->where('created_at', '>=', $request->input('start-date'));
+            $start = Carbon::parse($request->input('start-date'))->startOfDay();
+            $query->where('created_at', '>=', $start);
         }
+
         if ($request->filled('end-date')) {
-            $query->where('created_at', '<=', $request->input('end-date'));
+            $end = Carbon::parse($request->input('end-date'))->endOfDay();
+            $query->where('created_at', '<=', $end);
         }
+
         if ($request->filled('notification-type')) {
             $query->where('link_type', $request->input('notification-type'));
         }
+
         if ($request->filled('status')) {
             $query->where('link_status', $request->input('status'));
         }
+
         if ($request->filled('search')) {
             $search = $request->input('search');
             $query->where(function ($q) use ($search) {
                 $q->where('link_invoiceNo', 'like', "%$search%")
                     ->orWhere('link_name', 'like', "%$search%")
-                    ->orWhere('link_amount', 'like', "%$search%");
+                    ->orWhere('link_phone', 'like', "%$search%");
             });
         }
 
         $links = $query->latest('created_at')->paginate(10)->withQueryString();
+
         return view('Merchant.sms.index', compact('links'));
     }
 

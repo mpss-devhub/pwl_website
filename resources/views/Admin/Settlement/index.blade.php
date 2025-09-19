@@ -137,14 +137,14 @@
                             @if (in_array('E', $access['S'] ?? []))
                                 <div class="flex items-end gap-2">
 
-                                    <a href="{{ route('admin.settlement.csv.export') }}"
+                                    <a href="{{ route('admin.settlement.csv.export',request()->query()) }}"
                                         class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
 
                                         Export CSV
                                     </a>
 
 
-                                    <a href="{{ route('admin.settlement.xlsx') }}"
+                                    <a href="{{ route('admin.settlement.xlsx',request()->query()) }}"
                                         class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
 
                                         Export Excel

@@ -66,7 +66,7 @@ Route::middleware(['admin'])
         Route::post('/CreateMerchant', [UserController::class, 'storeMerchant'])->name('merchant.store');
         Route::get('/View/Merchant/Details/{id}', [AdminController::class, 'merchantdetail'])->name('merchant.detail');
         Route::get('/Update/Merchant/Data/{id}', [AdminController::class, 'update'])->name('merchant.update');
-        Route::post('/Update/Merchant/POST', [AdminController::class, 'merchantupdate'])->name('merchant.update.post');
+        Route::post('/Update/Merchant/POST/{id}', [AdminController::class, 'merchantupdate'])->name('merchant.update.post');
         Route::get('/View/Merchant/MDRSetup/{id}', [AdminController::class, 'mdr'])->name('merchant.mdr');
         Route::get('/Delete/Merchant/{id}',[AdminController::class,'destory'])->name('merchant.delete');
 

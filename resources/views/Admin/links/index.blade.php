@@ -197,7 +197,7 @@
                                     <td class="px-6   py-3 whitespace-nowrap text-right text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium">
                                         <div class="flex space-x-3">
                                             @if (in_array('V', $access['L'] ?? []))
-                                                <form action="{{ route('admin.sms.details') }}" method="POST">
+                                                <form action="{{ route('admin.sms.details',request()->query()) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
                                                     <button type="submit"
@@ -205,7 +205,7 @@
                                                 </form>
                                             @endif
                                             @if (in_array('R', $access['L'] ?? []))
-                                                <form action="{{ route('admin.sms.resent') }}" method="POST">
+                                                <form action="{{ route('admin.sms.resent',request()->query()) }}" method="POST">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{ $item->id }}">
                                                     <button type="submit"

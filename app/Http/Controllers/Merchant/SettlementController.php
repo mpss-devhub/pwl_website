@@ -146,21 +146,27 @@ class SettlementController extends Controller
 
     public function details($id)
     {
-        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id','merchant_logo')->first();
+        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id', 'merchant_logo')->first();
         $settlement = $this->getSettlementDetails($merchant['merchant_id'], $id);
         $details = $settlement['data']['dataList'][0];
         $data = Tnx::where('tranref_no', $id)->first();
-       //dd($merchant->merchant_logo, $id, $details, $data);
-        return view('Merchant.Settlement.details', compact('data', 'details','merchant'));
+        //dd($merchant->merchant_logo, $id, $details, $data);
+        return view('Merchant.Settlement.details', compact('data', 'details', 'merchant'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new MerchantSettlementExport, 'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
+        return Excel::download(
+            new MerchantSettlementExport($request->all()),
+            'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx'
+        );
     }
 
-    public function csvExport()
+    public function csvExport(Request $request)
     {
-        return Excel::download(new MerchantSettlementExport, 'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
+        return Excel::download(
+            new MerchantSettlementExport($request->all()),
+            'Settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv'
+        );
     }
 }

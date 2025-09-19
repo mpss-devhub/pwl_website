@@ -184,7 +184,7 @@
                             <!-- Export Buttons -->
                             @if (in_array('E', $access['T'] ?? []))
                                 <div class="flex items-end gap-2">
-                                    <a href="{{ route('admin.merchant.tnx.export') }}"
+                                    <a href="{{ route('admin.merchant.tnx.export',request()->query()) }}"
                                         class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                         Export CSV
@@ -192,7 +192,7 @@
                                             <i class="fa fa-spinner fa-spin"></i>
                                         </span>
                                     </a>
-                                    <a href="{{ route('admin.merchant.csv.export') }}"
+                                    <a href="{{ route('admin.merchant.csv.export',request()->query()) }}"
                                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
                                         Export Excel

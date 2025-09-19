@@ -43,7 +43,7 @@
                                     </div>
                                 </div>
 
-                                <input type="file" id="file-upload" name="merchant_logo" accept="image/*" class="hidden"
+                                <input type="file" id="file-upload" name="merchant_logo" accept=".pdf,.jpg,.jpeg,.png" class="hidden"
                                     onchange="validateImage(event)">
                                 <label for="file-upload"
                                     class="px-4 py-2 bg-gray-100 rounded-lg text-sm font-medium text-[11px] text-gray-700 hover:bg-gray-200 cursor-pointer transition-colors mb-1">

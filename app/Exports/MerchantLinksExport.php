@@ -2,25 +2,57 @@
 
 namespace App\Exports;
 
+use Carbon\Carbon;
 use App\Models\Links;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class MerchantLinksExport implements FromCollection, WithHeadings
 {
-    /**
-     * @return \Illuminate\Support\Collection
-     */
-    protected $created_by;
+    protected $filters;
+    protected $merchant_id;
 
-    public function __construct($created_by)
+    public function __construct($created_by, $filters = [])
     {
-        //dd($created_by);
-        $this->created_by = $created_by;
+        $this->merchant_id = $created_by['merchant_id'] ?? null;
+        $this->filters = $filters;
     }
+
     public function collection()
     {
-        return Links::where('created_by',$this->created_by['merchant_id'])->select(
+        $query = Links::where('created_by', $this->merchant_id)
+                      ->whereNotIn('id', function ($q) {
+                          $q->select('link_id')->from('tnxes');
+                      });
+
+        if (!empty($this->filters['start-date'])) {
+            $start = Carbon::parse($this->filters['start-date'])->startOfDay();
+            $query->where('created_at', '>=', $start);
+        }
+
+        if (!empty($this->filters['end-date'])) {
+            $end = Carbon::parse($this->filters['end-date'])->endOfDay();
+            $query->where('created_at', '<=', $end);
+        }
+
+        if (!empty($this->filters['status'])) {
+            $query->where('link_status', $this->filters['status']);
+        }
+
+        if (!empty($this->filters['notification-type'])) {
+            $query->where('link_type', $this->filters['notification-type']);
+        }
+
+        if (!empty($this->filters['search'])) {
+            $search = $this->filters['search'];
+            $query->where(function ($q) use ($search) {
+                $q->where('link_invoiceNo', 'like', "%$search%")
+                  ->orWhere('link_name', 'like', "%$search%")
+                  ->orWhere('link_phone', 'like', "%$search%");
+            });
+        }
+
+        return $query->select(
             'id',
             'link_invoiceNo',
             'link_name',
@@ -33,7 +65,7 @@ class MerchantLinksExport implements FromCollection, WithHeadings
             'link_amount',
             'link_click_status',
             'link_expired_at',
-            'created_at',
+            'created_at'
         )->get();
     }
 
@@ -41,16 +73,16 @@ class MerchantLinksExport implements FromCollection, WithHeadings
     {
         return [
             'ID',
-            'Invonic',
+            'Invoice No',
             'Name',
-            'Cus Number',
+            'Customer Number',
             'Currency',
             'Email',
             'Description',
             'Sent With',
             'Payment Link',
             'Amount',
-            'Click_Status',
+            'Click Status',
             'Expired At',
             'Created At',
         ];

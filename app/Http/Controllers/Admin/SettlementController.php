@@ -152,13 +152,86 @@ class SettlementController extends Controller
         return view('Admin.Settlement.details', compact('data', 'details', 'merchant'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new AllSettlementExport, 'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx');
+        $data = $this->getSettlementData();
+
+        $tnxs = collect($data['data']['dataList'] ?? []);
+
+        // Apply same filters as your table
+        if ($request->filled('start_date')) {
+            $start = Carbon::parse($request->start_date);
+            $tnxs = $tnxs->filter(fn($item) => Carbon::parse($item['transactionStart']) >= $start);
+        }
+
+        if ($request->filled('end_date')) {
+            $end = Carbon::parse($request->end_date);
+            $tnxs = $tnxs->filter(fn($item) => Carbon::parse($item['transactionEnd']) <= $end);
+        }
+
+        if ($request->filled('payment_method')) {
+            $tnxs = $tnxs->filter(fn($item) => $item['paymentCode'] === $request->payment_method);
+        }
+
+        if ($request->filled('status')) {
+            $tnxs = $tnxs->filter(fn($item) => $item['status'] === $request->status);
+        }
+
+        if ($request->filled('search')) {
+            $search = strtolower($request->search);
+            $tnxs = $tnxs->filter(
+                fn($item, $key) =>
+                str_contains(strtolower($item['merchantInvoiceNo'] ?? ''), $search) ||
+                    str_contains(strtolower($item['customerName'] ?? ''), $search) ||
+                    str_contains((string)($key + 1), $search)
+            );
+        }
+
+        return Excel::download(
+            new AllSettlementExport($tnxs->values()->toArray()),
+            'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.xlsx'
+        );
     }
 
-    public function exportCsv()
+    public function exportCsv(Request $request)
     {
-        return Excel::download(new AllSettlementExport, 'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv');
+        $data = $this->getSettlementData();
+
+        $tnxs = collect($data['data']['dataList'] ?? []);
+
+        // Apply same filters (copy from above)
+        if ($request->filled('start_date')) {
+            $start = Carbon::parse($request->start_date);
+            $tnxs = $tnxs->filter(fn($item) => Carbon::parse($item['transactionStart']) >= $start);
+        }
+
+        if ($request->filled('end_date')) {
+            $end = Carbon::parse($request->end_date);
+            $tnxs = $tnxs->filter(fn($item) => Carbon::parse($item['transactionEnd']) <= $end);
+        }
+
+        if ($request->filled('payment_method')) {
+            $tnxs = $tnxs->filter(fn($item) => $item['paymentCode'] === $request->payment_method);
+        }
+
+        if ($request->filled('status')) {
+            $tnxs = $tnxs->filter(fn($item) => $item['status'] === $request->status);
+        }
+
+        if ($request->filled('search')) {
+            $search = strtolower($request->search);
+            $tnxs = $tnxs->filter(
+                fn($item, $key) =>
+                str_contains(strtolower($item['merchantInvoiceNo'] ?? ''), $search) ||
+                    str_contains(strtolower($item['customerName'] ?? ''), $search) ||
+                    str_contains((string)($key + 1), $search)
+            );
+        }
+
+        return Excel::download(
+            new AllSettlementExport($tnxs->values()->toArray()),
+            'settlement_data_' . now()->format('Y-m-d_H-i-s') . '.csv',
+            \Maatwebsite\Excel\Excel::CSV
+        );
     }
 }

@@ -43,8 +43,7 @@
         <div class="p-4 mt-14">
             @if (in_array('C', $access['U'] ?? []))
                 <div class="flex justify-end">
-                    <div
-                        class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-lg text-xs">
+                    <div class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-lg text-xs">
                         <a href="{{ route('user.create') }}" class="text-decoration-none">
                             <i class="fa-solid fa-user-plus mx-2"></i> Add User
                         </a>
@@ -57,28 +56,36 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800 text-white">
                             <tr>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     ID
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     User ID
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
-                                   Name
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                    Name
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
-                                   User Group
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                    User Group
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Phonenumber
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Email
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Created at
                                 </th>
-                                <th scope="col" class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
+                                <th scope="col"
+                                    class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
                                     Status
                                 </th>
                                 <th scope="col"
@@ -91,7 +98,7 @@
                             @foreach ($admins as $admin)
                                 <tr class="hover:bg-gray-50">
                                     <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium text-gray-900">
-                                         {{ ($admins->currentPage() - 1) * $admins->perPage() + $loop->iteration }}
+                                        {{ ($admins->currentPage() - 1) * $admins->perPage() + $loop->iteration }}
                                     </td>
                                     <td class="px-6 py-3 text-xs text-center text-gray-500 max-w-xs truncate">
                                         {{ $admin->user_id }}
@@ -103,7 +110,8 @@
                                                     src="{{ Storage::url('common/undraw_profile.svg') }}" alt="">
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-xs text-center font-medium text-gray-900">{{ $admin->name }}</div>
+                                                <div class="text-xs text-center font-medium text-gray-900">
+                                                    {{ $admin->name }}</div>
                                             </div>
                                         </div>
                                     </td>
@@ -134,20 +142,22 @@
                                     </td>
                                     @if ($admin->id !== 1 || $admin->id === auth()->id())
                                         <td class="px-6 py-3 whitespace-nowrap text-xs text-center font-medium">
-                                        @if (in_array('U', $access['U'] ?? []))
-                                            <a href="{{ route('user.show.update', $admin->id) }}"
-                                                class="text-blue-600 hover:text-blue-900 mr-3">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </a>
-                                        @endif
-                                        @if (in_array('D', $access['U'] ?? []))
-                                            <a href="{{ route('user.delete', $admin->id) }}"
-                                                class="text-red-600 hover:text-red-900">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </a>
-                                        @endif
-                                    </td>
+                                            @if (in_array('U', $access['U'] ?? []))
+                                                <a href="{{ route('user.show.update', $admin->id) }}"
+                                                    class="text-blue-600 hover:text-blue-900 mr-3">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                            @endif
+
+                                            @if ($admin->id !== auth()->id() && in_array('D', $access['U'] ?? []))
+                                                <a href="{{ route('user.delete', $admin->id) }}"
+                                                    class="text-red-600 hover:text-red-900">
+                                                    <i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            @endif
+                                        </td>
                                     @endif
+
                                 </tr>
                             @endforeach
                         </tbody>

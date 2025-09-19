@@ -30,7 +30,7 @@ Route::middleware(['merchant'])->group(function () {
         $Merchantinfo = $Merchant[0];
         $data = sms::where('merchant_id', $Merchantinfo['merchant_id'])->exists();
         //dd($data);
-        return view('Merchant.profile.index', compact('Merchantinfo','data'));
+        return view('Merchant.profile.index', compact('Merchantinfo', 'data'));
     })->name('merchant.profile');
 
 
@@ -48,31 +48,47 @@ Route::middleware(['merchant'])->group(function () {
     Route::get('/Link/Edit/{id}', [LinksController::class, 'edit'])->name('merchant.link.edit');
     Route::put('/Links/{id}/Update', [LinksController::class, 'update'])->name('links.update');
     Route::get('/Merchant/Link/CSV/Exports', function () {
-        $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
-        return Excel::download(new MerchantLinksExport($created_by), 'Merchant-Link.xlsx');
+        $created_by = Merchants::where('user_id', Auth::user()->user_id)
+            ->select('merchant_id')
+            ->first();
+        return Excel::download(
+            new MerchantLinksExport($created_by, request()->all()),
+            'Merchant_Link_'. now()->format('Y-m-d_H-i-s') . '.xlsx'
+        );
     })->name('merchant.link.excel.export');
+
     Route::get('/Merchant/Link/Excel/Exports', function () {
-        $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
-        return Excel::download(new MerchantLinksExport($created_by), 'Merchant-Link.csv');
+        $created_by = Merchants::where('user_id', Auth::user()->user_id)
+            ->select('merchant_id')
+            ->first();
+        return Excel::download(
+            new MerchantLinksExport($created_by, request()->all()),
+            'Merchant_Link_'. now()->format('Y-m-d_H-i-s') . '.csv'
+        );
     })->name('merchant.link.csv.export');
 
 
+
     //Tnx Management
-    Route::get('/merchant/transactions',[TnxController::class , 'index'])->name('merchant.tnx');
+    Route::get('/merchant/transactions', [TnxController::class, 'index'])->name('merchant.tnx');
     Route::post('/tnx/Links/detail', [TnxController::class, 'detail'])->name('tnx.detail');
     Route::post('/tnx/Payment/detail', [TnxController::class, 'paymentdetail'])->name('Payment.detail');
     Route::get('/Merchant/tnx/Exports', function () {
-        $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
-        return Excel::download(new MerchantTnxExport($created_by), 'Merchant-Transactions.xlsx');
+        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
+        $filters = request()->only(['start_date', 'end_date', 'payment_method', 'status', 'search']);
+        return Excel::download(new MerchantTnxExport($merchant, $filters), 'Merchant_Transactions_'. now()->format('Y-m-d_H-i-s') .'.xlsx');
     })->name('merchant.tnx.export');
+
     Route::get('/Merchant/csv/Exports', function () {
-        $created_by = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
-        return Excel::download(new MerchantTnxExport($created_by), 'Merchant-Transactions.csv');
+        $merchant = Merchants::where('user_id', Auth::user()->user_id)->select('merchant_id')->first();
+        $filters = request()->only(['start_date', 'end_date', 'payment_method', 'status', 'search']);
+        return Excel::download(new MerchantTnxExport($merchant, $filters), 'Merchant_Transactions_'. now()->format('Y-m-d_H-i-s') .'.csv');
     })->name('merchant.csv.export');
 
 
+
     //SMS&Email Management
-    Route::get('/merchant/sms&email',[SMSController::class,'index'])->name('merchant.sms');
+    Route::get('/merchant/sms&email', [SMSController::class, 'index'])->name('merchant.sms');
     Route::post('/sms/details', [SMSController::class, 'show'])->name(name: 'sms.details');
     Route::post('sms/email/resent', [SMSController::class, 'resent'])->name('sms.resent');
 
@@ -88,5 +104,5 @@ Route::middleware(['merchant'])->group(function () {
     Route::get('merchant/Settlement/CSVExport', [SettlementController::class, 'csvExport'])->name('merchant.settlement.csv.export');
 
     //MDR Rate
-    Route::get('/View/Merchant/MDRSetup',[MerchantsController::class,'mdr'])->name('mdr');
+    Route::get('/View/Merchant/MDRSetup', [MerchantsController::class, 'mdr'])->name('mdr');
 });

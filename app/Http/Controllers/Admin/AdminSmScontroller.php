@@ -133,15 +133,23 @@ class AdminSmScontroller extends Controller
             ->with($notifatcion, true);
     }
 
-    public function exportCsv()
+    public function exportCsv(Request $request)
     {
-        return Excel::download(new AllMerchantLinksExport, 'links.csv', \Maatwebsite\Excel\Excel::CSV);
+        return Excel::download(
+            new AllMerchantLinksExport($request->all()),
+            'links' . now()->format('Y-m-d_H-i-s') . '.csv',
+            \Maatwebsite\Excel\Excel::CSV
+        );
     }
 
-    public function exportExcel()
+    public function exportExcel(Request $request)
     {
-        return Excel::download(new AllMerchantLinksExport, 'links.xlsx');
+        return Excel::download(
+            new AllMerchantLinksExport($request->all()),
+            'links' . now()->format('Y-m-d_H-i-s') . '.xlsx'
+        );
     }
+
 
     public function edit($id)
     {
