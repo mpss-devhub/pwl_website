@@ -35,7 +35,7 @@ Route::middleware(['admin'])
 
 
         // User Management
-        Route::get('/User', [UserController::class, 'index'])->name('user.show');
+        Route::get('/User', [UserController::class, 'index'])->name('user.show')->middleware('permission:U');
         Route::get('/Update/{id}', function ($id) {
             $users = User::where('id', $id)->get();
             $permi = Permissions::all();
@@ -53,7 +53,7 @@ Route::middleware(['admin'])
         Route::get('/access&control', function () {
             $p = Permissions::withCount('users')->get();
             return view('Admin.access.index', compact('p'));
-        })->name('access.show');
+        })->name('access.show')->middleware('permission:AA');
         Route::get('/access/edit/{id}', [PermissionsController::class, 'edit'])->name('access.edit');
         Route::get('/AddNewAccess', fn() => view('Admin.access.create'))->name('access.create');
         Route::post('/NewAccess', [PermissionsController::class, 'store'])->name('access.store');
@@ -76,7 +76,7 @@ Route::middleware(['admin'])
         Route::get('/sms&email/delete/{id}', [AdminController::class, 'delete'])->name('sms.delete');
 
         // SMS & Email Management
-        Route::get('/link', [AdminSmScontroller::class, 'index'])->name('admin.links');
+        Route::get('/link', [AdminSmScontroller::class, 'index'])->name('admin.links')->middleware('permission:L');
         Route::post('/sms/details', [AdminSmScontroller::class, 'show'])->name('admin.sms.details');
         Route::post('/sms/email/resent', [AdminSmScontroller::class, 'resent'])->name('admin.sms.resent');
         Route::get('/link/export/csv', [AdminSmScontroller::class, 'exportCsv'])->name('admin.link.csv.export');
@@ -85,21 +85,21 @@ Route::middleware(['admin'])
         Route::put('/Links/{id}/Update', [AdminSmScontroller::class, 'update'])->name('admin.links.update');
 
         // Transaction Management
-        Route::get('/Transaction', [AdminTnxController::class, 'show'])->name('tnx.show');
+        Route::get('/Transaction', [AdminTnxController::class, 'show'])->name('tnx.show')->middleware('permission:T');
         Route::get('/merchant/export/csv', [AdminTnxController::class, 'exportCsv'])->name('admin.merchant.csv.export');
         Route::get('/merchant/export/excel', [AdminTnxController::class, 'exportExcel'])->name('admin.merchant.tnx.export');
         Route::post('/tnx/Links/detail', [AdminTnxController::class, 'detail'])->name('admin.tnx.detail');
         Route::post('/tnx/Payment/detail', [AdminTnxController::class, 'paymentdetail'])->name('admin.Payment.detail');
 
         // Support Management
-        Route::post('/support/announcement', [AnnouncementController::class, 'store'])->name('support.announcement');
+        Route::post('/support/announcement', [AnnouncementController::class, 'store'])->name('support.announcement')->middleware('permission:AN');
         Route::get('/support/announcement/details/{id}', [AnnouncementController::class, 'details'])->name('support.details');
         Route::get('/support/announcement/delete/{id}', [AnnouncementController::class, 'delete'])->name('support.delete');
         Route::get('/support/announcement/edit/{id}', [AnnouncementController::class, 'edit'])->name('support.edit');
         Route::put('/support/announcement/update/{id}', [AnnouncementController::class, 'update'])->name('support.update');
 
         // Settlement Management
-        Route::get('/Settlement', [SettlementController::class, 'show'])->name('admin.settlement');
+        Route::get('/Settlement', [SettlementController::class, 'show'])->name('admin.settlement')->middleware('permission:S');
         Route::get('/Settlement/Details/{merchant}/{id}', [SettlementController::class, 'details'])->name('admin.settlement.details');
         Route::get('/Settlement/Export', [SettlementController::class, 'export'])->name('admin.settlement.xlsx');
         Route::get('/Settlement/Export/csv', [SettlementController::class, 'exportCsv'])->name('admin.settlement.csv.export');

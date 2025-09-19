@@ -26,20 +26,20 @@ class UserDao
 
     public function updateOrCreate(array $data, $id): User
     {
-        $user = User::updateOrCreate(
-            ['id' => $id],
-            [
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'phone' => $data['phone'],
-                'status' => $data['status'],
-                'permission_id' => $data['permission_id'],
-                'role' => $data['role'],
+        $user = User::findOrFail($id);
 
-            ]
-        );
+        $user->update([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'status' => $data['status'] ?? $user->status,
+            'permission_id' => $data['permission_id'] ?? $user->permission_id,
+            'role' => $data['role'],
+        ]);
+
         return $user;
     }
+
 
     public function delete($id): bool
     {
@@ -54,7 +54,7 @@ class UserDao
     public function createMerchant(array $data): Merchants
     {
 
-       $backendURL = rtrim(config('app.url'), '/') . '/api/merchant/payment/backendcallback/' . $data['user_id'];
+        $backendURL = rtrim(config('app.url'), '/') . '/api/merchant/payment/backendcallback/' . $data['user_id'];
         $merchant = Merchants::create([
             'status' => $data['status'],
             'user_id' => $data['user_id'],
@@ -72,7 +72,7 @@ class UserDao
         return $merchant;
     }
 
-    public function merchantacc(array $data) : User
+    public function merchantacc(array $data): User
     {
         $merchantacc = User::create([
             'name' => $data['merchant_name'],
@@ -80,7 +80,7 @@ class UserDao
             'email' => $data['merchant_Cemail'],
             'phone' => $data['merchant_Cphone'],
             'status' => $data['status'],
-            'permission_id' => null ,
+            'permission_id' => null,
             'role' => $data['role'],
             'password' => Hash::make($data['password']),
         ]);
@@ -109,7 +109,7 @@ class UserDao
                 'phone' => $data['merchant_Cphone'],
                 'status' => $data['status'],
             ]);
-            //dd('yes');
+        //dd('yes');
         return $merchant->toArray();
     }
 }

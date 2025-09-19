@@ -28,10 +28,11 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id . ',user_id',
-            'phone' => 'required|max:12|min:6|unique:users,phone',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
+            'phone' => 'required|max:12|min:6|unique:users,phone,' . $id,
             'role' => 'required',
         ]);
+
         $per = Permissions::all();
         $this->user_service->updateOrCreate($request->all(), $id);
         return redirect()->route('user.show')->with('success', 'User updated successfully!');
