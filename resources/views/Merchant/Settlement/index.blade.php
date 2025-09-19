@@ -80,7 +80,7 @@
                                 <option value="">All Statuses</option>
                                 <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }} >SUCCESS</option>
                                 <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }} >FAIL</option>
-                                <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }} >PENDING</option>
+                                <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }} >PENDING</option>
                             </select>
                         </div>
                     </div>

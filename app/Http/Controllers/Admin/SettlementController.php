@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Tnx;
 use App\Models\Merchants;
 use Illuminate\Http\Request;
@@ -34,11 +35,19 @@ class SettlementController extends Controller
         $tnxs = collect($data['data']['dataList']);
 
         // Server-side filtering
+        //dd()
         if ($request->filled('start_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['transactionStart'] >= $request->start_date);
+            $start = Carbon::parse($request->start_date);
+            $tnxs = $tnxs->filter(function ($item) use ($start) {
+                return Carbon::parse($item['transactionStart']) >= $start;
+            });
         }
+
         if ($request->filled('end_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['transactionEnd'] <= $request->end_date);
+            $end = Carbon::parse($request->end_date);
+            $tnxs = $tnxs->filter(function ($item) use ($end) {
+                return Carbon::parse($item['transactionEnd']) <= $end;
+            });
         }
         if ($request->filled('payment_method')) {
             $tnxs = $tnxs->filter(fn($item) => $item['paymentCode'] === $request->payment_method);
@@ -140,7 +149,7 @@ class SettlementController extends Controller
         if (!$data) {
             abort(404, 'Transaction not found');
         }
-        return view('Admin.Settlement.details', compact('data', 'details','merchant'));
+        return view('Admin.Settlement.details', compact('data', 'details', 'merchant'));
     }
 
     public function export()

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\MerchantSettlementExport;
+use Carbon\Carbon;
 
 class SettlementController extends Controller
 {
@@ -42,10 +43,17 @@ class SettlementController extends Controller
 
         // Server-side filtering
         if ($request->filled('start_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['transactionStart'] >= $request->start_date);
+            $start = Carbon::parse($request->start_date);
+            $tnxs = $tnxs->filter(function ($item) use ($start) {
+                return Carbon::parse($item['transactionStart']) >= $start;
+            });
         }
+
         if ($request->filled('end_date')) {
-            $tnxs = $tnxs->filter(fn($item) => $item['transactionEnd'] <= $request->end_date);
+            $end = Carbon::parse($request->end_date);
+            $tnxs = $tnxs->filter(function ($item) use ($end) {
+                return Carbon::parse($item['transactionEnd']) <= $end;
+            });
         }
         if ($request->filled('payment_method')) {
             $tnxs = $tnxs->filter(fn($item) => $item['paymentCode'] === $request->payment_method);
