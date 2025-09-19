@@ -41,7 +41,7 @@
                                     </span>
                                 </label>
                                 <input name="invoiceNo" type="text" required value="{{ old('invoiceNo') }}"
-                                    minlength="3" maxlength="50" oninput="this.value = this.value.replace(/\s/g, '')"
+                                    minlength="3" maxlength="25" oninput="this.value = this.value.replace(/\s/g, '')"
                                     class="w-full px-4 text-gray-700 placeholder-gray-400 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="INV-2023-001">
                             </div>
@@ -119,11 +119,11 @@
                         <!-- Notes -->
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Notes
-                                @error('expired_at')
+                                @error('description')
                                     <span class="text-[12px]"> {{ $message }}</span>
                                 @enderror
                             </label>
-                            <textarea name="description" rows="3"
+                            <textarea name="description" rows="3" minlength="3" maxlength="200"
                                 class="w-full text-gray-700 placeholder-gray-400 px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                 placeholder="Additional information about this payment">{{ old('description') }}</textarea>
                         </div>

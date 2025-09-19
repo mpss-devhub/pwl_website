@@ -24,13 +24,13 @@ class LinkRequest extends FormRequest
         return [
             //
             "user_id" => "required",
-            "invoiceNo" => "required|unique:links,link_invoiceNo|max:50",
+            "invoiceNo" => "required|unique:links,link_invoiceNo|max:25",
             "amount" => "required",
             "name" => "required|max:100",
             "phone" => "required|digits_between:1,16",
             "email" => "nullable|email|max:30",
             "expired_at" => "required|date|after_or_equal:today",
-            'description' => "nullable|max:70",
+            'description' => "nullable|max:200",
             'notification' => 'required',
             "currency" => "required|in:MMK,USD",
 

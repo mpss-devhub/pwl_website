@@ -262,9 +262,10 @@ Login At: https://paywithlink.octoverse.com.mm/login
                         </tbody>
                     </table>
                 </div>
-                <div class="mt-3 ">
-                    {{ $merchantInfo->links('pagination::tailwind') }}
-                </div>
+
+            </div>
+            <div class="mt-3 ">
+                {{ $merchantInfo->links('pagination::tailwind') }}
             </div>
         </div>
     </div>

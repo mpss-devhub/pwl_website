@@ -20,6 +20,9 @@ class PaymentGatewayController extends Controller
     public function Auth(Request $request)
     {
         $data = $this->paymentService->show($request->all());
+        if (!is_array($data) || empty($data)) {
+            return view('checkout.error');
+        }
         $link_data = $this->paymentService->link($request->all());
         $link = $link_data['link'] ?? null;
         $merchant = $link_data['merchant'] ?? null;
@@ -28,7 +31,7 @@ class PaymentGatewayController extends Controller
         $Web = $data[2]['payments'] ?? null;
         $L_C = $data[3]['payments'] ?? null;
         $G_C = $data[4]['payments'] ?? null;
-       // dd($data);
+
         return view('checkout.paymentlist', compact('link', 'merchant', 'Ewallet', 'QR', 'Web', 'L_C', 'G_C'));
     }
 
@@ -47,7 +50,7 @@ class PaymentGatewayController extends Controller
 
     public function paymentBackendCallback(Request $request, $user_id)
     {
-       $data =  $this->paymentService->backendCallback($request->all(), $user_id);
-       return redirect()->route('payment.invoice', ['invoiceNo' => $data['invoiceNo']]);
+        $data =  $this->paymentService->backendCallback($request->all(), $user_id);
+        return redirect()->route('payment.invoice', ['invoiceNo' => $data['invoiceNo']]);
     }
 }

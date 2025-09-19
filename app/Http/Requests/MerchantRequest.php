@@ -27,7 +27,7 @@ class MerchantRequest extends FormRequest
             "merchant_Cname" => "required|max:255|unique:merchants,merchant_Cname",
             "merchant_Cphone" => "required|unique:merchants,merchant_Cphone|unique:users,phone",
             "merchant_Cemail" => "required|unique:merchants,merchant_Cemail|unique:users,email",
-            "merchant_frontendURL" => "nullable|max:255",
+            'merchant_frontendURL' => 'nullable|url|max:255',
             "merchant_address" => "nullable|max:255",
             "merchant_notifyemail" => "required|unique:merchants,merchant_notifyemail",
             "merchant_remark" => "nullable|max:255",
