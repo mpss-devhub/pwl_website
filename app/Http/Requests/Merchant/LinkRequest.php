@@ -30,11 +30,9 @@ class LinkRequest extends FormRequest
             "phone" => "required|digits_between:1,16",
             "email" => "nullable|email|max:30",
             "expired_at" => "required|date|after_or_equal:today",
-            'description' => "nullable|max:200",
+            'description' => "nullable|max:90",
             'notification' => 'required',
             "currency" => "required|in:MMK,USD",
-
-
         ];
     }
 }

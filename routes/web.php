@@ -6,6 +6,7 @@ use App\Models\Merchants;
 use Mews\Captcha\Captcha;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LinksController;
@@ -37,22 +38,34 @@ Route::get('/download/{file}', function ($file) {
 })->name('qr.download');
 
 Route::get('/download/{filename}', function ($filename) {
+    $baseUrl = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/";
+
+    // Encode filename to handle spaces, (), etc.
     $encodedFilename = rawurlencode($filename);
 
-    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/{$encodedFilename}";
-    $fileContents = file_get_contents($url);
-    if ($fileContents === false) {
-        abort(404, "File not found.");
-    }
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mimeType = finfo_buffer($finfo, $fileContents);
-    finfo_close($finfo);
+    $url = $baseUrl . $encodedFilename;
 
+    // Use streaming to avoid memory issues
+    $context = stream_context_create([
+        'http' => ['follow_location' => 1] // follow redirects if any
+    ]);
+    $stream = fopen($url, 'rb');
+    if (!$stream) {
+        abort(404, "File not found in Spaces.");
+    }
+
+    // Force safe filename
     $cleanFilename = str_replace(['"', '\\'], '', $filename);
-    return response($fileContents)
-        ->header('Content-Type', $mimeType)
-        ->header('Content-Disposition', 'attachment; filename="' . $cleanFilename . '"');
+
+    return response()->streamDownload(function () use ($stream) {
+        fpassthru($stream);
+        fclose($stream);
+    }, $cleanFilename, [
+        'Content-Type' => 'application/octet-stream',
+        'Content-Disposition' => 'attachment; filename="' . $cleanFilename . '"',
+    ]);
 })->name('merchant.download');
+
 
 
 

@@ -123,7 +123,7 @@
                                     <span class="text-[12px]"> {{ $message }}</span>
                                 @enderror
                             </label>
-                            <textarea name="description" rows="3" minlength="3" maxlength="200"
+                            <textarea name="description" rows="3" minlength="3" maxlength="90"
                                 class="w-full text-gray-700 placeholder-gray-400 px-4 py-3 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                 placeholder="Additional information about this payment">{{ old('description') }}</textarea>
                         </div>

@@ -4,7 +4,7 @@
     <!-- Logo -->
     <div class="flex justify-center">
         <div class="w-20 h-20  sm:w-24 sm:h-24 rounded-full flex items-center justify-center text-sm font-semibold">
-            <img src="{{ $merchant->merchant_logo }}" alt="Merchant Logo" style="border-radius: 100px" />
+            <img src="{{ $merchant->merchant_logo }}" alt="Merchant Logo" style="border-radius: 100px" >
         </div>
     </div>
     <div class="text-[10px] sm:text-[11px] ml-2 text-gray-600 space-y-1">
@@ -17,7 +17,7 @@
             <div class="border border-[#bdc9fe] rounded-lg px-6 py-2 shadow  bg-[#f9faff]">
                 <!-- Invoice Header -->
                 <div class="text-center">
-                    <p class="text-center text-gray-700 text-[13px] sm:text-[15px] py-2"> Please Do Not Reload The Page</p>
+                    <p class="text-center text-gray-700 text-[11px] sm:text-[12px] py-2"> Please Do Not Reload The Page</p>
                     <div role="status mt-3">
                         <svg aria-hidden="true"
                             class="inline w-9 h-9 text-gray-200 animate-spin dark:text-gray-600 fill-yellow-400"
