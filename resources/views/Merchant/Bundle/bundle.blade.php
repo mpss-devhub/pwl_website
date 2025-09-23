@@ -30,7 +30,7 @@
             <div class="bg-white shadow-md rounded-lg p-4 sm:p-6 ">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
                     <p class="text-sm sm:text-md font-semibold text-gray-800">
-                        Bundle Upload With Excel
+                        Bulk Payment Upload with Excel
                     </p>
                     <img src="{{ Storage::url('common/octoverse-logo.png') }}" class="w-20 sm:w-24" alt="Octoverse Logo">
                 </div>
@@ -43,7 +43,7 @@
 
                     <p class="text-xs  text-gray-500 mb-4">
                         Make sure to fill correctly
-                        For expired_at use format <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code>
+                        for expired_at use format <code class="bg-gray-100 px-1 py-0.5 rounded">YYYY-MM-DDTHH:MM</code>
                         (e.g., 2025-07-12T15:39).
 
                     </p>

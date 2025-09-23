@@ -26,7 +26,7 @@
             <div class="text-red-600 text-3xl sm:text-4xl mb-2">⚠️</div>
             <span class="text-red-500">404</span>
             <p class="text-base sm:text-sm "> Oppps Something wents wrongs</p>
-            <p class="mt-2 text-gray-600 text-xs sm:text-sm">Please reopen the Links for transaction status.</p>
+            <p class="mt-2 text-gray-600 text-xs sm:text-sm">Please try again from start.</p>
         </div>
 
         <hr class="my-6 border-gray-300" />

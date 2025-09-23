@@ -146,7 +146,7 @@
 
                         <!-- Transaction Details -->
                         <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-200 shadow-sm">
-                            <h3 class="text-base font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                            <h3 class="text-base font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
                                 Transaction Details
                             </h3>
                             <div class="flex flex-col sm:flex-row justify-between items-start gap-4">

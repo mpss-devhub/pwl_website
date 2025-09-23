@@ -41,9 +41,11 @@
                                             class="fa-solid fa-bell ml-1 "></i></label>
                                     <div class="flex justify-between mt-4">
                                         <div class="">
-                                            <p class="text-xs font-semibold text-gray-700 {{ $data ? 'border-b-2' : '' }}">
+                                           @if ($data )
+                                                <p class="text-xs font-semibold text-gray-700 {{ $data ? 'border-b-2' : '' }}">
                                                 SMS
                                             </p>
+                                           @endif
                                         </div>
                                         <div class="">
                                             <p class="text-xs font-semibold text-gray-700 border-b-2"> Email </p>

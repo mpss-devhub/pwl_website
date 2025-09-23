@@ -242,7 +242,7 @@
                         </button>
                         <a href="{{ route('links.bundle') }}"
                             class="px-6 py-3 bg-[#1e8052] text-white rounded-lg hover:bg-green-700 focus:ring-4 focus:ring-green-100 transition-colors font-medium shadow-sm flex items-center justify-center">
-                            <span id="btnText"><i class="fa-solid fa-file-arrow-up mr-2"></i> Excel Upload</span>
+                            <span id="btnText"><i class="fa-solid fa-file-arrow-up mr-2"></i>Bulk Payment Upload</span>
 
                         </a>
                     </div>

@@ -50,9 +50,7 @@
                 </div>
                 <div class="flex items-center gap-2 text-sm sm:text-base">
                     <i class="fa-solid fa-phone text-gray-200"></i>
-                    <a href="tel:+959882551251" class="hover:underline">+95 9882551251</a>,
-                    <a href="tel:+959882551252" class="hover:underline">252</a>,
-                    <a href="tel:+959882551253" class="hover:underline">253</a>
+                    <a href="tel:+959882551251" class="hover:underline">+95 9882551251</a>,<a href="tel:+959882551252" class="hover:underline">252</a>,<a href="tel:+959882551253" class="hover:underline">253</a>
                 </div>
                 <div class="flex items-center gap-2 text-sm sm:text-base">
                     <i class="fa-solid fa-envelope text-gray-200"></i>

@@ -9,6 +9,7 @@ use App\Models\Merchants;
 use App\Service\SMSService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\sms;
 use Illuminate\Support\Facades\Auth;
 
 class SMSController extends Controller
@@ -60,8 +61,9 @@ class SMSController extends Controller
         }
 
         $links = $query->latest('created_at')->paginate(10)->withQueryString();
-
-        return view('Merchant.sms.index', compact('links'));
+        $merchant_id = Merchants::where('user_id',Auth::user()->user_id)->select('merchant_id')->first();
+        $sms = sms::where('merchant_id', $merchant_id)->get();
+        return view('Merchant.sms.index', compact('links','sms'));
     }
 
 
