@@ -73,7 +73,7 @@
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Trans No</span>
                         <span class="text-center">:</span>
-                        <span class="font-medium truncate">{{ $tnx['bank_tranref_no'] }}</span>
+                        <span class="font-medium truncate">{{ $tnx['bank_tranref_no']  !== null ?  $tnx['bank_tranref_no'] : 'N/A' }}</span>
                     </div>
                     <div class="grid grid-cols-3 gap-1">
                         <span class="truncate">Amount</span>
@@ -90,7 +90,7 @@
 
         <div class="text-xs text-gray-700 text-center">
             <p>
-                Power By <a href="https://www.octoverse.com.mm/" class="text-[#8a9adb]">Octoverse.com.mm</a>
+                Power By <a href="https://www.octoverse.com.mm/" class="text-[#8a9adb]">octoverse.com.mm</a>
             </p>
         </div>
     </div>

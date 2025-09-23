@@ -100,6 +100,7 @@
                                                     'CBPAY_PIN',
                                                     'KBZPAY_PWA',
                                                     'ABANKPAY_PIN',
+                                                    'KBZPAY_APP',
                                                 ]);
                                             @endphp
 

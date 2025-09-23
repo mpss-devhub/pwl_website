@@ -37,6 +37,7 @@ class TnxController extends Controller
                 $q->where('tranref_no', 'like', "%$search%")
                     ->orWhere('payment_user_name', 'like', "%$search%")
                     ->orWhere('tnx_phonenumber', 'like', "%$search%")
+                    ->orWhere('tnx_tranref_no', 'like', "%$search%")
                     ->orWhere('req_amount', 'like', "%$search%");
             });
         }

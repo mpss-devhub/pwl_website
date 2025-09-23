@@ -326,7 +326,11 @@
                                         @if ($item->trans_date_time)
                                             {{ \Carbon\Carbon::parse($item->trans_date_time)->format('M d, Y h:i A') }}
                                         @else
-                                            Pending
+                                            @if ($item->payment_status == 'FAIL')
+                                                Fail
+                                            @elseif($item->payment_status == 'PENDING' )
+                                                Pending
+                                            @endif
                                         @endif
                                     </td>
                                     <td class="px-3  py-3 whitespace-nowrap text-center">

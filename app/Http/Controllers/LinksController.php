@@ -116,7 +116,7 @@ class LinksController extends Controller
 
     private function click($id)
     {
-        $ip = '103.105.172.32'; // For testing purposes, can replace this with a real IP address.
+       // $ip = '103.105.172.32'; // For testing purposes, can replace this with a real IP address.
         $ip = request()->ip();
         if ($ip === '127.0.0.1') {
             $info = null;
