@@ -75,8 +75,8 @@
                                             <span class="text-[12px]"> {{ $message }}</span>
                                         @enderror
                                     </span></label>
-                                <input name="name" type="text" required value="{{ old('name') }}" minlength="4"
-                                    maxlength="20"
+                                <input name="name" type="text" required value="{{ old('name') }}" minlength="2"
+                                    maxlength="25"
                                     class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="John Doe">
                             </div>
