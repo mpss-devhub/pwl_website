@@ -63,6 +63,7 @@ class SMSController extends Controller
         $links = $query->latest('created_at')->paginate(10)->withQueryString();
         $merchant_id = Merchants::where('user_id',Auth::user()->user_id)->select('merchant_id')->first();
         $sms = sms::where('merchant_id', $merchant_id)->get();
+        //dd($sms);
         return view('Merchant.sms.index', compact('links','sms'));
     }
 

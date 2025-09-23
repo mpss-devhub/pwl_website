@@ -60,7 +60,7 @@
                                 class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
                                 <option value="">All Methods</option>
                                 <option value="C" {{ request('notification-type') == 'C' ? 'selected' : '' }} >Copy Link</option>
-                                @if ($sms)
+                                @if ($sms->isNotEmpty())
                                     <option value="S" {{ request('notification-type') == 'S' ? 'selected' : '' }} >SMS</option>
                                 @endif
                                 <option value="E" {{ request('notification-type') == 'E' ? 'selected' : '' }} >Email</option>

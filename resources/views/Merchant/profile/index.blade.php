@@ -39,22 +39,25 @@
                                 <div class="">
                                     <label class="block text-sm font-medium text-gray-700 mb-2 "> Notifaction Method <i
                                             class="fa-solid fa-bell ml-1 "></i></label>
-                                    <div class="flex justify-between mt-4">
-                                        <div class="">
-                                           @if ($data )
-                                                <p class="text-xs font-semibold text-gray-700 {{ $data ? 'border-b-2' : '' }}">
-                                                SMS
+                                    <div class="flex justify-evenly mt-4 gap-4">
+                                        @if ($data)
+                                            <div>
+                                                <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">
+                                                    SMS
+                                                </p>
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">
+                                                Email</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">Link
                                             </p>
-                                           @endif
                                         </div>
-                                        <div class="">
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2"> Email </p>
-                                        </div>
-                                        <div class="">
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2"> Link </p>
-                                        </div>
-                                        <div class="">
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2"> QR </p>
+                                        <div>
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">QR
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -121,20 +124,24 @@
                                 <label
                                     class="block mb-1 text-sm font-semibold text-gray-700  border border-t-0 border-r-0 border-b-0 border-l-4 border-l-blue-800 rounded px-2">Merchant
                                     Name </label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_name'] }}</p>
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_name'] }}
+                                </p>
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm font-semibold text-gray-700  ">Merchant ID </label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_id'] }}</p>
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_id'] }}
+                                </p>
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Phone </label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_Cphone'] }}
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">
+                                    {{ $Merchantinfo['merchant_Cphone'] }}
                                 </p>
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Email </label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_Cemail'] }}
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">
+                                    {{ $Merchantinfo['merchant_Cemail'] }}
                                 </p>
 
                             </div>
@@ -157,7 +164,8 @@
                             </div>
                             <div>
                                 <label class="block mb-1 text-sm font-semibold text-gray-700  ">Contact Name </label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_Cname'] }}</p>
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_Cname'] }}
+                                </p>
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700   mb-1">Notify Email</label>
@@ -166,7 +174,8 @@
                             </div>
                             <div>
                                 <label class="block text-sm font-semibold text-gray-700   mb-1">Merchant Address</label>
-                                <p class="mt-3 text-[13px] font-medium text-gray-700">{{ $Merchantinfo['merchant_address'] }}
+                                <p class="mt-3 text-[13px] font-medium text-gray-700">
+                                    {{ $Merchantinfo['merchant_address'] }}
                                 </p>
                             </div>
 
@@ -184,7 +193,9 @@
                         <div class="mt-2">
                             <div>
                                 <p class="w-full px-3 py-2 text-[13px] text-gray-700 font-medium"
-                                    placeholder="Any additional notes...">{{ $Merchantinfo['merchant_remark'] ? $Merchantinfo['merchant_remark'] : 'No Remark' }}</p>
+                                    placeholder="Any additional notes...">
+                                    {{ $Merchantinfo['merchant_remark'] ? $Merchantinfo['merchant_remark'] : 'No Remark' }}
+                                </p>
                             </div>
                         </div>
 

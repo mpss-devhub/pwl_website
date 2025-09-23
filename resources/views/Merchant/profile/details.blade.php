@@ -9,27 +9,28 @@
                             <thead class="bg-gray-800 text-white">
                                 <tr>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         ID
                                     </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                     <th scope="col"
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Payment Type
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Payment Logo
                                     </th>
+
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Merchant MDR Fee Type
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Merchant MDR Fee Rate ( % )
                                     </th>
                                     <th scope="col"
-                                        class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                                        class="px-3 py-3 text-center text-xs font-medium uppercase tracking-wider">
                                         Merchant MDR Fee Amount
                                     </th>
 
@@ -51,28 +52,29 @@
                                 @foreach ($paymentSources as $source)
                                     @foreach ($source['data'] as $item)
                                         <tr class="hover:bg-gray-50">
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                            <td class="text-center px-4 py-2 whitespace-nowrap text-xs font-medium text-gray-900">
                                                 {{ $counter++ }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+
+                                            <td class="text-center px-4 py-2 whitespace-nowrap text-xs text-gray-500">
                                                 {{ $source['label'] }}
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                <div class="flex space-x-2 items-center">
+                                            <td class="text-center px-10 py-2 whitespace-nowrap text-xs text-gray-500">
+                                                <div class="flex space-x-2 items-center mx-2">
                                                     <img src="{{ $item['logo'] }}" alt="logo"
-                                                        class="w-10 h-10 rounded-lg">
-                                                    <div class="text-sm text-gray-900">
+                                                        class="w-9 h-9 rounded-lg">
+                                                    <div class="text-xs text-gray-900">
                                                         {{ strtoupper($item['paymentName']) }}</div>
                                                 </div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900">{{ $item['merchantMdrFeeType'] }}</div>
+                                            <td class="text-center px-4 py-2 whitespace-nowrap">
+                                                <div class="text-xs text-gray-900">{{ $item['merchantMdrFeeType'] }}</div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900 text-center">{{ $item['merchantMdrFeeRate'] }} %</div>
+                                            <td class="text-center px-4 py-2 whitespace-nowrap">
+                                                <div class="text-xs text-gray-900 text-center">{{ $item['merchantMdrFeeRate'] }} %</div>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-nowrap">
-                                                <div class="text-sm text-gray-900 text-center">{{ $item['merchantMdrFeeAmount'] }} MMK</div>
+                                            <td class="text-center px-4 py-2 whitespace-nowrap">
+                                                <div class="text-xs text-gray-900 text-center">{{ $item['merchantMdrFeeAmount'] }} MMK</div>
                                             </td>
                                         </tr>
                                     @endforeach

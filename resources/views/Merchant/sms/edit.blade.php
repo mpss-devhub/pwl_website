@@ -138,7 +138,7 @@
                                         <option value="Q"
                                             {{ old('notification', $link->notification) == 'Q' ? 'selected' : '' }}>QR
                                         </option>
-                                        @if ($sms)
+                                        @if ($sms->isNotEmpty())
                                             <option value="S"
                                                 {{ old('notification', $link->notification) == 'S' ? 'selected' : '' }}>SMS
                                             </option>
