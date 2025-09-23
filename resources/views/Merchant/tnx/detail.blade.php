@@ -61,8 +61,8 @@
                                         class="text-xs">{{ $click[0]['ip_address'] ?? 'N/A' }}</span>
                                 </div>
                                 <div><span class="font-medium text-gray-600 text-xs">Location:</span>
-                                    {{ $click[0]['info']['country'] ?? 'N/A' }},
-                                    {{ $click[0]['info']['city'] ?? 'N/A' }}
+                                    <span class="text-xs">{{ $click[0]['info']['country'] ?? 'N/A' }},</span>
+                                    <span class="text-xs">{{ $click[0]['info']['city'] ?? 'N/A' }}</span>
                                 </div>
 
                                 @php
@@ -91,7 +91,7 @@
                             <h3 class="text-sm font-semibold text-gray-700 ">Payment Link Info</h3>
                             <div class="space-y-3 text-sm">
                                 <div><span class="font-medium text-gray-600 text-xs">Customer Name:</span>
-                                    {{ $links['link_name'] }}</div>
+                                   <span class="text-xs">{{ $links['link_name'] }}</span></div>
                                 <div><span class="font-medium  text-gray-600">Phone:</span><span class="text-xs">
                                         {{ $links['link_phone'] }}</span></div>
                                 <div><span class="font-medium  text-gray-600">Email:</span> <span

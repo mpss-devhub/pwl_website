@@ -14,7 +14,7 @@
 
         <!-- Logo -->
         <div style="text-align: right;">
-            <img src="https://www.octoverse.com.mm/img/octoverse-logo.b3bc9d3f.png" alt="Merchant Logo"
+            <img src="https://www.octoverse.com.mm/img/octoverse-logo.b3bc9d3f.png" alt="Octoverse Logo"
                 style="width: 96px;" />
         </div>
         <hr style="border-top: 1px dotted #9ca3af; margin-top: 16px; margin-bottom: 16px;" />
@@ -32,7 +32,7 @@
                 <strong>Email</strong><span>:</span><span>{{ $details['merchant_Cemail'] }}</span>
             </div>
             <div style="display: flex; gap: 12px;">
-                <strong>Address</strong><span>:</span><span>{{ $details['merchant_address'] }}</span>
+                <strong>Address</strong><span>:</span><span>{{ $details['merchant_address'] ?? 'N/A'}}</span>
             </div>
         </div>
 
@@ -42,16 +42,16 @@
             <hr style="border-top: 1px solid #e5e7eb; width: 66%; margin: 4px auto;" />
             <div style="line-height: 1.8; ">
                 <div style="display: flex; gap: 15px;">
-                    <strong>Name</strong><span>:</span><span>{{ $content[3] }}</span>
+                    <strong>Name</strong><span>:</span> <span>{{ $content[3] }}</span>
                 </div>
                 <div style="display: flex; gap: 15px;">
-                    <strong>Invoice No</strong><span>:</span><span>{{ $content[0] }}</span>
+                    <strong>Invoice No</strong><span>:</span> <span>{{ $content[0] }}</span>
                 </div>
                 <div style="display: flex; gap: 15px;">
-                    <strong>Amount</strong><span>:</span><span>{{ $content[1] }} {{ $content[2] }}</span>
+                    <strong>Amount</strong><span>:</span> <span>{{ $content[1] }} {{ $content[2] }}</span>
                 </div>
                 <div style="display: flex; gap: 15px;">
-                    <strong>Remark</strong><span>:</span><span>{{ $details['remark'] ?? 'N/A' }}</span>
+                    <strong>Remark</strong><span>:</span> <span>{{ $details['remark'] ?? 'N/A' }}</span>
                 </div>
             </div>
         </div>
@@ -68,7 +68,7 @@
         <hr style="border-top: 1px dotted #9ca3af; margin-top: 32px; margin-bottom: 12px;" />
         <div style="text-align: center; font-size: 12px; color: #6b7280;">
             Powered by
-            <a href="https://octoverse.com.mm" style="color: #8a9adb; text-decoration: none;">Octoverse.com.mm</a>
+            <a href="https://octoverse.com.mm" style="color: #8a9adb; text-decoration: none;">octoverse.com.mm</a>
         </div>
     </div>
 </body>

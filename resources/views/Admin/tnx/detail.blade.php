@@ -49,19 +49,19 @@
                                         <img src="{{ $click[0]['info']['country_flag'] }}" alt="Country Flag"
                                             class="w-6 h-4 inline-block mx-1">
                                     @else
-                                        <span class="text-xs" >N/A</span>
+                                        <span class="text-xs">N/A</span>
                                     @endif
                                 </div>
                                 <div><span class="text-xs font-medium text-gray-600">Link Click At:</span>
-                                    <span class="text-xs" > {{ $click[0]['created_at'] ?? 'N/A' }}</span>
+                                    <span class="text-xs"> {{ $click[0]['created_at'] ?? 'N/A' }}</span>
                                 </div>
                                 <div><span class="text-xs font-medium text-gray-600">IP Address:</span>
-                                    <span class="text-xs" > {{ $click[0]['ip_address'] ?? 'N/A' }} </span>
+                                    <span class="text-xs"> {{ $click[0]['ip_address'] ?? 'N/A' }} </span>
                                 </div>
                                 <div><span class="text-xs font-medium text-gray-600">Location:</span>
-                                    <span class="text-xs" >
-                                        {{ $click[0]['info']['country'] ?? 'N/A' }},
-                                        {{ $click[0]['info']['city'] ?? 'N/A' }}
+
+                                    <span class="text-xs"> {{ $click[0]['info']['country'] ?? 'N/A' }}, </span>
+                                    <span class="text-xs"> {{ $click[0]['info']['city'] ?? 'N/A' }}
                                     </span>
                                 </div>
 
@@ -76,10 +76,11 @@
                                 @endphp
 
                                 <div><span class="text-xs font-medium text-gray-600">Country Code:</span>
-                                   <span class="text-xs" > {{ $click[0]['info']['country_phone'] ?? 'N/A' }}</div></span>
+                                    <span class="text-xs"> {{ $click[0]['info']['country_phone'] ?? 'N/A' }}
+                                </div></span>
                                 <div>
                                     <span class="text-xs font-medium text-gray-600">Provider Name:</span>
-                                    <span class="text-xs" >
+                                    <span class="text-xs">
                                         {{ $click[0]['info']['provider'] ?? 'N/A' }}
                                     </span>
                                 </div>
@@ -91,11 +92,16 @@
                             <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-700 ">Payment Link Info</h3>
                             <div class="space-y-3 text-sm">
                                 <div><span class="font-medium text-gray-600 text-xs">Customer Name:</span>
-                                   <span class="text-xs"> {{ $links['link_name'] }}</span></div>
-                                <div><span class="font-medium text-gray-600 text-xs">Phone:</span> <span class="text-xs">{{ $links['link_phone'] }}</span></div>
-                                <div><span class="font-medium text-gray-600 text-xs">Email:</span> <span class="text-xs">{{ $links['link_email'] }}</span></div>
+                                    <span class="text-xs"> {{ $links['link_name'] }}</span>
+                                </div>
+                                <div><span class="font-medium text-gray-600 text-xs">Phone:</span> <span
+                                        class="text-xs">{{ $links['link_phone'] }}</span></div>
+                                <div><span class="font-medium text-gray-600 text-xs">Email:</span> <span
+                                        class="text-xs">{{ $links['link_email'] }}</span></div>
                                 <div><span class="font-medium text-gray-600 text-xs">Amount:</span>
-                                    <span class="text-xs">{{ $links['link_currency'] . ' ' . $links['link_amount'] }}</span></div>
+                                    <span
+                                        class="text-xs">{{ $links['link_currency'] . ' ' . $links['link_amount'] }}</span>
+                                </div>
                                 <div><span class="font-medium text-gray-600 text-xs">Type:</span> {{ $linkTypeText }}</div>
                                 <div>
                                     <span class="font-medium text-gray-600 text-xs">Status:</span>

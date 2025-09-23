@@ -64,7 +64,7 @@
 
       <p>If you didn’t make this request, please ignore this email.</p>
       <p>When opting for a password change, make sure to use a strong and unique password that is difficult to guess.</p>
-      <p>Please note that your password will not change unless you click the button above to create a new one. The link will expire in one day. If your link has expired, you can always request <strong>another one</strong>.</p>
+      <p>Please note that your password will not change unless you click the button above to create a new one. The link will expire in one hour. If your link has expired, you can always request <strong>another one</strong>.</p>
       <p>If you have any questions or need assistance, our team is ready to help you. Please feel free to contact us, and we will be glad to provide you with the necessary support.</p>
 
       <p style="margin-top: 24px;">Thanks,<br>The PMO Team </p>

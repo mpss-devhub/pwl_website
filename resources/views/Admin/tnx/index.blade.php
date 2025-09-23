@@ -242,7 +242,7 @@
                                 </th>
                                 <th scope="col"
                                     class="px-3 py-3 text-start  text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
-                                    Paymentmethod
+                                    Payment method
                                 </th>
                                 <th scope="col"
                                     class="px-3 py-3 text-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap">
