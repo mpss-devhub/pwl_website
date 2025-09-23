@@ -16,7 +16,7 @@
                 <form action="{{ route('merchant.tnx') }}" method="GET">
                     <!-- Filter Content -->
                     <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             <!-- Date Range -->
                             <div class="space-y-2">
                                 <label
@@ -35,7 +35,7 @@
                                         value="{{ request('start_date') }}"
                                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md
                    leading-5 bg-white placeholder-gray-500 focus:outline-none
-                   focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                   focus:ring-blue-500 focus:border-blue-500 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                         value="{{ request('end_date') }}"
                                         class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md
                    leading-5 bg-white placeholder-gray-500 focus:outline-none
-                   focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                   focus:ring-blue-500 focus:border-blue-500 text-[8px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                 </div>
                             </div>
 
@@ -118,7 +118,7 @@
                             </div>
 
                             <!-- Buttons -->
-                            <div class="flex items-end gap-2">
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-2">
                                 <button id="submitBtn"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text" viewBox="0 0 20 20"
@@ -145,16 +145,11 @@
 
                             </div>
 
-                            <di v class="flex items-end gap-2">
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-2">
                                 <a href="{{ route('merchant.csv.export', request()->query()) }}" id="submitBtn"
-                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+
                                     <span class="text">Export CSV</span>
                                     <span class="spinner hidden">
                                         <i class="fa fa-spinner fa-spin mx-1"></i>
@@ -163,16 +158,11 @@
 
 
                                 <a href="{{ route('merchant.tnx.export', request()->query()) }}"
-                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
+
                                     Export Excel
                                 </a>
-                            </di>
+                            </div>
                         </div>
                 </form>
             </div>

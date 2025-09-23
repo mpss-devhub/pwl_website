@@ -61,7 +61,7 @@
                                         <span class="text-gray-500">Ks</span>
                                     </div>
                                     <input name="amount" id="amountInput" type="number" required
-                                        value="{{ old('amount') }}" min="0.01" max="9999999"  step="0.01"
+                                        value="{{ old('amount') }}" min="0.01" max="9999999" step="0.01"
                                         class="pl-12 w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                         placeholder="1500">
                                 </div>
@@ -95,7 +95,8 @@
                             <!-- Customer Email -->
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Customer Email</label>
-                                <input id="customerEmail" name="email" type="email" value="{{ old('email') }}" minlength="4" maxlength="30"
+                                <input id="customerEmail" name="email" type="email" value="{{ old('email') }}"
+                                    minlength="4" maxlength="30"
                                     class="w-full text-gray-700 placeholder-gray-400 px-4 py-2.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition-colors"
                                     placeholder="customer@example.com">
                             </div>
@@ -140,7 +141,8 @@
                             </p>
                         </div>
 
-                        <div class="grid sm:grid-cols-5 gap-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <!-- MMK Option -->
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="currency" value="MMK" checked
@@ -152,6 +154,7 @@
                                 </div>
                             </label>
 
+                            <!-- USD Option -->
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
                                 <input type="radio" name="currency" value="USD"
@@ -163,6 +166,7 @@
                                 </div>
                             </label>
                         </div>
+
                     </div>
 
                     <!-- Delivery Options -->

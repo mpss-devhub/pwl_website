@@ -28,16 +28,15 @@
                                     class="font-medium mt-1 text-gray-500 px-2 text-xs md:text-md lg:text-md border-l-4 border-l-blue-800 rounded ">
                                     Basic Information
                                 </h3>
-                                             @if (!$exists)
-                                        <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
-                                            <a href="{{ route('merchant.link.edit',$sms['id']) }}">
+                                @if (!$exists)
+                                    <button type="submit"
+                                        class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
+                                        <a href="{{ route('merchant.link.edit', $sms['id']) }}">
                                             <i class="fa-solid fa-file-pen"></i>
                                             <span class="text-sm font-semibold">Edit</span>
 
-                                            </a>
-                                        </button>
-
+                                        </a>
+                                    </button>
                                 @endif
                             </div>
 
@@ -80,13 +79,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gray-50 p-4 rounded-lg h-60">
-
-                            <h3 class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">Description
+                        <div class="bg-gray-50 p-4 rounded-lg max-h-60 overflow-auto">
+                            <h3
+                                class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">
+                                Description
                             </h3>
-                            <p class="text-gray-700 text-sm">{{ $sms['link_description'] ?? 'No description provided' }}</p>
+                            <p class="text-gray-700 text-xs break-words break-all whitespace-pre-wrap">
+                                {{ $sms['link_description'] ?? 'No description provided' }}
+                            </p>
                         </div>
-
 
 
                     </div>
@@ -94,7 +95,8 @@
                     <!-- Right Column -->
                     <div class="space-y-4">
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Payment Details</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Payment
+                                Details</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">
@@ -117,7 +119,8 @@
                         </div>
 
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Customer Information</h3>
+                            <h3 class="font-medium text-gray-500 mb-2 text-center text-xs md:text-md lg:text-md">Customer
+                                Information</h3>
                             <hr>
                             <div class="space-y-4 mt-2">
                                 <div class="flex justify-between">
@@ -137,7 +140,8 @@
 
                         <div class="bg-gray-50 p-4 rounded-lg">
                             <div class="flex ">
-                                <h3 class="font-medium text-gray-500 mb-2 text-sm"> <i class="fa-solid fa-link mr-1"></i> Payment
+                                <h3 class="font-medium text-gray-500 mb-2 text-sm"> <i class="fa-solid fa-link mr-1"></i>
+                                    Payment
                                     Link</h3>
                                 <span
                                     class="px-2 py-1 rounded-full text-xs font-medium

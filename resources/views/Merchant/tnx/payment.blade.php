@@ -20,98 +20,115 @@
     @endphp
 
     <div class="p-4 sm:ml-64 bg-gray-200 min-h-screen">
-        <div class="p-4 mt-14  mx-auto">
+        <div class="p-4 mt-14 mx-auto ">
 
             <!-- Payment Details Card -->
             <div id="exportArea" class="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-200">
+
                 <!-- Header Section -->
-                <div class="bg-white px-4 sm:px-6 py-5 border-b border-gray-200">
-                    <div class="flex justify-end">
-                        <div class="">
-                            <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Payment Method"
-                                class="rounded-md object-contain w-[100px]">
-                        </div>
-                    </div>
+                <div class="bg-white px-4 sm:px-6 py-5 border-b border-gray-200 flex justify-end">
+                    <img src="{{ Storage::url('common/octoverse-logo.png') }}" alt="Payment Method"
+                        class="rounded-md object-contain w-24 sm:w-28 md:w-32">
                 </div>
 
                 <!-- Main Content -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 sm:p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 p-4 sm:p-6">
+
                     <!-- Left Column -->
                     <div class="space-y-6 bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
+
                         <!-- Payment Information -->
                         <div>
-                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200 text-center">
+                            <h3
+                                class="text-xs  sm:text-sm font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200 text-center ">
                                 Payment Information
                             </h3>
 
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-3 items-center gap-2">
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-3 gap-2 items-center">
                                     <span class="text-xs text-gray-500">Status</span>
                                     <span class="col-span-2">
                                         <span
-                                            class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium {{ $statusColor }}">
+                                            class="inline-flex items-center px-2.5 py-1 rounded-full text-[9px] sm:text-xs font-medium {{ $statusColor }}">
                                             {{ ucfirst($data['payment_status']) }}
                                         </span>
                                     </span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Amount</span>
+
+                                <div class="grid grid-cols-3 gap-2">
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
-                                </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Currency</span>
+                                        class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Amount</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['currencyCode'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Payment Code</span>
-                                    <span class="text-xs font-medium text-gray-800 col-span-2">
-                                        <div class="flex items-center">
+
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span
+                                        class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Currency</span>
+                                    <span
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['currencyCode'] }}</span>
+                                </div>
+
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Payment
+                                        Code</span>
+                                    <span
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">
+                                        <div class="flex flex-wrap sm:flex-nowrap items-center gap-1">
                                             <span>{{ $data['paymentCode'] }}</span>
-                                            <img src="{{ $data['payment_logo'] }}" class="ml-2 w-5" alt="">
+                                            <img src="{{ $data['payment_logo'] }}" class="w-5" alt="">
                                         </div>
                                     </span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Created At</span>
+
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Created
+                                        At</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['created_at'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['created_at'] }}</span>
                                 </div>
-                                <div class="grid grid-cols-3">
+
+                                <div class="grid grid-cols-3 gap-2">
                                     <span class="text-xs text-gray-500 col-span-1">Expires At</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_expired_at'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_expired_at'] }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Payer Information -->
                         <div>
-                            <h3 class="text-base text-center font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
+                            <h3
+                                class="text-xs  sm:text-sm text-center font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
                                 User Information
                             </h3>
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Name</span>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Name</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_user_name'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['payment_user_name'] }}</span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Phone Number</span>
+
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Phone
+                                        Number</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['tnx_phonenumber'] }}</span>
                                 </div>
+
                                 @if ($data['cardNumber'])
-                                    <div class="grid grid-cols-3">
-                                        <span class="text-xs text-gray-500 col-span-1">Card Number</span>
-                                        <span class="text-xs font-medium text-gray-800 col-span-2">•••• •••• ••••
-                                            {{ substr($data['cardNumber'], -4) }}</span>
-                                    </div>
-                                    <div class="grid grid-cols-3">
-                                        <span class="text-xs text-gray-500 col-span-1">Expiry Date</span>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Card
+                                            Number</span>
                                         <span
-                                            class="text-xs font-medium text-gray-800 col-span-2">{{ $data['expiryMonth'] }}/{{ $data['expiryYear'] }}</span>
+                                            class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">••••
+                                            •••• •••• {{ substr($data['cardNumber'], -4) }}</span>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Expiry
+                                            Date</span>
+                                        <span
+                                            class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['expiryMonth'] }}/{{ $data['expiryYear'] }}</span>
                                     </div>
                                 @endif
                             </div>
@@ -120,104 +137,102 @@
 
                     <!-- Right Column -->
                     <div class="space-y-6">
+
                         <!-- Amount Information -->
                         <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
-                            <h3 class="text-base font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
-                                Amount Details
-                            </h3>
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Requested Amount</span>
+                            <h3 class="text-xs  sm:text-sm font-medium text-gray-700 mb-4 pb-2 border-b border-gray-200">
+                                Amount Details</h3>
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Requested
+                                        Amount</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['req_amount'] }}</span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Transaction Amount</span>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Transaction
+                                        Amount</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['txn_amount'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['txn_amount'] }}</span>
                                 </div>
-                                <div class="grid grid-cols-3">
-                                    <span class="text-xs text-gray-500 col-span-1">Net Amount</span>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-500 col-span-1">Net
+                                        Amount</span>
                                     <span
-                                        class="text-xs font-medium text-gray-800 col-span-2">{{ $data['net_amount'] }}</span>
+                                        class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-800 col-span-2">{{ $data['net_amount'] }}</span>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Transaction Details -->
                         <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-200 shadow-sm">
-                            <h3 class="text-base font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
-                                Transaction Details
-                            </h3>
+                            <h3 class="text-xs  sm:text-sm font-medium text-gray-800 mb-4 pb-2 border-b border-gray-200">
+                                Transaction Details</h3>
                             <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
-                                <div class="space-y-4 w-full">
-                                    <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-xs text-gray-600">Invoice No</span>
-                                        <span class="text-xs font-medium text-gray-900 col-span-2">
-                                            {{ $data['tranref_no'] ?? '—' }}
-                                        </span>
+                                <div class="space-y-3 w-full">
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-600">Invoice No</span>
+                                        <span
+                                            class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-900 col-span-2">{{ $data['tranref_no'] ?? '—' }}</span>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-xs text-gray-600">Bank Ref</span>
-                                        <span class="text-xs font-medium text-gray-900 col-span-2">
-                                            {{ $data['bank_tranref_no'] ?? '—' }}
-                                        </span>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-600">Bank Ref</span>
+                                        <span
+                                            class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-900 col-span-2">{{ $data['bank_tranref_no'] ?? '—' }}</span>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-4">
-                                        <span class="text-xs text-gray-600">Date & Time</span>
-                                        <span class="text-xs font-medium text-gray-900 col-span-2">
-                                            {{ $data['trans_date_time'] ? date('d M Y, h:i A', strtotime($data['trans_date_time'])) : '—' }}
-                                        </span>
+                                    <div class="grid grid-cols-3 gap-2">
+                                        <span class="text-[11px] md:text-[13px] lg:text-xs text-gray-600">Date &
+                                            Time</span>
+                                        <span
+                                            class="text-[10px]  md:text-[12px] lg:text-xs font-medium text-gray-900 col-span-2">{{ $data['trans_date_time'] ? date('d M Y, h:i A', strtotime($data['trans_date_time'])) : '—' }}</span>
                                     </div>
                                 </div>
+
                                 @if ($data['payment_status'] == 'SUCCESS')
-                                    <img src="{{ Storage::url('common/success.png') }}" class="mt-1 w-[110px]"
+                                    <img src="{{ Storage::url('common/success.png') }}" class="mt-1 w-28 sm:w-32"
+                                        alt="Payment QR" loading="lazy">
+                                @elseif($data['payment_status'] == 'PENDING')
+                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1  w-20  md:w-28  lg:w-32"
+                                        alt="Payment QR" loading="lazy">
+                                @elseif($data['payment_status'] == 'FAIL')
+                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1  w-20  md:w-28  lg:w-32"
                                         alt="Payment QR" loading="lazy">
                                 @endif
-                                @if ($data['payment_status'] == 'PENDING')
-                                    <img src="{{ Storage::url('common/pe.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
-                                        loading="lazy">
-                                @endif
-                                @if ($data['payment_status'] == 'FAIL')
-                                    <img src="{{ Storage::url('common/f.png') }}" class="mt-1 w-[110px]" alt="Payment QR"
-                                        loading="lazy">
-                                @endif
                             </div>
                         </div>
-
 
                     </div>
-
                 </div>
-                   <!-- Footer Section -->
-                        <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200">
-                            <div
-                                class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
-                                <div>
-                                    <span>Created by {{ $data['created_by'] }} on {{ $data['created_at'] }}</span>
-                                </div>
-                                @if ($data['updated_at'] && $data['updated_at'] != $data['created_at'])
-                                    <div>
-                                        <span>Last updated by {{ $data['updated_by'] }} on
-                                            {{ $data['updated_at'] }}</span>
-                                    </div>
-                                @endif
-                            </div>
+
+                <!-- Footer Section -->
+                <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200">
+                    <div
+                        class="flex flex-col md:flex-row justify-between items-start md:items-center text-[9px] sm:text-xs text-gray-500 space-y-2 md:space-y-0">
+                        <div>
+                            <span>Created by {{ $data['created_by'] }} on {{ $data['created_at'] }}</span>
                         </div>
+                        @if ($data['updated_at'] && $data['updated_at'] != $data['created_at'])
+                            <div>
+                                <span>Last updated by {{ $data['updated_by'] }} on {{ $data['updated_at'] }}</span>
+                            </div>
+                        @endif
+                    </div>
+                </div>
             </div>
-            <!-- Footer Section -->
-            <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-1">
+
+            <!-- Action Footer Section -->
+            <div class="bg-gray-50 px-4 sm:px-6 py-4 border-t border-gray-200 rounded-lg mt-4">
                 <div
                     class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-gray-500 space-y-2 md:space-y-0">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-6 mb-2 ">
 
-                        <a href="{{ route('merchant.tnx') }}"
-                            class="text-gray-600 hover:text-gray-900   flex items-center">
+                    <div class="flex flex-col sm:flex-row justify-start items-center gap-3 mb-2">
+                        <a href="{{ route('merchant.tnx') }}" class="text-gray-600 hover:text-gray-900 flex items-center">
                             <i class="fa-solid fa-arrow-left mr-2"></i>
                             <span class="mx-1">Back</span>
                         </a>
                     </div>
-                    <div class="flex flex-wrap gap-3 ml-2">
+
+                    <div class="flex flex-wrap gap-3 ml-0 md:ml-2 justify-start md:justify-end">
                         <button id="btn-png" onclick="downloadAsPNG()"
                             class="flex items-center gap-2 bg-blue-100 text-blue-700 hover:bg-blue-200 px-4 py-2 rounded-md transition">
                             <svg id="loading-png" class="hidden w-4 h-4 animate-spin text-blue-700"
@@ -237,9 +252,10 @@
                                     stroke-width="4"></circle>
                                 <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
                             </svg>
-                            <span id="text-pdf">Download as <i class="fa-solid fa-file-pdf"></i> </span>
+                            <span id="text-pdf">Download as <i class="fa-solid fa-file-pdf"></i></span>
                         </button>
                     </div>
+
                 </div>
             </div>
 

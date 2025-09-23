@@ -14,111 +14,115 @@
                     </svg>
                 </button>
                 <form action="{{ route('merchant.settlement') }}" method="GET">
-                <!-- Filter Content -->
-                <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <!-- Date Range -->
-                        <div class="space-y-2">
-                            <label
-                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start
-                                Date</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                    <!-- Filter Content -->
+                    <div id="filter-content" class="px-4 sm:px-6 pb-6 hidden">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <!-- Date Range -->
+                            <div class="space-y-2">
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Start
+                                    Date</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <input type="datetime-local" id="start_date" value="{{ request('start_date') }}"
+                                        name="start_date"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                 </div>
-                                <input type="datetime-local" id="start_date" value="{{ request('start_date') }}" name="start_date"
-                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
-                        </div>
 
-                        <div class="space-y-2">
-                            <label
-                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End
-                                Date</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                                            clip-rule="evenodd" />
-                                    </svg>
+                            <div class="space-y-2">
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">End
+                                    Date</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <input type="datetime-local" id="end_date" value="{{ request('end_date') }}"
+                                        name="end_date"
+                                        class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                 </div>
-                                <input type="datetime-local" id="end_date" value="{{ request('end_date') }}" name="end_date"
-                                    class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                             </div>
-                        </div>
 
-                        <!-- Payment Method -->
-                        <div class="space-y-2">
-                            <label
-                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment
-                                Method</label>
-                            <select id="payment-method" name="payment_method"
-                                class="w-full text-gray-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                <option value="">All Methods</option>
-                                @foreach ($paymentCodes as $item)
-                                    <option value="{{ $item }}"
-                                        {{ request('payment_method') == $item ? 'selected' : '' }}>
-                                        {{ $item }}
+                            <!-- Payment Method -->
+                            <div class="space-y-2">
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Payment
+                                    Method</label>
+                                <select id="payment-method" name="payment_method"
+                                    class="w-full text-gray-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <option value="">All Methods</option>
+                                    @foreach ($paymentCodes as $item)
+                                        <option value="{{ $item }}"
+                                            {{ request('payment_method') == $item ? 'selected' : '' }}>
+                                            {{ $item }}
                                         </option>
-                                @endforeach
-                            </select>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Status -->
+                            <div class="space-y-2">
+                                <label
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
+                                <select id="status" name="status"
+                                    class="w-full text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+                                    <option value="">All Statuses</option>
+                                    <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }}>SUCCESS
+                                    </option>
+                                    <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }}>FAIL</option>
+                                    <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }}>PENDING
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
-                        <!-- Status -->
-                        <div class="space-y-2">
-                            <label
-                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
-                            <select id="status" name="status"
-                                class="w-full text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs text-gray-800 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
-                                <option value="">All Statuses</option>
-                                <option value="SUCCESS" {{ request('status') == 'SUCCESS' ? 'selected' : '' }} >SUCCESS</option>
-                                <option value="FAIL" {{ request('status') == 'FAIL' ? 'selected' : '' }} >FAIL</option>
-                                <option value="PENDING" {{ request('status') == 'PENDING' ? 'selected' : '' }} >PENDING</option>
-                            </select>
-                        </div>
-                    </div>
+                        <!-- Search & Actions -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
+                            <!-- Search -->
+                            <div class="space-y-2">
+                                <label for="search"
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <input type="text" id="search" name="search"
+                                        placeholder="Search by ID, name or phone" value="{{ request('search') }}"
+                                        class="block w-full pl-10 pr-3 py-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                                </div>
+                            </div>
 
-                    <!-- Search & Actions -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-3">
-                        <!-- Search -->
-                        <div class="space-y-2">
-                            <label for="search"
-                                class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-800">Search</label>
-                            <div class="relative">
-                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                    <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 20 20" fill="currentColor">
+                            <!-- Buttons -->
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-2">
+                                <button id="search-btn"
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
+                                        fill="currentColor">
                                         <path fill-rule="evenodd"
                                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                             clip-rule="evenodd" />
                                     </svg>
-                                </div>
-                                <input type="text" id="search" name="search"
-                                    placeholder="Search by ID, name or phone"  value="{{ request('search') }}"
-                                    class="block w-full pl-10 pr-3 py-2 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <!-- Buttons -->
-                        <div class="flex items-end gap-2">
-                            <button id="search-btn"
-                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Search
-                            </button>
-                           <a href="{{ route('merchant.settlement') }}"
+                                    Search
+                                </button>
+                                <a href="{{ route('merchant.settlement') }}"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -128,33 +132,23 @@
                                     </svg>
                                     Reset
                                 </a>
-                        </div>
+                            </div>
 
-                        <div class="flex items-end gap-2">
-                            <a href="{{ route('merchant.settlement.csv.export',request()->query()) }}"
-                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Export CSV
-                            </a>
+                            <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-2">
+                                <a href="{{ route('merchant.settlement.csv.export', request()->query()) }}"
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
 
-                            <a href="{{ route('merchant.settlement.export',request()->query()) }}"
-                                class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md transition-colors w-full flex items-center justify-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                Export Excel
-                            </a>
+                                    Export CSV
+                                </a>
+
+                                <a href="{{ route('merchant.settlement.export', request()->query()) }}"
+                                    class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
+
+                                    Export Excel
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </form>
             </div>
 

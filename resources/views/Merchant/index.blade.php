@@ -3,7 +3,7 @@
     <div class="p-4 sm:ml-64 bg-gray-200">
         <div class="p-4 border-2 rounded-lg mt-14">
             <!-- Stats Cards Row - Improved Responsiveness -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4 mb-6">
                 <!-- Total Revenue Card -->
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100">
                     <div class="flex items-center justify-between">
@@ -60,7 +60,7 @@
                                 {{ number_format($SuccessRate, 2) }}%
                                 <span
                                     class="inline-flex items-center px-2 py-0.5 text-[10px] rounded-full bg-red-100 text-red-700 font-medium mt-1">
-                                    {{ $Totallink }} Links Created
+                                    {{ $Totallink }} <span class="hidden lg:inline">Links</span> Created
                                 </span>
                             </p>
                         </div>
@@ -96,9 +96,9 @@
 
                         {{-- Year Filter --}}
                         <label class="flex items-center gap-2">
-                            <span class="text-sm text-gray-700">Years</span>
+                            <span class="text-xs font-medium  text-gray-700">Years</span>
                             <select name="year" id="yearSelect"
-                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
+                                class="py-1 text-center text-xs font-medium  focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('year') === 'all' ? 'selected' : '' }}>All</option>
                                 @for ($y = now()->year; $y >= now()->year - 5; $y--)
                                     <option value="{{ $y }}" {{ request('year') == $y ? 'selected' : '' }}>
@@ -110,9 +110,9 @@
 
                         {{-- Month Filter --}}
                         <label class="flex items-center gap-2">
-                            <span class="text-sm text-gray-700">Month</span>
+                            <span class="text-xs font-medium  text-gray-700">Month</span>
                             <select name="month" id="monthSelect"
-                                class="py-1 text-center text-sm focus:ring-blue-300 border-0 border-b border-blue-900">
+                                class="py-1 text-center text-xs font-medium  focus:ring-blue-300 border-0 border-b border-blue-900">
                                 <option value="all" {{ request('month') === 'all' ? 'selected' : '' }}>
                                     {{ request('year') === 'all' ? 'Select A Year' : 'All' }}
                                 </option>
@@ -132,7 +132,7 @@
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
                 <!-- Transaction Types Table - Improved Responsiveness -->
                 <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">
+                    <h3 class="text-xs md:text-md lg:text-md font-semibold text-gray-800 mb-4">
                         Most Used Payment Type
                     </h3>
 
