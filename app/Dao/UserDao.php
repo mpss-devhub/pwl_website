@@ -89,22 +89,26 @@ class UserDao
 
     public function updateMerchant(array $data, $merchantId): array
     {
-        $merchant = Merchants::updateOrCreate(
-            ['id' => $merchantId],
-            [
-                'merchant_Cname' => $data['merchant_Cname'],
-                'merchant_Cphone' => $data['merchant_Cphone'],
-                'merchant_Cemail' => $data['merchant_Cemail'],
-                'merchant_frontendURL' => $data['merchant_frontendURL'],
-                'merchant_name' => $data['merchant_name'],
-                'merchant_backendURL' => $data['merchant_backendURL'] ?? '',
-                'merchant_address' => $data['merchant_address'],
-                'merchant_notifyemail' => $data['merchant_notifyemail'],
-                'merchant_remark' => $data['merchant_remark'],
-                'status' => $data['status'],
-                 'user_id' => $data['user_id'],
-            ]
-        );
+        $merchant = Merchants::where('merchant_id', $merchantId)->first();
+        //dd($merchant);
+        if (!$merchant) {
+            throw new \Exception("Merchant not found with ID: $merchantId");
+        }
+
+        $merchant->update([
+            'merchant_Cname' => $data['merchant_Cname'],
+            'merchant_Cphone' => $data['merchant_Cphone'],
+            'merchant_Cemail' => $data['merchant_Cemail'],
+            'merchant_frontendURL' => $data['merchant_frontendURL'],
+            'merchant_name' => $data['merchant_name'],
+            'merchant_backendURL' => $data['merchant_backendURL'] ?? '',
+            'merchant_address' => $data['merchant_address'],
+            'merchant_notifyemail' => $data['merchant_notifyemail'],
+            'merchant_remark' => $data['merchant_remark'],
+            'status' => $data['status'],
+            'user_id' => $data['user_id'],
+        ]);
+
         User::where('user_id', $data['user_id'])
             ->update([
                 'name' => $data['merchant_name'],
