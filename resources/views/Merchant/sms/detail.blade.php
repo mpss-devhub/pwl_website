@@ -78,7 +78,7 @@
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Created At</span>
                                     <span
-                                        class="text-xs font-semibold">{{ \Carbon\Carbon::parse($sms['created_at'])->format('M d, Y H:i') }}</span>
+                                        class="text-xs font-semibold">{{ $sms['created_at'] }}</span>
                                 </div>
                             </div>
                         </div>

@@ -114,7 +114,7 @@
                               scroll-animate fade-in"
                         data-delay="0.3">
                         Our company MPSS has a new payment type that's easy to use for merchants and user-friendly for
-                        customers. It's called PayWith Link. You can create payment links in just 3 easy steps:
+                        customers. It's called Pay with Link. You can create payment links in just 3 easy steps:
                     </p>
                     <ol
                         class="space-y-3 md:space-y-4 text-gray-700 list-decimal list-inside font-sans text-left mx-auto md:mx-0 max-w-md md:max-w-none">
