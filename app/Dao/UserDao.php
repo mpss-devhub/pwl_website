@@ -5,6 +5,7 @@ namespace App\Dao;
 use App\Models\User;
 use App\Models\Merchants;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserDao
 {
@@ -112,29 +113,45 @@ class UserDao
 
     public function updateMerchant(array $data, $merchantId): array
     {
+        // Find the merchant by its ID
         $merchant = Merchants::where('merchant_id', $merchantId)->first();
-        //dd($merchant);
+
+        if (!$merchant) {
+            throw new \Exception("Merchant not found with ID: $merchantId");
+        }
+
         $merchantNameClean = preg_replace('/[^A-Za-z0-9_\-]/', '_', $data['merchant_name']);
+
         $merchantRegistrationPath = null;
+        $merchantDicaPath = null;
+        $merchantShareholderPath = null;
+
+        if (!empty($data['merchant_registration']) && $merchant->merchant_registration) {
+
+            Storage::disk('local')->delete('merchants/' . $merchant->merchant_registration);
+        }
+
+        if (!empty($data['merchant_dica']) && $merchant->merchant_dica) {
+            Storage::disk('local')->delete('merchants/' . $merchant->merchant_dica);
+        }
+
+        if (!empty($data['merchant_shareholder']) && $merchant->merchant_shareholder) {
+            Storage::disk('local')->delete('merchants/' . $merchant->merchant_shareholder);
+        }
+
         if (!empty($data['merchant_registration'])) {
             $merchantRegistrationName = $merchantNameClean . '_' . $data['merchant_registration']->getClientOriginalName();
             $merchantRegistrationPath = $data['merchant_registration']->storeAs('merchants', $merchantRegistrationName);
         }
 
-        $merchantDicaPath = null;
         if (!empty($data['merchant_dica'])) {
             $merchantDicaName = $merchantNameClean . '_' . $data['merchant_dica']->getClientOriginalName();
             $merchantDicaPath = $data['merchant_dica']->storeAs('merchants', $merchantDicaName);
         }
 
-        $merchantShareholderPath = null;
         if (!empty($data['merchant_shareholder'])) {
             $merchantShareholderName = $merchantNameClean . '_' . $data['merchant_shareholder']->getClientOriginalName();
             $merchantShareholderPath = $data['merchant_shareholder']->storeAs('merchants', $merchantShareholderName);
-        }
-
-        if (!$merchant) {
-            throw new \Exception("Merchant not found with ID: $merchantId");
         }
 
         $merchant->update([
@@ -153,7 +170,6 @@ class UserDao
             'merchant_dica' => $merchantDicaPath,
             'merchant_shareholder' => $merchantShareholderPath,
         ]);
-
         User::where('user_id', $data['user_id'])
             ->update([
                 'name' => $data['merchant_name'],

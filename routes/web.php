@@ -40,7 +40,7 @@ Route::get('/download/{file}', function ($file) {
 
 Route::get('merchant/download/{filePath}', function ($filePath) {
     $filePath = urldecode($filePath); // decode if passed via URL
-
+    //dd($filePath);
     if (Storage::disk('local')->exists($filePath)) {
         return Storage::disk('local')->download($filePath);
     }

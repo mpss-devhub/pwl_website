@@ -203,8 +203,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                                 src="{{ $info->merchant_logo ?? Storage::url('common/approved.png') }}"
                                                 alt="Logo">
 
-                                            <div class="ml-3 text-xs font-medium merchant-name
-                     ">
+                                            <div class="ml-3 text-xs font-medium merchant-name ">
                                                 {{ $info->merchant_name }}
                                             </div>
                                         </div>
