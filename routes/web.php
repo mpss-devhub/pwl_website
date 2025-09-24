@@ -14,6 +14,7 @@ use App\Http\Controllers\LinksController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CheckUserController;
 use App\Http\Controllers\PaymentGatewayController;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
 
@@ -39,13 +40,20 @@ Route::get('/download/{file}', function ($file) {
 })->name('qr.download');
 
 Route::get('merchant/download/{filePath}', function ($filePath) {
-    $filePath = urldecode($filePath); // decode if passed via URL
-    //dd($filePath);
-    if (Storage::disk('local')->exists($filePath)) {
-        return Storage::disk('local')->download($filePath);
+    $filePath = urldecode($filePath); // decode URL-encoded path
+
+    //  S3 Do
+    if (!Storage::disk('s3')->exists($filePath)) {
+        return redirect()->back()->with('error', 'File not found.');
     }
 
-    return redirect()->back()->with('error', 'File not found.');
+    // Stream the file directly
+    return new StreamedResponse(function () use ($filePath) {
+        echo Storage::disk('s3')->get($filePath);
+    }, 200, [
+        'Content-Type' => Storage::disk('s3')->mimeType($filePath),
+        'Content-Disposition' => 'attachment; filename="' . basename($filePath) . '"',
+    ]);
 })->where('filePath', '.*')->name('merchant.download');
 
 

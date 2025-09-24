@@ -77,8 +77,10 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Created At</span>
-                                    <span
-                                        class="text-xs font-semibold">{{ $sms['created_at'] }}</span>
+                                    <span class="text-xs font-semibold">
+                                        {{ \Carbon\Carbon::parse($sms['created_at'])->timezone(config('app.timezone'))->format('Y-m-d H:i') }}
+                                    </span>
+
                                 </div>
                             </div>
                         </div>
