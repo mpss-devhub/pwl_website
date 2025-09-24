@@ -80,10 +80,9 @@
 
                         <div class="space-y-2 mt-4">
                             <!-- Company Registration -->
-                            @if ($Merchantinfo['merchant_registration'] && Storage::disk('local')->exists($Merchantinfo['merchant_registration']))
+                            @if ($Merchantinfo['merchant_registration'])
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_registration'])]) }}"
-                                        download>
+                                    <a href="{{ $Merchantinfo['merchant_registration'] }}" download>
                                         <p class="text-center text-[12px] font-medium text-gray-700">
                                             Company Registration
                                         </p>
@@ -92,10 +91,9 @@
                             @endif
 
                             <!-- Shareholder List -->
-                            @if ($Merchantinfo['merchant_shareholder'] && Storage::disk('local')->exists($Merchantinfo['merchant_shareholder']))
+                            @if ($Merchantinfo['merchant_shareholder'])
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_shareholder'])]) }}"
-                                        download>
+                                    <a href="{{ $Merchantinfo['merchant_shareholder'] }}" download>
                                         <p class="text-center text-[12px] font-medium text-gray-700">
                                             Company Extract
                                         </p>
@@ -104,10 +102,9 @@
                             @endif
 
                             <!-- DICA File -->
-                            @if ($Merchantinfo['merchant_dica'] && Storage::disk('local')->exists($Merchantinfo['merchant_dica']))
+                            @if ($Merchantinfo['merchant_dica'])
                                 <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_dica'])]) }}"
-                                        download>
+                                    <a href="{{ $Merchantinfo['merchant_dica'] }}" download>
                                         <p class="text-center text-[12px] font-medium text-gray-700">
                                             Corporate Profile
                                         </p>
@@ -115,6 +112,7 @@
                                 </div>
                             @endif
                         </div>
+
                     </div>
                 </div>
 
