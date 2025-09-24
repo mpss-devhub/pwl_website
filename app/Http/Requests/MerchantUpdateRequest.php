@@ -33,7 +33,7 @@ class MerchantUpdateRequest extends FormRequest
             'merchant_address' => 'nullable|max:255',
             'merchant_notifyemail' => 'required',
             'merchant_remark' => 'nullable|max:255',
-            'merchant_logo' => 'required|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
+            'merchant_logo' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
             'merchant_registration' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
             'merchant_shareholder' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',
             'merchant_dica' => 'nullable|file|mimes:jpg,jpeg,png,pdf,doc,docx|max:2048',

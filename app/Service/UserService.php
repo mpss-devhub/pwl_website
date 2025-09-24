@@ -118,6 +118,7 @@ class UserService
     public function updateMerchant(array $data): array
     {
            //dd($data);
+           $merchantId = $data['merchant_id'];
          $app_id = config('services.b2b.x_app_id');
          $secret_key = config('services.b2b.secret_key');
          $updateUrl = config('services.b2b.update_url');
@@ -173,8 +174,8 @@ class UserService
                 'data' => $response->json(),
             ];
         }
-
-        return $this->user_dao->updateMerchant($data);
+        //dd($data,$merchantId);
+        return $this->user_dao->updateMerchant($data,$merchantId);
     }
 
 

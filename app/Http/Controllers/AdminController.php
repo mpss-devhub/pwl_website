@@ -84,8 +84,8 @@ class AdminController extends Controller
 
     public function merchantupdate(MerchantUpdateRequest $request,$id)
     {
-        //dd($request->validated());
-        $this->user_service->updateMerchant($request->validated());
+        //dd($request->all(),$id);
+        $this->user_service->updateMerchant($request->validated(),$id);
         return redirect()->route('merchant.show')->with('success', 'Merchant Updated  Successfully! Please send Callback From Payment Gateway');
     }
 
