@@ -141,7 +141,7 @@
                             </p>
                         </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="grid grid-cols-1 lg:grid-cols-5 gap-4">
                             <!-- MMK Option -->
                             <label
                                 class="flex items-center gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">
@@ -180,7 +180,7 @@
                             </p>
                         </div>
 
-                        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+                        <div class="grid  lg:grid-cols-5 gap-4">
                             @if (!$email->isEmpty())
                                 <label
                                     class="flex items-start gap-3 p-4 border border-gray-200 rounded-xl hover:border-blue-300 cursor-pointer transition-colors">

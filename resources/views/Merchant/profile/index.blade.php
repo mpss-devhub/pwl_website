@@ -74,36 +74,46 @@
                         </a>
                     </div>
                     <div class="bg-white p-6 rounded-lg shadow mt-3">
-                        <h2 class="text-sm font-semibold text-gray-800 text-center">Company Information <i
-                                class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700 "></i></h2>
+                        <h2 class="text-sm font-semibold text-gray-800 text-center">
+                            Company Information <i class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i>
+                        </h2>
 
-                        <div class=" space-y-2 mt-4 ">
+                        <div class="space-y-2 mt-4">
                             <!-- Company Registration -->
-                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm ">
-                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_registration'])) }}"
-                                    download class="" @disabled($Merchantinfo['merchant_registration'] == null)>
-                                    <p class="text-center text-[12px] font-medium text-gray-700 ">Company Registration
-                                    </p>
-                                </a>
-                            </div>
+                            @if ($Merchantinfo['merchant_registration'] && Storage::disk('local')->exists($Merchantinfo['merchant_registration']))
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_registration'])]) }}"
+                                        download>
+                                        <p class="text-center text-[12px] font-medium text-gray-700">
+                                            Company Registration
+                                        </p>
+                                    </a>
+                                </div>
+                            @endif
 
                             <!-- Shareholder List -->
-                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
-                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_shareholder'])) }} "
-                                    download class="" @disabled($Merchantinfo['merchant_shareholder'] == null)>
-                                    <p class="text-center text-[12px] font-medium text-gray-700 ">Company Extract
-                                    </p>
-                                </a>
-                            </div>
+                            @if ($Merchantinfo['merchant_shareholder'] && Storage::disk('local')->exists($Merchantinfo['merchant_shareholder']))
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_shareholder'])]) }}"
+                                        download>
+                                        <p class="text-center text-[12px] font-medium text-gray-700">
+                                            Company Extract
+                                        </p>
+                                    </a>
+                                </div>
+                            @endif
+
                             <!-- DICA File -->
-                            <div class="border flex justify-center  py-2 tx rounded-lg hover:shadow-sm">
-
-                                <a href="{{ route('merchant.download', basename($Merchantinfo['merchant_dica'])) }}"
-                                    download class="" @disabled($Merchantinfo['merchant_dica'] == null)>
-                                    <p class="text-center text-[12px] font-medium text-gray-700 ">Corporate Profile</p>
-                                </a>
-
-                            </div>
+                            @if ($Merchantinfo['merchant_dica'] && Storage::disk('local')->exists($Merchantinfo['merchant_dica']))
+                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                    <a href="{{ route('merchant.download', ['filePath' => urlencode($Merchantinfo['merchant_dica'])]) }}"
+                                        download>
+                                        <p class="text-center text-[12px] font-medium text-gray-700">
+                                            Corporate Profile
+                                        </p>
+                                    </a>
+                                </div>
+                            @endif
                         </div>
                     </div>
                 </div>

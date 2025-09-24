@@ -88,26 +88,36 @@
 
                             <div class="space-y-2 mt-4">
                                 <!-- Company Registration -->
-                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_registration)) }}"
-                                        @disabled($detail->merchant_registration == null) download>
-                                        <p class="text-[12px] font-medium text-gray-700 text-center">Company Registration</p>
-                                    </a>
-                                </div>
+                                @if ($detail->merchant_registration && Storage::disk('local')->exists($detail->merchant_registration))
+                                    <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                        <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_registration)]) }}"
+                                            download>
+                                            <p class="text-[12px] font-medium text-gray-700 text-center">Company
+                                                Registration</p>
+                                        </a>
+                                    </div>
+                                @endif
+
                                 <!-- Shareholder List -->
-                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_shareholder)) }}"
-                                        @disabled($detail->merchant_shareholder == null) download>
-                                        <p class="text-[12px] font-medium text-gray-700 text-center">Company Extract</p>
-                                    </a>
-                                </div>
+                                @if ($detail->merchant_shareholder && Storage::disk('local')->exists($detail->merchant_shareholder))
+                                    <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                        <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_shareholder)]) }}"
+                                            download>
+                                            <p class="text-[12px] font-medium text-gray-700 text-center">Company Extract</p>
+                                        </a>
+                                    </div>
+                                @endif
+
                                 <!-- DICA File -->
-                                <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
-                                    <a href="{{ route('merchant.download', basename($detail->merchant_dica)) }}"
-                                        @disabled($detail->merchant_dica == null) download>
-                                        <p class="text-[12px] font-medium text-gray-700 text-center">Corporate Profile</p>
-                                    </a>
-                                </div>
+                                @if ($detail->merchant_dica && Storage::disk('local')->exists($detail->merchant_dica))
+                                    <div class="border flex justify-center py-2 tx rounded-lg hover:shadow-sm">
+                                        <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_dica)]) }}"
+                                            download>
+                                            <p class="text-[12px] font-medium text-gray-700 text-center">Corporate Profile
+                                            </p>
+                                        </a>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

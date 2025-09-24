@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LinksController;
 use App\Http\Controllers\ProfileController;
@@ -30,41 +31,23 @@ Route::get('/', function () {
 
 //required to change
 Route::get('/download/{file}', function ($file) {
-    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/qr/$file";
+    $url = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpsspro/qr/$file";
     $content = file_get_contents($url);
     return response($content, 200)
         ->header('Content-Type', 'image/png')
         ->header('Content-Disposition', 'attachment; filename="' . $file . '"');
 })->name('qr.download');
 
-Route::get('/download/{filename}', function ($filename) {
-    $baseUrl = "https://spaceoctoverse.sgp1.digitaloceanspaces.com/mpssuat/merchant_data/";
+Route::get('merchant/download/{filePath}', function ($filePath) {
+    $filePath = urldecode($filePath); // decode if passed via URL
 
-    // Encode filename to handle spaces, (), etc.
-    $encodedFilename = rawurlencode($filename);
-
-    $url = $baseUrl . $encodedFilename;
-
-    // Use streaming to avoid memory issues
-    $context = stream_context_create([
-        'http' => ['follow_location' => 1] // follow redirects if any
-    ]);
-    $stream = fopen($url, 'rb');
-    if (!$stream) {
-        abort(404, "File not found in Spaces.");
+    if (Storage::disk('local')->exists($filePath)) {
+        return Storage::disk('local')->download($filePath);
     }
 
-    // Force safe filename
-    $cleanFilename = str_replace(['"', '\\'], '', $filename);
+    return redirect()->back()->with('error', 'File not found.');
+})->where('filePath', '.*')->name('merchant.download');
 
-    return response()->streamDownload(function () use ($stream) {
-        fpassthru($stream);
-        fclose($stream);
-    }, $cleanFilename, [
-        'Content-Type' => 'application/octet-stream',
-        'Content-Disposition' => 'attachment; filename="' . $cleanFilename . '"',
-    ]);
-})->name('merchant.download');
 
 
 

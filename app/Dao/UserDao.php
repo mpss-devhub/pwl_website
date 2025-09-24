@@ -53,8 +53,27 @@ class UserDao
 
     public function createMerchant(array $data): Merchants
     {
-
+        // dd($data);
         $backendURL = rtrim(config('app.url'), '/') . '/api/merchant/payment/backendcallback/' . $data['user_id'];
+        $merchantNameClean = preg_replace('/[^A-Za-z0-9_\-]/', '_', $data['merchant_name']);
+        $merchantRegistrationPath = null;
+        if (!empty($data['merchant_registration'])) {
+            $merchantRegistrationName = $merchantNameClean . '_' . $data['merchant_registration']->getClientOriginalName();
+            $merchantRegistrationPath = $data['merchant_registration']->storeAs('merchants', $merchantRegistrationName);
+        }
+
+        $merchantDicaPath = null;
+        if (!empty($data['merchant_dica'])) {
+            $merchantDicaName = $merchantNameClean . '_' . $data['merchant_dica']->getClientOriginalName();
+            $merchantDicaPath = $data['merchant_dica']->storeAs('merchants', $merchantDicaName);
+        }
+
+        $merchantShareholderPath = null;
+        if (!empty($data['merchant_shareholder'])) {
+            $merchantShareholderName = $merchantNameClean . '_' . $data['merchant_shareholder']->getClientOriginalName();
+            $merchantShareholderPath = $data['merchant_shareholder']->storeAs('merchants', $merchantShareholderName);
+        }
+
         $merchant = Merchants::create([
             'status' => $data['status'],
             'user_id' => $data['user_id'],
@@ -67,8 +86,12 @@ class UserDao
             'merchant_address' => $data['merchant_address'],
             'merchant_notifyemail' => $data['merchant_notifyemail'],
             'merchant_remark' => $data['merchant_remark'],
+            'merchant_registration' => $merchantRegistrationPath,
+            'merchant_dica' => $merchantDicaPath,
+            'merchant_shareholder' => $merchantShareholderPath,
 
         ]);
+        //dd('Success');
         return $merchant;
     }
 
@@ -91,6 +114,25 @@ class UserDao
     {
         $merchant = Merchants::where('merchant_id', $merchantId)->first();
         //dd($merchant);
+        $merchantNameClean = preg_replace('/[^A-Za-z0-9_\-]/', '_', $data['merchant_name']);
+        $merchantRegistrationPath = null;
+        if (!empty($data['merchant_registration'])) {
+            $merchantRegistrationName = $merchantNameClean . '_' . $data['merchant_registration']->getClientOriginalName();
+            $merchantRegistrationPath = $data['merchant_registration']->storeAs('merchants', $merchantRegistrationName);
+        }
+
+        $merchantDicaPath = null;
+        if (!empty($data['merchant_dica'])) {
+            $merchantDicaName = $merchantNameClean . '_' . $data['merchant_dica']->getClientOriginalName();
+            $merchantDicaPath = $data['merchant_dica']->storeAs('merchants', $merchantDicaName);
+        }
+
+        $merchantShareholderPath = null;
+        if (!empty($data['merchant_shareholder'])) {
+            $merchantShareholderName = $merchantNameClean . '_' . $data['merchant_shareholder']->getClientOriginalName();
+            $merchantShareholderPath = $data['merchant_shareholder']->storeAs('merchants', $merchantShareholderName);
+        }
+
         if (!$merchant) {
             throw new \Exception("Merchant not found with ID: $merchantId");
         }
@@ -107,6 +149,9 @@ class UserDao
             'merchant_remark' => $data['merchant_remark'],
             'status' => $data['status'],
             'user_id' => $data['user_id'],
+            'merchant_registration' => $merchantRegistrationPath,
+            'merchant_dica' => $merchantDicaPath,
+            'merchant_shareholder' => $merchantShareholderPath,
         ]);
 
         User::where('user_id', $data['user_id'])

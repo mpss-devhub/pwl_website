@@ -1,7 +1,7 @@
 @extends('Admin.layouts.dashboard')
 @section('admin_content')
     @foreach ($details as $detail)
-        <form action="{{ route('merchant.update.post',$detail->user_id) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('merchant.update.post', $detail->user_id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="p-4 sm:ml-64 bg-gray-100 min-h-screen">
                 <div class="p-4 mt-14">
@@ -117,36 +117,49 @@
                                 </div>
                             </div>
                             <div class="bg-white p-6 rounded-lg shadow mt-3">
-                                <h2 class="text-md font-semibold text-gray-800">Download Information <i
-                                        class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i></h2>
+                                <h2 class="text-md font-semibold text-gray-800">
+                                    Download Information <i class="fa-solid fa-cloud-arrow-down mx-1 text-gray-700"></i>
+                                </h2>
 
-                                <div class=" space-y-2 mt-4 ">
+                                <div class="space-y-2 mt-4">
                                     <!-- Company Registration -->
-                                    <div class="border flex justify-center  py-2  rounded-lg hover:shadow-sm ">
-                                        <a href="{{ $detail->merchant_registration }}" download class=""
-                                            @disabled($detail->merchant_registration == null)>
-                                            <p class="text-center text-sm font-medium text-gray-700 ">Company Registration
-                                            </p>
-                                        </a>
-                                    </div>
+                                    @if ($detail->merchant_registration && Storage::disk('local')->exists($detail->merchant_registration))
+                                        <div class="border flex justify-center py-2 rounded-lg hover:shadow-sm">
+                                            <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_registration)]) }}"
+                                                download>
+                                                <p class="text-center text-sm font-medium text-gray-700">
+                                                    Company Registration
+                                                </p>
+                                            </a>
+                                        </div>
+                                    @endif
 
                                     <!-- Shareholder List -->
-                                    <div class="border flex justify-center  py-2  rounded-lg hover:shadow-sm">
-                                        <a href="{{ $detail->merchant_shareholder }}" download class=""
-                                            @disabled($detail->merchant_registration == null)>
-                                            <p class="text-center text-sm font-medium text-gray-700 ">Company Extract
-                                            </p>
-                                        </a>
-                                    </div>
+                                    @if ($detail->merchant_shareholder && Storage::disk('local')->exists($detail->merchant_shareholder))
+                                        <div class="border flex justify-center py-2 rounded-lg hover:shadow-sm">
+                                            <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_shareholder)]) }}"
+                                                download>
+                                                <p class="text-center text-sm font-medium text-gray-700">
+                                                    Company Extract
+                                                </p>
+                                            </a>
+                                        </div>
+                                    @endif
+
                                     <!-- DICA File -->
-                                    <div class="border flex justify-center  py-2  rounded-lg hover:shadow-sm">
-                                        <a href="{{ $detail->merchant_dica }}" download class=""
-                                            @disabled($detail->merchant_registration == null)>
-                                            <p class="text-center text-sm font-medium text-gray-700 ">Corporate Profile</p>
-                                        </a>
-                                    </div>
+                                    @if ($detail->merchant_dica && Storage::disk('local')->exists($detail->merchant_dica))
+                                        <div class="border flex justify-center py-2 rounded-lg hover:shadow-sm">
+                                            <a href="{{ route('merchant.download', ['filePath' => urlencode($detail->merchant_dica)]) }}"
+                                                download>
+                                                <p class="text-center text-sm font-medium text-gray-700">
+                                                    Corporate Profile
+                                                </p>
+                                            </a>
+                                        </div>
+                                    @endif
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- Right Column - Forms -->
@@ -213,13 +226,13 @@
 
                                 <div class="grid md:grid-cols-2 gap-4">
                                     <div>
-                                       <div class="flex justify-between items-center mb-1">
-                                         <label class="block text-xs font-medium text-gray-700 mb-1">Frontend URL
-                                             @error('merchant_frontendURL')
-                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
-                                            @enderror
-                                        </label>
-                                       </div>
+                                        <div class="flex justify-between items-center mb-1">
+                                            <label class="block text-xs font-medium text-gray-700 mb-1">Frontend URL
+                                                @error('merchant_frontendURL')
+                                                    <span class="text-red-500 text-[9px]"> {{ $message }}</span>
+                                                @enderror
+                                            </label>
+                                        </div>
                                         <div class="flex">
                                             <span
                                                 class="inline-flex items-center px-3 py-2 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
@@ -255,8 +268,8 @@
                                         <div class="flex justify-between items-center mb-1">
                                             <label class="block text-sm font-medium text-gray-700 mb-1">Notify Email
                                                 @error('merchant_notifyemail')
-                                                <span class="text-red-500 text-[9px]"> {{ $message }}</span>
-                                            @enderror
+                                                    <span class="text-red-500 text-[9px]"> {{ $message }}</span>
+                                                @enderror
                                             </label>
                                         </div>
                                         <input value="{{ $detail->merchant_notifyemail }}" type="email"
@@ -350,11 +363,11 @@
                                         </div>
                                         <div>
                                             <label class="block text-sm font-medium text-gray-700 mb-1">Remarks
-                                                 <span class="text-red-500 text-[9px]">
-                                                @error('merchant_remark')
-                                                    <span class="mx-2 "> {{ $message }}</span>
-                                                @enderror
-                                            </span>
+                                                <span class="text-red-500 text-[9px]">
+                                                    @error('merchant_remark')
+                                                        <span class="mx-2 "> {{ $message }}</span>
+                                                    @enderror
+                                                </span>
                                             </label>
                                             <textarea rows="5" name="merchant_remark"
                                                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"

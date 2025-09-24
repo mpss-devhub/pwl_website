@@ -104,9 +104,6 @@ class UserController extends Controller
                     'merchant_secretkey' => $data['secretKey'] ?? '',
                     'merchant_datakey' => $data['dataKey'] ?? '',
                     'merchant_logo' => $data["merchantLogo"] ?? '',
-                    'merchant_registration' => $data['companyRegistrationFileUrl'] ?? '',
-                    'merchant_shareholder' => $data['shareholderListFileUrl'] ?? '',
-                    'merchant_dica' => $data['companyDICAFileUrl'] ?? ''
 
                 ]
             );
