@@ -85,7 +85,7 @@
                                             <input type="checkbox" name="permission[]" value="{{ $code }}"
                                                 class="module-checkbox hidden">
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
+                                        <div class="flex flex-wrap gap-2 mt-4 md:mt-0 lg:mt-0 ">
                                             @foreach ($group['actions'] as $actionCode => $actionLabel)
                                                 <label for="allowed-{{ $code }}-{{ $actionCode }}"
                                                     class="flex items-center gap-2 px-3 py-1 rounded-lg border border-gray-200 text-sm cursor-pointer hover:bg-blue-50 transition">

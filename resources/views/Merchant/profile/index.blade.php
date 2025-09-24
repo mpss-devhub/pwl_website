@@ -42,21 +42,21 @@
                                     <div class="flex justify-evenly mt-4 gap-4">
                                         @if ($data)
                                             <div>
-                                                <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">
+                                                <p class="text-xs font-semibold text-gray-700 border-b-2 ">
                                                     SMS
                                                 </p>
                                             </div>
                                         @endif
                                         <div>
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 ">
                                                 Email</p>
                                         </div>
                                         <div>
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">Link
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 ">Link
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="text-xs font-semibold text-gray-700 border-b-2 border-b-blue-700">QR
+                                            <p class="text-xs font-semibold text-gray-700 border-b-2 ">QR
                                             </p>
                                         </div>
                                     </div>

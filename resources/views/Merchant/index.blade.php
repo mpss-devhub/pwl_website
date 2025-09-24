@@ -180,7 +180,7 @@
 
                 <!-- Recent Transactions Table - Improved Responsiveness -->
                 <div class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 overflow-x-auto">
-                    <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Transactions</h3>
+                    <h3 class="text-xs md:text-md lg:text-md font-semibold text-gray-800 mb-4">Recent Transactions</h3>
                     <div class="overflow-x-auto">
                         <table class="min-w-full divide-y divide-gray-200">
                             <thead class="bg-gray-50">

@@ -98,7 +98,7 @@ Login At: https://paywithlink.octoverse.com.mm/login
                                     By</label>
                                 <select name="search_type" id="search-type"
                                     class="block text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="all" {{ request('search_type') == 'all' ? 'selected' : '' }}>All
                                         Fields</option>
                                     <option value="id" {{ request('search_type') == 'id' ? 'selected' : '' }}>Merchant
@@ -118,10 +118,10 @@ Login At: https://paywithlink.octoverse.com.mm/login
                             <!-- Status -->
                             <div>
                                 <label for="active-status"
-                                    class="block text-gray-800 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700 mb-1">Status</label>
+                                    class="block text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700 mb-1">Status</label>
                                 <select name="active_status" id="active-status"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm
-                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
+                       focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-xs">
                                     <option value="">All</option>
                                     <option value="on" {{ request('active_status') == 'active' ? 'selected' : '' }}>
                                         Active</option>

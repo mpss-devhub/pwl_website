@@ -5,7 +5,7 @@
             <!-- Stats Cards Row -->
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
                 <!-- Total Users -->
-                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
+                <div class="bg-white p-5 md:p-3 lg:p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Total Users</p>
@@ -13,7 +13,7 @@
                                 {{ number_format($totalUsers) }}</p>
                             <!--<p class="text-xs text-green-500 mt-1">+ 5.2% from yesterday</p>-->
                         </div>
-                        <div class="p-3 rounded-full bg-blue-50 text-blue-600">
+                        <div class="p-3 rounded-full bg-blue-50 text-blue-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -24,7 +24,7 @@
                 </div>
 
                 <!-- Active Merchants -->
-                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
+                <div class="bg-white  p-5 md:p-3 lg:p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Active Merchants</p>
@@ -32,7 +32,7 @@
                                 {{ number_format($activeMerchants) }}</p>
                             <!-- <p class="text-xs text-green-500 mt-1">+ 3.1% from yesterday</p>-->
                         </div>
-                        <div class="p-3 rounded-full bg-green-50 text-green-600">
+                        <div class="p-3 rounded-full bg-green-50 text-green-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,7 +43,7 @@
                 </div>
 
                 <!-- Total Revenue -->
-                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
+                <div class="bg-white  p-5 md:p-3 lg:p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Total Amount</p>
@@ -58,7 +58,7 @@
 
 
                         </div>
-                        <div class="p-3 rounded-full bg-purple-50 text-purple-600">
+                        <div class="p-3 rounded-full bg-purple-50 text-purple-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,7 +69,7 @@
                 </div>
 
                 <!-- Pending Approvals -->
-                <div class="bg-white p-5 rounded-lg shadow border border-gray-100">
+                <div class="bg-white  p-5 md:p-3 lg:p-5 rounded-lg shadow border border-gray-100">
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-xs font-medium text-gray-500">Total Transaction</p>
@@ -77,7 +77,7 @@
                                 {{ number_format($totalTransactions) }}</p>
                             <!--<p class="text-xs text-red-500 mt-1">- 2 from yesterday</p>-->
                         </div>
-                        <div class="p-3 rounded-full bg-yellow-50 text-yellow-600">
+                        <div class="p-3 rounded-full bg-yellow-50 text-yellow-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -92,10 +92,10 @@
             <div class="bg-white p-6 rounded-lg shadow border border-gray-100">
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4">
                     <div class="flex items-center justify-between sm:justify-start">
-                        <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800">
+                        <h3 class="text-sm md:text-md lg:text-md font-semibold text-gray-800 block sm:hidden md:hidden lg:block">
                             Revenue Analytics
                         </h3>
-                        <p class="flex items-center bg-[#4f6dab] text-white font-semibold text-md px-2 py-1 rounded-full text-[9px] mt-1 mx-2">
+                        <p class="flex items-center bg-[#4f6dab] text-white font-semibold text-md px-2 py-1 rounded-full text-[8px] lg:text-[9px] mt-1 mx-2">
                             {{ number_format($totalTransactionAmountUSD) }}
                             <span class=" ml-1">USD $</span>
                         </p>
@@ -168,33 +168,33 @@
                         @forelse($latestTransactions as $tx)
                             <div class="flex items-start justify-between">
                                 <div>
-                                    <p class="text-sm text-gray-600">
+                                    <p class="text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs text-gray-600">
                                         <span
-                                            class="font-medium text-gray-800 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                            class="font-medium text-gray-800 text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->link->link_name ?? 'Unknown User' }}
                                         </span>
                                         made a
                                         <span
-                                            class="font-medium text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">{{ $tx->payment_status }}</span>
+                                            class="font-medium text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs">{{ $tx->payment_status }}</span>
                                         transaction with
                                         <span
-                                            class="font-medium text-pink-500 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                            class="font-medium text-pink-500 text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                             {{ $tx->created_by ?? 'Unknown Merchant' }}
                                         </span>
                                     </p>
-                                    <p class="text-xs text-gray-400 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                    <p class=" text-gray-400 text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                         {{ $tx->updated_at->diffForHumans() }}
                                         ({{ $tx->updated_at->format('d M Y, h:i A') }})
                                     </p>
                                 </div>
                                 <div
-                                    class="text-sm font-semibold text-green-600 text-[11px] sm:text-[11px] md:text-[10px] lg:text-xs">
+                                    class=" font-semibold text-green-600 text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs">
                                     +{{ number_format($tx->req_amount, 2) }}
                                 </div>
                             </div>
                             <hr>
                         @empty
-                            <p class="text-sm text-gray-500">No recent transactions found.</p>
+                            <p class="text-[10px] sm:text-[11px] md:text-[10px] lg:text-xs text-gray-500">No recent transactions found.</p>
                         @endforelse
                     </div>
                 </div>

@@ -27,9 +27,9 @@
                 <!-- Header Section -->
                 <div class="bg-white px-4 sm:px-6 py-4">
                     <div class="bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                             <!-- Left Section -->
-                            <div class="flex flex-col sm:flex-row gap-4 items-start sm:mt-2">
+                            <div class="flex flex-col lg:flex-row gap-4 items-start sm:mt-2">
                                 <img src="{{ $merchant->merchant_logo ? $merchant->merchant_logo : Storage::url('/common/demo.png') }}"
                                     alt="Merchant Image" class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg object-cover">
 
@@ -85,7 +85,7 @@
                 </div>
 
                 <!-- Main Content -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 p-4 sm:p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 p-4 sm:p-6">
 
                     <!-- Left Column -->
                     <div class="space-y-6 bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">

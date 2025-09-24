@@ -14,7 +14,7 @@
                             <p class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $total }}</p>
                         </div>
-                        <div class="p-3 rounded-full bg-blue-50 text-blue-600">
+                        <div class="p-3 rounded-full bg-blue-50 text-blue-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -33,7 +33,7 @@
                                 class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $Success }}</p>
                         </div>
-                        <div class="p-3 rounded-full bg-green-50 text-green-600">
+                        <div class="p-3 rounded-full bg-green-50 text-green-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -52,7 +52,7 @@
                                 class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $Fail }}</p>
                         </div>
-                        <div class="p-3 rounded-full bg-red-50 text-red-600">
+                        <div class="p-3 rounded-full bg-red-50 text-red-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -71,7 +71,7 @@
                                 class="text-[11px] sm:text-[11px] md:text-[10px] lg:text-sm mt-1 font-semibold text-gray-800">
                                 {{ $SuccessTotal }} MMK</p>
                         </div>
-                        <div class="p-3 rounded-full bg-purple-50 text-purple-600">
+                        <div class="p-3 rounded-full bg-purple-50 text-purple-600 block md:hidden lg:block">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -88,8 +88,8 @@
                     <svg id="filter-arrow" class="h-5 w-5 text-gray-500 transform transition-transform duration-200"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414
-                                                1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
-                                                010-1.414z" clip-rule="evenodd" />
+                                                            1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0
+                                                            010-1.414z" clip-rule="evenodd" />
                     </svg>
                 </button>
 
@@ -184,18 +184,21 @@
                             <!-- Export Buttons -->
                             @if (in_array('E', $access['T'] ?? []))
                                 <div class="flex items-end gap-2">
-                                    <a href="{{ route('admin.merchant.tnx.export',request()->query()) }}"
+                                    <a href="{{ route('admin.merchant.csv.export', request()->query()) }}"
                                         class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
-                                        Export CSV
+                                        <span class="block md:hidden lg:block mr-1">Export</span> CSV
+
                                         <span class="spinner" style="display:none;">
                                             <i class="fa fa-spinner fa-spin"></i>
                                         </span>
                                     </a>
-                                    <a href="{{ route('admin.merchant.csv.export',request()->query()) }}"
+
+                                    <a href=" {{ route('admin.merchant.tnx.export', request()->query()) }}"
                                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
                                transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
-                                        Export Excel
+                                        <span class="block md:hidden lg:block mr-1">Export</span> Excel
+
                                     </a>
                                 </div>
                             @endif
@@ -328,7 +331,7 @@
                                         @else
                                             @if ($item->payment_status == 'FAIL')
                                                 Fail
-                                            @elseif($item->payment_status == 'PENDING' )
+                                            @elseif($item->payment_status == 'PENDING')
                                                 Pending
                                             @endif
                                         @endif

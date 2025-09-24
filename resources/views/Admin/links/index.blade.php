@@ -58,7 +58,7 @@
 
                             <!-- Status -->
                             <div class="space-y-2">
-                                <label class="block text-sm md:text-md lg:text-md font-medium text-gray-700">Status</label>
+                                <label class="block ext-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Status</label>
                                 <select name="status"
                                     class="w-full text-gray-800 px-3 py-2 border border-gray-300 rounded-md
                            focus:outline-none focus:ring-blue-500 focus:border-blue-500 text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
@@ -75,7 +75,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-2">
                             <!-- Search -->
                             <div class="space-y-2">
-                                <label class="block text-sm md:text-md lg:text-md font-medium text-gray-700">Search</label>
+                                <label class="block ext-[9px] sm:text-[9px] md:text-[10px] lg:text-xs font-medium text-gray-700">Search</label>
                                 <input type="text" name="search" placeholder="Search by ID, name or phone"
                                     value="{{ request('search') }}"
                                     class="block w-full px-3 py-2 border border-gray-300 rounded-md placeholder-gray-400
@@ -102,12 +102,13 @@
                                     <a href="{{ route('admin.link.csv.export') }}?{{ http_build_query(request()->all()) }}"
                                         class="bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
-                                        Export CSV
+
+                                       <span class="block md:hidden lg:block mr-1">Export</span> CSV
                                     </a>
                                     <a href="{{ route('admin.link.tnx.export') }}?{{ http_build_query(request()->all()) }}"
                                         class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md
                            transition-colors w-full flex items-center justify-center text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px]">
-                                        Export Excel
+                                        <span class="block md:hidden lg:block mr-1">Export</span> Excel
                                     </a>
                                 </div>
                             @endif

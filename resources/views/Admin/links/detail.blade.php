@@ -28,29 +28,28 @@
                                     class="font-medium mt-1 text-gray-500 px-2 text-xs md:text-md lg:text-md border-l-4 border-l-blue-800 rounded ">
                                     Basic Information
                                 </h3>
-                                 @if (in_array('U', $access['L'] ?? []))
-                                             @if (!$exists)
-                                        <button type="submit"
-                                            class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
-                                            <a href="{{ route('admin.link.edit',$sms['id']) }}">
+                                @if (!$exists)
+                                    <button type="submit"
+                                        class="text-blue-800 rounded-lg ml-2 hover:text-blue-600 focus:outline-none text-sm">
+                                        <a href="{{ route('admin.link.edit', $sms['id']) }}">
                                             <i class="fa-solid fa-file-pen"></i>
                                             <span class="text-sm font-semibold">Edit</span>
 
-                                            </a>
-                                        </button>
-                                        @endif
+                                        </a>
+                                    </button>
                                 @endif
                             </div>
 
-
                             <div class="space-y-4">
                                 <div class="flex justify-between">
-                                    <span class="text-gray-600 text-xs ">From</span>
-                                    <span class="text-xs  font-semibold">{{ $sms['created_by'] }}</span>
+                                    <span class="text-gray-600 text-xs">From</span>
+                                    <span class="text-xs font-semibold">{{ $sms['created_by'] }}</span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Invoice No</span>
-                                    <span class="text-xs font-semibold">{{ $sms['link_invoiceNo'] }}</span>
+                                    <span class="text-xs font-semibold truncate max-w-[150px] block">
+                                        {{ $sms['link_invoiceNo'] }}
+                                    </span>
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Sent By</span>
@@ -82,15 +81,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gray-50 p-4 rounded-lg h-60">
-
+                        <div class="bg-gray-50 p-4 rounded-lg max-h-60 overflow-auto">
                             <h3
                                 class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">
                                 Description
                             </h3>
-                            <p class="text-gray-700 text-xs">{{ $sms['link_description'] ?? 'No description provided' }}</p>
+                            <p class="text-gray-700 text-xs break-words break-all whitespace-pre-wrap">
+                                {{ $sms['link_description'] ?? 'No description provided' }}
+                            </p>
                         </div>
-
 
 
                     </div>
@@ -142,8 +141,9 @@
                         </div>
 
                         <div class="bg-gray-50 p-4 rounded-lg">
-                            <div class="flex">
-                                <h3 class="font-medium text-gray-500 mb-2"> <i class="fa-solid fa-link mr-1"></i> Payment
+                            <div class="flex ">
+                                <h3 class="font-medium text-gray-500 mb-2 text-sm"> <i class="fa-solid fa-link mr-1"></i>
+                                    Payment
                                     Link</h3>
                                 <span
                                     class="px-2 py-1 rounded-full text-xs font-medium

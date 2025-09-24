@@ -150,17 +150,14 @@
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-gray-800 hover:bg-gray-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
 
 
-                                    <span class="text">Export CSV</span>
-                                    <span class="spinner hidden">
-                                        <i class="fa fa-spinner fa-spin mx-1"></i>
-                                    </span>
+                                    <span class="block md:hidden lg:block mr-1">Export</span> CSV
+
                                 </a>
 
 
                                 <a href="{{ route('merchant.tnx.export', request()->query()) }}"
                                     class="text-[9px] sm:text-[9px] md:text-[10px] lg:text-[11px] bg-green-600 hover:bg-green-700 text-white px-4 py-2.5 rounded-md transition-colors w-full flex items-center justify-center">
-
-                                    Export Excel
+                                    <span class="block md:hidden lg:block mr-1">Export</span> Excel
                                 </a>
                             </div>
                         </div>

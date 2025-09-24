@@ -58,25 +58,27 @@
                 @endforeach
             </div>
         </div>
-        <div class="flex justify-end">
+        <div class="flex flex-col sm:flex-row sm:justify-end gap-2">
             <a href="{{ route('support.list') }}"
-                class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
+                class="bg-gray-800 text-sm text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200 w-full sm:w-auto text-center">
                 Back to List
             </a>
 
             @if (in_array('U', $access['AN'] ?? []))
                 <a href="{{ route('support.edit', $data[0]['id']) }}"
-                class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
-                <i class="fa-solid fa-pen-to-square mx-1"></i> Edit Announcement
+                    class="bg-gray-800 text-sm text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200 w-full sm:w-auto text-center">
+                    <i class="fa-solid fa-pen-to-square mx-1"></i> Edit
+
                 </a>
             @endif
-                @if (in_array('D', $access['AN'] ?? []))
-                    <a href="{{ route('support.delete', $data[0]['id']) }}"
-                    class="bg-gray-800 mx-2 text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200">
-                    <i class="fa-solid fa-delete-left mx-1"></i> Delete Announcement
-                </a>
-                @endif
 
+            @if (in_array('D', $access['AN'] ?? []))
+                <a href="{{ route('support.delete', $data[0]['id']) }}"
+                    class="bg-gray-800 text-sm text-white px-4 py-2 rounded-md hover:bg-gray-700 transition duration-200 w-full sm:w-auto text-center">
+                    <i class="fa-solid fa-delete-left mx-1"></i> Delete
+                </a>
+            @endif
         </div>
+
     </div>
 @endsection

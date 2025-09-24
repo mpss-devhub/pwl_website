@@ -47,8 +47,11 @@
                                 </div>
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Invoice No</span>
-                                    <span class="text-xs font-semibold">{{ $sms['link_invoiceNo'] }}</span>
+                                    <span class="text-xs font-semibold truncate max-w-[150px] block">
+                                        {{ $sms['link_invoiceNo'] }}
+                                    </span>
                                 </div>
+
                                 <div class="flex justify-between">
                                     <span class="text-gray-600 text-xs">Sent By</span>
                                     @if ($sms['link_type'] === 'S')
@@ -81,7 +84,7 @@
                         </div>
                         <div class="bg-gray-50 p-4 rounded-lg max-h-60 overflow-auto">
                             <h3
-                                class="font-medium text-gray-500 mb-2 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">
+                                class="font-medium text-gray-500 mb-1 border-l-4 border-l-blue-800 rounded px-2 text-xs md:text-md lg:text-md">
                                 Description
                             </h3>
                             <p class="text-gray-700 text-xs break-words break-all whitespace-pre-wrap">

@@ -32,7 +32,7 @@
                 </div>
 
                 <!-- Main Content -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 p-4 sm:p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 p-4 sm:p-6">
 
                     <!-- Left Column -->
                     <div class="space-y-6 bg-gray-50 p-4 sm:p-5 rounded-lg border border-gray-100">

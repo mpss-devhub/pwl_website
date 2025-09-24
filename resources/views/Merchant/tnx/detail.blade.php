@@ -38,7 +38,7 @@
                 <!-- Link Info Grid -->
                 <div class="p-4 text-sm overflow-x-auto">
                     <div
-                        class="min-w-[700px] md:min-w-full grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 bg-white rounded-xl shadow-sm p-5">
+                        class=" grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 bg-white rounded-xl shadow-sm p-5">
 
                         <!-- Left Column -->
                         <div class="flex flex-col gap-2 sm:gap-4 border rounded-lg p-2 sm:p-4 bg-gray-50 min-w-[280px]">
